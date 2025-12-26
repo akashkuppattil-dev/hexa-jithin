@@ -108,13 +108,13 @@ export default function RootLayout({
           href="https://5.imimg.com/data5/SELLER/Logo/2024/11/463774909/FM/DK/XY/135087769/imtemp1727699006-120x120.jpeg"
         />
       </head>
-      <body className={`${barlow.variable} ${inter.variable} ${greatVibes.variable} font-sans antialiased`} suppressHydrationWarning>
+      <body className={`${barlow.variable} ${inter.variable} ${greatVibes.variable} font-sans antialiased bg-zinc-950`} suppressHydrationWarning>
         <ThemeProvider>
           <CartProvider>
-            <div className="flex flex-col min-h-screen">
+            <div className="flex flex-col min-h-screen bg-zinc-950">
               <TopInfoBar />
               <Header />
-              <main className="flex-1 transition-all duration-300 bg-gray-50/30 dark:bg-zinc-950">{children}</main>
+              <main className="flex-1 bg-zinc-950 relative">{children}</main>
               <Footer />
             </div>
             <WhatsAppButton />

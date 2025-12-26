@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] text-zinc-100 pb-20">
+    <div className="min-h-screen bg-[#05060a] text-zinc-100 pb-20">
       <div className="pt-4 md:pt-10">
         <div className="container mx-auto px-4 lg:px-8 max-w-[1400px]">
 
@@ -46,8 +46,8 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
 
             {/* LEFT COLUMN: Large Product Image */}
-            <div className="lg:col-span-5 sticky top-24">
-              <div className="bg-white/5 rounded-3xl p-6 border border-white/10 relative overflow-hidden group">
+            <div className="lg:col-span-5 lg:sticky lg:top-24 mb-8 lg:mb-0">
+              <div className="bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl p-6 border border-white/10 relative overflow-hidden group shadow-2xl">
                 <div className="relative aspect-square w-full flex items-center justify-center">
                   <Image
                     src={product.image || "/placeholder.svg"}
@@ -90,16 +90,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               </div>
 
               {/* Specs Grid form */}
-              <div className="bg-[#111111] rounded-2xl border border-white/5 overflow-hidden">
-                <div className="bg-white/5 px-6 py-3 border-b border-white/5 flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-zinc-300" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Specifications</span>
+              <div className="bg-[#1a2235]/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-xl">
+                <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex items-center gap-2">
+                  <Activity className="h-4 w-4 text-orange-500" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-white">Specifications</span>
                 </div>
                 <div className="p-2">
                   {Object.entries(product.specs).map(([key, value], idx) => (
                     <div key={key} className={`flex justify-between items-center p-4 ${idx !== Object.entries(product.specs).length - 1 ? 'border-b border-white/5' : ''}`}>
-                      <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{key}</span>
-                      <span className="text-sm font-bold text-white text-right">{value}</span>
+                      <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">{key}</span>
+                      <span className="text-sm font-black text-white text-right">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -146,17 +146,17 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-2 pt-6">
-                <div className="bg-[#111111] p-3 rounded-lg border border-white/5 text-center">
+                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><Info className="h-4 w-4" /></div>
-                  <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400">Genuine</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Genuine</span>
                 </div>
-                <div className="bg-[#111111] p-3 rounded-lg border border-white/5 text-center">
+                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><Activity className="h-4 w-4" /></div>
-                  <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400">Support</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Support</span>
                 </div>
-                <div className="bg-[#111111] p-3 rounded-lg border border-white/5 text-center">
+                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
                   <div className="text-orange-500 flex justify-center mb-1"><ShoppingCart className="h-4 w-4" /></div>
-                  <span className="text-[9px] font-black uppercase tracking-wider text-zinc-400">Fast Ship</span>
+                  <span className="text-[10px] font-black uppercase tracking-wider text-zinc-300">Fast Ship</span>
                 </div>
               </div>
 

@@ -30,10 +30,9 @@ const brands = [
 
 export default function BrandsPage() {
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-zinc-100">
-
+        <div className="min-h-screen bg-[#05060a] text-zinc-100">
             {/* ================= HERO ================= */}
-            <div className="relative overflow-hidden py-20 border-b border-white/5 bg-gradient-to-b from-[#111111] to-[#0a0a0a]">
+            <div className="relative overflow-hidden py-24 border-b border-white/5 bg-gradient-to-b from-[#0f172a] to-[#05060a]">
                 <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
                 <div className="container mx-auto px-4 text-center relative z-10">
                     <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full mb-6">
@@ -56,10 +55,10 @@ export default function BrandsPage() {
                 {/* ================= FEATURED LINICH ================= */}
                 <div className="mb-14">
                     <Link href="/shop?brand=Linich Tools">
-                        <div className="group relative bg-[#111111] rounded-3xl border border-white/5 hover:border-orange-500/30 transition-all duration-500 overflow-hidden shadow-2xl">
+                        <div className="group relative bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/40 transition-all duration-500 overflow-hidden shadow-2xl">
                             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px]" />
-                            <div className="grid md:grid-cols-2 gap-6 p-6 relative z-10 items-center">
-                                <div className="bg-white rounded-xl p-6 flex items-center justify-center min-h-[180px]">
+                            <div className="grid md:grid-cols-2 gap-6 p-6 md:p-10 relative z-10 items-center">
+                                <div className="bg-white rounded-xl p-8 flex items-center justify-center min-h-[220px] shadow-inner">
                                     <Image
                                         src="/images/brands/linich-logo.jpg"
                                         alt="Linich Tools"
@@ -88,13 +87,16 @@ export default function BrandsPage() {
                     </Link>
                 </div>
 
-                {/* ================= BRAND GRID ================= */}
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                    {brands.map((brand) => (
-                        <Link key={brand.name} href={`/shop?brand=${encodeURIComponent(brand.name)}`}>
-                            <Card className="group bg-[#111111] border border-white/5 hover:border-orange-500/30 transition-all duration-300 overflow-hidden">
-                                <div className="bg-white px-3 py-4 flex items-center justify-center">
-                                    <div className="relative w-full h-[70px]">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                    {brands.map((brand, idx) => (
+                        <Link
+                            key={brand.name}
+                            href={`/shop?brand=${encodeURIComponent(brand.name)}`}
+                            className={`animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 50}ms]`}
+                        >
+                            <Card className="group bg-[#1a2235]/40 backdrop-blur-sm border border-white/10 hover:border-orange-500/50 transition-all duration-300 overflow-hidden rounded-2xl h-full flex flex-col">
+                                <div className="bg-white px-4 py-8 flex items-center justify-center flex-1">
+                                    <div className="relative w-full h-[60px] md:h-[80px]">
                                         <Image
                                             src={brand.logo}
                                             alt={brand.name}
@@ -103,8 +105,8 @@ export default function BrandsPage() {
                                         />
                                     </div>
                                 </div>
-                                <div className="px-3 py-3 text-center">
-                                    <h3 className="text-xs font-black uppercase tracking-wide text-white group-hover:text-orange-500 transition-colors">
+                                <div className="px-4 py-4 text-center border-t border-white/5 bg-black/20">
+                                    <h3 className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-300 group-hover:text-orange-500 transition-colors">
                                         {brand.name}
                                     </h3>
                                 </div>
@@ -113,19 +115,18 @@ export default function BrandsPage() {
                     ))}
                 </div>
 
-                {/* ================= COLLAB / PARTNER CTA (RESTORED) ================= */}
                 <div className="mt-24 text-center">
-                    <div className="max-w-2xl mx-auto bg-[#111111] border border-white/5 rounded-2xl p-10 relative overflow-hidden">
+                    <div className="max-w-2xl mx-auto bg-[#1a2235]/40 backdrop-blur-md border border-white/10 rounded-3xl p-10 md:p-14 relative overflow-hidden shadow-2xl">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 blur-[90px]" />
-                        <h3 className="text-xl md:text-2xl font-black uppercase mb-4">
+                        <h3 className="text-2xl md:text-3xl font-black uppercase mb-4 tracking-tighter">
                             Want to collaborate with Hexamech?
                         </h3>
-                        <p className="text-zinc-400 text-sm mb-8">
+                        <p className="text-zinc-400 text-sm md:text-base mb-10 font-medium">
                             If you are a tool manufacturer or brand looking to expand your reach in
                             India, partner with us for distribution and growth.
                         </p>
-                        <Link href="/contact">
-                            <Button className="h-12 px-8 font-black uppercase tracking-widest bg-white text-black hover:bg-zinc-200 rounded-xl">
+                        <Link href="/contact" className="inline-block transform transition hover:scale-105 active:scale-95">
+                            <Button className="h-14 px-10 font-black uppercase tracking-[0.2em] bg-orange-600 hover:bg-orange-500 text-white rounded-xl shadow-xl shadow-orange-900/30">
                                 Become a Brand Partner
                             </Button>
                         </Link>

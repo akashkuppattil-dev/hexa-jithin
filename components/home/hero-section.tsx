@@ -6,6 +6,7 @@ import { ArrowRight, MessageCircle, Search, ShieldCheck, CheckCircle, Truck } fr
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useRouter } from "next/navigation"
+import Image from "next/image"
 
 const heroImages = [
   "/images/hero/hero-bg-1.jpg",
@@ -29,13 +30,16 @@ export function HeroSection() {
   return (
     <section className="relative h-[65vh] md:h-[75vh] lg:h-[85vh] min-h-[480px] md:min-h-[600px] flex flex-col justify-center items-center overflow-hidden bg-zinc-950">
 
-      {/* Static Background Composition (Simulating "Mixed" Image) */}
+      {/* Optimized Background Composition */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-[url('/images/hero/hero-bg-2.jpg')] bg-cover bg-center opacity-60" />
-        <div className="absolute inset-0 bg-[url('/images/hero/hero-bg-1.jpg')] bg-cover bg-left opacity-30 mix-blend-overlay" />
-        {/* Radial gradient to focus center - Slightly lighter center */}
+        <Image
+          src="/images/hero/hero-bg-2.jpg"
+          alt="Hexamech Hero Background"
+          fill
+          priority
+          className="object-cover object-center opacity-60"
+        />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_10%,_#09090b_95%)]" />
-        {/* Reduced overlay opacity to show more photo details */}
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
@@ -44,7 +48,7 @@ export function HeroSection() {
         <div className="flex flex-col items-center text-center">
 
           {/* Cursive Welcome Text */}
-          <h2 className={`text-3xl md:text-5xl text-orange-500 mb-4 transition-all duration-700 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ fontFamily: 'var(--font-great-vibes), cursive' }}>
+          <h2 className={`text-3xl md:text-5xl text-orange-500 mb-4 transition-all duration-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`} style={{ fontFamily: 'var(--font-great-vibes), cursive' }}>
             Welcome to Hexamech
           </h2>
 
@@ -79,7 +83,7 @@ export function HeroSection() {
           </div>
 
           {/* Main Title - Professional Supplier */}
-          <h1 className={`flex flex-col items-center font-black tracking-tighter text-white mb-3 md:mb-4 uppercase transition-all duration-700 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <h1 className={`flex flex-col items-center font-black tracking-tighter text-white mb-3 md:mb-4 uppercase transition-all duration-300 delay-75 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2'}`}>
             <div className="flex flex-col items-center text-center gap-0 relative">
               <span className="text-sm leading-[0.9] sm:text-lg md:text-xl lg:text-2xl font-black text-white tracking-tighter uppercase z-10 drop-shadow-2xl">
                 Professional Automotive

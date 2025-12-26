@@ -7,6 +7,7 @@ import { Award, ChevronLeft, ChevronRight, Eye, MapPin, Rocket, Target, Truck, U
 import Image from "next/image"
 import React, { useState } from "react"
 import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards"
+import { useEffect } from "react"
 
 const stats = [
   { label: "Annual Turnover", value: "1.5-10", suffix: "Cr", iconName: "Award" as const },
@@ -29,6 +30,14 @@ export default function AboutClientPage() {
   const [foundersIndex, setFoundersIndex] = useState(0)
   const [touchStart, setTouchStart] = useState(0)
   const [touchEnd, setTouchEnd] = useState(0)
+
+  // Auto-rotate trust items
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTrustIndex((prev) => (prev + 1) % trustItems.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
 
   // Trust items
   const trustItems = [
@@ -107,7 +116,7 @@ export default function AboutClientPage() {
   }
 
   return (
-    <div className="pt-14 sm:pt-16 md:pt-18 w-full overflow-x-hidden bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] min-h-screen">
+    <div className="pt-2 sm:pt-4 md:pt-18 w-full overflow-x-hidden bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] min-h-screen">
       {/* Background Patterns */}
       <div className="fixed inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
@@ -116,7 +125,7 @@ export default function AboutClientPage() {
       <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
 
       {/* HERO */}
-      <section className="relative py-10 overflow-hidden z-10">
+      <section className="relative py-4 md:py-10 overflow-hidden z-10">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3">
             <span className="text-[9px] font-black text-blue-400 uppercase tracking-[0.3em]">Trusted Since 2023</span>
@@ -137,7 +146,7 @@ export default function AboutClientPage() {
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-3">
               <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Our Identity</span>
             </div>
-            <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tighter uppercase">Who We Are</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tighter uppercase transition-all duration-300">Who We Are</h2>
             <div className="space-y-4 text-sm md:text-base text-slate-400 leading-relaxed">
               <p>
                 <strong className="text-white">Hexamech Linich Tools</strong> was founded in 2023 in Chulliparamba, Kerala — with a single mission: to provide automotive workshops with reliable access to genuine, professional-grade tools at wholesale prices.
@@ -180,45 +189,15 @@ export default function AboutClientPage() {
           </div>
 
           {/* Mobile Carousel */}
-          <div className="md:hidden" onTouchStart={handleTrustTouchStart} onTouchEnd={handleTrustTouchEnd}>
+          <div className="md:hidden">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <button
-                onClick={() => setTrustIndex((prev) => (prev - 1 + trustItems.length) % trustItems.length)}
-                className="p-2 bg-slate-900/40 hover:bg-orange-500/20 rounded-lg transition border border-slate-800"
-              >
-                <ChevronLeft className="h-5 w-5 text-white" />
-              </button>
-
-              <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 text-center flex-1 h-56 flex flex-col justify-center items-center shadow-xl">
-                <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mb-3">
-                  {(() => {
-                    const IconComponent = icons[trustItems[trustIndex].icon as keyof typeof icons]
-                    return IconComponent
-                      ? React.createElement(IconComponent, { className: "h-6 w-6 text-orange-500" })
-                      : null
-                  })()}
-                </div>
+              <div className="bg-[#1a2235] border border-orange-500/20 rounded-xl p-6 text-center flex-1 h-40 flex flex-col justify-center items-center shadow-2xl shadow-orange-500/5">
                 <h3 className="font-black text-white text-base mb-2 uppercase tracking-tight">{trustItems[trustIndex].title}</h3>
                 <p className="text-sm text-slate-400">{trustItems[trustIndex].description}</p>
               </div>
-
-              <button
-                onClick={() => setTrustIndex((prev) => (prev + 1) % trustItems.length)}
-                className="p-2 bg-slate-900/40 hover:bg-orange-500/20 rounded-lg transition border border-slate-800"
-              >
-                <ChevronRight className="h-5 w-5 text-white" />
-              </button>
             </div>
 
-            <div className="flex justify-center gap-1.5">
-              {trustItems.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setTrustIndex(idx)}
-                  className={`h-1.5 rounded-full transition ${idx === trustIndex ? "bg-orange-500 w-6" : "bg-orange-500/30 w-1.5"}`}
-                />
-              ))}
-            </div>
+
           </div>
         </div>
       </section>
@@ -256,36 +235,24 @@ export default function AboutClientPage() {
             ))}
           </div>
 
-          {/* Mobile Carousel */}
-          <div className="md:hidden" onTouchStart={handleFoundersTouchStart} onTouchEnd={handleFoundersTouchEnd}>
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <button
-                onClick={() => setFoundersIndex((prev) => (prev - 1 + founders.length) % founders.length)}
-                className="p-2 bg-slate-900/40 hover:bg-orange-500/20 rounded-lg transition border border-slate-800 shrink-0"
-              >
-                <ChevronLeft className="h-5 w-5 text-white" />
-              </button>
-
-              <div className="flex-1 text-center bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 shadow-xl">
+          {/* Mobile/Tab View: Vertical Stacks */}
+          <div className="md:hidden space-y-4">
+            {founders.map((founder) => (
+              <div key={founder.name} className="bg-[#1a2235] border border-slate-700/50 rounded-xl p-6 shadow-2xl">
                 <div className="relative w-32 h-32 mx-auto mb-4">
                   <Image
-                    src={founders[foundersIndex].image || "/placeholder.svg"}
-                    alt={founders[foundersIndex].name}
+                    src={founder.image || "/placeholder.svg"}
+                    alt={founder.name}
                     fill
                     className="object-cover object-top rounded-full border-4 border-slate-700 shadow-md"
                   />
                 </div>
-                <h3 className="text-lg font-black text-white mb-1 uppercase tracking-tight">{founders[foundersIndex].name}</h3>
-                <p className="text-orange-400 font-bold text-xs">{founders[foundersIndex].role}</p>
+                <div className="text-center">
+                  <h3 className="text-lg font-black text-white mb-1 uppercase tracking-tight">{founder.name}</h3>
+                  <p className="text-orange-400 font-bold text-xs">{founder.role}</p>
+                </div>
               </div>
-
-              <button
-                onClick={() => setFoundersIndex((prev) => (prev + 1) % founders.length)}
-                className="p-2 bg-slate-900/40 hover:bg-orange-500/20 rounded-lg transition border border-slate-800 shrink-0"
-              >
-                <ChevronRight className="h-5 w-5 text-white" />
-              </button>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -311,7 +278,7 @@ export default function AboutClientPage() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 hover:border-orange-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-orange-500">
+            <div className="bg-[#1a2235]/80 backdrop-blur-md border border-slate-700/50 hover:border-orange-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-orange-500">
               <div className="flex items-center gap-3 mb-3">
                 <Target className="h-6 w-6 text-orange-500" />
                 <h3 className="font-black text-white text-lg uppercase tracking-tight">Our Mission</h3>
@@ -321,7 +288,7 @@ export default function AboutClientPage() {
               </p>
             </div>
 
-            <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 hover:border-blue-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-blue-500">
+            <div className="bg-[#1a2235]/80 backdrop-blur-md border border-slate-700/50 hover:border-blue-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-blue-500">
               <div className="flex items-center gap-3 mb-3">
                 <Eye className="h-6 w-6 text-blue-400" />
                 <h3 className="font-black text-white text-lg uppercase tracking-tight">Our Vision</h3>
@@ -331,7 +298,7 @@ export default function AboutClientPage() {
               </p>
             </div>
 
-            <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 hover:border-orange-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-orange-500">
+            <div className="bg-[#1a2235]/80 backdrop-blur-md border border-slate-700/50 hover:border-orange-500/40 transition-all rounded-xl p-6 shadow-xl border-l-4 border-l-orange-500">
               <div className="flex items-center gap-3 mb-3">
                 <Rocket className="h-6 w-6 text-orange-500" />
                 <h3 className="font-black text-white text-lg uppercase tracking-tight">Our Future</h3>

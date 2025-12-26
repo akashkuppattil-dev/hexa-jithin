@@ -127,7 +127,7 @@ export function ContactClientPage() {
                   {contactMethods.map((method) => {
                     const Icon = method.icon
                     return (
-                      <div key={method.title} className="bg-slate-900/60 backdrop-blur-md border border-slate-700/50 hover:border-orange-500/40 transition-all rounded-2xl p-6 flex items-start gap-5 shadow-lg group">
+                      <div key={method.title} className="bg-[#1a2235] border border-slate-700/50 hover:border-orange-500/40 transition-all rounded-2xl p-6 flex items-start gap-5 shadow-lg group">
                         <div className="p-3 bg-slate-800/50 rounded-xl shrink-0 group-hover:bg-orange-500/20 transition-colors">
                           <Icon className="h-6 w-6 text-orange-500" />
                         </div>
@@ -159,7 +159,7 @@ export function ContactClientPage() {
                 Submit your requirement and our team will get back to you within <strong className="text-orange-500">30 minutes</strong> during business hours.
               </p>
 
-              <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 md:p-8 shadow-2xl">
+              <div className="bg-[#1a2235]/90 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 md:p-8 shadow-2xl">
                 <ContactForm />
               </div>
             </div>
@@ -202,7 +202,7 @@ export function ContactClientPage() {
                   const Icon = item.icon
                   return (
                     <div key={item.title} className="w-full shrink-0 px-2">
-                      <div className="bg-slate-900/60 border border-slate-800/50 p-8 rounded-2xl flex flex-col items-center text-center shadow-2xl">
+                      <div className="bg-[#1a2235] border border-slate-800/50 p-8 rounded-2xl flex flex-col items-center text-center shadow-2xl">
                         <div className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 mb-6">
                           <Icon className="h-8 w-8 text-orange-500" />
                         </div>
@@ -251,7 +251,7 @@ export function ContactClientPage() {
             </div>
 
             {/* Map Info Card */}
-            <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl p-6 shadow-xl flex flex-col justify-center">
+            <div className="bg-[#1a2235] border border-slate-700/50 rounded-xl p-6 shadow-xl flex flex-col justify-center">
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <div className="p-2 bg-orange-500/10 rounded-lg shrink-0">

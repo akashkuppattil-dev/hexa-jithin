@@ -152,7 +152,14 @@
 
   body {
     @apply bg-background text-foreground;
+    background-color: #09090b;
+    /* Match zinc-950 */
+    overscroll-behavior-y: none;
   }
+}
+
+html {
+  background-color: #09090b;
 }
 
 @layer utilities {

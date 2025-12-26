@@ -133,13 +133,13 @@ export function ShopContent() {
           <div className="max-w-4xl space-y-6">
             {/* Badges */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                <Zap className="h-3 w-3 text-blue-500 fill-current" />
-                <span className="text-[10px] text-blue-500 font-black uppercase tracking-widest">GST Verified Supplier</span>
+              <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                <Zap className="h-3 w-3 text-blue-400 fill-current" />
+                <span className="text-[10px] text-blue-400 font-black uppercase tracking-widest">GST Verified Supplier</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                <Award className="h-3 w-3 text-teal-500" />
-                <span className="text-[10px] text-teal-500 font-bold uppercase tracking-tight">IndiaMART Verified Seller</span>
+              <div className="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 px-4 py-1.5 rounded-full backdrop-blur-sm">
+                <Award className="h-3 w-3 text-orange-400" />
+                <span className="text-[10px] text-orange-400 font-bold uppercase tracking-tight">IndiaMART Verified Seller</span>
               </div>
             </div>
 
@@ -161,7 +161,7 @@ export function ShopContent() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           {/* Sidebar Filters */}
           <aside className="hidden lg:block w-72 shrink-0 h-fit sticky top-28">
-            <div className="bg-[#111111] p-6 rounded-2xl border border-white/5 backdrop-blur-sm">
+            <div className="bg-[#1a2235]/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
               <div className="mb-6">
                 <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-500 mb-6">Filter Catalog</h3>
                 <ShopFilters
@@ -203,7 +203,7 @@ export function ShopContent() {
                 <Input
                   type="text"
                   placeholder="Search products..."
-                  className="w-full h-11 md:h-12 pl-10 pr-4 bg-[#111111] border-white/5 text-sm text-white placeholder:text-zinc-400 rounded-xl focus:border-orange-500/50 transition-all shadow-sm"
+                  className="w-full h-11 md:h-12 pl-10 pr-4 bg-[#1a2235]/60 border-white/10 text-sm text-white placeholder:text-zinc-500 rounded-xl focus:border-orange-500/50 transition-all shadow-xl backdrop-blur-sm"
                   value={searchInputValue}
                   onChange={(e) => handleSearch(e.target.value)}
                 />
@@ -212,10 +212,10 @@ export function ShopContent() {
               <div className="grid grid-cols-2 md:contents gap-3">
                 {/* Category Select */}
                 <Select onValueChange={(val) => setSelectedCategories([val])}>
-                  <SelectTrigger className="h-11 md:h-12 bg-[#111111] border-white/5 text-zinc-300 rounded-xl">
+                  <SelectTrigger className="h-11 md:h-12 bg-[#1a2235]/60 border-white/10 text-zinc-300 rounded-xl backdrop-blur-sm">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-[#000000] border-white/20 max-h-[300px] z-[100]">
+                  <SelectContent position="popper" side="bottom" className="bg-[#05060a] border-white/20 max-h-[300px] z-[100]">
                     {categories.map((c) => (
                       <SelectItem key={c.id} value={c.id} className="text-zinc-300 focus:bg-orange-500 focus:text-white">{c.name}</SelectItem>
                     ))}
@@ -224,10 +224,10 @@ export function ShopContent() {
 
                 {/* Brand Select */}
                 <Select onValueChange={(val) => setSelectedBrands([val])}>
-                  <SelectTrigger className="h-11 md:h-12 bg-[#111111] border-white/5 text-zinc-300 rounded-xl">
+                  <SelectTrigger className="h-11 md:h-12 bg-[#1a2235]/60 border-white/10 text-zinc-300 rounded-xl backdrop-blur-sm">
                     <SelectValue placeholder="Brand" />
                   </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-[#000000] border-white/20 max-h-[300px] z-[100]">
+                  <SelectContent position="popper" side="bottom" className="bg-[#05060a] border-white/20 max-h-[300px] z-[100]">
                     {brands.map((b) => (
                       <SelectItem key={b} value={b} className="text-zinc-300 focus:bg-orange-500 focus:text-white">{b}</SelectItem>
                     ))}

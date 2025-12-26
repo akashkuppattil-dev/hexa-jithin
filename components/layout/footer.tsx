@@ -19,7 +19,11 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="bg-[#111827] text-zinc-200 border-t border-white/5">
+    <footer className="bg-black border-t border-white/5 relative overflow-hidden pt-16 md:pt-24 pb-12">
+      {/* Background patterns */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
+
       <div className="max-w-7xl mx-auto px-6 py-6">
 
         {/* MAIN GRID */}
@@ -71,8 +75,8 @@ export function Footer() {
           </div>
 
           {/* COMPANY */}
-          <div className="col-span-1 lg:col-span-2 text-right lg:text-left">
-            <h4 className="footer-title mb-2 !text-[10px]">Company</h4>
+          <div className="col-span-1 lg:col-span-2 text-right lg:text-left mt-6 lg:mt-0">
+            <h4 className="footer-title mb-2 !text-[10px] !text-orange-500 lg:!text-white">Company</h4>
             <ul className="footer-list space-y-0.5">
               <li><Link href="/">Home</Link></li>
               <li><Link href="/shop">Products</Link></li>
@@ -141,11 +145,16 @@ export function Footer() {
         </div>
 
         {/* COPYRIGHT */}
-        <div className="mt-4 pt-4 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-600">
-          <p>© {year} Hexamech Linich Tools. All rights reserved.</p>
-          <div className="flex gap-4 mt-2 md:mt-0">
-            <Link href="/privacy" className="hover:text-zinc-400">Privacy</Link>
-            <Link href="/terms" className="hover:text-zinc-400">Terms</Link>
+        <div className="mt-4 pt-4 border-t border-white/5">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em] text-center md:text-left">
+              © 2025 Hexamech Linich Tools. All Rights Reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <Link href="/privacy" className="text-[10px] text-zinc-600 hover:text-orange-500 font-bold uppercase tracking-widest transition-colors">Privacy</Link>
+              <Link href="/terms" className="text-[10px] text-zinc-600 hover:text-orange-500 font-bold uppercase tracking-widest transition-colors">Terms</Link>
+              <Link href="/sitemap" className="text-[10px] text-zinc-600 hover:text-orange-500 font-bold uppercase tracking-widest transition-colors">Sitemap</Link>
+            </div>
           </div>
         </div>
       </div>
