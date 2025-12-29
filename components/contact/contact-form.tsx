@@ -58,72 +58,72 @@ export function ContactForm() {
   return (
     <div className="w-full">
       <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid sm:grid-cols-2 gap-5">
-          <div className="space-y-2">
-            <Label htmlFor="name" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Name *</Label>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="name" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Name *</Label>
             <Input
               id="name"
               name="name"
-              placeholder="Enter your full name"
+              placeholder="Full Name"
               required
-              className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 h-11"
+              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="mobile" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Mobile Number *</Label>
+          <div className="space-y-1.5">
+            <Label htmlFor="mobile" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Mobile Number *</Label>
             <Input
               id="mobile"
               name="mobile"
               type="tel"
-              placeholder="+91 98765 43210"
+              placeholder="+91 00000 00000"
               required
-              className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 h-11"
+              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
             />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="email" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Email Address *</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor="email" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Email Address *</Label>
           <Input
             id="email"
             name="email"
             type="email"
             placeholder="your@email.com"
             required
-            className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 h-11"
+            className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
           />
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
-          <div className="space-y-2">
-            <Label htmlFor="company" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Company / Workshop Name</Label>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="company" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Company / Workshop</Label>
             <Input
               id="company"
               name="company"
-              placeholder="e.g. Hexamech Auto Works"
-              className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 h-11"
+              placeholder="Company Name"
+              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="gst" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">GST Number</Label>
+          <div className="space-y-1.5">
+            <Label htmlFor="gst" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">GST Number</Label>
             <Input
               id="gst"
               name="gst"
-              placeholder="GSTIN (Optional)"
-              className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 h-11"
+              placeholder="Optional"
+              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
             />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="interest" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Product Interest *</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor="interest" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Product Interest *</Label>
           <Select name="interest" required>
-            <SelectTrigger className="bg-black/40 border-white/10 text-zinc-300 focus:border-orange-500 focus:ring-orange-500/20 h-11">
-              <SelectValue placeholder="Select product category" />
+            <SelectTrigger className="bg-[#111] border-white/5 text-zinc-500 focus:border-[#09757a]/50 h-9 text-xs rounded-lg">
+              <SelectValue placeholder="Select Category" />
             </SelectTrigger>
-            <SelectContent className="bg-zinc-900 border-zinc-800 text-zinc-300">
+            <SelectContent className="bg-[#0a0a0a] border-white/10 text-zinc-400">
               {productInterests.map((interest) => (
-                <SelectItem key={interest.value} value={interest.value} className="focus:bg-orange-500 focus:text-white cursor-pointer">
+                <SelectItem key={interest.value} value={interest.value} className="focus:bg-[#09757a] focus:text-white cursor-pointer text-xs uppercase font-bold">
                   {interest.label}
                 </SelectItem>
               ))}
@@ -131,28 +131,28 @@ export function ContactForm() {
           </Select>
         </div>
 
-        <div className="space-y-2">
-          <Label htmlFor="message" className="text-zinc-400 font-bold text-[11px] uppercase tracking-wider">Message / Requirement *</Label>
+        <div className="space-y-1.5">
+          <Label htmlFor="message" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Message / Requirement *</Label>
           <Textarea
             id="message"
             name="message"
-            placeholder="Please describe your requirements, specifications, or quantity needed..."
-            rows={5}
+            placeholder="Describe your requirements..."
+            rows={4}
             required
-            className="bg-black/40 border-white/10 text-white placeholder:text-zinc-600 focus:border-orange-500 focus:ring-orange-500/20 resize-none"
+            className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 text-xs rounded-xl resize-none"
           />
         </div>
 
-        <Button type="submit" className="w-full h-12 bg-orange-600 hover:bg-orange-500 text-white font-black uppercase tracking-widest shadow-lg shadow-orange-900/20 text-xs transition-all" disabled={isLoading}>
+        <Button type="submit" className="w-full h-10 bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white font-black uppercase tracking-[0.2em] shadow-lg text-[10px] rounded-lg transition-all border border-transparent hover:border-[#09757a]" disabled={isLoading}>
           {isLoading ? (
             <>
-              <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
-              Submitting Request...
+              <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />
+              Processing...
             </>
           ) : (
             <>
-              <Send className="h-4 w-4 mr-2" />
-              Submit Quote Request
+              <Send className="h-3.5 w-3.5 mr-2" />
+              Submit Request
             </>
           )}
         </Button>

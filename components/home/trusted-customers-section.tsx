@@ -1,7 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
@@ -22,96 +20,73 @@ const customers = [
 ].filter((customer) => customer.logo && customer.logo.trim() !== "")
 
 export function TrustedCustomersSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsPerRow, setItemsPerRow] = useState(6)
-  const totalRows = 2
-  const itemsPerPage = itemsPerRow * totalRows
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const updateItemsPerRow = () => {
-      setItemsPerRow(window.innerWidth < 768 ? 2 : 6)
-    }
-    updateItemsPerRow()
-    window.addEventListener("resize", updateItemsPerRow)
-    return () => window.removeEventListener("resize", updateItemsPerRow)
+    setMounted(true)
   }, [])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + itemsPerRow) % customers.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [itemsPerRow])
+  if (!mounted) return null
 
-  const handlePrev = () => setCurrentIndex((prev) => (prev - itemsPerRow + customers.length) % customers.length)
-  const handleNext = () => setCurrentIndex((prev) => (prev + itemsPerRow) % customers.length)
-
-  const visibleCustomers = Array.from({ length: itemsPerPage }).map(
-    (_, i) => customers[(currentIndex + i) % customers.length],
-  )
+  // Duplicate list to ensure seamless loop
+  const duplicatedCustomers = [...customers, ...customers, ...customers]
 
   return (
-    <section className="py-20 relative overflow-hidden bg-[#0a0a0a] border-t border-white/5">
-      {/* Background Subtle Patterns */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+    <section className="py-12 md:py-16 bg-background overflow-hidden relative border-t border-border transition-colors">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-[#09757a]/5 blur-[120px] rounded-full pointer-events-none opacity-50 dark:opacity-20" />
 
-      {/* Dynamic Glow Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-blue-600/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-orange-600/5 blur-[150px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-6 backdrop-blur-md shadow-lg">
-          <span className="text-[10px] font-black text-orange-500 uppercase tracking-[0.3em]">Global Network</span>
+      <div className="w-full px-4 md:px-12 relative z-10 text-center">
+        <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded mb-3">
+          <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em] leading-none">Global Network</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter uppercase leading-none drop-shadow-xl">
-          Trusted by <span className="text-orange-500">Industry Leaders</span>
+        <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
+          Trusted by <span className="text-[#09757a]">Industry Leaders</span>
         </h2>
-        <p className="text-sm md:text-base text-zinc-400 font-medium max-w-2xl mx-auto mb-12 leading-relaxed">
-          Supplying the largest automotive service networks and dealerships across South India with premium equipment.
+        <p className="text-sm text-muted-foreground font-bold uppercase tracking-widest opacity-80 max-w-3xl mx-auto mb-10">
+          Powering the largest automotive service networks across South India.
         </p>
 
-        <div className="relative group/customers px-4 md:px-16">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handlePrev}
-            className="hidden lg:flex absolute -left-4 xl:-left-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
-          >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
-          </Button>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
-            {visibleCustomers.map((customer, index) => (
+        {/* Infinite Scrolling Marquee */}
+        <div className="relative flex overflow-hidden group">
+          <div className="flex animate-marquee group-hover:pause gap-6">
+            {duplicatedCustomers.map((customer, index) => (
               <div
-                key={index}
-                className="group/customer-card relative aspect-square flex items-center justify-center p-4 bg-[#f8f9fa] rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                key={`${customer.name}-${index}`}
+                className="relative flex-shrink-0 w-24 h-24 md:w-36 md:h-32 flex items-center justify-center p-4 bg-background rounded-xl border border-border shadow-md overflow-hidden"
               >
-                {/* Soft lighting effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-black/5 opacity-50" />
-
-                <div className="w-full h-full relative opacity-90 group-hover/customer-card:opacity-100 transition-all duration-300 transform group-hover/customer-card:scale-110">
+                {/* Fixed visibility by ensuring high contrast on background */}
+                <div className="absolute inset-0 bg-background" />
+                <div className="w-full h-full relative z-10">
                   <Image
                     src={customer.logo || "/placeholder.svg"}
                     alt={customer.name}
                     fill
-                    className="object-contain mix-blend-multiply filter contrast-125"
-                    sizes="(max-width: 768px) 50vw, 16vw"
-                    priority={index < 6}
+                    className="object-contain p-1.5"
+                    sizes="(max-width: 768px) 96px, 144px"
                   />
                 </div>
               </div>
             ))}
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={handleNext}
-            className="hidden lg:flex absolute -right-4 xl:-right-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
-          >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
-          </Button>
+          {/* Gradient Overlays for Fade Effect */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/50 to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/50 to-transparent z-20 pointer-events-none" />
         </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 30s linear infinite;
+          }
+          .group-hover:pause:hover .animate-marquee {
+            animation-play-state: paused;
+          }
+        `}</style>
       </div>
     </section>
   )

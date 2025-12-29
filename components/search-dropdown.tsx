@@ -15,24 +15,24 @@ export function SearchDropdown({ query, onClose }: SearchDropdownProps) {
 
   if (results.length === 0 && matchingCategories.length === 0) {
     return (
-      <div className="absolute top-full left-0 right-0 mt-2 bg-black border border-white/10 rounded-lg shadow-lg p-4 z-50">
-        <p className="text-sm text-zinc-500 italic">No results found for "{query}"</p>
+      <div className="absolute top-full left-0 right-0 mt-2 bg-popover border border-border rounded-lg shadow-2xl p-3 z-50">
+        <p className="text-[11px] text-muted-foreground italic">No results found for "{query}"</p>
       </div>
     )
   }
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-2 bg-black border border-white/20 rounded-lg shadow-xl overflow-hidden z-50 transition-colors">
+    <div className="absolute top-full left-0 right-0 mt-1.5 bg-popover border border-border rounded-lg shadow-2xl overflow-hidden z-50 transition-all">
       {matchingCategories.length > 0 && (
-        <div className="p-3 border-b border-white/10">
-          <p className="text-xs font-bold text-zinc-400 dark:text-zinc-500 mb-2 uppercase tracking-tight">Categories</p>
-          <div className="flex flex-wrap gap-2">
+        <div className="p-2.5 border-b border-border">
+          <p className="text-[9px] font-black text-muted-foreground mb-2 uppercase tracking-[0.2em]">Categories</p>
+          <div className="flex flex-wrap gap-1.5">
             {matchingCategories.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/shop?category=${cat.id}`}
                 onClick={onClose}
-                className="text-xs bg-white/5 text-zinc-300 px-3 py-1 rounded-full hover:bg-orange-500 hover:text-white transition-colors font-bold uppercase tracking-wider"
+                className="text-[10px] bg-muted/50 text-muted-foreground px-2.5 py-0.5 rounded border border-border hover:bg-[#09757a] hover:text-white transition-all font-black uppercase tracking-tight"
               >
                 {cat.name}
               </Link>
@@ -41,26 +41,27 @@ export function SearchDropdown({ query, onClose }: SearchDropdownProps) {
         </div>
       )}
       {results.length > 0 && (
-        <div className="p-3">
-          <p className="text-xs font-bold text-zinc-500 mb-2 uppercase tracking-tight">Top Matches</p>
-          <div className="space-y-2">
+        <div className="p-2.5">
+          <p className="text-[9px] font-black text-muted-foreground mb-2 uppercase tracking-[0.2em]">Top Matches</p>
+          <div className="space-y-1">
             {results.map((product) => (
               <Link
                 key={product.id}
                 href={`/product/${product.id}`}
                 onClick={onClose}
-                className="flex items-center gap-3 p-2 rounded-lg hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+                className="flex items-center gap-2.5 p-1.5 rounded-md hover:bg-accent/50 transition-all group"
               >
-                <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
-                  width={40}
-                  height={40}
-                  className="rounded-md object-cover"
-                />
+                <div className="relative h-8 w-8 rounded overflow-hidden bg-muted">
+                  <Image
+                    src={product.image || "/placeholder.svg"}
+                    alt={product.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium truncate">{product.name}</p>
-                  <p className="text-xs text-zinc-500 truncate">
+                  <p className="text-[11px] font-bold truncate text-foreground/80 group-hover:text-foreground transition-colors uppercase tracking-tight">{product.name}</p>
+                  <p className="text-[9px] text-[#09757a] font-black truncate uppercase tracking-widest">
                     {product.brand}
                   </p>
                 </div>
@@ -70,9 +71,9 @@ export function SearchDropdown({ query, onClose }: SearchDropdownProps) {
           <Link
             href={`/shop?search=${encodeURIComponent(query)}`}
             onClick={onClose}
-            className="block text-center text-xs text-orange-500 font-black mt-3 pt-3 border-t border-white/10 hover:underline uppercase tracking-widest"
+            className="block text-center text-[10px] text-[#09757a] font-black mt-2.5 pt-2 border-t border-border hover:text-[#0b8d93] transition-colors uppercase tracking-widest"
           >
-            View all results →
+            Full Result Set →
           </Link>
         </div>
       )}

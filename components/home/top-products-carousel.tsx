@@ -3,7 +3,7 @@
 import type React from "react"
 import { ArrowRight, ChevronLeft, ChevronRight, Star } from "lucide-react"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { ProductCard } from "@/components/product-card"
 import { Button } from "@/components/ui/button"
 import { getProductsByCategory } from "@/lib/products"
@@ -27,11 +27,10 @@ export function TopProductsCarousel() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
-  // Auto-slide effect (3 seconds)
   useEffect(() => {
     const timer = setInterval(() => {
       goToNext()
-    }, 3000)
+    }, 5000)
     return () => clearInterval(timer)
   }, [currentIndex])
 
@@ -49,10 +48,8 @@ export function TopProductsCarousel() {
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return
     const distance = touchStart - touchEnd
-    const isLeftSwipe = distance > 50
-    const isRightSwipe = distance < -50
-    if (isLeftSwipe) goToNext()
-    if (isRightSwipe) goToPrev()
+    if (distance > 50) goToNext()
+    if (distance < -50) goToPrev()
     setTouchStart(null)
     setTouchEnd(null)
   }
@@ -71,37 +68,31 @@ export function TopProductsCarousel() {
   const isDisabled = topProducts.length <= itemsToShow
 
   return (
-    <section className="py-10 relative overflow-hidden bg-gradient-to-br from-[#0b0c10] via-[#0f172a] to-[#0b0c10] border-t border-white/5">
-      {/* Background Patterns */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+    <section className="py-12 md:py-16 bg-background overflow-hidden relative border-t border-border transition-colors">
+      {/* Light Pattern Background */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#09757a]/5 blur-[100px] rounded-full opacity-50 dark:opacity-20" />
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-[#09757a]/5 blur-[100px] rounded-full opacity-50 dark:opacity-20" />
 
-      {/* Ambient Glows */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="w-full px-4 md:px-12 relative z-10">
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-center text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-2">
-            <Star className="h-2.5 w-2.5 text-orange-400 fill-current" />
-            <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Best Sellers</span>
+        {/* Section Header - Enhanced Typography */}
+        <div className="flex flex-col items-center text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded-full mb-3 shadow-sm">
+            <Star className="h-2 w-2 text-[#09757a] fill-[#09757a]" />
+            <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em] leading-none">Featured Series</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-black text-white mb-2 tracking-tighter uppercase italic leading-none">
-            Precision <span className="text-orange-500">Diagnostic Tools</span>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
+            Precision <span className="text-[#09757a]">Diagnostic Tools</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xl mx-auto italic">
-            Digital diagnostic systems engineered for precision and built for modern automotive environments.
+          <p className="text-muted-foreground text-xs md:text-sm font-bold max-w-2xl mx-auto uppercase tracking-widest opacity-80">
+            Engineered for Accuracy. Built for the Modern Workshop.
           </p>
         </div>
 
-        {/* Swipe Hint for Mobile */}
-        <div className="flex items-center justify-center gap-4 mb-4 sm:hidden">
-          <ChevronLeft className="h-4 w-4 text-orange-500 animate-pulse" />
-          <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Swap to move</span>
-          <ChevronRight className="h-4 w-4 text-orange-500 animate-pulse" />
-        </div>
-
+        {/* Carousel */}
         <div
-          className="relative group/carousel touch-pan-y"
+          className="relative group touch-pan-y px-4 md:px-0"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -111,14 +102,15 @@ export function TopProductsCarousel() {
             size="icon"
             onClick={goToPrev}
             disabled={isDisabled}
-            className="absolute -left-2 xl:-left-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/carousel:opacity-100 disabled:hidden hover:bg-orange-500 hover:text-black"
+            className="hidden lg:flex absolute -left-6 xl:-left-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border text-[#09757a] transition-all hover:bg-[#09757a] hover:text-white shadow-lg"
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-6 w-6" />
           </Button>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {getVisibleItems().map((product, index) => (
-              <div key={`${currentIndex}-${index}`} className="h-full transform transition-all duration-300 hover:-translate-y-1">
+              <div key={`${currentIndex}-${index}`} className="h-full">
+                {/* Passing a prop to tell ProductCard to use cover style if we decide to do that locally or just improve the card globally */}
                 <ProductCard product={product} />
               </div>
             ))}
@@ -129,17 +121,17 @@ export function TopProductsCarousel() {
             size="icon"
             onClick={goToNext}
             disabled={isDisabled}
-            className="absolute -right-2 xl:-right-8 top-1/2 -translate-y-1/2 z-20 h-8 w-8 rounded-full bg-slate-900/80 backdrop-blur-md border border-white/10 text-white transition-all opacity-0 group-hover/carousel:opacity-100 disabled:hidden hover:bg-orange-500 hover:text-black"
+            className="hidden lg:flex absolute -right-6 xl:-right-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-background border border-border text-[#09757a] transition-all hover:bg-[#09757a] hover:text-white shadow-lg"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-6 w-6" />
           </Button>
         </div>
 
-        <div className="mt-8 text-center">
+        <div className="mt-12 text-center">
           <Link href="/shop">
-            <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-black font-black uppercase tracking-widest text-xs px-8 h-10 rounded-full transition-all shadow-xl shadow-orange-500/20 group">
-              Browse All Products
-              <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            <Button size="lg" className="bg-foreground hover:bg-[#09757a] text-background font-bold uppercase tracking-[0.2em] text-[10px] px-8 h-10 rounded-md transition-all shadow-lg active:scale-95 group">
+              Browse All Professional Tools
+              <ArrowRight className="ml-3 h-3 w-3 group-hover:translate-x-2 transition-transform" />
             </Button>
           </Link>
         </div>

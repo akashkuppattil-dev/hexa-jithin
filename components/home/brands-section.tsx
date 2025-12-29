@@ -40,80 +40,66 @@ const brands = brandImageFiles.map((file) => ({
 }));
 
 export function BrandsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [brandsPerRow, setBrandsPerRow] = useState(6)
-  const totalRows = 2
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const updateBrandsPerRow = () => {
-      setBrandsPerRow(window.innerWidth < 640 ? 2 : window.innerWidth < 1024 ? 4 : 6)
-    }
-    updateBrandsPerRow()
-    window.addEventListener("resize", updateBrandsPerRow)
-    return () => window.removeEventListener("resize", updateBrandsPerRow)
+    setMounted(true)
   }, [])
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + brandsPerRow) % brands.length)
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [brandsPerRow])
+  if (!mounted) return null
 
-  const nextRow = () => setCurrentIndex((prev) => (prev + brandsPerRow) % brands.length)
-  const prevRow = () => setCurrentIndex((prev) => (prev - brandsPerRow + brands.length) % brands.length)
-
-  const visibleBrands = Array.from({ length: brandsPerRow * totalRows }).map(
-    (_, i) => brands[(currentIndex + i) % brands.length],
-  )
+  // Duplicate list to ensure seamless loop
+  const duplicatedBrands = [...brands, ...brands, ...brands]
 
   return (
-    <section className="py-20 relative overflow-hidden bg-[#0a0a0a] border-t border-white/5">
+    <section className="py-12 md:py-16 relative overflow-hidden bg-background border-t border-border transition-colors">
       {/* Background Subtle Patterns */}
-      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
 
       {/* Dynamic Glow Elements */}
-      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-orange-600/5 blur-[150px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-blue-600/5 blur-[150px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-[#09757a]/5 blur-[150px] rounded-full pointer-events-none opacity-50" />
+      <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-[#09757a]/5 blur-[150px] rounded-full pointer-events-none opacity-50" />
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/5 border border-white/10 rounded-full mb-6 backdrop-blur-md shadow-lg">
-            <Star className="h-3 w-3 text-orange-500 fill-current" />
-            <span className="text-[10px] font-black text-orange-500 uppercase tracking-[0.3em]">Premium Inventory</span>
+      <div className="w-full px-4 md:px-12 relative z-10">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded-full mb-4 shadow-sm">
+            <Star className="h-2.5 w-2.5 text-[#09757a] fill-current" />
+            <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em]">Authorized Inventory</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tighter uppercase leading-none drop-shadow-xl">
-            Our Brand <span className="text-orange-500">Partners</span>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
+            Our Brand <span className="text-[#09757a]">Partners</span>
           </h2>
+          <p className="text-sm text-muted-foreground font-bold uppercase tracking-widest opacity-80 max-w-2xl mx-auto">
+            Curated selection of high-performance global brands.
+          </p>
         </div>
 
-        {/* FEATURED BRAND: LINICH (Now at the Top) */}
-        <div className="mb-16">
+        {/* FEATURED BRAND: LINICH TOOLS */}
+        <div className="mb-12">
           <Link href="/shop?brand=Linich">
-            <div className="max-w-4xl mx-auto p-[1px] bg-gradient-to-r from-orange-500/30 via-slate-800 to-orange-500/30 rounded-3xl group/featured">
-              <Card className="bg-[#0f0f0f] border-none shadow-2xl rounded-3xl p-8 md:p-12 transition-all hover:bg-[#141414] overflow-hidden relative">
-                {/* Background Glow for Featured */}
-                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-orange-500/10 blur-[100px] rounded-full pointer-events-none group-hover/featured:bg-orange-500/20 transition-all duration-500" />
+            <div className="max-w-5xl mx-auto p-[1px] bg-gradient-to-r from-border via-border/50 to-border rounded-2xl group/featured shadow-xl">
+              <Card className="bg-card border border-border shadow-sm rounded-2xl p-6 md:p-10 transition-all hover:bg-accent/5 overflow-hidden relative">
+                <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#09757a]/5 blur-[80px] rounded-full pointer-events-none group-hover/featured:bg-[#09757a]/10 transition-all duration-500" />
 
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 relative z-10">
-                  <div className="relative w-56 h-32 md:w-72 md:h-40 flex-shrink-0 group-hover/featured:scale-105 transition-transform duration-500 p-6 bg-white rounded-2xl border border-white/10 shadow-lg flex items-center justify-center">
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-14 relative z-10">
+                  <div className="relative w-48 h-28 md:w-64 md:h-36 flex-shrink-0 group-hover/featured:scale-105 transition-transform duration-500 p-6 bg-white rounded-xl shadow-2xl flex items-center justify-center">
                     <Image
                       src="/images/brands/linich-logo.jpg"
                       alt="LINICH Primary Partner"
                       fill
-                      className="object-contain p-2 mix-blend-multiply"
+                      className="object-contain p-3"
                     />
                   </div>
                   <div className="text-center md:text-left flex-1">
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4 mb-4">
-                      <h3 className="text-2xl sm:text-4xl font-black text-white tracking-tighter uppercase italic">LINICH TOOLS</h3>
-                      <Badge className="bg-orange-600 text-white border-none text-[10px] font-black uppercase tracking-widest px-3 py-1 shadow-lg shadow-orange-600/20">Primary Partner</Badge>
+                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mb-3">
+                      <h3 className="text-2xl sm:text-3xl font-black text-foreground tracking-tighter uppercase italic">LINICH TOOLS</h3>
+                      <Badge className="bg-[#09757a] text-white border-none text-[8px] font-bold uppercase tracking-widest px-3 py-1 shadow-md shadow-[#09757a]/20">Exclusive Partner</Badge>
                     </div>
-                    <p className="text-sm sm:text-base text-zinc-400 font-medium leading-relaxed max-w-xl mb-8">
-                      Exclusive supplier of precision-engineered industrial equipment since 2024. Powering workshops with world-class durability.
+                    <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-xl mb-6">
+                      Standardizing industrial durability across India. Exclusive supplier of precision-engineered equipment for modern workshops.
                     </p>
-                    <div className="inline-flex items-center gap-3 text-orange-500 font-black text-xs uppercase tracking-[0.3em] group-hover/featured:gap-4 transition-all">
-                      Explore Collection <ArrowRight className="h-4 w-4" />
+                    <div className="inline-flex items-center gap-3 text-[#09757a] font-black text-[10px] uppercase tracking-[0.4em] group-hover/featured:gap-5 transition-all">
+                      Discover the Professional Line <ArrowRight className="h-4 w-4" />
                     </div>
                   </div>
                 </div>
@@ -122,46 +108,50 @@ export function BrandsSection() {
           </Link>
         </div>
 
-        {/* OTHER BRANDS GRID SLIDER (Now below) */}
-        <div className="relative group/brands max-w-7xl mx-auto px-4 md:px-12">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={prevRow}
-            className="hidden lg:flex absolute -left-4 xl:-left-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
-          >
-            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
-          </Button>
-
-          <div className="grid grid-cols-2 lg:grid-cols-6 gap-4 md:gap-6">
-            {visibleBrands.map((brand, index) => (
+        {/* Infinite Scrolling Logo Marquee */}
+        <div className="relative flex overflow-hidden group/marquee py-2">
+          <div className="flex animate-marquee group-hover/marquee:pause gap-8">
+            {duplicatedBrands.map((brand, index) => (
               <div
-                key={index}
-                className="group/brand-card relative aspect-square flex items-center justify-center p-4 bg-[#f8f9fa] rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+                key={`${brand.name}-${index}`}
+                className="relative flex-shrink-0 w-28 h-28 md:w-40 md:h-32 flex items-center justify-center p-4 bg-background rounded-2xl border border-border shadow-md overflow-hidden"
               >
-                {/* Soft lighting effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-black/5 opacity-50" />
-
-                <div className="w-full h-full relative opacity-90 group-hover/brand-card:opacity-100 transition-all duration-300 transform group-hover/brand-card:scale-110">
+                <div className="absolute inset-0 bg-background" />
+                <div className="w-full h-full relative z-10">
                   <Image
                     src={brand.logo || "/placeholder.svg"}
                     alt={brand.name}
                     fill
-                    className="object-contain mix-blend-multiply filter contrast-125"
+                    className="object-contain p-1.5"
+                    sizes="(max-width: 768px) 112px, 160px"
                   />
                 </div>
               </div>
             ))}
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={nextRow}
-            className="hidden lg:flex absolute -right-4 xl:-right-12 top-1/2 -translate-y-1/2 z-20 h-10 w-10 md:h-12 md:w-12 rounded-full border border-white/10 text-white bg-black/40 backdrop-blur-md hover:bg-orange-600 hover:border-orange-600 transition-all shadow-2xl hover:scale-110"
-          >
-            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
-          </Button>
+          {/* Fade Overlays */}
+          <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-background via-background/50 to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-background via-background/50 to-transparent z-20 pointer-events-none" />
+        </div>
+
+        <style jsx>{`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-marquee {
+            animation: marquee 40s linear infinite;
+          }
+          .group-hover\/marquee\:pause:hover .animate-marquee {
+            animation-play-state: paused;
+          }
+        `}</style>
+
+        <div className="mt-12 text-center">
+          <Link href="/shop" className="text-[10px] font-black text-zinc-500 hover:text-[#09757a] uppercase tracking-[0.4em] transition-all">
+            Explore the complete brand portfolio
+          </Link>
         </div>
       </div>
     </section>

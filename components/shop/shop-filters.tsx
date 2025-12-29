@@ -64,21 +64,21 @@ export function ShopFilters({
       <Accordion type="multiple" defaultValue={["categories", "brands", "availability"]} className="w-full">
         {/* Categories Section */}
         <AccordionItem value="categories" className="border-none">
-          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 hover:text-primary py-4 hover:no-underline select-none">
+          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Categories
           </AccordionTrigger>
-          <AccordionContent className="pb-4">
-            <div className="space-y-2.5 pt-1 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar">
+          <AccordionContent className="pb-3">
+            <div className="space-y-2 pt-0.5 max-h-[180px] overflow-y-auto pr-2 custom-scrollbar">
               {categories.map((category) => (
-                <div key={category.id} className="flex items-center space-x-3 group cursor-pointer" onClick={() => toggleCategory(category.id)}>
+                <div key={category.id} className="flex items-center space-x-2.5 group cursor-pointer" onClick={() => toggleCategory(category.id)}>
                   <Checkbox
                     id={`cat-${category.id}`}
                     checked={selectedCategories.includes(category.id)}
-                    className="h-4 w-4 rounded border-zinc-200 dark:border-zinc-800 data-[state=checked]:bg-primary data-[state=checked]:border-primary transition-all"
+                    className="h-3.5 w-3.5 rounded border-border data-[state=checked]:bg-[#09757a] data-[state=checked]:border-[#09757a] transition-all"
                   />
                   <Label
                     htmlFor={`cat-${category.id}`}
-                    className={`text-xs font-bold cursor-pointer transition-colors ${selectedCategories.includes(category.id) ? "text-primary" : "text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100"}`}
+                    className={`text-[11px] font-bold cursor-pointer transition-colors ${selectedCategories.includes(category.id) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}
                   >
                     {category.name}
                   </Label>
@@ -90,37 +90,37 @@ export function ShopFilters({
 
         {/* Brands Section */}
         <AccordionItem value="brands" className="border-none">
-          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 hover:text-primary py-4 hover:no-underline select-none">
+          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Brands
           </AccordionTrigger>
-          <AccordionContent className="pb-4 overflow-hidden">
-            <div className="relative mb-4 group">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-300 dark:text-zinc-700 group-focus-within:text-primary transition-colors" />
+          <AccordionContent className="pb-3 overflow-hidden">
+            <div className="relative mb-3 group">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-[#09757a] transition-colors" />
               <Input
                 placeholder="Search..."
-                className="h-9 pl-9 text-xs bg-zinc-50 dark:bg-zinc-900 border-zinc-100 dark:border-zinc-800 focus:bg-white dark:focus:bg-zinc-800 rounded-xl transition-all font-medium"
+                className="h-8 pl-9 text-[11px] bg-background border-border focus:bg-accent/5 rounded-lg transition-all font-medium"
                 value={brandSearch}
                 onChange={(e) => setBrandSearch(e.target.value)}
               />
             </div>
-            <div className="space-y-2.5 pt-1 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-2 pt-0.5 max-h-[180px] overflow-y-auto pr-2 custom-scrollbar">
               {filteredBrands.map((brand) => (
-                <div key={brand} className="flex items-center space-x-3 group cursor-pointer" onClick={() => toggleBrand(brand)}>
+                <div key={brand} className="flex items-center space-x-2.5 group cursor-pointer" onClick={() => toggleBrand(brand)}>
                   <Checkbox
                     id={`brand-${brand}`}
                     checked={selectedBrands.includes(brand)}
-                    className="h-4 w-4 rounded border-zinc-200 dark:border-zinc-800 data-[state=checked]:bg-primary data-[state=checked]:border-primary transition-all"
+                    className="h-3.5 w-3.5 rounded border-border data-[state=checked]:bg-[#09757a] data-[state=checked]:border-[#09757a] transition-all"
                   />
                   <Label
                     htmlFor={`brand-${brand}`}
-                    className={`text-xs font-bold cursor-pointer transition-colors ${selectedBrands.includes(brand) ? "text-primary" : "text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100"}`}
+                    className={`text-[11px] font-bold cursor-pointer transition-colors ${selectedBrands.includes(brand) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}
                   >
                     {brand}
                   </Label>
                 </div>
               ))}
               {filteredBrands.length === 0 && (
-                <p className="text-[10px] text-zinc-400 italic py-2">No brands found.</p>
+                <p className="text-[10px] text-muted-foreground italic py-2">No brands found.</p>
               )}
             </div>
           </AccordionContent>
@@ -128,22 +128,22 @@ export function ShopFilters({
 
         {/* Availability Section */}
         <AccordionItem value="availability" className="border-none">
-          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500 hover:text-primary py-4 hover:no-underline select-none">
+          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Quick Filter
           </AccordionTrigger>
-          <AccordionContent className="pb-4">
-            <div className="space-y-2.5 pt-1">
+          <AccordionContent className="pb-3">
+            <div className="space-y-2 pt-0.5">
               {[
                 { id: "in-stock", label: "Ready to Ship" },
                 { id: "on-offer", label: "Special Deals" },
               ].map((option) => (
-                <div key={option.id} className="flex items-center space-x-3 group cursor-pointer" onClick={() => toggleAvailability(option.id)}>
+                <div key={option.id} className="flex items-center space-x-2.5 group cursor-pointer" onClick={() => toggleAvailability(option.id)}>
                   <Checkbox
                     id={option.id}
                     checked={availability.includes(option.id)}
-                    className="h-4 w-4 rounded border-zinc-200 dark:border-zinc-800 data-[state=checked]:bg-primary data-[state=checked]:border-primary transition-all"
+                    className="h-3.5 w-3.5 rounded border-border data-[state=checked]:bg-[#09757a] data-[state=checked]:border-[#09757a] transition-all"
                   />
-                  <Label htmlFor={option.id} className={`text-xs font-bold cursor-pointer transition-colors ${availability.includes(option.id) ? "text-primary" : "text-zinc-500 dark:text-zinc-400 group-hover:text-zinc-900 dark:group-hover:text-zinc-100"}`}>
+                  <Label htmlFor={option.id} className={`text-[11px] font-bold cursor-pointer transition-colors ${availability.includes(option.id) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}>
                     {option.label}
                   </Label>
                 </div>

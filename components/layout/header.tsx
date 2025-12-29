@@ -1,32 +1,21 @@
 "use client"
 
-import { SearchDropdown } from "@/components/search-dropdown"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Menu, Search, X, ChevronDown, Home, Package, Award, Phone, Info, ChevronRight, MessageCircle } from "lucide-react"
+import { CONTACT } from "@/lib/constants"
+import { Mail, Menu, Phone, X, ChevronDown } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
+import { usePathname } from "next/navigation"
 import { useEffect, useState, useRef } from "react"
 import { BrandsMenu } from "./brands-menu"
-
-const COMPANY_LOGO = "/images/logo.jpg"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [searchQuery, setSearchQuery] = useState("")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [activeMenu, setActiveMenu] = useState<"products" | "brands" | null>(null)
+  const [activeMenu, setActiveMenu] = useState<"products" | "brands" | "categories" | null>(null)
 
   const pathname = usePathname()
-  const router = useRouter()
   const headerRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 0)
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
 
   useEffect(() => {
     setActiveMenu(null)
@@ -51,205 +40,207 @@ export function Header() {
     }
   }
 
-  const handleSearchSubmit = (e?: React.FormEvent) => {
-    if (e) e.preventDefault()
-    if (searchQuery.trim()) {
-      router.push(`/shop?search=${encodeURIComponent(searchQuery.trim())}`)
-    }
-  }
+  const handleMouseEnter = (menuType: "products" | "brands" | "categories") => {
+    setActiveMenu(menuType);
+  };
 
   return (
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 w-full transition-[padding,background-color] duration-300 ${mobileMenuOpen ? "z-[50]" : "z-40"} ${isScrolled
-          ? "py-3 shadow-xl bg-black/60 backdrop-blur-xl"
-          : "py-5"
-          }`}
+        className="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-md text-foreground py-1.5 md:py-2.5 shadow-sm border-b border-border transition-colors"
         onMouseLeave={handleMenuLeave}
       >
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/header-bg.jpg"
-            alt="Header Texture"
-            fill
-            className="object-cover opacity-100 brightness-[0.7] contrast-125"
-            priority
-          />
-          {/* Gradient Overlay for better text visibility */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80" />
-        </div>
+        <div className="w-full px-4 md:px-12 flex items-center justify-between">
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="flex items-center justify-between gap-4">
-            {/* Logo Section */}
-            <Link href="/" className="flex flex-col group min-w-[200px] sm:min-w-[280px]">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex-shrink-0 bg-white/5 rounded-xl border border-white/10 overflow-hidden group-hover:border-orange-500/30 transition-all">
-                  <Image
-                    src="/images/hexamech-logo-new.jpg"
-                    alt="Hexamech Logo"
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                </div>
-                <div className="flex flex-col pl-0.5 sm:pl-1 items-start md:items-center">
-                  <h1 className="text-lg sm:text-xl md:text-2xl font-black text-white leading-[0.7] md:leading-none tracking-tighter uppercase group-hover:text-orange-500 transition-colors">
-                    Hexamech
-                  </h1>
-                  <div className="flex items-center gap-1.5 mt-0.5 md:mt-1">
-                    <div className="h-[1px] w-2 md:h-[1.5px] md:w-3 bg-orange-600 group-hover:w-3 md:group-hover:w-5 transition-all" />
-                    <span className="text-[8px] sm:text-[10px] md:text-[11px] text-orange-500 font-black uppercase tracking-[0.2em] leading-none">
-                      Linich Tools
-                    </span>
-                    <div className="hidden md:block h-[1.5px] w-3 bg-orange-600 group-hover:w-5 transition-all" />
-                  </div>
-                </div>
-              </div>
-              <div className="whitespace-nowrap flex items-center gap-1.5 text-[7px] sm:text-[9px] text-zinc-300 mt-2 font-bold uppercase tracking-widest pl-1 leading-none">
-                <span>Professional Automotive</span>
-                <span className="text-orange-500 font-black text-[10px] sm:text-[11px]">&</span>
-                <span>Industrial Tools Supplier</span>
-              </div>
+          {/* Logo Section */}
+          <Link href="/" className="flex flex-col items-start leading-none mr-4 md:mr-10 group active:scale-95 transition-transform">
+            <span className="text-lg md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
+              HEXAMECH
+            </span>
+            <span className="text-[7px] md:text-[8px] font-bold text-[#09757a] uppercase tracking-[0.35em] mt-0.5">
+              LINICH TOOLS
+            </span>
+          </Link>
+
+          {/* Navigation */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-foreground">
+            <Link
+              href="/"
+              className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] transition-all"
+            >
+              Home
             </Link>
 
-            {/* Center Navigation */}
-            <nav className="hidden lg:flex items-center gap-8 xl:gap-10">
+            <div className="relative group/nav" onMouseEnter={() => handleMouseEnter("products")}>
               <Link
-                href="/"
-                className={`text-[13px] font-bold uppercase tracking-wider hover:text-orange-500 transition-colors ${pathname === "/" ? "text-orange-500" : "text-zinc-300 hover:text-white"}`}
+                href="/shop"
+                className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] transition-all flex items-center gap-2"
               >
-                Home
+                Products
+                <ChevronDown className="h-3 w-3 group-hover/nav:rotate-180 transition-transform opacity-50" />
               </Link>
-
-              <div className="relative h-12 flex items-center group cursor-pointer" onMouseEnter={() => setActiveMenu("products")}>
-                <Link href="/shop" className={`text-[13px] font-bold uppercase tracking-wider hover:text-orange-500 transition-colors flex items-center gap-1 ${pathname.startsWith("/shop") ? "text-orange-500" : "text-zinc-300 hover:text-white"}`}>
-                  Products
-                  <ChevronDown className={`h-3 w-3 transition-transform duration-200 ${activeMenu === "products" ? "rotate-180" : ""}`} />
-                </Link>
-                {activeMenu === "products" && <BrandsMenu onClose={() => setActiveMenu(null)} />}
-              </div>
-
-              <Link href="/brands" className={`text-[13px] font-bold uppercase tracking-wider hover:text-orange-500 transition-colors ${activeMenu === "brands" || pathname === "/brands" ? "text-orange-500" : "text-zinc-300 hover:text-white"}`}>
-                Brands
-              </Link>
-
-              <Link href="/about" className={`text-[13px] font-bold uppercase tracking-wider hover:text-orange-500 transition-colors ${pathname === "/about" ? "text-orange-500" : "text-zinc-300 hover:text-white"}`}>About Us</Link>
-
-              <Link href="/contact" className={`text-[13px] font-bold uppercase tracking-wider hover:text-orange-500 transition-colors ${pathname === "/contact" ? "text-orange-500" : "text-zinc-300 hover:text-white"}`}>Contact</Link>
-
-              {/* Search Bar - Near Contact */}
-              <form onSubmit={handleSearchSubmit} className="relative group">
-                <div className="relative">
-                  <Input
-                    type="text"
-                    placeholder="Search tools, brands..."
-                    className="w-[240px] focus:w-[300px] h-9 bg-white/10 border-white/20 text-white focus:bg-white/15 focus:border-orange-500/50 transition-all rounded-full text-[13px] placeholder:text-zinc-400 pl-4 pr-10 shadow-lg"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <button type="button" onClick={() => handleSearchSubmit()} className="absolute right-0 top-0 h-full px-3 flex items-center cursor-pointer text-zinc-400 hover:text-orange-500 transition-colors">
-                    <Search className="h-4 w-4" />
-                  </button>
-                </div>
-              </form>
-            </nav>
-
-            {/* Right Actions */}
-            <div className="flex items-center gap-2">
-              <Link href="/contact" className="hidden sm:flex">
-                <button className="flex items-center gap-2 px-4 h-9 bg-orange-500 hover:bg-orange-600 text-white text-xs font-bold uppercase tracking-wider rounded transition-all shadow-lg shadow-orange-900/20 active:scale-95">
-                  <span>Get Quote</span>
-                </button>
-              </Link>
-
-              {/* Mobile Menu Button */}
-              <div className="lg:hidden">
-                <Button variant="ghost" size="icon" className="text-white hover:bg-orange-500/10 h-10 w-10 active:scale-90 transition-transform" onClick={() => setMobileMenuOpen(true)}>
-                  <Menu className="h-7 w-7" />
-                </Button>
-              </div>
+              {activeMenu === "products" && <BrandsMenu onClose={() => setActiveMenu(null)} />}
             </div>
+
+            <Link
+              href="/brands"
+              className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] transition-all"
+            >
+              Brands
+            </Link>
+
+            <Link
+              href="/about"
+              className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] transition-all"
+            >
+              About
+            </Link>
+
+            <Link
+              href="/contact"
+              className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] transition-all active:scale-95"
+            >
+              Contact
+            </Link>
+          </nav>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-3 xl:gap-8">
+            <div className="hidden md:flex items-center gap-6">
+              <a href={`tel:${CONTACT.PHONE}`} className="flex flex-col items-start leading-none group cursor-pointer active:scale-95 transition-transform">
+                <div className="flex items-center gap-2.5">
+                  <div className="h-7 w-7 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-[#09757a]/50 group-hover:bg-[#09757a]/5 transition-all shadow-sm">
+                    <Phone className="h-3 w-3 text-[#09757a]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Call Us</span>
+                    <span className="text-[10px] font-black group-hover:text-[#09757a] transition-colors tracking-tight">{CONTACT.PHONE}</span>
+                  </div>
+                </div>
+              </a>
+
+              <a href={`mailto:${CONTACT.EMAIL}`} className="hidden xl:flex flex-col items-start leading-none group cursor-pointer border-l border-border pl-6 active:scale-95 transition-transform">
+                <div className="flex items-center gap-2.5">
+                  <div className="h-7 w-7 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-[#09757a]/50 group-hover:bg-[#09757a]/5 transition-all shadow-sm">
+                    <Mail className="h-3 w-3 text-[#09757a]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Email Support</span>
+                    <span className="text-[10px] font-black group-hover:text-[#09757a] transition-colors tracking-tight uppercase">{CONTACT.EMAIL}</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            {/* WhatsApp Quick Link */}
+            <a
+              href={CONTACT.WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/5 border border-emerald-500/10 hover:bg-emerald-500 hover:border-emerald-500 transition-all active:scale-90"
+            >
+              <div className="h-5 w-5 rounded-full bg-emerald-500 flex items-center justify-center text-white">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-3 w-3 fill-current"
+                >
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+                </svg>
+              </div>
+              <span className="text-[9px] font-black text-emerald-500 group-hover:text-white transition-colors uppercase tracking-widest">Connect</span>
+            </a>
+
+            <ThemeToggle />
+
+            <Button
+              className="hidden sm:flex bg-[#09757a] hover:bg-[#0a0a0a] text-white px-4 h-8 text-[9px] font-bold uppercase tracking-widest rounded transition-all active:scale-95 shadow-lg flex-shrink-0"
+              onClick={() => window.open(CONTACT.WHATSAPP_URL, "_blank")}
+            >
+              Get Quote
+            </Button>
           </div>
         </div>
 
+        {/* Mobile Menu Toggle */}
+        <div className="lg:hidden flex items-center gap-3 absolute right-4 top-1/2 -translate-y-1/2">
+          <ThemeToggle />
+          <Button variant="ghost" size="icon" className="h-9 w-9 hover:bg-accent active:scale-95 transition-all" onClick={() => setMobileMenuOpen(true)}>
+            <Menu className="h-6 w-6" />
+          </Button>
+        </div>
       </header>
 
-      {/* Mobile Menu - Detached from Header for Perfect Full-Screen View */}
+      {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[1000] lg:hidden animate-in fade-in duration-300">
-          {/* Deep Dark Overlay */}
-          <div className="absolute inset-0 bg-black/95 backdrop-blur-md" onClick={() => setMobileMenuOpen(false)} />
-
-          <div className="absolute inset-y-0 left-0 w-[85vw] max-w-[360px] bg-[#050505] flex flex-col animate-in slide-in-from-left duration-300 overflow-hidden border-r border-white/5 shadow-[20px_0_50px_rgba(0,0,0,0.8)] z-[1001]">
-            {/* Menu Header */}
-            <div className="p-6 border-b border-white/5 flex items-center justify-between bg-black">
-              <div className="flex flex-col">
-                <span className="font-black text-2xl text-white tracking-widest uppercase">HEXAMECH</span>
-                <span className="text-[10px] text-orange-500 font-black tracking-[0.4em] uppercase -mt-1">Linich Tools</span>
+        <div className="fixed inset-0 z-[1000] lg:hidden animate-in fade-in duration-200">
+          <div className="absolute inset-0 bg-background/95 backdrop-blur-lg" onClick={() => setMobileMenuOpen(false)} />
+          <div className="absolute inset-y-0 right-0 w-full max-w-[320px] bg-background border-l border-border p-0 flex flex-col shadow-2xl animate-in slide-in-from-right duration-300">
+            {/* Mobile Menu Header */}
+            <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-secondary/30">
+              <div className="flex flex-col items-start">
+                <span className="text-xl font-black text-foreground tracking-tighter uppercase">HEXAMECH</span>
+                <span className="text-[9px] font-bold text-[#09757a] tracking-[0.25em] uppercase">LINICH TOOLS</span>
               </div>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="text-white bg-white/10 hover:bg-orange-500 border border-white/10 h-12 w-12 rounded-xl transition-all duration-300 shadow-lg shadow-black/50"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <X className="h-7 w-7" />
+              <Button variant="ghost" size="icon" onClick={() => setMobileMenuOpen(false)} className="h-11 w-11 text-muted-foreground hover:text-foreground hover:bg-accent rounded-xl active:scale-95 transition-all">
+                <X className="h-6 w-6" />
               </Button>
             </div>
 
-            {/* Menu Links */}
-            <div className="flex-1 overflow-y-auto pt-4 pb-8 px-4 custom-scrollbar">
-
-
-              <div className="mb-10">
-                <p className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.5em] mb-4 pl-4">Navigation</p>
-                {[
-                  { name: "Home", href: "/", icon: Home },
-                  { name: "Products", href: "/shop", icon: Package },
-                  { name: "Brands", href: "/brands", icon: Award },
-                  { name: "About Us", href: "/about", icon: Info },
-                  { name: "Contact", href: "/contact", icon: Phone },
-                ].map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 group mb-1
-                      ${pathname === item.href
-                        ? "bg-orange-600 text-white shadow-lg shadow-orange-900/20"
-                        : "text-zinc-400 hover:text-white hover:bg-white/5 border border-transparent hover:border-white/5"}
-                    `}
-                  >
-                    <item.icon className={`h-5 w-5 transition-transform duration-300 group-hover:scale-110 ${pathname === item.href ? "text-white" : "text-zinc-600 group-hover:text-orange-500"}`} />
-                    <span className="font-black uppercase tracking-wider text-sm">{item.name}</span>
-                    <ChevronRight className={`ml-auto h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all ${pathname === item.href ? "opacity-100 translate-x-0" : ""}`} />
-                  </Link>
-                ))}
-              </div>
-
-              {/* Support Info */}
-              <div className="mx-2 p-6 rounded-2xl bg-white/5 border border-white/10 group hover:border-orange-500/30 transition-all shadow-inner">
-                <p className="text-[9px] font-black text-orange-500 uppercase tracking-widest mb-2">B2B Support</p>
-                <p className="text-xs text-zinc-400 font-medium leading-relaxed group-hover:text-zinc-200 transition-colors">
-                  Get exclusive wholesale quotes for your industrial workshop.
-                </p>
-              </div>
+            {/* Navigation Links - Larger Touch Targets */}
+            <div className="p-4 flex flex-col gap-1.5 flex-1 overflow-y-auto">
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-4 text-foreground text-[15px] font-black hover:bg-accent active:bg-accent/80 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98]">
+                <span className="w-2 h-2 rounded-full bg-[#09757a]"></span>
+                Home
+              </Link>
+              <Link href="/shop" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-4 text-foreground text-[15px] font-black hover:bg-accent active:bg-accent/80 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98]">
+                <span className="w-2 h-2 rounded-full bg-[#09757a]"></span>
+                Products
+              </Link>
+              <Link href="/brands" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-4 text-foreground text-[15px] font-black hover:bg-accent active:bg-accent/80 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98]">
+                <span className="w-2 h-2 rounded-full bg-[#09757a]"></span>
+                Brands
+              </Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-4 text-foreground text-[15px] font-black hover:bg-accent active:bg-accent/80 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98]">
+                <span className="w-2 h-2 rounded-full bg-[#09757a]"></span>
+                About
+              </Link>
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-4 text-foreground text-[15px] font-black hover:bg-accent active:bg-accent/80 rounded-xl uppercase tracking-wider transition-all active:scale-[0.98]">
+                <span className="w-2 h-2 rounded-full bg-[#09757a]"></span>
+                Contact
+              </Link>
             </div>
 
-            {/* Footer Contact */}
-            <div className="p-6 bg-black border-t border-white/5">
-              <a
-                href="https://wa.me/917510638693"
-                className="flex items-center justify-center gap-3 w-full bg-green-600 hover:bg-green-700 text-white rounded-xl py-4 shadow-xl shadow-green-900/20 transition-all active:scale-95 group font-black uppercase tracking-widest text-xs"
-              >
-                <MessageCircle className="h-5 w-5 fill-white/20" />
-                Chat with Experts
+            {/* Mobile Menu Footer - Contact CTAs */}
+            <div className="p-5 border-t border-border bg-secondary/20 space-y-3">
+              <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-4 p-3 text-foreground bg-background hover:bg-accent rounded-xl transition-all group active:scale-[0.98]">
+                <div className="h-11 w-11 rounded-full bg-[#09757a]/10 border border-[#09757a]/20 flex items-center justify-center group-hover:bg-[#09757a] transition-all">
+                  <Phone className="h-5 w-5 text-[#09757a] group-hover:text-white" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-widest">Call Us Now</span>
+                  <span className="text-sm font-black tracking-wide">{CONTACT.PHONE}</span>
+                </div>
               </a>
-              <p className="text-[9px] text-zinc-700 text-center font-bold uppercase tracking-widest mt-6">
-                © 2025 Hexamech Linich
-              </p>
+              <a
+                href={CONTACT.WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 p-3 text-white bg-emerald-500 hover:bg-emerald-600 rounded-xl transition-all group active:scale-[0.98]"
+              >
+                <div className="h-11 w-11 rounded-full bg-white/20 flex items-center justify-center">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="h-5 w-5 fill-white"
+                  >
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                  </svg>
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Instant Chat</span>
+                  <span className="text-sm font-black tracking-wide">WhatsApp Us</span>
+                </div>
+              </a>
             </div>
           </div>
         </div>

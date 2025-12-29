@@ -88,17 +88,17 @@ export const InfiniteMovingCards = ({
             >
                 {items.map((item, idx) => (
                     <li
-                        className="w-[280px] max-w-full relative rounded-2xl border border-white/5 flex-shrink-0 bg-slate-900/40 px-8 py-6 md:w-[350px]"
+                        className="w-[240px] max-w-full relative rounded-xl border border-white/5 flex-shrink-0 bg-white/5 px-6 py-5 md:w-[280px]"
                         key={idx}
                     >
                         <div className="flex flex-col items-center text-center">
-                            <div className="w-12 h-12 bg-orange-500/10 rounded-lg flex items-center justify-center mb-4 text-orange-500">
-                                <item.icon className="h-6 w-6" />
+                            <div className="w-10 h-10 bg-[#09757a]/10 rounded-lg flex items-center justify-center mb-3 text-[#09757a]">
+                                <item.icon className="h-5 w-5" />
                             </div>
-                            <h3 className="font-black text-white text-lg uppercase tracking-tight mb-2">
+                            <h3 className="font-black text-white text-[15px] uppercase tracking-tighter mb-1.5">
                                 {item.title}
                             </h3>
-                            <p className="text-zinc-400 text-sm leading-relaxed">
+                            <p className="text-zinc-500 text-[11px] leading-relaxed">
                                 {item.description}
                             </p>
                         </div>

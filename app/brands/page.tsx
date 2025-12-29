@@ -30,56 +30,56 @@ const brands = [
 
 export default function BrandsPage() {
     return (
-        <div className="min-h-screen bg-[#05060a] text-zinc-100">
+        <div className="min-h-screen bg-background text-foreground transition-colors">
             {/* ================= HERO ================= */}
-            <div className="relative overflow-hidden py-24 border-b border-white/5 bg-gradient-to-b from-[#0f172a] to-[#05060a]">
-                <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-                <div className="container mx-auto px-4 text-center relative z-10">
-                    <div className="inline-flex items-center gap-3 px-4 py-1.5 bg-blue-500/10 border border-blue-500/20 rounded-full mb-6">
-                        <span className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">
+            <div className="relative overflow-hidden py-8 sm:py-10 md:py-16 lg:py-20 border-b border-border bg-secondary">
+                <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] dark:invert-0 invert" />
+                <div className="container mx-auto px-4 sm:px-6 text-center relative z-10">
+                    <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-3 sm:mb-4">
+                        <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.15em] sm:tracking-[0.2em]">
                             Official Distributors
                         </span>
                     </div>
-                    <h1 className="text-3xl md:text-5xl font-black uppercase tracking-tight mb-6">
-                        Our Trusted <span className="text-orange-500">Brand Partners</span>
+                    <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black uppercase tracking-tighter mb-3 sm:mb-4 text-foreground leading-tight">
+                        Our Trusted <span className="text-[#09757a]">Brand Partners</span>
                     </h1>
-                    <p className="text-zinc-400 max-w-3xl mx-auto text-sm md:text-base font-medium">
-                        We supply genuine, professional-grade tools from the world’s leading
+                    <p className="text-muted-foreground max-w-2xl mx-auto text-xs sm:text-sm md:text-base font-medium px-2">
+                        We supply genuine, professional-grade tools from the world's leading
                         manufacturers to workshops and industries across India.
                     </p>
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 py-16">
+            <div className="container mx-auto px-3 sm:px-4 md:px-6 py-6 sm:py-8 md:py-12">
 
                 {/* ================= FEATURED LINICH ================= */}
-                <div className="mb-14">
+                <div className="mb-6 sm:mb-8 md:mb-10">
                     <Link href="/shop?brand=Linich Tools">
-                        <div className="group relative bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl border border-white/10 hover:border-orange-500/40 transition-all duration-500 overflow-hidden shadow-2xl">
-                            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px]" />
-                            <div className="grid md:grid-cols-2 gap-6 p-6 md:p-10 relative z-10 items-center">
-                                <div className="bg-white rounded-xl p-8 flex items-center justify-center min-h-[220px] shadow-inner">
+                        <div className="group relative bg-card block backdrop-blur-md rounded-xl sm:rounded-2xl border border-border hover:border-[#09757a]/40 transition-all duration-500 overflow-hidden shadow-xl sm:shadow-2xl">
+                            <div className="absolute top-0 right-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-[#09757a]/5 blur-[80px] sm:blur-[100px] md:blur-[120px]" />
+                            <div className="grid md:grid-cols-2 gap-4 sm:gap-6 p-4 sm:p-6 md:p-8 relative z-10 items-center">
+                                <div className="bg-white rounded-lg sm:rounded-xl p-4 sm:p-6 flex items-center justify-center min-h-[120px] sm:min-h-[150px] md:min-h-[180px] shadow-inner order-1 md:order-none">
                                     <Image
                                         src="/images/brands/linich-logo.jpg"
                                         alt="Linich Tools"
-                                        width={320}
-                                        height={140}
-                                        className="object-contain mix-blend-multiply"
+                                        width={280}
+                                        height={120}
+                                        className="object-contain mix-blend-multiply w-[180px] sm:w-[220px] md:w-[280px]"
                                     />
                                 </div>
-                                <div className="space-y-4 text-center md:text-left">
-                                    <span className="inline-flex px-3 py-1 text-[10px] font-black uppercase tracking-widest bg-orange-500/10 border border-orange-500/20 text-orange-500">
+                                <div className="space-y-2 sm:space-y-3 text-center md:text-left order-2 md:order-none">
+                                    <span className="inline-flex px-2 py-0.5 text-[8px] sm:text-[9px] font-black uppercase tracking-widest bg-[#09757a]/10 border border-[#09757a]/20 text-[#09757a]">
                                         Strategic Partner
                                     </span>
-                                    <h2 className="text-2xl md:text-3xl font-black uppercase italic">
+                                    <h2 className="text-lg sm:text-xl md:text-2xl font-black uppercase italic text-foreground">
                                         Linich Tools
                                     </h2>
-                                    <p className="text-zinc-400 text-sm">
-                                        Our primary partnership delivering exclusive access to Linich’s
+                                    <p className="text-muted-foreground text-[11px] sm:text-xs md:text-sm leading-relaxed">
+                                        Our primary partnership delivering exclusive access to Linich's
                                         premium industrial tool range.
                                     </p>
-                                    <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest border-b border-orange-500 pb-1">
-                                        Explore Products <ArrowRight className="h-4 w-4" />
+                                    <span className="inline-flex items-center gap-2 text-[9px] sm:text-[10px] font-black uppercase tracking-widest border-b border-[#09757a] pb-0.5 text-[#09757a]">
+                                        Explore Products <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
                                     </span>
                                 </div>
                             </div>
@@ -87,23 +87,24 @@ export default function BrandsPage() {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                {/* Brand Grid - 3 cols on mobile for better space usage */}
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
                     {brands.map((brand, idx) => (
                         <Link
                             key={brand.name}
                             href={`/shop?brand=${encodeURIComponent(brand.name)}`}
-                            className={`block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 50}ms]`}
+                            className={`block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 30}ms]`}
                         >
-                            <div className="group/brand-card relative aspect-square flex items-center justify-center p-4 bg-[#f8f9fa] rounded-2xl shadow-xl hover:shadow-2xl hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden">
+                            <div className="group/brand-card relative aspect-square flex items-center justify-center p-2 sm:p-3 md:p-4 bg-card rounded-lg sm:rounded-xl shadow-lg sm:shadow-xl hover:shadow-2xl hover:shadow-[#09757a]/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden border border-border active:scale-95">
                                 {/* Soft lighting effect */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-black/5 opacity-50" />
 
-                                <div className="w-full h-full relative opacity-90 group-hover/brand-card:opacity-100 transition-all duration-300 transform group-hover/brand-card:scale-110">
+                                <div className="w-full h-full relative group-hover/brand-card:scale-110 transition-all duration-500 p-1 sm:p-2">
                                     <Image
                                         src={brand.logo}
                                         alt={brand.name}
                                         fill
-                                        className="object-contain mix-blend-multiply filter contrast-125"
+                                        className="object-contain mix-blend-multiply"
                                     />
                                 </div>
                             </div>
@@ -111,18 +112,19 @@ export default function BrandsPage() {
                     ))}
                 </div>
 
-                <div className="mt-24 text-center">
-                    <div className="max-w-2xl mx-auto bg-[#1a2235]/40 backdrop-blur-md border border-white/10 rounded-3xl p-10 md:p-14 relative overflow-hidden shadow-2xl">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 blur-[90px]" />
-                        <h3 className="text-2xl md:text-3xl font-black uppercase mb-4 tracking-tighter">
+                {/* CTA Section */}
+                <div className="mt-10 sm:mt-12 md:mt-16 text-center">
+                    <div className="max-w-xl mx-auto bg-card border border-border rounded-xl sm:rounded-2xl p-5 sm:p-8 md:p-12 relative overflow-hidden shadow-xl sm:shadow-2xl">
+                        <div className="absolute top-0 right-0 w-32 sm:w-40 md:w-48 h-32 sm:h-40 md:h-48 bg-[#09757a]/10 blur-[60px] sm:blur-[80px] md:blur-[90px]" />
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-black uppercase mb-2 sm:mb-3 tracking-tighter text-foreground leading-tight">
                             Want to collaborate with Hexamech?
                         </h3>
-                        <p className="text-zinc-400 text-sm md:text-base mb-10 font-medium">
+                        <p className="text-muted-foreground text-[11px] sm:text-xs md:text-sm mb-5 sm:mb-6 md:mb-8 font-medium px-2">
                             If you are a tool manufacturer or brand looking to expand your reach in
                             India, partner with us for distribution and growth.
                         </p>
                         <Link href="/contact" className="inline-block transform transition hover:scale-105 active:scale-95">
-                            <Button className="h-14 px-10 font-black uppercase tracking-[0.2em] bg-orange-600 hover:bg-orange-500 text-white rounded-xl shadow-xl shadow-orange-900/30">
+                            <Button className="h-10 sm:h-11 md:h-12 px-5 sm:px-6 md:px-8 font-black uppercase tracking-wider sm:tracking-widest text-[10px] sm:text-xs bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white rounded-lg shadow-xl border border-transparent hover:border-[#09757a]">
                                 Become a Brand Partner
                             </Button>
                         </Link>

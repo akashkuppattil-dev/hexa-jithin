@@ -28,26 +28,26 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   }
 
   return (
-    <div className="min-h-screen bg-[#05060a] text-zinc-100 pb-20">
-      <div className="pt-4 md:pt-10">
-        <div className="container mx-auto px-4 lg:px-8 max-w-[1400px]">
+    <div className="min-h-screen bg-background text-foreground pb-12 sm:pb-16 transition-colors">
+      <div className="pt-3 sm:pt-4 md:pt-6 lg:pt-10">
+        <div className="container mx-auto px-3 sm:px-4 lg:px-8 max-w-[1400px]">
 
           {/* Breadcrumb */}
-          <div className="mb-8">
+          <div className="mb-4 sm:mb-5 md:mb-6">
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 text-zinc-400 hover:text-orange-500 transition-colors text-xs font-bold uppercase tracking-widest"
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-muted-foreground hover:text-[#09757a] transition-colors text-[9px] sm:text-[10px] font-black uppercase tracking-widest active:scale-95"
             >
-              <ArrowLeft className="h-4 w-4" />
+              <ArrowLeft className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
               Back to Catalog
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 md:gap-8 lg:gap-12 items-start">
 
             {/* LEFT COLUMN: Large Product Image */}
-            <div className="lg:col-span-5 lg:sticky lg:top-24 mb-8 lg:mb-0">
-              <div className="bg-[#1a2235]/60 block backdrop-blur-md rounded-3xl border border-white/10 relative overflow-hidden group shadow-2xl">
+            <div className="lg:col-span-5 lg:sticky lg:top-24 mb-4 sm:mb-5 md:mb-6 lg:mb-0">
+              <div className="bg-card block backdrop-blur-md rounded-xl sm:rounded-2xl border border-border relative overflow-hidden group shadow-xl sm:shadow-2xl">
                 <div className="relative aspect-square w-full">
                   <Image
                     src={product.image || "/placeholder.svg"}
@@ -55,66 +55,66 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                     priority
-                    sizes="(max-width: 1024px) 100vw, 600px"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 600px"
                   />
                 </div>
 
                 {product.isOffer && product.offerBadge && (
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-orange-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 border-none shadow-lg">
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+                    <Badge className="bg-[#09757a] text-white text-[8px] sm:text-[9px] font-black uppercase tracking-widest px-1.5 sm:px-2 py-0.5 border-none shadow-lg">
                       {product.offerBadge}
                     </Badge>
                   </div>
                 )}
 
-                <ProductShareButton product={product} className="absolute bottom-4 right-4 z-20" />
+                <ProductShareButton product={product} className="absolute bottom-2 sm:bottom-3 right-2 sm:right-3 z-20" />
               </div>
             </div>
 
             {/* RIGHT COLUMN: details & Actions */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-4 sm:space-y-5 md:space-y-6">
 
               {/* Header Info */}
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 text-xs font-black uppercase tracking-widest">
-                  <span className="text-orange-500 px-3 py-1 bg-orange-500/10 rounded">{product.brand}</span>
-                  <span className="text-zinc-400">|</span>
-                  <span className="text-zinc-200 font-bold">SKU: {product.sku}</span>
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
+                  <span className="text-[#09757a] px-1.5 sm:px-2 py-0.5 bg-[#09757a]/10 rounded border border-[#09757a]/20">{product.brand}</span>
+                  <span className="text-border hidden sm:inline">|</span>
+                  <span className="text-muted-foreground font-bold">SKU: {product.sku}</span>
                 </div>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-none tracking-tight">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground leading-tight tracking-tighter uppercase">
                   {product.name}
                 </h1>
-                <p className="text-base md:text-lg text-white font-medium leading-relaxed border-l-4 border-orange-500 pl-6">
+                <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium leading-relaxed border-l-[2px] sm:border-l-[3px] border-[#09757a] pl-3 sm:pl-4 md:pl-5 italic">
                   {product.description}
                 </p>
               </div>
 
               {/* Specs Grid form */}
-              <div className="bg-[#1a2235]/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden shadow-xl">
-                <div className="bg-white/5 px-6 py-4 border-b border-white/10 flex items-center gap-2">
-                  <Activity className="h-4 w-4 text-orange-500" />
-                  <span className="text-[10px] font-black uppercase tracking-widest text-white">Specifications</span>
+              <div className="bg-card backdrop-blur-md rounded-lg sm:rounded-xl border border-border overflow-hidden shadow-lg sm:shadow-xl">
+                <div className="bg-muted px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 border-b border-border flex items-center gap-1.5 sm:gap-2">
+                  <Activity className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-[#09757a]" />
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-muted-foreground">Specifications</span>
                 </div>
-                <div className="p-2">
+                <div className="p-0.5 sm:p-1">
                   {Object.entries(product.specs).map(([key, value], idx) => (
-                    <div key={key} className={`flex justify-between items-center p-4 ${idx !== Object.entries(product.specs).length - 1 ? 'border-b border-white/5' : ''}`}>
-                      <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest">{key}</span>
-                      <span className="text-sm font-black text-white text-right">{value}</span>
+                    <div key={key} className={`flex justify-between items-center px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 ${idx !== Object.entries(product.specs).length - 1 ? 'border-b border-border' : ''}`}>
+                      <span className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{key}</span>
+                      <span className="text-[10px] sm:text-[11px] font-black text-foreground text-right">{value}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
               {/* Call to Action Area */}
-              <div className="space-y-4 pt-4 border-t border-white/5">
-                <div className="flex items-center justify-between mb-4">
+              <div className="space-y-2.5 sm:space-y-3 pt-2 sm:pt-3 border-t border-border">
+                <div className="flex items-center justify-between mb-1.5 sm:mb-2">
                   <div className="flex flex-col">
-                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-400">Procurement</span>
-                    <span className="text-white font-bold text-sm">Bulk Orders Available</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-muted-foreground/60">Procurement</span>
+                    <span className="text-muted-foreground font-bold text-[10px] sm:text-xs uppercase">Bulk Orders Available</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[10px] uppercase font-black tracking-widest text-zinc-400">Min Order</span>
-                    <span className="text-white font-bold text-sm">{product.minOrderQty}</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-muted-foreground/60">Min Order</span>
+                    <span className="text-foreground font-bold text-[10px] sm:text-xs uppercase">{product.minOrderQty}</span>
                   </div>
                 </div>
 
@@ -124,39 +124,43 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   rel="noopener noreferrer"
                   className="block"
                 >
-                  <Button className="w-full h-16 bg-orange-600 hover:bg-orange-500 text-white rounded-xl text-lg font-black uppercase tracking-widest shadow-lg shadow-orange-900/20 transition-all hover:scale-[1.02] flex items-center justify-center gap-3">
-                    <span className="bg-white/20 p-1.5 rounded-full"><MessageCircle className="h-5 w-5 fill-current" /></span>
+                  <Button className="w-full h-10 sm:h-11 md:h-12 bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white rounded-lg text-[10px] sm:text-xs font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] shadow-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2 sm:gap-2.5 border border-transparent hover:border-[#09757a]">
+                    <MessageCircle className="h-3.5 w-3.5 sm:h-4 sm:w-4 fill-current" />
                     Get Quote on WhatsApp
                   </Button>
                 </a>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <a href="tel:+917510638693">
-                    <Button variant="outline" className="w-full h-12 border-zinc-800 bg-[#111111] hover:bg-white text-zinc-400 hover:text-black font-bold uppercase tracking-widest text-xs rounded-xl">
-                      <Phone className="h-4 w-4 mr-2" /> Call Sales
+                    <Button variant="outline" className="w-full h-9 sm:h-10 border-border bg-card hover:bg-[#09757a] text-muted-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
+                      <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1.5 sm:mr-2" />
+                      <span className="hidden sm:inline">Call Sales</span>
+                      <span className="sm:hidden">Call</span>
                     </Button>
                   </a>
                   <a href={`mailto:hexamechlinichtools@gmail.com?subject=Enquiry: ${product.name}`}>
-                    <Button variant="outline" className="w-full h-12 border-zinc-800 bg-[#111111] hover:bg-white text-zinc-400 hover:text-black font-bold uppercase tracking-widest text-xs rounded-xl">
-                      <Mail className="h-4 w-4 mr-2" /> Email Enquiry
+                    <Button variant="outline" className="w-full h-9 sm:h-10 border-border bg-card hover:bg-[#09757a] text-muted-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
+                      <Mail className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1.5 sm:mr-2" />
+                      <span className="hidden sm:inline">Email Enquiry</span>
+                      <span className="sm:hidden">Email</span>
                     </Button>
                   </a>
                 </div>
               </div>
 
               {/* Trust Badges */}
-              <div className="grid grid-cols-3 gap-2 pt-6">
-                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
-                  <div className="text-orange-500 flex justify-center mb-1"><Info className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Genuine</span>
+              <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-3 sm:pt-4">
+                <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
+                  <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><Info className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Genuine</span>
                 </div>
-                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
-                  <div className="text-orange-500 flex justify-center mb-1"><Activity className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Support</span>
+                <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
+                  <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><Activity className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Support</span>
                 </div>
-                <div className="bg-[#1a2235]/60 p-4 rounded-xl border border-white/10 text-center shadow-lg">
-                  <div className="text-orange-500 flex justify-center mb-1"><ShoppingCart className="h-4 w-4" /></div>
-                  <span className="text-[10px] font-black uppercase tracking-wider text-white">Fast Ship</span>
+                <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
+                  <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><ShoppingCart className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Fast Ship</span>
                 </div>
               </div>
 

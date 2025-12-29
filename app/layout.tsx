@@ -109,13 +109,12 @@ export default function RootLayout({
           href="/images/hexamech-logo-new.jpg"
         />
       </head>
-      <body className={`${barlow.variable} ${inter.variable} ${greatVibes.variable} font-sans antialiased bg-zinc-950`} suppressHydrationWarning>
-        <ThemeProvider>
+      <body className={`${barlow.variable} ${inter.variable} ${greatVibes.variable} font-sans antialiased bg-background text-foreground`} suppressHydrationWarning>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <CartProvider>
-            <div className="flex flex-col min-h-screen bg-zinc-950">
-              <TopInfoBar />
+            <div className="flex flex-col min-h-screen">
               <Header />
-              <main className="flex-1 bg-zinc-950 relative">{children}</main>
+              <main className="flex-1 relative">{children}</main>
               <Footer />
             </div>
             <WhatsAppButton />

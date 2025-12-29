@@ -34,10 +34,10 @@ export function ProductShareButton({ product, className }: ProductShareButtonPro
             variant="outline"
             size="icon"
             onClick={handleShare}
-            className={`rounded-full bg-blue-600 hover:bg-blue-500 text-white border-none shadow-lg hover:scale-105 transition-all ${className}`}
+            className={`rounded-full bg-[#09757a] hover:bg-white text-white hover:text-[#09757a] border-none shadow-lg transition-all h-9 w-9 ${className}`}
             title="Share Product"
         >
-            <Share2 className="h-5 w-5" />
+            <Share2 className="h-4 w-4" />
         </Button>
     )
 }

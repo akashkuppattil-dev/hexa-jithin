@@ -87,58 +87,58 @@ export function ContactClientPage() {
   const googleMapsLink = `https://maps.app.goo.gl/oAKCXkhXS9HwkDNs6`
 
   return (
-    <div className="pt-12 sm:pt-14 md:pt-16 bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] min-h-screen">
+    <div className="pt-8 sm:pt-10 md:pt-12 bg-background min-h-screen transition-colors">
       {/* Background Patterns */}
-      <div className="fixed inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+      <div className="fixed inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] dark:invert-0 invert" />
 
       {/* Dynamic Glow Elements */}
-      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-[#09757a]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="fixed bottom-0 left-0 w-[500px] h-[500px] bg-[#09757a]/5 blur-[120px] rounded-full pointer-events-none" />
 
       {/* Hero Section */}
-      <section className="py-8 relative z-10">
-        <div className="container mx-auto px-4 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3">
-            <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em]">Core Advantage</span>
+      <section className="py-4 sm:py-5 md:py-6 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 text-center">
+          <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
+            <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.2em] sm:tracking-[0.3em]">Core Advantage</span>
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white mb-3 tracking-tighter uppercase leading-none">
-            Get in Touch with <span className="text-orange-500">Hexamech</span>
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground mb-1.5 sm:mb-2 tracking-tighter uppercase leading-tight px-2">
+            Get in Touch with <span className="text-[#09757a]">Hexamech</span>
           </h1>
-          <p className="text-sm md:text-base text-slate-400 font-medium max-w-2xl mx-auto italic">
+          <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium max-w-2xl mx-auto italic px-2">
             We're here to help with your automotive tools needs. Reach out for quotes, technical support, or bulk orders.
           </p>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-12 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-start mb-20">
+      <section className="py-5 sm:py-6 md:py-8 relative z-10">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8 items-start mb-8 sm:mb-10 md:mb-12">
 
             {/* RIGHT COLUMN: Contact Info ("Connect Directly") - TOP ON MOBILE */}
-            <div className="space-y-8 order-1 lg:order-2 w-full">
+            <div className="space-y-4 sm:space-y-5 md:space-y-6 order-1 lg:order-2 w-full">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-4">
-                  <span className="text-[9px] font-black text-blue-400 uppercase tracking-widest">Connect Directly</span>
+                <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-muted border border-border rounded mb-2 sm:mb-3">
+                  <span className="text-[8px] sm:text-[9px] font-black text-muted-foreground uppercase tracking-wider sm:tracking-widest">Connect Directly</span>
                 </div>
-                <h3 className="text-2xl font-black text-white mb-6 uppercase tracking-tight">Direct Communication</h3>
+                <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 sm:mb-4 uppercase tracking-tight">Direct Communication</h3>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5 sm:gap-3">
                   {contactMethods.map((method) => {
                     const Icon = method.icon
                     return (
-                      <div key={method.title} className="bg-[#1a2235] border border-slate-700/50 hover:border-orange-500/40 transition-all rounded-2xl p-6 flex items-start gap-5 shadow-lg group">
-                        <div className="p-3 bg-slate-800/50 rounded-xl shrink-0 group-hover:bg-orange-500/20 transition-colors">
-                          <Icon className="h-6 w-6 text-orange-500" />
+                      <div key={method.title} className="bg-card border border-border hover:border-[#09757a]/40 transition-all rounded-lg sm:rounded-xl p-3.5 sm:p-4 md:p-5 flex items-start gap-3 sm:gap-4 shadow-md sm:shadow-lg group active:scale-[0.99]">
+                        <div className="p-2 sm:p-2.5 bg-background rounded-lg shrink-0 border border-border group-hover:bg-[#09757a] group-hover:text-white transition-all">
+                          <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a] group-hover:text-white" />
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h4 className="font-black text-white text-sm uppercase tracking-wide mb-1">{method.title}</h4>
+                          <h4 className="font-black text-foreground text-[10px] sm:text-xs uppercase tracking-wide mb-0.5 sm:mb-1">{method.title}</h4>
                           {method.href ? (
-                            <a href={method.href} className="text-lg text-blue-400 hover:text-blue-300 font-bold break-all block">{method.value}</a>
+                            <a href={method.href} className="text-sm sm:text-base text-foreground hover:text-[#09757a] font-bold break-all block transition-colors">{method.value}</a>
                           ) : (
-                            <p className="text-lg text-slate-300 font-bold">{method.value}</p>
+                            <p className="text-sm sm:text-base text-foreground/80 font-bold">{method.value}</p>
                           )}
-                          <p className="text-xs text-slate-500 font-medium mt-1">{method.description}</p>
+                          <p className="text-[9px] sm:text-[10px] text-muted-foreground font-medium mt-0.5">{method.description}</p>
                         </div>
                       </div>
                     )
@@ -149,70 +149,63 @@ export function ContactClientPage() {
 
             {/* LEFT COLUMN: Contact Form - SECOND ON MOBILE */}
             <div className="order-2 lg:order-1 w-full">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 border border-orange-500/20 rounded-full mb-3">
-                <span className="text-[9px] font-black text-orange-400 uppercase tracking-widest">Get in Touch</span>
+              <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
+                <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-wider sm:tracking-widest">Get in Touch</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter uppercase">
+              <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-foreground mb-2 sm:mb-3 tracking-tighter uppercase leading-tight">
                 Request a Quote / Business Enquiry
               </h2>
-              <p className="text-sm md:text-base text-slate-400 font-medium mb-8 italic">
-                Submit your requirement and our team will get back to you within <strong className="text-orange-500">30 minutes</strong> during business hours.
+              <p className="text-[11px] sm:text-xs md:text-sm text-muted-foreground font-medium mb-4 sm:mb-5 md:mb-6 italic">
+                Submit your requirement and our team will get back to you within <strong className="text-[#09757a]">30 minutes</strong> during business hours.
               </p>
 
-              <div className="bg-[#1a2235]/90 backdrop-blur-md border border-slate-700/50 rounded-xl p-6 md:p-8 shadow-2xl">
+              <div className="bg-card border border-border rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-xl sm:shadow-2xl">
                 <ContactForm />
               </div>
             </div>
           </div>
 
           {/* "Why Hexamech?" Section - Moved Below */}
-          <div className="border-t border-white/5 pt-16">
-            <div className="text-center mb-10">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full mb-3">
-                <span className="text-[9px] font-black text-green-400 uppercase tracking-widest">Why Hexamech?</span>
+          <div className="border-t border-border pt-8 sm:pt-10 md:pt-12">
+            <div className="text-center mb-5 sm:mb-6 md:mb-8">
+              <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
+                <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-wider sm:tracking-widest">Why Hexamech?</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">The Professional Advantage</h2>
+              <h2 className="text-lg sm:text-xl md:text-2xl font-black text-foreground uppercase tracking-tight">The Professional Advantage</h2>
             </div>
 
             {/* Desktop View: Grid */}
-            <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {whyContactUs.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div key={item.title} className="bg-slate-900/40 border border-slate-800/50 p-6 rounded-2xl flex flex-col items-center text-center hover:bg-slate-800/40 transition-colors group hover:-translate-y-1 duration-300 shadow-lg">
-                    <div className="w-14 h-14 rounded-full bg-orange-500/10 flex items-center justify-center shrink-0 border border-orange-500/20 group-hover:bg-orange-500/20 transition-colors mb-4">
-                      <Icon className="h-6 w-6 text-orange-500" />
+                  <div key={item.title} className="bg-card border border-border p-4 sm:p-5 rounded-xl flex flex-col items-center text-center hover:bg-secondary transition-colors group hover:-translate-y-1 duration-300 shadow-lg">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 md:w-12 md:h-12 rounded-full bg-[#09757a]/10 flex items-center justify-center shrink-0 border border-[#09757a]/20 group-hover:bg-[#09757a] transition-colors mb-2.5 sm:mb-3">
+                      <Icon className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a] group-hover:text-white" />
                     </div>
                     <div>
-                      <h3 className="font-black text-white text-sm uppercase tracking-wider mb-2">{item.title}</h3>
-                      <p className="text-slate-400 text-xs leading-relaxed font-medium">{item.description}</p>
+                      <h3 className="font-black text-foreground text-[10px] sm:text-[11px] uppercase tracking-wider mb-0.5 sm:mb-1">{item.title}</h3>
+                      <p className="text-muted-foreground text-[9px] sm:text-[10px] leading-relaxed font-medium">{item.description}</p>
                     </div>
                   </div>
                 )
               })}
             </div>
 
-            {/* Mobile View: Auto-sliding Carousel */}
-            <div className="md:hidden relative px-4 overflow-hidden">
-              <div
-                className="flex transition-transform duration-700 ease-in-out"
-                style={{ transform: `translateX(-${currentAdvantage * 100}%)` }}
-              >
-                {whyContactUs.map((item) => {
-                  const Icon = item.icon
-                  return (
-                    <div key={item.title} className="w-full shrink-0 px-2">
-                      <div className="bg-[#1a2235] border border-slate-800/50 p-8 rounded-2xl flex flex-col items-center text-center shadow-2xl">
-                        <div className="w-16 h-16 rounded-full bg-orange-500/10 flex items-center justify-center border border-orange-500/20 mb-6">
-                          <Icon className="h-8 w-8 text-orange-500" />
-                        </div>
-                        <h3 className="font-black text-white text-lg uppercase tracking-wider mb-3">{item.title}</h3>
-                        <p className="text-slate-400 text-sm leading-relaxed font-medium">{item.description}</p>
-                      </div>
+            {/* Mobile View: Grid instead of carousel for better UX */}
+            <div className="md:hidden grid grid-cols-2 gap-2.5 sm:gap-3">
+              {whyContactUs.map((item) => {
+                const Icon = item.icon
+                return (
+                  <div key={item.title} className="bg-card border border-border p-3.5 sm:p-4 rounded-lg flex flex-col items-center text-center shadow-md active:scale-[0.98]">
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#09757a]/10 flex items-center justify-center border border-[#09757a]/20 mb-2 sm:mb-2.5">
+                      <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#09757a]" />
                     </div>
-                  )
-                })}
-              </div>
+                    <h3 className="font-black text-foreground text-[10px] sm:text-[11px] uppercase tracking-wide mb-0.5 leading-tight">{item.title}</h3>
+                    <p className="text-muted-foreground text-[9px] sm:text-[10px] leading-relaxed font-medium">{item.description}</p>
+                  </div>
+                )
+              })}
             </div>
           </div>
 
@@ -220,22 +213,22 @@ export function ContactClientPage() {
       </section>
 
       {/* Google Maps Section */}
-      <section className="py-8 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3">
-              <span className="text-[9px] font-black text-blue-400 uppercase tracking-[0.3em]">Find Us</span>
+      <section className="py-4 sm:py-5 md:py-6 relative z-10">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+          <div className="text-center mb-4 sm:mb-5 md:mb-6">
+            <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
+              <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.2em] sm:tracking-[0.3em]">Find Us</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tighter uppercase">Visit Our Location</h2>
-            <p className="text-sm text-slate-400 font-medium italic">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-black text-foreground mb-0.5 sm:mb-1 tracking-tighter uppercase">Visit Our Location</h2>
+            <p className="text-[10px] sm:text-xs text-muted-foreground font-medium italic px-2">
               {CONTACT.BUSINESS_ADDRESS}
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
             {/* Google Maps Embed */}
-            <div className="bg-slate-900/40 backdrop-blur-md border border-slate-800/50 rounded-xl overflow-hidden shadow-xl">
-              <div className="relative w-full h-64 sm:h-80 md:h-96">
+            <div className="bg-card border border-border rounded-lg sm:rounded-xl overflow-hidden shadow-lg sm:shadow-xl">
+              <div className="relative w-full h-40 sm:h-48 md:h-64 lg:h-80">
                 <iframe
                   src={mapUrl}
                   width="100%"
@@ -251,26 +244,26 @@ export function ContactClientPage() {
             </div>
 
             {/* Map Info Card */}
-            <div className="bg-[#1a2235] border border-slate-700/50 rounded-xl p-6 shadow-xl flex flex-col justify-center">
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-orange-500/10 rounded-lg shrink-0">
-                    <MapPin className="h-5 w-5 text-orange-500" />
+            <div className="bg-card border border-border rounded-lg sm:rounded-xl p-4 sm:p-5 shadow-lg sm:shadow-xl flex flex-col justify-center">
+              <div className="space-y-3 sm:space-y-4">
+                <div className="flex items-start gap-2.5 sm:gap-3">
+                  <div className="p-1.5 sm:p-2 bg-[#09757a]/10 rounded-lg shrink-0">
+                    <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-2 uppercase tracking-tight">Business Address</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">{CONTACT.BUSINESS_ADDRESS}</p>
+                    <h3 className="font-bold text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Address</h3>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">{CONTACT.BUSINESS_ADDRESS}</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-orange-500/10 rounded-lg shrink-0">
-                    <Clock className="h-5 w-5 text-orange-500" />
+                <div className="flex items-start gap-2.5 sm:gap-3">
+                  <div className="p-1.5 sm:p-2 bg-[#09757a]/10 rounded-lg shrink-0">
+                    <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-white mb-2 uppercase tracking-tight">Business Hours</h3>
-                    <p className="text-sm text-slate-400">Monday - Saturday: 9:00 AM - 7:00 PM</p>
-                    <p className="text-sm text-slate-400">Sunday: Closed</p>
+                    <h3 className="font-bold text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Hours</h3>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground">Sunday: Closed</p>
                   </div>
                 </div>
 
@@ -278,10 +271,10 @@ export function ContactClientPage() {
                   href={googleMapsLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-orange-600 hover:bg-orange-500 text-white rounded-lg transition-all text-sm font-bold uppercase tracking-wide shadow-lg"
+                  className="inline-flex items-center justify-center gap-2 w-full sm:w-auto px-4 sm:px-6 py-2 sm:py-2.5 bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white rounded-lg transition-all text-[10px] sm:text-xs font-black uppercase tracking-wide shadow-lg border border-transparent hover:border-[#09757a] active:scale-95"
                 >
                   <span>Open in Google Maps</span>
-                  <ExternalLink className="h-4 w-4" />
+                  <ExternalLink className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                 </a>
               </div>
             </div>

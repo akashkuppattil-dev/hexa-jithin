@@ -9,7 +9,6 @@ import Image from "next/image"
 import Link from "next/link"
 import type React from "react"
 import { memo } from "react"
-import { toast } from "sonner" // Assuming sonner is used or generic alert
 
 interface ProductCardProps {
   product: Product
@@ -28,92 +27,83 @@ function ProductCardComponent({ product }: ProductCardProps) {
           text: `Check out ${product.name} on Hexamech`,
           url: url,
         })
-      } catch (err) {
-        // user cancelled
-      }
+      } catch (err) { }
     } else {
       navigator.clipboard.writeText(url)
-      // If we don't have a toast component easily available, just rely on the action being done or use standard alert
-      // But assuming there is one, or just standard alert for now if unsure. 
-      // User didn't specify feedback, but clipboard copy is standard fallback.
       alert("Link copied to clipboard!")
     }
   }
 
   return (
-    <Card className="group relative overflow-hidden bg-[#1a2235] border border-white/10 flex flex-col h-full rounded-2xl hover:shadow-2xl hover:border-orange-500/40 transition-all duration-300 !pt-0">
+    <Card className="group relative overflow-hidden bg-card border border-border flex flex-col h-full rounded-xl hover:shadow-xl hover:border-[#09757a]/30 transition-all duration-500">
       <Link href={`/product/${product.id}`} className="flex flex-col h-full">
-        {/* Product Image - Dominant & Clear */}
-        <div className="relative h-[320px] md:h-[360px] w-full overflow-hidden bg-[#1a2235]">
+        {/* Product Image - Improved for theme awareness */}
+        <div className="relative h-[220px] md:h-[250px] w-full overflow-hidden bg-muted">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={product.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+            className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             loading="lazy"
           />
 
-          {/* SKU Badge - Minimal */}
-          <div className="absolute top-6 left-6 z-20">
-            <span className="bg-black/80 backdrop-blur-md text-white border border-white/20 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-lg shadow-xl">
+          {/* Theme-aware Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/5 dark:from-black/40 via-transparent to-transparent opacity-60" />
+
+          {/* SKU Badge */}
+          <div className="absolute top-3 left-3 z-20">
+            <span className="bg-background/80 backdrop-blur-md text-foreground/70 text-[8px] font-bold uppercase tracking-[0.2em] px-2 py-1 rounded border border-border">
               {product.sku}
             </span>
           </div>
 
           {/* Stock Status */}
           {product.inStock && (
-            <div className="absolute top-6 right-6 z-20">
-              <div className="flex items-center gap-2 bg-green-600 text-white px-3 py-1.5 rounded-lg shadow-xl">
-                <div className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
-                <span className="text-[9px] font-black uppercase tracking-widest">In Stock</span>
+            <div className="absolute top-3 right-3 z-20">
+              <div className="flex items-center gap-1.5 bg-emerald-500/90 backdrop-blur-md px-2 py-1 rounded shadow-md border border-white/20">
+                <div className="h-1 w-1 rounded-full bg-white animate-pulse" />
+                <span className="text-[8px] font-bold text-white uppercase tracking-widest">In Stock</span>
               </div>
             </div>
           )}
 
-          {/* Share Button */}
+          {/* Improved Share Button */}
           <button
             onClick={handleShare}
-            className="absolute bottom-6 right-6 z-30 h-10 w-10 bg-[#1a2235]/80 backdrop-blur-md hover:bg-orange-500 text-white border border-white/10 rounded-xl flex items-center justify-center shadow-2xl transform transition-all hover:scale-110 active:scale-95 group/share"
+            className="absolute bottom-3 right-3 z-30 h-8 w-8 bg-background border border-border text-foreground hover:bg-[#09757a] hover:text-white rounded-md flex items-center justify-center shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0"
             title="Share Product"
           >
-            <Share2 className="h-5 w-5 group-hover/share:rotate-12 transition-transform" />
+            <Share2 className="h-4 w-4" />
           </button>
-
-
         </div>
 
-        <CardContent className="p-6 flex-grow flex flex-col">
-          {/* Brand & Stats */}
-          <div className="flex items-center justify-between mb-3">
-            <div className="flex items-center gap-2">
-              <Badge variant="outline" className="rounded text-[10px] font-bold uppercase tracking-wider border-white/10 text-zinc-500">
-                {product.brand}
-              </Badge>
-            </div>
+        <CardContent className="p-4 flex-grow flex flex-col bg-card">
+          {/* Brand */}
+          <div className="mb-1">
+            <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em]">
+              {product.brand}
+            </span>
           </div>
 
           {/* Product Name */}
-          <h3 className="font-bold text-lg text-white mb-2 leading-snug group-hover:text-orange-500 transition-colors">
+          <h3 className="font-bold text-sm md:text-base text-foreground mb-2 leading-tight group-hover:text-[#09757a] transition-colors line-clamp-2 uppercase tracking-tight">
             {product.name}
           </h3>
 
           {/* Description */}
-          <p className="text-xs text-zinc-400 leading-relaxed line-clamp-2 mb-6">
+          <p className="text-[10px] text-muted-foreground line-clamp-2 mb-4 font-medium leading-relaxed">
             {product.description}
           </p>
 
-          {/* Action Buttons - Always Visible & Strong */}
-          <div className="mt-auto grid grid-cols-2 gap-3">
-            <Button
-              className="bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-lg h-10 text-[10px] font-black uppercase tracking-widest transition-all"
-              onClick={(e) => e.stopPropagation()} // Let Link handle view
-            >
-              View Details
-            </Button>
+          {/* Actions - Refined UI */}
+          <div className="mt-auto pt-4 flex items-center justify-between gap-3 border-t border-border">
+            <Link href={`/product/${product.id}`} className="text-[9px] font-bold text-muted-foreground hover:text-foreground uppercase tracking-widest flex items-center gap-1.5 transition-all group/details">
+              Details <ArrowRight className="h-3 w-3 group-hover/details:translate-x-1 transition-transform" />
+            </Link>
 
             <Button
-              className="bg-orange-600 hover:bg-orange-500 text-white rounded-lg h-10 text-[10px] font-black uppercase tracking-widest shadow-xl shadow-orange-900/40 transition-all active:scale-95"
+              className="bg-foreground hover:bg-[#09757a] text-background px-4 h-9 rounded-md text-[9px] font-bold uppercase tracking-widest transition-all active:scale-95 shadow-md"
               onClick={(e) => {
                 e.preventDefault()
                 e.stopPropagation()

@@ -123,47 +123,46 @@ export function ShopContent() {
   const activeFiltersCount = selectedCategories.length + selectedBrands.length + availability.length
 
   return (
-    <div className="bg-[#0a0a0a] min-h-screen pb-20 transition-colors">
+    <div className="bg-background min-h-screen pb-16 sm:pb-20 transition-colors">
       {/* Header Section */}
-      <div className="relative bg-gradient-to-br from-[#0f0f0f] via-[#0a0a0a] to-[#0f0f0f] border-b border-white/5 overflow-hidden">
+      <div className="relative bg-background border-b border-border overflow-hidden">
         {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] dark:invert-0 invert"></div>
 
-        <div className="container mx-auto px-4 py-8 relative z-10">
-          <div className="max-w-4xl space-y-6">
+        <div className="container mx-auto px-3 sm:px-4 py-5 sm:py-6 md:py-8 relative z-10">
+          <div className="max-w-4xl space-y-3 sm:space-y-4 md:space-y-6">
             {/* Badges */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                <Zap className="h-3 w-3 text-blue-400 fill-current" />
-                <span className="text-[10px] text-blue-400 font-black uppercase tracking-widest">GST Verified Supplier</span>
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <div className="flex items-center gap-1 sm:gap-1.5 bg-[#09757a]/20 border border-[#09757a]/30 px-2 sm:px-3 py-0.5 sm:py-1 rounded backdrop-blur-sm">
+                <Zap className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-[#09757a] fill-current" />
+                <span className="text-[8px] sm:text-[9px] text-[#09757a] font-black uppercase tracking-wider sm:tracking-widest">GST Verified</span>
               </div>
-              <div className="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 px-4 py-1.5 rounded-full backdrop-blur-sm">
-                <Award className="h-3 w-3 text-orange-400" />
-                <span className="text-[10px] text-orange-400 font-bold uppercase tracking-tight">IndiaMART Verified Seller</span>
+              <div className="flex items-center gap-1 sm:gap-1.5 bg-muted border border-border px-2 sm:px-3 py-0.5 sm:py-1 rounded backdrop-blur-sm">
+                <Award className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-muted-foreground" />
+                <span className="text-[8px] sm:text-[9px] text-muted-foreground font-bold uppercase tracking-tight">IndiaMART Verified</span>
               </div>
             </div>
 
             {/* Title */}
-            {/* Title */}
-            <h1 className="text-3xl md:text-5xl font-black text-white leading-none tracking-tighter">
-              Professional <span className="text-orange-500">Automotive & Industrial</span> Tools
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-foreground leading-tight tracking-tighter uppercase">
+              Professional <span className="text-[#09757a]">Automotive & Industrial</span> Tools
             </h1>
 
             {/* Description */}
-            <p className="text-sm md:text-base text-zinc-300 max-w-3xl leading-relaxed font-medium">
+            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground max-w-2xl leading-relaxed font-medium">
               Supplying reliable, workshop‑grade tools to service centers, garages, and industrial buyers across India.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="container mx-auto px-4 mt-8 md:mt-12">
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      <div className="container mx-auto px-3 sm:px-4 mt-5 sm:mt-6 md:mt-8 lg:mt-12">
+        <div className="flex flex-col lg:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-12">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-72 shrink-0 h-fit sticky top-28">
-            <div className="bg-[#1a2235]/40 p-6 rounded-2xl border border-white/10 backdrop-blur-md shadow-2xl">
-              <div className="mb-6">
-                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-500 mb-6">Filter Catalog</h3>
+          <aside className="hidden lg:block w-64 shrink-0 h-fit sticky top-24">
+            <div className="bg-card p-4 sm:p-5 rounded-xl border border-border shadow-2xl">
+              <div className="mb-4 sm:mb-5">
+                <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#09757a] mb-4 sm:mb-5">Filter Catalog</h3>
                 <ShopFilters
                   categories={categories}
                   brands={brands}
@@ -178,12 +177,12 @@ export function ShopContent() {
                 />
               </div>
 
-              <div className="mt-6 pt-6 border-t border-white/5">
-                <div className="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
-                  <p className="text-[10px] font-black text-orange-500 uppercase tracking-widest mb-2">B2B Support</p>
-                  <p className="text-xs text-zinc-400 font-medium leading-relaxed mb-3">Talk to an expert for bulk discounts.</p>
-                  <a href="https://wa.me/917510638693" className="inline-flex items-center gap-2 text-xs font-black text-orange-500 hover:gap-3 transition-all">
-                    WHATSAPP US <ChevronRight className="h-3 w-3" />
+              <div className="mt-5 pt-5 border-t border-border">
+                <div className="p-3 rounded-lg bg-[#09757a]/10 border border-[#09757a]/20 text-center">
+                  <p className="text-[9px] font-black text-[#09757a] uppercase tracking-widest mb-1.5">B2B Support</p>
+                  <p className="text-[10px] text-muted-foreground font-medium leading-relaxed mb-2">Talk to an expert for bulk discounts.</p>
+                  <a href="https://wa.me/917510638693" className="inline-flex items-center justify-center gap-1.5 text-[10px] font-black text-[#09757a] hover:gap-2 transition-all">
+                    WHATSAPP US <ChevronRight className="h-2.5 w-2.5" />
                   </a>
                 </div>
               </div>
@@ -194,42 +193,42 @@ export function ShopContent() {
           <div className="flex-1 space-y-6">
 
             {/* In-Page Search Bar - Split Layout */}
-            <div className="flex flex-col md:grid md:grid-cols-3 gap-3 md:gap-4">
+            <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2">
               {/* Product Name Search */}
-              <div className="relative w-full">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Search className="h-4 w-4 text-zinc-500" />
+              <div className="relative w-full sm:col-span-2 md:col-span-1">
+                <div className="absolute inset-y-0 left-0 pl-2.5 sm:pl-3 flex items-center pointer-events-none">
+                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-muted-foreground" />
                 </div>
                 <Input
                   type="text"
                   placeholder="Search products..."
-                  className="w-full h-11 md:h-12 pl-10 pr-4 bg-[#1a2235]/60 border-white/10 text-sm text-white placeholder:text-zinc-500 rounded-xl focus:border-orange-500/50 transition-all shadow-xl backdrop-blur-sm"
+                  className="w-full h-9 sm:h-10 pl-8 sm:pl-9 pr-3 sm:pr-4 bg-card border-border text-[11px] sm:text-xs text-foreground placeholder:text-muted-foreground rounded-lg focus:border-[#09757a]/50 transition-all shadow-lg sm:shadow-xl"
                   value={searchInputValue}
                   onChange={(e) => handleSearch(e.target.value)}
                 />
               </div>
 
-              <div className="grid grid-cols-2 md:contents gap-3">
+              <div className="grid grid-cols-2 gap-2">
                 {/* Category Select */}
                 <Select onValueChange={(val) => setSelectedCategories([val])}>
-                  <SelectTrigger className="h-11 md:h-12 bg-[#1a2235]/60 border-white/10 text-zinc-300 rounded-xl backdrop-blur-sm">
+                  <SelectTrigger className="h-9 sm:h-10 bg-card border-border text-muted-foreground rounded-lg text-[10px] sm:text-xs">
                     <SelectValue placeholder="Category" />
                   </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-[#05060a] border-white/20 max-h-[300px] z-[100]">
+                  <SelectContent position="popper" side="bottom" className="bg-popover border-border max-h-[300px] z-[100]">
                     {categories.map((c) => (
-                      <SelectItem key={c.id} value={c.id} className="text-zinc-300 focus:bg-orange-500 focus:text-white">{c.name}</SelectItem>
+                      <SelectItem key={c.id} value={c.id} className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[10px] sm:text-xs">{c.name}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
 
                 {/* Brand Select */}
                 <Select onValueChange={(val) => setSelectedBrands([val])}>
-                  <SelectTrigger className="h-11 md:h-12 bg-[#1a2235]/60 border-white/10 text-zinc-300 rounded-xl backdrop-blur-sm">
+                  <SelectTrigger className="h-9 sm:h-10 bg-card border-border text-muted-foreground rounded-lg text-[10px] sm:text-xs">
                     <SelectValue placeholder="Brand" />
                   </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-[#05060a] border-white/20 max-h-[300px] z-[100]">
+                  <SelectContent position="popper" side="bottom" className="bg-popover border-border max-h-[300px] z-[100]">
                     {brands.map((b) => (
-                      <SelectItem key={b} value={b} className="text-zinc-300 focus:bg-orange-500 focus:text-white">{b}</SelectItem>
+                      <SelectItem key={b} value={b} className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[10px] sm:text-xs">{b}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -237,19 +236,18 @@ export function ShopContent() {
             </div>
 
             {/* Action Bar */}
-            <div className="bg-[#111111] p-3 md:p-4 rounded-xl border border-white/5 shadow-lg flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center justify-between w-full md:w-auto gap-4">
+            <div className="bg-card p-2 sm:p-2.5 rounded-lg border border-border shadow-md sm:shadow-lg flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
+              <div className="flex items-center justify-between w-full sm:w-auto gap-3 sm:gap-4">
                 <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="outline" className="lg:hidden h-11 px-6 rounded-xl border-orange-500/20 font-black text-[11px] uppercase tracking-widest gap-2 bg-orange-500/5 text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-lg active:scale-95">
-                      <SlidersHorizontal className="h-4 w-4" />
-                      Configure Filters
-                      {activeFiltersCount > 0 && <span className="ml-1 px-2 py-0.5 bg-white text-orange-600 rounded-full text-[9px] font-black">{activeFiltersCount}</span>}
+                    <Button variant="outline" className="lg:hidden h-9 sm:h-10 px-3 sm:px-5 rounded-lg border-[#09757a]/20 font-black text-[9px] sm:text-[10px] uppercase tracking-wider sm:tracking-widest gap-1.5 sm:gap-2 bg-[#09757a]/5 text-[#09757a] hover:bg-[#09757a] hover:text-white transition-all shadow-md sm:shadow-lg active:scale-95">
+                      <SlidersHorizontal className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+                      Filter
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[300px] p-0 border-r border-white/10 bg-[#050505] shadow-2xl">
-                    <div className="h-full overflow-y-auto p-8 custom-scrollbar">
-                      <h3 className="text-xs font-black uppercase tracking-[0.2em] text-orange-500 mb-8">Filters</h3>
+                  <SheetContent side="left" className="w-[260px] sm:w-[280px] p-0 border-r border-border bg-background shadow-2xl">
+                    <div className="h-full overflow-y-auto p-4 sm:p-6 custom-scrollbar">
+                      <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#09757a] mb-4 sm:mb-6">Filters</h3>
                       <ShopFilters
                         categories={categories}
                         brands={brands}
@@ -266,38 +264,38 @@ export function ShopContent() {
                   </SheetContent>
                 </Sheet>
 
-                <p className="text-[10px] md:text-xs font-black text-zinc-400 uppercase tracking-widest">
-                  Showing <span className="text-white font-black">{filteredProducts.length}</span> results
+                <p className="text-[9px] sm:text-[10px] md:text-xs font-black text-muted-foreground uppercase tracking-wider sm:tracking-widest">
+                  Showing <span className="text-foreground font-black">{filteredProducts.length}</span> results
                 </p>
               </div>
 
-              <div className="flex items-center gap-3 w-full md:w-auto">
+              <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
                 <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
-                  <SelectTrigger className="flex-1 md:w-48 h-10 rounded-lg border-white/10 font-bold text-xs bg-[#0a0a0a] text-zinc-300 shadow-none ring-0">
-                    <SelectValue placeholder="Ordering" />
+                  <SelectTrigger className="flex-1 sm:w-32 md:w-40 h-8 sm:h-9 rounded-lg border-border font-bold text-[9px] sm:text-[10px] bg-background text-muted-foreground shadow-none ring-0">
+                    <SelectValue placeholder="Sort" />
                   </SelectTrigger>
-                  <SelectContent className="rounded-lg border-white/20 bg-[#000000]">
-                    <SelectItem value="popularity" className="text-zinc-300 focus:bg-orange-500 focus:text-white">Popular Products</SelectItem>
-                    <SelectItem value="latest" className="text-zinc-300 focus:bg-orange-500 focus:text-white">New Arrivals</SelectItem>
+                  <SelectContent className="rounded-lg border-border bg-popover">
+                    <SelectItem value="popularity" className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[9px] sm:text-[10px]">Popularity</SelectItem>
+                    <SelectItem value="latest" className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[9px] sm:text-[10px]">Latest</SelectItem>
                   </SelectContent>
                 </Select>
 
-                <div className="hidden md:flex items-center bg-[#0a0a0a] rounded-lg p-1 border border-white/5">
+                <div className="hidden md:flex items-center bg-background rounded-lg p-0.5 border border-border">
                   <Button
                     variant="ghost"
                     size="icon"
-                    className={`h-8 w-8 rounded-md transition-all ${gridCols === 3 ? "bg-orange-500 text-white shadow-sm" : "text-zinc-500 hover:text-white hover:bg-white/5"}`}
+                    className={`h-7 w-7 rounded-md transition-all ${gridCols === 3 ? "bg-[#09757a] text-white shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
                     onClick={() => setGridCols(3)}
                   >
-                    <Grid3X3 className="h-4 w-4" />
+                    <Grid3X3 className="h-3 w-3" />
                   </Button>
                   <Button
                     variant="ghost"
                     size="icon"
-                    className={`h-8 w-8 rounded-md transition-all ${gridCols === 4 ? "bg-orange-500 text-white shadow-sm" : "text-zinc-500 hover:text-white hover:bg-white/5"}`}
+                    className={`h-7 w-7 rounded-md transition-all ${gridCols === 4 ? "bg-[#09757a] text-white shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
                     onClick={() => setGridCols(4)}
                   >
-                    <LayoutGrid className="h-4 w-4" />
+                    <LayoutGrid className="h-3 w-3" />
                   </Button>
                 </div>
               </div>
@@ -305,27 +303,27 @@ export function ShopContent() {
 
             {/* Active Filter Chips */}
             {activeFiltersCount > 0 && (
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
                 {selectedCategories.map((cat) => (
-                  <Badge key={cat} className="bg-orange-500/10 text-orange-500 border border-orange-500/20 px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <span className="text-[9px] font-black uppercase tracking-tight">{categories.find((c) => c.id === cat)?.name}</span>
-                    <button onClick={() => setSelectedCategories((prev) => prev.filter((c) => c !== cat))} className="text-xs font-bold px-1 hover:bg-orange-500/20 rounded cursor-pointer">×</button>
+                  <Badge key={cat} className="bg-[#09757a]/10 text-[#09757a] border border-[#09757a]/20 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-tight">{categories.find((c) => c.id === cat)?.name}</span>
+                    <button onClick={() => setSelectedCategories((prev) => prev.filter((c) => c !== cat))} className="text-[9px] sm:text-[10px] font-bold px-0.5 sm:px-1 hover:bg-[#09757a]/20 rounded cursor-pointer leading-none">×</button>
                   </Badge>
                 ))}
                 {selectedBrands.map((brand) => (
-                  <Badge key={brand} className="bg-white/5 text-zinc-300 border border-white/10 px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <span className="text-[9px] font-black uppercase tracking-tight">{brand}</span>
-                    <button onClick={() => setSelectedBrands((prev) => prev.filter((b) => b !== brand))} className="text-xs font-bold px-1 hover:bg-white/10 rounded cursor-pointer">×</button>
+                  <Badge key={brand} className="bg-muted text-muted-foreground border border-border px-1.5 sm:px-2 py-0.5 sm:py-1 rounded flex items-center gap-1 sm:gap-1.5">
+                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-tight">{brand}</span>
+                    <button onClick={() => setSelectedBrands((prev) => prev.filter((b) => b !== brand))} className="text-[9px] sm:text-[10px] font-bold px-0.5 sm:px-1 hover:bg-accent rounded cursor-pointer leading-none">×</button>
                   </Badge>
                 ))}
-                <button onClick={clearFilters} className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-orange-500 transition-colors ml-2 underline underline-offset-4 decoration-zinc-700">Reset</button>
+                <button onClick={clearFilters} className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider sm:tracking-widest text-[#09757a] hover:text-white transition-colors ml-0.5 sm:ml-1 underline underline-offset-4 decoration-[#09757a]/40">Reset</button>
               </div>
             )}
 
             {/* Product Grid */}
             {paginatedProducts.length > 0 ? (
               <div
-                className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-${gridCols} gap-6`}
+                className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-${gridCols} gap-2 sm:gap-3 md:gap-4`}
               >
                 {paginatedProducts.map((product) => (
                   <div key={product.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
@@ -334,44 +332,44 @@ export function ShopContent() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-32 bg-[#111111] rounded-2xl border-2 border-dashed border-white/5">
-                <Package className="h-16 w-16 mx-auto text-zinc-800 mb-6" />
-                <p className="text-xl font-black text-white mb-2">No Equipment Found</p>
-                <p className="text-sm text-zinc-500 mb-8 max-w-xs mx-auto">Try clearing your filters or changing your search terms.</p>
-                <Button onClick={clearFilters} className="rounded-lg px-10 h-12 font-black uppercase tracking-widest text-xs shadow-lg shadow-orange-900/20 bg-orange-600 hover:bg-orange-500">Expand Search</Button>
+              <div className="text-center py-12 sm:py-16 md:py-20 bg-card rounded-xl border border-border">
+                <Package className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-muted-foreground mb-3 sm:mb-4" />
+                <p className="text-base sm:text-lg font-black text-foreground mb-1 uppercase">No Equipment Found</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground mb-4 sm:mb-6 max-w-xs mx-auto px-4">Try clearing your filters or changing your search terms.</p>
+                <Button onClick={clearFilters} className="rounded-lg px-6 sm:px-8 h-9 sm:h-10 font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] shadow-lg bg-[#09757a] hover:bg-foreground hover:text-background border border-transparent hover:border-[#09757a]">Expand Search</Button>
               </div>
             )}
 
             {totalPages > 1 && (
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-8 pt-16 border-t border-white/5">
-                <div className="flex flex-col items-center sm:items-start">
-                  <p className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] mb-1">Catalog Navigation</p>
-                  <p className="text-xs font-bold text-white uppercase tracking-widest">Showing Page {currentPage} of {totalPages}</p>
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-8 sm:pt-10 md:pt-12 border-t border-border">
+                <div className="flex flex-col items-center sm:items-start leading-none gap-0.5 sm:gap-1">
+                  <p className="text-[8px] sm:text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em] sm:tracking-[0.3em]">Catalog Navigation</p>
+                  <p className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-wider sm:tracking-widest">Page {currentPage} of {totalPages}</p>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5 sm:gap-2">
                   <Button
                     variant="outline"
                     onClick={() => {
                       setCurrentPage((p) => Math.max(1, p - 1))
-                      window.scrollTo({ top: 400, behavior: 'smooth' })
+                      window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
                     }}
                     disabled={currentPage === 1}
-                    className="h-12 w-12 sm:w-auto sm:px-6 rounded-2xl border-white/10 bg-[#111111] text-zinc-400 hover:text-white hover:border-orange-500/50 transition-all disabled:opacity-20 flex items-center justify-center"
+                    className="h-9 sm:h-10 w-9 sm:w-10 md:w-auto md:px-4 lg:px-5 rounded-lg border-border bg-card text-muted-foreground hover:text-foreground hover:border-[#09757a]/50 transition-all disabled:opacity-30 flex items-center justify-center p-0"
                   >
-                    <ChevronLeft className="h-5 w-5 sm:mr-2" />
-                    <span className="hidden sm:inline text-[10px] font-black uppercase tracking-[0.2em]">Previous</span>
+                    <ChevronLeft className="h-4 w-4 sm:mr-0 md:mr-1.5" />
+                    <span className="hidden md:inline text-[8px] sm:text-[9px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]">Prev</span>
                   </Button>
 
-                  <div className="hidden md:flex gap-2">
+                  <div className="hidden md:flex gap-1 sm:gap-1.5">
                     {[...Array(totalPages)].map((_, i) => (
                       <Button
                         key={i}
                         variant={currentPage === i + 1 ? "default" : "ghost"}
-                        className={`h-12 w-12 rounded-2xl font-black text-[11px] transition-all duration-300 ${currentPage === i + 1 ? "bg-orange-600 text-white shadow-xl shadow-orange-600/30 scale-110" : "text-zinc-500 hover:text-white hover:bg-white/5"}`}
+                        className={`h-9 sm:h-10 w-9 sm:w-10 rounded-lg font-black text-[9px] sm:text-[10px] transition-all duration-300 ${currentPage === i + 1 ? "bg-[#09757a] text-white shadow-xl shadow-[#09757a]/20 scale-105" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
                         onClick={() => {
                           setCurrentPage(i + 1)
-                          window.scrollTo({ top: 400, behavior: 'smooth' })
+                          window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
                         }}
                       >
                         {i + 1}
@@ -380,7 +378,7 @@ export function ShopContent() {
                   </div>
 
                   {/* Current Page Indicator for Mobile */}
-                  <div className="md:hidden h-12 px-6 flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl text-orange-500 font-black text-[11px]">
+                  <div className="md:hidden h-9 sm:h-10 px-4 sm:px-5 flex items-center justify-center bg-muted border border-border rounded-lg text-[#09757a] font-black text-[9px] sm:text-[10px]">
                     {currentPage} / {totalPages}
                   </div>
 
@@ -388,13 +386,13 @@ export function ShopContent() {
                     variant="default"
                     onClick={() => {
                       setCurrentPage((p) => Math.min(totalPages, p + 1))
-                      window.scrollTo({ top: 400, behavior: 'smooth' })
+                      window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
                     }}
                     disabled={currentPage === totalPages}
-                    className="h-12 w-12 sm:w-auto sm:px-8 rounded-2xl bg-orange-600 hover:bg-orange-500 text-white font-black uppercase tracking-[0.2em] shadow-lg shadow-orange-900/40 transition-all active:scale-95 disabled:opacity-20 flex items-center justify-center"
+                    className="h-9 sm:h-10 w-9 sm:w-10 md:w-auto md:px-4 lg:px-6 rounded-lg bg-[#09757a] hover:bg-foreground hover:text-background text-white font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] shadow-lg transition-all active:scale-95 disabled:opacity-30 flex items-center justify-center border border-transparent hover:border-[#09757a] p-0"
                   >
-                    <span className="hidden sm:inline text-[10px] mr-2">Next Page</span>
-                    <ChevronRight className="h-5 w-5" />
+                    <span className="hidden md:inline text-[8px] sm:text-[9px] mr-0 md:mr-1.5">Next</span>
+                    <ChevronRight className="h-4 w-4" />
                   </Button>
                 </div>
               </div>

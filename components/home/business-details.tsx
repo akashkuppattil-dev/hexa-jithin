@@ -1,81 +1,67 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { ChevronLeft, ChevronRight, Receipt, TrendingUp, Users } from "lucide-react"
-import React, { useCallback, useState } from "react"
+import { Receipt, TrendingUp, Users } from "lucide-react"
+import React from "react"
 
 const businessDetails = [
   {
     icon: TrendingUp,
     label: "Annual Turnover",
     value: "1.5 - 10 Cr",
-    color: "text-amber-500",
+    color: "text-[#09757a]",
   },
   {
     icon: Users,
     label: "Team Strength",
     value: "25+ Specialists",
-    color: "text-blue-500",
+    color: "text-blue-400",
   },
   {
     icon: Receipt,
     label: "GST Registered",
     value: "32CWVPM3137R1ZP",
-    color: "text-emerald-500",
+    color: "text-emerald-400",
   },
 ]
 
 export function BusinessDetails() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-
-  const goToPrev = useCallback(() => setCurrentIndex((prev) => (prev - 1 + businessDetails.length) % businessDetails.length), [])
-  const goToNext = useCallback(() => setCurrentIndex((prev) => (prev + 1) % businessDetails.length), [])
-
   return (
-    <section className="py-8 md:py-10 relative overflow-hidden border-t border-white/5 bg-[#0b0c10]">
-      {/* Background Wallpaper */}
-      <div
-        className="absolute inset-0 z-0 bg-cover bg-top bg-no-repeat opacity-60"
-        style={{
-          backgroundImage: `url('/business-bg.jpg')`,
-        }}
-      />
+    <section className="py-12 md:py-16 bg-background overflow-hidden relative border-t border-border transition-colors">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-[#09757a]/5 blur-[120px] rounded-full pointer-events-none opacity-50 dark:opacity-20" />
 
-      {/* Soft Dark Overlay for readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-[#0b0c10] z-0" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-6 md:mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 border border-white/10 rounded-full mb-3 backdrop-blur-md">
-            <span className="text-[10px] font-black text-orange-500 uppercase tracking-[0.3em]">Verified Supplier</span>
+      <div className="w-full px-4 md:px-12 relative z-10">
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded mb-3 shadow-sm">
+            <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em] leading-none">Corporate Metrics</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter uppercase leading-none">
-            Business <span className="text-orange-500">Intelligence</span>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
+            Business <span className="text-[#09757a]">Intelligence</span>
           </h2>
-          <p className="text-sm md:text-base text-zinc-400 max-w-2xl mx-auto font-medium">
-            Trusted by workshops and service centers across India
+          <p className="text-sm text-muted-foreground font-bold uppercase tracking-widest opacity-80 max-w-2xl mx-auto">
+            Authorized wholesale operations serving 4,000+ service networks.
           </p>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 border-t border-white/10 pt-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {businessDetails.map((detail, index) => {
             const IconComponent = detail.icon
             return (
               <div
                 key={index}
-                className="bg-black/40 backdrop-blur-xl border border-white/5 hover:border-orange-500/40 transition-all duration-700 group rounded-3xl p-6 md:p-8 flex flex-col items-center text-center shadow-2xl"
+                className="bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col items-center text-center shadow-md hover:border-[#09757a]/30 transition-all duration-500 group"
               >
-                <div className="relative mb-4">
-                  <div className="absolute inset-0 bg-orange-600 blur-2xl opacity-0 group-hover:opacity-20 transition-opacity" />
-                  <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-zinc-900 border border-white/10 flex items-center justify-center ${detail.color} group-hover:bg-orange-600 group-hover:text-white transition-all duration-500 shadow-xl`}>
-                    <IconComponent className="h-6 w-6 md:h-8 md:w-8" />
+                <div className="relative mb-6">
+                  <div className="absolute inset-0 bg-[#09757a]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                  <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-background border border-border flex items-center justify-center ${detail.color} group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm`}>
+                    <IconComponent className="h-7 w-7 md:h-8 md:w-8" />
                   </div>
                 </div>
 
-                <p className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.2em] mb-2 group-hover:text-orange-500/70 transition-colors">
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.3em] mb-2 group-hover:text-[#09757a] transition-colors leading-none">
                   {detail.label}
                 </p>
-                <p className="font-black text-lg md:text-xl text-zinc-100 tracking-tight uppercase">
+                <p className="font-bold text-lg md:text-xl text-foreground tracking-tight uppercase">
                   {detail.value}
                 </p>
               </div>
@@ -83,30 +69,9 @@ export function BusinessDetails() {
           })}
         </div>
 
-        {/* Mobile View */}
-        {/* Mobile View - Compact List */}
-        <div className="md:hidden pt-8 border-t border-white/10 flex flex-col gap-3">
-          {businessDetails.map((detail, index) => {
-            const IconComponent = detail.icon
-            return (
-              <div key={index} className="bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl p-4 flex items-center justify-between shadow-lg">
-                <div className="flex items-center gap-4">
-                  <div className={`w-10 h-10 rounded-xl bg-zinc-900 border border-white/10 flex items-center justify-center ${detail.color}`}>
-                    <IconComponent className="h-5 w-5" />
-                  </div>
-                  <div className="flex flex-col text-left">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">{detail.label}</span>
-                    <span className="font-black text-base text-white uppercase">{detail.value}</span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-
-        <div className="mt-8 md:mt-10 text-center opacity-30">
-          <p className="text-[10px] text-white font-black uppercase tracking-[0.5em]">
-            ISO 9001:2015 CERTIFIED OPERATIONS
+        <div className="mt-12 text-center opacity-40">
+          <p className="text-[9px] text-foreground font-bold uppercase tracking-[0.6em]">
+            ISO 9001:2015 REGISTERED SUPPLY CHAIN
           </p>
         </div>
       </div>

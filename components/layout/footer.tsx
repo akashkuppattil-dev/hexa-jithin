@@ -1,208 +1,140 @@
 "use client"
 
-import {
-  Clock,
-  Facebook,
-  Instagram,
-  Mail,
-  MapPin,
-  MessageCircle,
-  Phone,
-  ShieldCheck,
-  Truck,
-  Package,
-} from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { CONTACT, SOCIAL_LINKS } from "@/lib/constants"
+import { categories } from "@/lib/products"
+import { Facebook, Instagram, Mail, MapPin, Phone, Send, Twitter, Youtube, Linkedin } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
 
 export function Footer() {
-  const year = new Date().getFullYear()
+  const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-black border-t border-white/5 relative overflow-hidden pt-6 md:pt-12 pb-4 md:pb-8">
-      {/* Background patterns */}
-      <div className="absolute inset-0 opacity-[0.02] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
+    <footer className="bg-background text-foreground pt-8 sm:pt-10 md:pt-12 pb-4 sm:pb-5 md:pb-6 overflow-hidden relative border-t border-border transition-colors">
+      {/* Decorative Glow */}
+      <div className="absolute top-0 right-0 w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] bg-[#09757a]/5 blur-[80px] sm:blur-[100px] md:blur-[120px] rounded-full pointer-events-none opacity-50" />
 
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-2 md:py-4">
+      <div className="w-full px-3 sm:px-4 md:px-8 lg:px-12 relative z-10">
+        {/* Mobile: 2 columns, Tablet: 2 columns, Desktop: 4 columns */}
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7 md:gap-8 mb-6 sm:mb-8 md:mb-10">
 
-        {/* MAIN GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-y-4 gap-x-2 md:gap-6">
-
-          {/* BRAND (Full width on minimal mobile, 1 col otherwise) */}
-          <div className="col-span-2 sm:col-span-1 lg:col-span-3 space-y-1.5 md:space-y-2">
-            <Link href="/" className="block">
-              <h2 className="text-sm sm:text-base font-bold tracking-tight text-white mb-0.5">
+          {/* Company Info */}
+          <div className="flex flex-col gap-3 sm:gap-4 col-span-2 md:col-span-1">
+            <Link href="/" className="flex flex-col leading-none group">
+              <span className="text-lg sm:text-xl font-black tracking-tighter uppercase font-sans text-foreground group-hover:text-[#09757a] transition-colors">
                 HEXAMECH
-              </h2>
-              <span className="text-[9px] sm:text-[10px] font-semibold tracking-widest text-orange-500">
+              </span>
+              <span className="text-[7px] sm:text-[8px] font-bold text-foreground uppercase tracking-[0.3em] sm:tracking-[0.4em] mt-0.5 sm:mt-1 opacity-80">
                 LINICH TOOLS
               </span>
             </Link>
-
-            <p className="text-[11px] sm:text-[12px] leading-relaxed text-zinc-300 max-w-xs">
-              Trusted B2B supplier of professional automotive and industrial tools.
+            <p className="text-zinc-500 text-[10px] sm:text-xs font-semibold leading-relaxed max-w-xs">
+              Kerala&apos;s leading B2B automotive tools specialist. Delivering precision engineered diagnostic systems and industrial equipment across India.
             </p>
-
-            <div className="flex gap-2">
-              {/* Instagram */}
-              <a
-                href="#"
-                className="w-6 h-6 flex items-center justify-center rounded border border-white/10 hover:border-[#E1306C]/50 text-[#E1306C] bg-white/5 transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-3 h-3" />
-              </a>
-
-              {/* Facebook */}
-              <a
-                href="#"
-                className="w-6 h-6 flex items-center justify-center rounded border border-white/10 hover:border-[#1877F2]/50 text-[#1877F2] bg-white/5 transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-3 h-3" />
-              </a>
-
-              {/* WhatsApp */}
-              <a
-                href="https://wa.me/917510638693"
-                className="w-6 h-6 flex items-center justify-center rounded border border-white/10 hover:border-[#25D366]/50 text-[#25D366] bg-white/5 transition-colors"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle className="w-3 h-3" />
-              </a>
+            <div className="flex gap-2 sm:gap-3">
+              {[
+                { icon: Facebook, href: SOCIAL_LINKS.FACEBOOK },
+                { icon: Instagram, href: SOCIAL_LINKS.INSTAGRAM },
+                { icon: Youtube, href: SOCIAL_LINKS.YOUTUBE },
+                { icon: Linkedin, href: "#" }
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] hover:bg-[#09757a] hover:text-white hover:border-[#09757a] transition-all transform hover:-translate-y-1 shadow-sm active:scale-90"
+                >
+                  <social.icon className="h-3 w-3 sm:h-4 sm:w-4" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* COMPANY */}
-          <div className="col-span-1 lg:col-span-2 text-left md:text-left mt-0">
-            <h4 className="footer-title mb-1.5 md:mb-2 !text-[9px] !text-orange-500 lg:!text-white">Company</h4>
-            <ul className="footer-list space-y-0.5">
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/shop">Products</Link></li>
-              <li><Link href="/brands">Brands</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+          {/* Quick Links */}
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Navigation</h4>
+            <ul className="flex flex-col gap-2 sm:gap-3">
+              {["Home", "Shop", "Brands", "About", "Contact"].map((item) => (
+                <li key={item}>
+                  <Link
+                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className="text-zinc-500 hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
+                  >
+                    <span className="h-0.5 w-0 bg-[#09757a] transition-all group-hover:w-2 sm:group-hover:w-3" />
+                    {item}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* PRODUCTS (Hidden Mobile) */}
-          <div className="hidden lg:block lg:col-span-2">
-            <h4 className="footer-title mb-2 !text-[9px]">Products</h4>
-            <ul className="footer-list space-y-0.5">
-              <li>Welding Machines</li>
-              <li>Lifting Equipment</li>
-              <li>Pneumatic Tools</li>
-              <li>Diagnostic Equipment</li>
+          {/* Categories */}
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Key Categories</h4>
+            <ul className="flex flex-col gap-2 sm:gap-3">
+              {categories.slice(0, 5).map((category) => (
+                <li key={category.id}>
+                  <Link
+                    href={`/shop?category=${category.id}`}
+                    className="text-zinc-500 hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
+                  >
+                    <span className="h-0.5 w-0 bg-[#09757a] transition-all group-hover:w-2 sm:group-hover:w-3" />
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* SUPPORT (Hidden Mobile) */}
-          <div className="hidden lg:block lg:col-span-2">
-            <h4 className="footer-title mb-2 !text-[9px]">Support</h4>
-            <ul className="footer-list space-y-0.5">
-              <li><Link href="/contact">Request a Quote</Link></li>
-              <li>WhatsApp Sales</li>
-              <li><Link href="/privacy">Privacy Policy</Link></li>
-            </ul>
-          </div>
-
-          {/* ADDRESS */}
-          <div className="col-span-1 sm:col-span-2 lg:col-span-3 space-y-1.5">
-            <h4 className="footer-title mb-1.5 md:mb-2 !text-[9px]">Contact Us</h4>
-            <div className="footer-contact">
-              <MapPin className="icon" />
-              <span className="leading-tight">
-                Door No 17/346,<br className="hidden sm:block" /> Chulliparamba, Calicut
-              </span>
-            </div>
-            <div className="footer-contact">
-              <Phone className="icon" />
-              <a href="tel:+917510638693">+91 75106 38693</a>
-            </div>
-            <div className="footer-contact">
-              <Mail className="icon" />
-              <a href="mailto:hexamechlinichtools@gmail.com" className="truncate max-w-[140px] sm:max-w-none">
-                hexamechlinichtools@gmail.com
+          {/* Contact Details */}
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Headquarters</h4>
+            <div className="flex flex-col gap-3 sm:gap-4">
+              <a href={CONTACT.ADDRESS_URL} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
+                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
+                  <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">Door No 17/346, Chulliparamba</p>
+                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Calicut, Kerala</p>
+                </div>
+              </a>
+              <a href={`tel:${CONTACT.PHONE}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
+                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
+                  <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">{CONTACT.PHONE_DISPLAY}</p>
+                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Main Support Line</p>
+                </div>
+              </a>
+              <a href={`mailto:${CONTACT.EMAIL}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
+                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
+                  <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors truncate max-w-[120px] sm:max-w-[150px]">{CONTACT.EMAIL}</p>
+                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Official Inquiry</p>
+                </div>
               </a>
             </div>
           </div>
         </div>
 
-        {/* TRUST STRIP - Tightened for Mobile */}
-        <div className="grid grid-cols-3 gap-1 sm:gap-4 mt-3 pt-2 border-t border-white/5">
-          <TrustItem icon={ShieldCheck} title="GST Verified" desc="Registered" />
-          <TrustItem icon={Truck} title="India Shipping" desc="Fast Delivery" />
-          <TrustItem icon={Package} title="Genuine Tools" desc="100% Original" />
-        </div>
-
-        {/* COPYRIGHT - Tightened */}
-        <div className="mt-2 pt-2 border-t border-white/5">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4">
-            <p className="text-[8px] text-zinc-600 font-bold uppercase tracking-[0.2em] text-center md:text-left">
-              © 2025 Hexamech Linich Tools.
-            </p>
-            <div className="flex items-center gap-4 hidden sm:flex">
-              <Link href="/privacy" className="text-[8px] text-zinc-600 hover:text-orange-500 font-bold uppercase tracking-widest transition-colors">Privacy</Link>
-              <Link href="/terms" className="text-[8px] text-zinc-600 hover:text-orange-500 font-bold uppercase tracking-widest transition-colors">Terms</Link>
-            </div>
+        {/* Bottom Bar */}
+        <div className="pt-5 sm:pt-6 md:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+          <p className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-center md:text-left">
+            © {currentYear} HEXAMECH LINICH TOOLS. ALL RIGHTS RESERVED.
+          </p>
+          <div className="flex gap-4 sm:gap-6 md:gap-8">
+            <Link href="/privacy" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Privacy</Link>
+            <Link href="/terms" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Terms</Link>
+            <Link href="/gst" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">GST Compliance</Link>
           </div>
         </div>
       </div>
-
-      {/* LOCAL STYLES */}
-      <style jsx>{`
-        .footer-title {
-          font-size: 12px;
-          letter-spacing: 0.15em;
-          text-transform: uppercase;
-          color: white;
-          font-weight: 700;
-          margin-bottom: 12px;
-        }
-        .footer-list {
-          font-size: 13px;
-          line-height: 1.6;
-        }
-        .footer-list li {
-          color: #e4e4e7;
-        }
-        .footer-list li:hover {
-          color: #f97316;
-        }
-        .footer-contact {
-          display: flex;
-          gap: 8px;
-          font-size: 13px;
-          color: #e4e4e7;
-        }
-        .icon {
-          width: 16px;
-          height: 16px;
-          color: #f97316;
-          margin-top: 1px;
-        }
-      `}</style>
     </footer>
-  )
-}
-
-function TrustItem({
-  icon: Icon,
-  title,
-  desc,
-}: {
-  icon: any
-  title: string
-  desc: string
-}) {
-  return (
-    <div className="flex flex-col items-center text-center gap-1.5 px-1">
-      <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-orange-500" />
-      <div>
-        <h5 className="text-[11px] sm:text-xs font-semibold text-white leading-tight">{title}</h5>
-        <p className="text-[9px] sm:text-[10px] text-zinc-500 hidden sm:block">{desc}</p>
-      </div>
-    </div>
   )
 }

@@ -1,140 +1,107 @@
 "use client"
 
-import React, { useEffect, useRef, useState, useCallback } from "react"
-import { Wrench, Truck, Award, HeadphonesIcon, ChevronLeft, ChevronRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards"
+import { Card } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { ShieldCheck, Truck, Users, Wrench, Globe, Clock } from "lucide-react"
 
 const features = [
   {
-    icon: Wrench,
-    title: "Workshop Focused",
-    description: "Exclusive selection for professional garages and industrial centers.",
-    color: "text-zinc-400",
+    icon: ShieldCheck,
+    title: "GST Verified B2B",
+    description: "Fully compliant industrial wholesale operations across PAN India.",
+    color: "text-[#09757a]",
+    bg: "bg-[#09757a]/10",
   },
   {
     icon: Truck,
     title: "Express Logistics",
-    description: "Same-day dispatch for Kerala. Secure PAN India shipping.",
-    color: "text-blue-400",
+    description: "Real-time tracking and priority delivery for critical equipment needs.",
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
   },
   {
-    icon: Award,
-    title: "Global Brands",
-    description: "Genuine products from Bosch, Stanley, Devilbiss and more.",
-    color: "text-amber-400",
+    icon: Wrench,
+    title: "Tool Specialists",
+    description: "Expert consultation on diagnostic systems and garage installations.",
+    color: "text-[#09757a]",
+    bg: "bg-[#09757a]/10",
   },
   {
-    icon: HeadphonesIcon,
-    title: "Expert Guidance",
-    description: "Our tool specialists help you choose the right gear for the job.",
-    color: "text-emerald-400",
+    icon: Clock,
+    title: "24/7 Support",
+    description: "Round-the-clock technical assistance for industrial tools.",
+    color: "text-amber-500",
+    bg: "bg-amber-500/10",
+  },
+  {
+    icon: Globe,
+    title: "PAN India Supply",
+    description: "Seamless distribution network serving 4000+ service centers.",
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/10",
+  },
+  {
+    icon: Users,
+    title: "Specialist Team",
+    description: "Decades of experience in automotive tool engineering and supply.",
+    color: "text-indigo-500",
+    bg: "bg-indigo-500/10",
   },
 ]
 
 export function WhyHexamech() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const sectionRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 },
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
-
-  const goToPrev = useCallback(() => setCurrentIndex((prev) => (prev - 1 + features.length) % features.length), [])
-  const goToNext = useCallback(() => setCurrentIndex((prev) => (prev + 1) % features.length), [])
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      goToNext()
-    }, 3000)
-    return () => clearInterval(timer)
-  }, [goToNext])
-
   return (
-    <section ref={sectionRef} className="py-8 md:py-12 relative overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#0b0c10] to-[#0f172a] border-t border-slate-800/50">
-      {/* Background Subtle Patterns */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+    <section className="py-20 bg-background overflow-hidden relative transition-colors">
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
 
-      {/* Dynamic Glow Elements */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-600/5 blur-[120px] rounded-full pointer-events-none" />
-
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-6 md:mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full mb-3">
-            <span className="text-[10px] font-black text-blue-400 uppercase tracking-[0.3em]">Core Advantage</span>
+      <div className="w-full px-4 md:px-12 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded mb-4">
+            <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em] leading-none">The Hexamech Advantage</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-2 tracking-tighter uppercase leading-none">
-            Why <span className="text-orange-500">Hexamech?</span>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">
+            Why Professionals <span className="text-[#09757a]">Choose Us</span>
           </h2>
-          <p className="text-xs md:text-sm text-slate-400 font-medium max-w-2xl mx-auto italic">
-            Trusted automotive equipment wholesaler since 2024.
+          <p className="text-muted-foreground text-sm font-bold uppercase tracking-widest max-w-2xl mx-auto">
+            Setting the standard in automotive and industrial tool distribution for over two decades.
           </p>
         </div>
 
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className={`bg-slate-900/40 backdrop-blur-md border border-slate-800/50 hover:border-orange-500/40 transition-all duration-700 group rounded-[2rem] p-6 md:p-8 flex flex-col items-center text-center shadow-2xl ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-              style={{ transitionDelay: `${index * 100}ms` }}
+            <Card
+              key={index}
+              className="bg-card border border-border rounded-xl p-6 relative overflow-hidden group hover:border-[#09757a]/30 transition-all duration-500 shadow-sm hover:shadow-xl"
             >
-              <div className="relative mb-4">
-                <div className="absolute inset-0 bg-orange-600 blur-2xl opacity-0 group-hover:opacity-10 transition-opacity" />
-                <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-slate-800 border border-slate-700 flex items-center justify-center ${feature.color} group-hover:bg-orange-600 group-hover:text-white transition-all duration-500 shadow-xl group-hover:shadow-orange-600/20`}>
-                  <feature.icon className="h-6 w-6 md:h-8 md:w-8" />
-                </div>
+              <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#09757a]/5 blur-3xl group-hover:bg-[#09757a]/20 transition-all" />
+
+              <div className={`h-12 w-12 rounded-lg ${feature.bg} flex items-center justify-center mb-6 border border-zinc-100 group-hover:scale-110 transition-transform`}>
+                <feature.icon className={`h-6 w-6 ${feature.color}`} />
               </div>
-              <h3 className="font-black text-sm md:text-base text-slate-100 mb-2 uppercase tracking-tight group-hover:text-orange-500 transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-slate-400 text-xs md:text-sm leading-relaxed font-medium">
+
+              <h3 className="text-lg font-black text-foreground mb-2 uppercase tracking-tight">{feature.title}</h3>
+              <p className="text-muted-foreground text-xs font-semibold leading-relaxed">
                 {feature.description}
               </p>
-            </div>
+
+              <div className="absolute bottom-0 left-0 h-1 w-0 bg-[#09757a] group-hover:w-full transition-all duration-500" />
+            </Card>
           ))}
         </div>
 
-        {/* Mobile View */}
-        <div className="md:hidden">
-          <div className="flex flex-col items-center gap-4">
-            {(() => {
-              const Icon = features[currentIndex].icon
-              return (
-                <div className="bg-slate-900/60 backdrop-blur-lg border border-slate-700/50 w-full rounded-[2rem] p-6 flex flex-col items-center text-center shadow-xl">
-                  <div className={`w-12 h-12 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center ${features[currentIndex].color} mb-4 shadow-inner`}>
-                    <Icon className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-black text-sm text-white mb-1 uppercase tracking-tight">{features[currentIndex].title}</h3>
-                  <p className="text-slate-400 text-[10px] leading-relaxed">{features[currentIndex].description}</p>
-                </div>
-              )
-            })()}
-
-            <div className="hidden">
-              <Button variant="outline" size="icon" onClick={goToPrev} className="h-10 w-10 rounded-full border-slate-700 text-slate-400 bg-slate-900/50 backdrop-blur-md hover:text-white hover:bg-orange-600 hover:border-orange-600 transition-all">
-                <ChevronLeft className="h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="icon" onClick={goToNext} className="h-10 w-10 rounded-full border-slate-700 text-slate-400 bg-slate-900/50 backdrop-blur-md hover:text-white hover:bg-orange-600 hover:border-orange-600 transition-all">
-                <ChevronRight className="h-5 w-5" />
-              </Button>
+        {/* Mobile View - Enhanced Carousel/Grid */}
+        <div className="lg:hidden mt-12 grid grid-cols-1 gap-3">
+          {features.slice(0, 3).map((feature, index) => (
+            <div key={index} className="bg-card border border-border rounded-xl p-4 flex items-center gap-4 shadow-sm">
+              <div className={`h-10 w-10 shrink-0 rounded-lg ${feature.bg} flex items-center justify-center`}>
+                <feature.icon className={`h-5 w-5 ${feature.color}`} />
+              </div>
+              <div>
+                <h4 className="text-[10px] font-bold text-foreground uppercase tracking-wider">{feature.title}</h4>
+                <p className="text-[9px] text-muted-foreground font-medium">{feature.description}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </section>

@@ -92,15 +92,15 @@ export function TestimonialsSlider() {
   )
 
   return (
-    <section className="py-16 sm:py-24 bg-white dark:bg-zinc-950 transition-colors">
+    <section className="py-12 md:py-16 bg-[#0a0a0a] transition-colors">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-500/10 rounded-full mb-4">
-            <Star className="h-3 w-3 text-orange-500 fill-current" />
-            <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest">Customer Satisfaction</span>
+        <div className="text-center mb-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-4">
+            <Star className="h-2.5 w-2.5 text-[#09757a] fill-current" />
+            <span className="text-[9px] font-black text-[#09757a] uppercase tracking-widest">Customer Satisfaction</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black text-zinc-900 dark:text-white mb-4 tracking-tight">Voices of Trust</h2>
-          <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 font-medium max-w-xl mx-auto italic">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-3 tracking-tighter uppercase">Voices of Trust</h2>
+          <p className="text-xs md:text-sm text-zinc-500 font-medium max-w-xl mx-auto italic">
             Feedback from professional workshops and industrial partners across South India.
           </p>
         </div>
@@ -110,25 +110,25 @@ export function TestimonialsSlider() {
             variant="outline"
             size="icon"
             onClick={prevSlide}
-            className="absolute -left-4 lg:-left-16 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white dark:bg-zinc-800 shadow-xl border-zinc-100 dark:border-zinc-800 opacity-0 group-hover/testimonials:opacity-100 transition-all hover:bg-orange-500 hover:text-white"
+            className="absolute -left-4 lg:-left-12 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-[#111] border-white/5 opacity-0 group-hover/testimonials:opacity-100 transition-all hover:bg-[#09757a] hover:text-white"
           >
-            <ChevronLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronLeft className="h-4 w-4" />
           </Button>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {visibleTestimonials.map((testimonial, idx) => (
-              <Card key={`${testimonial.id}-${idx}`} className="bg-zinc-50 dark:bg-zinc-900 border-none shadow-sm hover:shadow-md transition-all rounded-3xl p-6 flex flex-col h-full animate-in fade-in duration-500">
-                <div className="flex gap-0.5 mb-4">
+              <Card key={`${testimonial.id}-${idx}`} className="bg-[#111] border border-white/5 shadow-xl hover:border-[#09757a]/40 transition-all rounded-2xl p-5 flex flex-col h-full animate-in fade-in duration-500">
+                <div className="flex gap-0.5 mb-3">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-2.5 w-2.5 text-yellow-500 fill-current" />
+                    <Star key={i} className="h-2 w-2 text-[#09757a] fill-current" />
                   ))}
                 </div>
-                <Quote className="h-6 w-6 text-orange-500/20 mb-4" />
-                <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 font-medium leading-relaxed italic mb-6 flex-1">
+                <Quote className="h-5 w-5 text-[#09757a]/20 mb-3" />
+                <p className="text-[11px] text-zinc-400 font-medium leading-relaxed italic mb-5 flex-1">
                   "{testimonial.content}"
                 </p>
-                <div className="flex items-center gap-3 pt-4 border-t border-zinc-200 dark:border-zinc-800">
-                  <div className="relative w-10 h-10 rounded-full overflow-hidden border border-white dark:border-zinc-700 shadow-sm">
+                <div className="flex items-center gap-2.5 pt-3 border-t border-white/5">
+                  <div className="relative w-8 h-8 rounded-full overflow-hidden border border-white/10 shadow-sm">
                     <Image
                       src={testimonial.image}
                       alt={testimonial.name}
@@ -137,8 +137,8 @@ export function TestimonialsSlider() {
                     />
                   </div>
                   <div className="min-w-0">
-                    <h4 className="font-bold text-[11px] text-zinc-900 dark:text-zinc-100 truncate">{testimonial.name}</h4>
-                    <p className="text-[10px] text-orange-500 font-black uppercase tracking-tight truncate">{testimonial.location}</p>
+                    <h4 className="font-bold text-[10px] text-white truncate uppercase tracking-tight">{testimonial.name}</h4>
+                    <p className="text-[9px] text-[#09757a] font-black uppercase tracking-widest truncate">{testimonial.location}</p>
                   </div>
                 </div>
               </Card>
@@ -149,18 +149,18 @@ export function TestimonialsSlider() {
             variant="outline"
             size="icon"
             onClick={nextSlide}
-            className="absolute -right-4 lg:-right-16 top-1/2 -translate-y-1/2 z-20 h-10 w-10 sm:h-12 sm:w-12 rounded-full bg-white dark:bg-zinc-800 shadow-xl border-zinc-100 dark:border-zinc-800 opacity-0 group-hover/testimonials:opacity-100 transition-all hover:bg-orange-500 hover:text-white"
+            className="absolute -right-4 lg:-right-12 top-1/2 -translate-y-1/2 z-20 h-9 w-9 rounded-full bg-[#111] border-white/5 opacity-0 group-hover/testimonials:opacity-100 transition-all hover:bg-[#09757a] hover:text-white"
           >
-            <ChevronRight className="h-5 w-5 sm:h-6 sm:w-6" />
+            <ChevronRight className="h-4 w-4" />
           </Button>
         </div>
 
-        <div className="flex justify-center gap-2 mt-12">
+        <div className="flex justify-center gap-1.5 mt-10">
           {testimonials.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentIndex(index)}
-              className={`h-1.5 rounded-full transition-all ${index === currentIndex ? "w-8 bg-orange-500" : "w-2 bg-zinc-200 dark:bg-zinc-800 hover:bg-zinc-300"}`}
+              className={`h-1 rounded-full transition-all ${index === currentIndex ? "w-6 bg-[#09757a]" : "w-1.5 bg-white/10 hover:bg-white/20"}`}
             />
           ))}
         </div>
