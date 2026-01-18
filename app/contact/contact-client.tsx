@@ -43,6 +43,13 @@ const contactMethods = [
     description: "Detailed product or dealership enquiries",
   },
   {
+    icon: ExternalLink,
+    title: "IndiaMart Profile",
+    value: "View Catalog",
+    href: "https://www.indiamart.com/hexamech-linich-tools/",
+    description: "Verified Supplier Profile",
+  },
+  {
     icon: Clock,
     title: "Business Hours",
     value: "Mon – Sat | 9 AM – 7 PM",

@@ -25,6 +25,12 @@ const WhyHexamech = dynamic(() => import("@/components/home/why-hexamech").then(
   loading: () => <div className="h-96 bg-secondary/20 animate-pulse rounded-lg" />,
 })
 
+
+
+const FaqSection = dynamic(() => import("@/components/home/faq-section").then(mod => ({ default: mod.FaqSection })), {
+  loading: () => <div className="h-80 bg-secondary/20 animate-pulse rounded-lg" />,
+})
+
 const BusinessDetails = dynamic(() => import("@/components/home/business-details").then(mod => ({ default: mod.BusinessDetails })), {
   loading: () => <div className="h-64 bg-secondary/20 animate-pulse rounded-lg" />,
 })
@@ -42,6 +48,7 @@ export default function HomePage() {
       <WhyHexamech />
       <TrustedCustomersSection />
       <BusinessDetails />
+      <FaqSection />
     </div>
   )
 }

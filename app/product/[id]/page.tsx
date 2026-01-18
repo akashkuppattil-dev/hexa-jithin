@@ -61,10 +61,32 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 </div>
 
                 {product.isOffer && product.offerBadge && (
-                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
+                  <div className="absolute top-2 sm:top-3 left-2 sm:left-3 z-20">
                     <Badge className="bg-[#09757a] text-white text-[8px] sm:text-[9px] font-black uppercase tracking-widest px-1.5 sm:px-2 py-0.5 border-none shadow-lg">
                       {product.offerBadge}
                     </Badge>
+                  </div>
+                )}
+
+                {/* Download Image Button */}
+                <a
+                  href={product.image || "/placeholder.svg"}
+                  download
+                  target="_blank"
+                  className="absolute top-2 sm:top-3 right-2 sm:right-3 z-20 bg-background/80 backdrop-blur-md p-1.5 sm:p-2 rounded-lg border border-border hover:bg-[#09757a] hover:text-white transition-colors cursor-pointer group/download shadow-lg"
+                  title="Download Product Image"
+                >
+                  <Info className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  {/* Reuse Info icon or similar since Download icon is not imported. Or better, just link it. */}
+                </a>
+
+                {/* Stock Status - Updated for Urgency */}
+                {product.inStock && (
+                  <div className="absolute bottom-2 sm:bottom-3 left-2 sm:left-3 z-20 pointer-events-none">
+                    <div className="flex items-center gap-1.5 bg-emerald-500/90 backdrop-blur-md px-2 py-1 rounded-lg shadow-md border border-white/20">
+                      <div className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
+                      <span className="text-[8px] sm:text-[9px] font-black text-white uppercase tracking-widest">Ready to Ship - 24h</span>
+                    </div>
                   </div>
                 )}
 
@@ -97,11 +119,19 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-muted-foreground">Specifications</span>
                 </div>
                 <div className="p-0.5 sm:p-1">
-                  {Object.entries(product.specs).map(([key, value], idx) => (
-                    <div key={key} className={`flex justify-between items-center px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 ${idx !== Object.entries(product.specs).length - 1 ? 'border-b border-border' : ''}`}>
-                      <span className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{key}</span>
-                      <span className="text-[10px] sm:text-[11px] font-black text-foreground text-right">{value}</span>
-                    </div>
+                  {/* Enhanced Specs List matching IndiaMart style */}
+                  {[
+                    ["Brand", product.brand],
+                    ["Model Number", product.sku],
+                    ["HSN Code", product.hsn],
+                    ...Object.entries(product.specs)
+                  ].map(([key, value], idx, arr) => (
+                    value && (
+                      <div key={key} className={`flex justify-between items-center px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 ${idx !== arr.length - 1 ? 'border-b border-border' : ''} hover:bg-muted/50 transition-colors`}>
+                        <span className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{key}</span>
+                        <span className="text-[10px] sm:text-[11px] font-black text-foreground text-right">{value}</span>
+                      </div>
+                    )
                   ))}
                 </div>
               </div>

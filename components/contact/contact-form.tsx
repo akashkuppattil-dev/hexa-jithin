@@ -60,70 +60,85 @@ export function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="name" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Name *</Label>
+            <Label htmlFor="name" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Name *</Label>
             <Input
               id="name"
               name="name"
               placeholder="Full Name"
               required
-              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
+              className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm"
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="mobile" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Mobile Number *</Label>
+            <Label htmlFor="mobile" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Mobile Number *</Label>
             <Input
               id="mobile"
               name="mobile"
               type="tel"
               placeholder="+91 00000 00000"
               required
-              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
+              className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm"
             />
           </div>
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="email" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Email Address *</Label>
+          <Label htmlFor="email" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Email Address *</Label>
           <Input
             id="email"
             name="email"
             type="email"
             placeholder="your@email.com"
             required
-            className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
+            className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm"
           />
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="company" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Company / Workshop</Label>
+            <Label htmlFor="company" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Company / Workshop</Label>
             <Input
               id="company"
               name="company"
               placeholder="Company Name"
-              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
+              className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm"
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="gst" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">GST Number</Label>
+            <Label htmlFor="gst" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">GST Number</Label>
             <Input
               id="gst"
               name="gst"
               placeholder="Optional"
-              className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 h-9 text-xs rounded-lg"
+              className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm"
             />
           </div>
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="interest" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Product Interest *</Label>
+          <Label htmlFor="purpose" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Purpose of Enquiry *</Label>
+          <Select name="purpose" required>
+            <SelectTrigger className="bg-background border-input text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm">
+              <SelectValue placeholder="Select Purpose" />
+            </SelectTrigger>
+            <SelectContent className="bg-popover border-border text-popover-foreground">
+              <SelectItem value="purchase" className="focus:bg-primary focus:text-primary-foreground cursor-pointer text-xs uppercase font-bold">New Purchase (Buying)</SelectItem>
+              <SelectItem value="service" className="focus:bg-primary focus:text-primary-foreground cursor-pointer text-xs uppercase font-bold">Service / Repair</SelectItem>
+              <SelectItem value="partner" className="focus:bg-primary focus:text-primary-foreground cursor-pointer text-xs uppercase font-bold">Become a Dealer</SelectItem>
+              <SelectItem value="other" className="focus:bg-primary focus:text-primary-foreground cursor-pointer text-xs uppercase font-bold">General Information</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-1.5">
+          <Label htmlFor="interest" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Product Interest *</Label>
           <Select name="interest" required>
-            <SelectTrigger className="bg-[#111] border-white/5 text-zinc-500 focus:border-[#09757a]/50 h-9 text-xs rounded-lg">
+            <SelectTrigger className="bg-background border-input text-muted-foreground focus:border-primary/50 h-9 text-xs rounded-lg shadow-sm">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>
-            <SelectContent className="bg-[#0a0a0a] border-white/10 text-zinc-400">
+            <SelectContent className="bg-popover border-border text-popover-foreground">
               {productInterests.map((interest) => (
-                <SelectItem key={interest.value} value={interest.value} className="focus:bg-[#09757a] focus:text-white cursor-pointer text-xs uppercase font-bold">
+                <SelectItem key={interest.value} value={interest.value} className="focus:bg-primary focus:text-primary-foreground cursor-pointer text-xs uppercase font-bold">
                   {interest.label}
                 </SelectItem>
               ))}
@@ -132,18 +147,18 @@ export function ContactForm() {
         </div>
 
         <div className="space-y-1.5">
-          <Label htmlFor="message" className="text-zinc-600 font-black text-[9px] uppercase tracking-[0.2em]">Message / Requirement *</Label>
+          <Label htmlFor="message" className="text-muted-foreground font-black text-[9px] uppercase tracking-[0.2em]">Message / Requirement *</Label>
           <Textarea
             id="message"
             name="message"
             placeholder="Describe your requirements..."
             rows={4}
             required
-            className="bg-[#111] border-white/5 text-white placeholder:text-zinc-700 focus:border-[#09757a]/50 text-xs rounded-xl resize-none"
+            className="bg-background border-input text-foreground placeholder:text-muted-foreground focus:border-primary/50 text-xs rounded-xl resize-none shadow-sm"
           />
         </div>
 
-        <Button type="submit" className="w-full h-10 bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white font-black uppercase tracking-[0.2em] shadow-lg text-[10px] rounded-lg transition-all border border-transparent hover:border-[#09757a]" disabled={isLoading}>
+        <Button type="submit" className="w-full h-10 bg-primary hover:bg-foreground hover:text-background text-primary-foreground font-black uppercase tracking-[0.2em] shadow-lg text-[10px] rounded-lg transition-all border border-transparent hover:border-primary" disabled={isLoading}>
           {isLoading ? (
             <>
               <div className="w-3 h-3 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2" />

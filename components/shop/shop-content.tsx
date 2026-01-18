@@ -192,46 +192,41 @@ export function ShopContent() {
           {/* Main Content */}
           <div className="flex-1 space-y-6">
 
-            {/* In-Page Search Bar - Split Layout */}
-            <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-2">
-              {/* Product Name Search */}
-              <div className="relative w-full sm:col-span-2 md:col-span-1">
-                <div className="absolute inset-y-0 left-0 pl-2.5 sm:pl-3 flex items-center pointer-events-none">
-                  <Search className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-muted-foreground" />
-                </div>
-                <Input
-                  type="text"
-                  placeholder="Search products..."
-                  className="w-full h-9 sm:h-10 pl-8 sm:pl-9 pr-3 sm:pr-4 bg-card border-border text-[11px] sm:text-xs text-foreground placeholder:text-muted-foreground rounded-lg focus:border-[#09757a]/50 transition-all shadow-lg sm:shadow-xl"
-                  value={searchInputValue}
-                  onChange={(e) => handleSearch(e.target.value)}
-                />
+            {/* Horizontal Category Slider - 'Moresder' (Modern Slider) Experience */}
+            <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
+              <Button
+                variant={selectedCategories.length === 0 ? "default" : "outline"}
+                className={`h-9 px-4 rounded-full text-[10px] font-black uppercase tracking-widest flex-shrink-0 transition-all ${selectedCategories.length === 0 ? "bg-[#09757a] text-white shadow-lg" : "border-border"}`}
+                onClick={() => setSelectedCategories([])}
+              >
+                All Tools
+              </Button>
+              {categories.map((cat) => (
+                <Button
+                  key={cat.id}
+                  variant={selectedCategories.includes(cat.id) ? "default" : "outline"}
+                  className={`h-9 px-4 rounded-full text-[10px] font-black uppercase tracking-widest flex-shrink-0 transition-all ${selectedCategories.includes(cat.id) ? "bg-[#09757a] text-white shadow-lg" : "border-border"}`}
+                  onClick={() => setSelectedCategories([cat.id])}
+                >
+                  {cat.name}
+                </Button>
+              ))}
+            </div>
+
+            {/* In-Page Search Bar - Modern Glassmorphism */}
+            <div className="relative group/search">
+              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-[#09757a] transition-colors" />
               </div>
-
-              <div className="grid grid-cols-2 gap-2">
-                {/* Category Select */}
-                <Select onValueChange={(val) => setSelectedCategories([val])}>
-                  <SelectTrigger className="h-9 sm:h-10 bg-card border-border text-muted-foreground rounded-lg text-[10px] sm:text-xs">
-                    <SelectValue placeholder="Category" />
-                  </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-popover border-border max-h-[300px] z-[100]">
-                    {categories.map((c) => (
-                      <SelectItem key={c.id} value={c.id} className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[10px] sm:text-xs">{c.name}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-
-                {/* Brand Select */}
-                <Select onValueChange={(val) => setSelectedBrands([val])}>
-                  <SelectTrigger className="h-9 sm:h-10 bg-card border-border text-muted-foreground rounded-lg text-[10px] sm:text-xs">
-                    <SelectValue placeholder="Brand" />
-                  </SelectTrigger>
-                  <SelectContent position="popper" side="bottom" className="bg-popover border-border max-h-[300px] z-[100]">
-                    {brands.map((b) => (
-                      <SelectItem key={b} value={b} className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[10px] sm:text-xs">{b}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+              <Input
+                type="text"
+                placeholder="What are you looking for today? (e.g. spray gun, welder)"
+                className="w-full h-12 md:h-14 pl-11 pr-4 bg-card/50 backdrop-blur-xl border-border text-sm text-foreground placeholder:text-muted-foreground/60 rounded-2xl focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-xl"
+                value={searchInputValue}
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+              <div className="absolute right-2 top-1/2 -translate-y-1/2 hidden md:block">
+                <Badge variant="secondary" className="bg-[#09757a]/10 text-[#09757a] border-none font-black px-3 py-1">FAST SEARCH</Badge>
               </div>
             </div>
 

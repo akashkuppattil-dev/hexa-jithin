@@ -3,6 +3,8 @@
 import { useEffect, useState, useRef } from "react"
 import { Search, ShieldCheck, CheckCircle, Truck, ArrowRight } from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { products, categories, brands } from "@/lib/products"
 
@@ -109,13 +111,40 @@ export function HeroSection() {
     }
   }
 
+  /* Background Slider Logic */
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const heroImages = [
+    "/images/hero/hero-1.png",
+    "/images/hero/hero-2.png",
+    "/images/hero/hero-3.png"
+  ]
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="relative min-h-[480px] h-[55vh] sm:h-[60vh] md:h-[65vh] flex flex-col justify-center items-center overflow-hidden bg-background py-8 sm:py-0">
 
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 z-0 opacity-10 dark:opacity-20">
-        <div className="absolute top-0 right-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#09757a]/20 blur-[100px] md:blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] md:w-[600px] h-[400px] md:h-[600px] bg-[#09757a]/30 blur-[100px] md:blur-[120px] rounded-full pointer-events-none" />
+      {/* Dynamic Background Slider */}
+      <div className="absolute inset-0 z-0">
+        {heroImages.map((img, index) => (
+          <div
+            key={img}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+          >
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat transform scale-105 transition-transform duration-[10000ms]"
+              style={{ backgroundImage: `url(${img})` }}
+            />
+            {/* 10% Subtle Dark Overlay for 'Clean' look and text contrast */}
+            <div className="absolute inset-0 bg-black/10" />
+
+          </div>
+        ))}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
       </div>
 
@@ -174,31 +203,45 @@ export function HeroSection() {
             )}
           </div>
 
-          {/* Cursive Welcome - Responsive sizing */}
-          <h2 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-foreground mb-4 sm:mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
-            Welcome to <span className="text-[#09757a]">Hexamech</span>
+          {/* Cursive Welcome - Changed to White for readability on images */}
+          <h2 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-2xl mb-4 sm:mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+            Welcome to <span className="text-orange-500 drop-shadow-none">Hexamech</span>
           </h2>
 
-          {/* Main Title - Better mobile hierarchy */}
-          <h1 className={`flex flex-col items-center font-black tracking-tight text-foreground mb-6 sm:mb-8 md:mb-10 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase leading-[0.9] opacity-80 mb-2">
+          {/* Main Title - White with shadow */}
+          <h1 className={`flex flex-col items-center font-black tracking-tight text-white mb-8 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase leading-[0.9] drop-shadow-md mb-2">
               Authorised Automotive
             </span>
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl opacity-80 uppercase leading-[0.9] tracking-tight">
-              & Industrial Tools Supplier
+            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase leading-[0.9] tracking-tight drop-shadow-md">
+              & Industrial <span className="text-orange-500 drop-shadow-none">Tools</span> Supplier
             </span>
           </h1>
 
-          {/* Trust Strip - Mobile optimized with vertical layout on small screens */}
-          <div className={`mt-6 sm:mt-10 md:mt-20 lg:mt-24 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-12 lg:gap-16 transition-all duration-1000 delay-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          {/* Hero CTAs */}
+          <div className={`flex flex-col sm:flex-row items-center gap-4 mb-10 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Link href="/shop" className="w-full sm:w-auto">
+              <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-8 h-14 text-sm font-black uppercase tracking-[0.2em] rounded-xl shadow-2xl active:scale-95 transition-all flex items-center gap-3">
+                Shop Our Collection <ArrowRight className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link href="/brands" className="w-full sm:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto px-8 h-14 text-sm font-black uppercase tracking-[0.2em] rounded-xl border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black active:scale-95 transition-all">
+                View Brands
+              </Button>
+            </Link>
+          </div>
+
+          {/* Trust Strip - White text for better visibility */}
+          <div className={`mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-12 transition-all duration-1000 delay-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             {[
               { icon: ShieldCheck, text: "GST-Verified Supplier" },
               { icon: CheckCircle, text: "Authorised Distributer" },
               { icon: Truck, text: "PAN-India Fast Delivery" }
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 sm:gap-3 text-muted-foreground group">
-                <div className="h-8 w-8 sm:h-9 md:h-10 sm:w-9 md:w-10 rounded-full bg-secondary flex items-center justify-center border border-border group-hover:border-[#09757a] group-hover:bg-[#09757a]/10 transition-all shadow-md">
-                  <item.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-[#09757a]" />
+              <div key={idx} className="flex items-center gap-2 sm:gap-3 text-white group drop-shadow-md">
+                <div className="h-8 w-8 sm:h-9 md:h-10 sm:w-9 md:w-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-all shadow-md">
+                  <item.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-500" />
                 </div>
                 <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">{item.text}</span>
               </div>

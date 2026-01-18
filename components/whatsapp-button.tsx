@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import { CONTACT } from "@/lib/constants"
-import { styles } from "@/lib/utils" // Assuming this exists or I'll just use classNames
 import { MessageCircle, X, ChevronRight, ArrowLeft } from "lucide-react"
 import { categories, brands } from "@/lib/products"
 import { Button } from "@/components/ui/button"
@@ -12,7 +11,7 @@ export function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false)
   const [showGreeting, setShowGreeting] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const [step, setStep] = useState<"menu" | "category" | "brand">("menu")
+  const [step, setStep] = useState<"menu" | "category" | "brand" | "service">("menu")
   const [selectedCategory, setSelectedCategory] = useState("")
   const [selectedBrand, setSelectedBrand] = useState("")
 
@@ -122,17 +121,43 @@ export function WhatsAppButton() {
                 </div>
 
                 <div className="space-y-2">
-                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => setStep("category")}>
-                    Buying Products <ChevronRight className="h-3 w-3" />
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => setStep("category")}>
+                    Buying / Request Quote <ChevronRight className="h-3 w-3" />
                   </Button>
-                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I have a technical support query.")}>
-                    Technical Support <ChevronRight className="h-3 w-3" />
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => setStep("service")}>
+                    Service & Support <ChevronRight className="h-3 w-3" />
                   </Button>
-                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I want to track my order.")}>
-                    Track Order <ChevronRight className="h-3 w-3" />
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I want to check my order status.")}>
+                    Track Order Status <ChevronRight className="h-3 w-3" />
                   </Button>
-                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I have a general enquiry.")}>
-                    Talk to Sales <ChevronRight className="h-3 w-3" />
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I am interested in Bulk Purchase pricing.")}>
+                    Bulk Orders / Sales <ChevronRight className="h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {step === "service" && (
+              <div className="space-y-3">
+                <button onClick={() => setStep("menu")} className="text-[10px] flex items-center gap-1 text-muted-foreground hover:text-foreground mb-2">
+                  <ArrowLeft className="h-3 w-3" /> Back
+                </button>
+                <div className="bg-muted p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-xs text-muted-foreground animate-in fade-in slide-in-from-left-2 mb-4">
+                  What kind of service do you need?
+                </div>
+
+                <div className="space-y-2">
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I need to repair a tool.")}>
+                    Tool Repair Request <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I need spare parts.")}>
+                    Spare Parts Enquiry <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I want to claim warranty.")}>
+                    Warranty Claim <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9 bg-card hover:bg-muted" onClick={() => startWhatsAppChat("Hi, I need installation support.")}>
+                    Installation Help <ChevronRight className="h-3 w-3" />
                   </Button>
                 </div>
               </div>

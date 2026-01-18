@@ -96,15 +96,13 @@ export default function BrandsPage() {
                             className={`block animate-in fade-in slide-in-from-bottom-4 duration-500 delay-[${idx * 30}ms]`}
                         >
                             <div className="group/brand-card relative aspect-square flex items-center justify-center p-2 sm:p-3 md:p-4 bg-card rounded-lg sm:rounded-xl shadow-lg sm:shadow-xl hover:shadow-2xl hover:shadow-[#09757a]/20 transition-all duration-500 hover:-translate-y-1 overflow-hidden border border-border active:scale-95">
-                                {/* Soft lighting effect */}
-                                <div className="absolute inset-0 bg-gradient-to-br from-white via-transparent to-black/5 opacity-50" />
 
                                 <div className="w-full h-full relative group-hover/brand-card:scale-110 transition-all duration-500 p-1 sm:p-2">
                                     <Image
                                         src={brand.logo}
                                         alt={brand.name}
                                         fill
-                                        className="object-contain mix-blend-multiply"
+                                        className="object-contain"
                                     />
                                 </div>
                             </div>

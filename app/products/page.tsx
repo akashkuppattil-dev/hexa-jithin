@@ -1,8 +1,19 @@
+"use client"
+
 import supabase from '@/lib/supabaseClient';
 import { useState } from 'react';
 
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  price: number;
+  currency: string;
+  product_images: { storage_path: string; alt_text: string }[];
+}
+
 export default function ProductsPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });

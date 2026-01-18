@@ -4,55 +4,71 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand Colors - GoDaddy Teal Theme */
+  /* Brand Colors - Hexamech Teal (kept as accent) */
   --brand-teal: #09757a;
   --brand-teal-light: #0b8d93;
   --brand-teal-dark: #075e62;
   --brand-mint: #e8f9fb;
 
-  /* Global Light Theme Settings - Refined for Vivid Look */
+  /* GoDaddy Exact Clone Palette */
   --background: #ffffff;
-  --foreground: #0a0a0a;
+  --foreground: #111111;
+  /* GoDaddy Black */
+
   --card: #ffffff;
-  --card-foreground: #0a0a0a;
+  --card-foreground: #111111;
+
   --popover: #ffffff;
-  --popover-foreground: #0a0a0a;
-  --primary: var(--brand-teal);
+  --popover-foreground: #111111;
+
+  --primary: #111111;
+  /* GoDaddy often uses Black for primary buttons */
   --primary-foreground: #ffffff;
-  --secondary: var(--brand-mint);
-  --secondary-foreground: var(--brand-teal-dark);
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: var(--brand-mint);
-  --accent-foreground: var(--brand-teal-dark);
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --border: #e4e4e7;
+
+  --secondary: #f4f5f8;
+  /* GoDaddy Light Gray Section BG */
+  --secondary-foreground: #111111;
+
+  --muted: #f4f5f8;
+  --muted-foreground: #5e5e5e;
+  /* GoDaddy Dark Gray Text */
+
+  --accent: #f4f5f8;
+  --accent-foreground: #111111;
+
+  --destructive: #cb2027;
+  /* GoDaddy Error Red */
+  --destructive-foreground: #ffffff;
+
+  --border: #d6d6d6;
+  /* Subtle Gray Border */
   --input: #ffffff;
-  --ring: var(--brand-teal);
+  --ring: #09757a;
+
   --radius: 0.5rem;
 }
 
+/* Force Light Theme even in Dark Mode preference */
 .dark {
-  --background: #09090b;
-  --foreground: #fafafa;
-  --card: #18181b;
-  --card-foreground: #fafafa;
-  --popover: #111111;
-  --popover-foreground: #fafafa;
-  --primary: var(--brand-teal-light);
+  --background: #ffffff;
+  --foreground: #111111;
+  --card: #ffffff;
+  --card-foreground: #111111;
+  --popover: #ffffff;
+  --popover-foreground: #111111;
+  --primary: #111111;
   --primary-foreground: #ffffff;
-  --secondary: #27272a;
-  --secondary-foreground: #fafafa;
-  --muted: #27272a;
-  --muted-foreground: #a1a1aa;
-  --accent: #27272a;
-  --accent-foreground: #fafafa;
-  --destructive: #7f1d1d;
-  --destructive-foreground: #fafafa;
-  --border: #27272a;
-  --input: #27272a;
-  --ring: var(--brand-teal-light);
+  --secondary: #f4f5f8;
+  --secondary-foreground: #111111;
+  --muted: #f4f5f8;
+  --muted-foreground: #5e5e5e;
+  --accent: #f4f5f8;
+  --accent-foreground: #111111;
+  --destructive: #cb2027;
+  --destructive-foreground: #ffffff;
+  --border: #d6d6d6;
+  --input: #ffffff;
+  --ring: #09757a;
 }
 
 @theme inline {
@@ -111,15 +127,15 @@
 
 @layer utilities {
   .premium-card {
-    @apply bg-[#111111] border border-white/10 shadow-xl rounded-xl;
+    @apply bg-card border border-border shadow-xl rounded-xl;
   }
 
   .godaddy-input {
-    @apply h-12 px-4 rounded-md border border-white/10 bg-[#1a1a1a] text-white focus:border-teal-500 transition-all outline-none;
+    @apply h-12 px-4 rounded-md border border-input bg-background text-foreground focus:border-ring transition-all outline-none;
   }
 
   .premium-button {
-    @apply bg-[#09757a] hover:bg-white hover:text-[#09757a] text-white font-black rounded-md transition-all active:scale-95 px-6 h-12 flex items-center justify-center text-[11px] uppercase tracking-widest border border-transparent hover:border-[#09757a] shadow-lg;
+    @apply bg-primary hover:bg-foreground hover:text-background text-primary-foreground font-black rounded-md transition-all active:scale-95 px-6 h-12 flex items-center justify-center text-[11px] uppercase tracking-widest border border-transparent hover:border-primary shadow-lg;
   }
 }
 

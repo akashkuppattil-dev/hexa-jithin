@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { CONTACT, SOCIAL_LINKS } from "@/lib/constants"
 import { categories } from "@/lib/products"
-import { Facebook, Instagram, Mail, MapPin, Phone, Send, Twitter, Youtube, Linkedin } from "lucide-react"
+import { Facebook, Instagram, Mail, MapPin, Phone, Send, Twitter, Youtube, Linkedin, ExternalLink } from "lucide-react"
 import Link from "next/link"
 
 export function Footer() {
@@ -117,6 +117,15 @@ export function Footer() {
                 <div>
                   <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors truncate max-w-[120px] sm:max-w-[150px]">{CONTACT.EMAIL}</p>
                   <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Official Inquiry</p>
+                </div>
+              </a>
+              <a href="https://www.indiamart.com/hexamech-linich-tools/" target="_blank" rel="noopener noreferrer" className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
+                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#d00000] group-hover:bg-[#d00000] group-hover:text-white transition-all shadow-sm">
+                  <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
+                </div>
+                <div>
+                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">IndiaMart Profile</p>
+                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Verified Supplier</p>
                 </div>
               </a>
             </div>

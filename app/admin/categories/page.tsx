@@ -1,5 +1,7 @@
+"use client"
+
 import supabase from '@/lib/supabaseClient';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Define the Category type
 interface Category {
