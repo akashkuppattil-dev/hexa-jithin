@@ -3,11 +3,11 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch product details
   const { data: product, error: productError } = await supabase

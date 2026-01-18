@@ -2,11 +2,11 @@ import supabase from '@/lib/supabaseClient';
 import { notFound } from 'next/navigation';
 
 interface CategoryPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
-  const { slug } = params;
+  const { slug } = await params;
 
   // Fetch category details
   const { data: category, error: categoryError } = await supabase
