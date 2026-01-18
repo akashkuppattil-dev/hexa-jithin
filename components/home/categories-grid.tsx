@@ -94,7 +94,40 @@ export function CategoriesGrid() {
         </div>
       </div>
 
-      <div className="relative group/carousel">
+      {/* Mobile View: 2x2 Grid (Static) */}
+      <div className="md:hidden px-4 grid grid-cols-2 gap-3 mb-8">
+        {categories.slice(0, 4).map((category, idx) => (
+          <Link
+            key={category.id}
+            href={`/shop?category=${category.id}`}
+            className="group relative h-48 overflow-hidden rounded-xl border border-border shadow-md active:scale-95 transition-transform"
+          >
+            <Image
+              src={getCategoryImage(category.id)}
+              alt={category.name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+            <div className="absolute bottom-3 left-3 right-3">
+              <p className="text-[10px] font-black uppercase tracking-widest text-[#09757a] mb-0.5">Series 0{idx + 1}</p>
+              <h3 className="text-xs font-black uppercase tracking-tighter text-white leading-tight">
+                {category.name}
+              </h3>
+            </div>
+          </Link>
+        ))}
+        <div className="col-span-2 mt-4">
+          <Link href="/shop" className="block w-full">
+            <Button variant="outline" className="w-full h-10 border-[#09757a]/20 text-[#09757a] font-black uppercase tracking-widest text-[10px]">
+              View Full Collection
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Desktop/Tablet View: Carousel */}
+      <div className="hidden md:block relative group/carousel">
         {/* Navigation Buttons */}
         <div className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20">
           <Button

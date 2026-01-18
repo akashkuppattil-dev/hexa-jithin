@@ -153,7 +153,7 @@ export function HeroSection() {
         <div className="flex flex-col items-center text-center">
 
           {/* Search Bar - Full Width Top */}
-          <div ref={wrapperRef} className={`relative w-[95%] lg:w-full max-w-[1600px] mb-8 sm:mb-12 transition-all duration-1000 delay-100 ${mounted ? 'opacity-100 translate-y-0 shadow-[0_20px_60px_-10px_rgba(9,117,122,0.4)] sm:shadow-[0_30px_100px_-10px_rgba(9,117,122,0.5)]' : 'opacity-0 translate-y-8'}`}>
+          <div ref={wrapperRef} className={`relative w-full max-w-[1600px] mb-12 sm:mb-16 transition-all duration-1000 delay-100 ${mounted ? 'opacity-100 translate-y-0 shadow-[0_20px_60px_-10px_rgba(9,117,122,0.4)] sm:shadow-[0_30px_100px_-10px_rgba(9,117,122,0.5)]' : 'opacity-0 translate-y-8'}`}>
             <form
               onSubmit={handleSearch}
               className="relative flex items-center h-12 sm:h-14 md:h-16 bg-background dark:bg-card rounded-xl p-2 overflow-hidden border border-[#09757a]/20 shadow-2xl z-20"
@@ -204,46 +204,49 @@ export function HeroSection() {
           </div>
 
           {/* Cursive Welcome - Changed to White for readability on images */}
-          <h2 className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-2xl mb-4 sm:mb-6 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
+          <h2 className={`text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white drop-shadow-2xl mb-6 sm:mb-8 transition-all duration-1000 ${mounted ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'}`}>
             Welcome to <span className="text-orange-500 drop-shadow-none">Hexamech</span>
           </h2>
 
           {/* Main Title - White with shadow */}
-          <h1 className={`flex flex-col items-center font-black tracking-tight text-white mb-8 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase leading-[0.9] drop-shadow-md mb-2">
+          <h1 className={`flex flex-col items-center font-black tracking-tight text-white mb-10 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="text-base sm:text-xl md:text-2xl lg:text-3xl uppercase leading-tight drop-shadow-md mb-2">
               Authorised Automotive
             </span>
-            <span className="text-lg sm:text-xl md:text-2xl lg:text-3xl uppercase leading-[0.9] tracking-tight drop-shadow-md">
+            <span className="text-base sm:text-xl md:text-2xl lg:text-3xl uppercase leading-tight tracking-tight drop-shadow-md">
               & Industrial <span className="text-orange-500 drop-shadow-none">Tools</span> Supplier
             </span>
           </h1>
 
           {/* Hero CTAs */}
-          <div className={`flex flex-col sm:flex-row items-center gap-4 mb-10 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <Link href="/shop" className="w-full sm:w-auto">
-              <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-8 h-14 text-sm font-black uppercase tracking-[0.2em] rounded-xl shadow-2xl active:scale-95 transition-all flex items-center gap-3">
-                Shop Our Collection <ArrowRight className="h-4 w-4" />
+          <div className={`flex flex-row items-center gap-2 sm:gap-4 mb-10 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <Link href="/shop" className="flex-1 sm:w-auto">
+              <Button className="w-full sm:w-auto bg-orange-500 hover:bg-orange-600 text-white px-3 sm:px-8 h-12 sm:h-14 text-[10px] sm:text-sm font-black uppercase tracking-widest sm:tracking-[0.2em] rounded-xl shadow-2xl active:scale-95 transition-all flex items-center justify-center gap-2 sm:gap-3">
+                Shop <span className="hidden xs:inline">Collection</span> <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
               </Button>
             </Link>
-            <Link href="/brands" className="w-full sm:w-auto">
-              <Button variant="outline" className="w-full sm:w-auto px-8 h-14 text-sm font-black uppercase tracking-[0.2em] rounded-xl border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black active:scale-95 transition-all">
-                View Brands
+            <Link href="/brands" className="flex-1 sm:w-auto">
+              <Button variant="outline" className="w-full sm:w-auto px-3 sm:px-8 h-12 sm:h-14 text-[10px] sm:text-sm font-black uppercase tracking-widest sm:tracking-[0.2em] rounded-xl border-white/30 text-white bg-white/10 backdrop-blur-md hover:bg-white hover:text-black active:scale-95 transition-all">
+                Brands
               </Button>
             </Link>
           </div>
 
-          {/* Trust Strip - White text for better visibility */}
-          <div className={`mt-6 sm:mt-10 flex flex-col sm:flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-12 transition-all duration-1000 delay-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
+          {/* Trust Strip - Now Horizontal on Mobile */}
+          <div className={`mt-6 sm:mt-10 flex flex-row justify-center items-center gap-3 sm:gap-6 md:gap-12 transition-all duration-1000 delay-700 ${mounted ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}>
             {[
-              { icon: ShieldCheck, text: "GST-Verified Supplier" },
-              { icon: CheckCircle, text: "Authorised Distributer" },
-              { icon: Truck, text: "PAN-India Fast Delivery" }
+              { icon: ShieldCheck, text: "GST", fullText: "GST-Verified" },
+              { icon: CheckCircle, text: "Authorised", fullText: "Authorised" },
+              { icon: Truck, text: "PAN-India", fullText: "PAN-India" }
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-2 sm:gap-3 text-white group drop-shadow-md">
-                <div className="h-8 w-8 sm:h-9 md:h-10 sm:w-9 md:w-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-all shadow-md">
-                  <item.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-orange-500" />
+              <div key={idx} className="flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 text-white group drop-shadow-md">
+                <div className="h-7 w-7 sm:h-9 md:h-10 sm:w-9 md:w-10 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center border border-white/20 group-hover:border-orange-500 group-hover:bg-orange-500/10 transition-all shadow-md">
+                  <item.icon className="h-3 w-3 sm:h-4 sm:w-4 text-orange-500" />
                 </div>
-                <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em]">{item.text}</span>
+                <span className="text-[7px] sm:text-[10px] md:text-[11px] font-black uppercase tracking-widest sm:tracking-[0.2em]">
+                  <span className="sm:hidden">{item.text}</span>
+                  <span className="hidden sm:inline">{item.fullText}</span>
+                </span>
               </div>
             ))}
           </div>

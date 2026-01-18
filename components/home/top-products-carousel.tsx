@@ -90,9 +90,18 @@ export function TopProductsCarousel() {
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* Mobile View: 2x2 Grid (Static) */}
+        <div className="sm:hidden grid grid-cols-2 gap-3 mb-8">
+          {topProducts.slice(0, 4).map((product) => (
+            <div key={product.id} className="h-full">
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop/Tablet View: Carousel */}
         <div
-          className="relative group touch-pan-y px-4 md:px-0"
+          className="hidden sm:block relative group touch-pan-y px-4 md:px-0"
           onTouchStart={handleTouchStart}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
@@ -110,7 +119,6 @@ export function TopProductsCarousel() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {getVisibleItems().map((product, index) => (
               <div key={`${currentIndex}-${index}`} className="h-full">
-                {/* Passing a prop to tell ProductCard to use cover style if we decide to do that locally or just improve the card globally */}
                 <ProductCard product={product} />
               </div>
             ))}

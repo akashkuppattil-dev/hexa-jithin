@@ -51,7 +51,7 @@ export function WhatsAppButton() {
   }
 
   return (
-    <div className="fixed bottom-3 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6 z-50 flex flex-col items-end gap-2">
+    <div className="fixed bottom-20 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6 z-[60] flex flex-col items-end gap-2">
 
       {/* Greeting Popup */}
       <div

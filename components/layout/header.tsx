@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { CONTACT } from "@/lib/constants"
-import { Mail, Menu, Phone, X, ChevronDown, Users } from "lucide-react"
+import { Mail, Menu, Phone, X, ChevronDown, Users, Package } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -33,6 +33,24 @@ export function Header() {
     }
   }, [mobileMenuOpen])
 
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+        setIsVisible(false)
+      } else {
+        setIsVisible(true)
+      }
+      setLastScrollY(currentScrollY)
+    }
+
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [lastScrollY])
+
   const handleMenuLeave = (e: React.MouseEvent) => {
     const relatedTarget = e.relatedTarget as Node | null;
     if (relatedTarget instanceof Node && headerRef.current && !headerRef.current.contains(relatedTarget)) {
@@ -48,20 +66,13 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className="sticky top-0 w-full z-50 bg-background/80 backdrop-blur-md text-foreground py-2 md:py-2.5 shadow-sm border-b border-border transition-colors"
+        className={`sticky top-0 w-full z-50 bg-background/80 backdrop-blur-md text-foreground py-2 md:py-2.5 shadow-sm border-b border-border transition-all duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
         onMouseLeave={handleMenuLeave}
       >
         <div className="w-full px-4 md:px-12 flex items-center justify-between gap-4">
 
-          {/* Mobile Phone Number Bar (Left on Mobile) */}
-          <div className="lg:hidden flex items-center gap-2">
-            <a href={`tel:${CONTACT.PHONE}`} className="h-8 w-8 rounded-full bg-[#09757a]/10 dark:bg-orange-500/10 border border-[#09757a]/20 dark:border-orange-500/20 flex items-center justify-center text-[#09757a] dark:text-orange-500 active:scale-90 transition-all">
-              <Phone className="h-3.5 w-3.5" />
-            </a>
-          </div>
-
-          {/* Logo Section - Centered on Mobile */}
-          <Link href="/" className="flex flex-col items-center leading-none mx-auto lg:mx-0 lg:mr-10 group active:scale-95 transition-transform">
+          {/* Logo Section - Left Aligned */}
+          <Link href="/" className="flex flex-col items-start leading-none group active:scale-95 transition-transform">
             <span className="text-xl md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
               HEXAMECH
             </span>
@@ -89,17 +100,15 @@ export function Header() {
           <div className="flex items-center gap-3">
             <div className="hidden lg:flex items-center gap-6">
               <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-2.5 group">
-                <div className="h-8 w-8 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-orange-500/50 group-hover:bg-orange-500/5 transition-all">
-                  <Phone className="h-3.5 w-3.5 text-orange-500" />
+                <div className="h-8 w-8 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-[#09757a]/50 group-hover:bg-[#09757a]/5 transition-all">
+                  <Phone className="h-3.5 w-3.5 text-[#09757a]" />
                 </div>
                 <span className="text-[10px] font-black tracking-tight">{CONTACT.PHONE}</span>
               </a>
             </div>
 
-            <ThemeToggle />
-
             <Link href="/contact" className="hidden sm:block">
-              <Button className="bg-[#111] hover:bg-orange-500 text-white px-5 h-9 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95 shadow-lg">
+              <Button className="bg-[#111] hover:bg-[#09757a] text-white px-5 h-9 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95 shadow-lg">
                 Get Quote
               </Button>
             </Link>
@@ -112,28 +121,26 @@ export function Header() {
       </header>
 
       {/* Sticky Bottom Navigation - Mobile Only */}
-      <div className="lg:hidden fixed bottom-4 left-4 right-4 z-[100] h-14 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl flex items-center justify-around px-2 text-muted-foreground animate-in slide-in-from-bottom-10 duration-500">
-        <Link href="/" className={`flex flex-col items-center transition-all ${pathname === '/' ? 'text-[#09757a] dark:text-orange-500 scale-110' : 'hover:text-foreground'}`}>
+      <div className={`lg:hidden fixed bottom-4 left-4 right-4 z-[100] h-14 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl flex items-center justify-around px-2 text-muted-foreground transition-all duration-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+        <Link href="/" className={`flex flex-col items-center transition-all ${pathname === '/' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
           <Menu className="h-5 w-5 mb-0.5" />
           <span className="text-[8px] font-black uppercase tracking-tighter">Home</span>
         </Link>
-        <Link href="/shop" className={`flex flex-col items-center transition-all ${pathname.startsWith('/shop') ? 'text-[#09757a] dark:text-orange-500 scale-110' : 'hover:text-foreground'}`}>
-          <div className="relative">
-            <div className="h-5 w-5 mb-0.5 rounded border-2 border-current" />
-            <div className="absolute inset-x-1 top-1 h-1 bg-current rounded-full" />
-          </div>
+        <Link href="/shop" className={`flex flex-col items-center transition-all ${pathname.startsWith('/shop') ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
+          <Package className="h-5 w-5 mb-0.5" />
           <span className="text-[8px] font-black uppercase tracking-tighter">Shop</span>
         </Link>
-        <Link href={CONTACT.WHATSAPP_URL} target="_blank" className="flex flex-col items-center -translate-y-4">
-          <div className="h-12 w-12 rounded-full bg-emerald-500 flex items-center justify-center text-white shadow-xl shadow-emerald-500/30 active:scale-90 transition-transform">
-            <Image src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WA" width={24} height={24} className="invert" />
+        <Link href="/about" className={`flex flex-col items-center transition-all ${pathname === '/about' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
+          <div className="h-5 w-5 mb-0.5 rounded-full border-2 border-current flex items-center justify-center">
+            <span className="text-[10px] font-black">i</span>
           </div>
+          <span className="text-[8px] font-black uppercase tracking-tighter">About</span>
         </Link>
-        <Link href="/brands" className={`flex flex-col items-center transition-all ${pathname === '/brands' ? 'text-[#09757a] dark:text-orange-500 scale-110' : 'hover:text-foreground'}`}>
+        <Link href="/brands" className={`flex flex-col items-center transition-all ${pathname === '/brands' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
           <Users className="h-5 w-5 mb-0.5" />
           <span className="text-[8px] font-black uppercase tracking-tighter">Brands</span>
         </Link>
-        <Link href="/contact" className={`flex flex-col items-center transition-all ${pathname === '/contact' ? 'text-[#09757a] dark:text-orange-500 scale-110' : 'hover:text-foreground'}`}>
+        <Link href="/contact" className={`flex flex-col items-center transition-all ${pathname === '/contact' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
           <Phone className="h-5 w-5 mb-0.5" />
           <span className="text-[8px] font-black uppercase tracking-tighter">Call</span>
         </Link>
@@ -151,12 +158,39 @@ export function Header() {
               </Button>
             </div>
             {/* Links and other items */}
-            <div className="flex flex-col gap-6">
-              <Link href="/" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Home</Link>
-              <Link href="/shop" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Shop</Link>
-              <Link href="/brands" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Brands</Link>
-              <Link href="/about" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">About</Link>
-              <Link href="/contact" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Contact</Link>
+            <div className="flex flex-col gap-6 flex-1">
+              <Link href="/" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Home</Link>
+              <Link href="/shop" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Shop</Link>
+              <Link href="/brands" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Brands</Link>
+              <Link href="/about" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">About</Link>
+              <Link href="/contact" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Contact</Link>
+            </div>
+
+            {/* Mobile Menu Footer */}
+            <div className="mt-auto space-y-4 pt-6 border-t border-border">
+              <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-3 group">
+                <div className="h-10 w-10 rounded-full bg-[#09757a]/10 flex items-center justify-center text-[#09757a]">
+                  <Phone className="h-5 w-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-[#09757a]">Call Us</span>
+                  <span className="text-sm font-bold">{CONTACT.PHONE}</span>
+                </div>
+              </a>
+              <a href={CONTACT.WHATSAPP_URL} target="_blank" className="flex items-center gap-3 group">
+                <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
+                  <Mail className="h-5 w-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500">WhatsApp</span>
+                  <span className="text-sm font-bold">Inquiry on WA</span>
+                </div>
+              </a>
+              <div className="pt-2">
+                <p className="text-[9px] font-bold text-muted-foreground uppercase leading-relaxed tracking-wider">
+                  {CONTACT.BUSINESS_ADDRESS}
+                </p>
+              </div>
             </div>
           </div>
         </div>

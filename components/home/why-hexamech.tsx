@@ -49,7 +49,18 @@ const features = [
   },
 ]
 
+import React from "react"
+
 export function WhyHexamech() {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % features.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="py-20 bg-background overflow-hidden relative transition-colors">
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
@@ -67,7 +78,8 @@ export function WhyHexamech() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Desktop View - Grid */}
+        <div className="hidden md:grid grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <Card
               key={index}
@@ -89,19 +101,29 @@ export function WhyHexamech() {
           ))}
         </div>
 
-        {/* Mobile View - Enhanced Carousel/Grid */}
-        <div className="lg:hidden mt-12 grid grid-cols-1 gap-3">
-          {features.slice(0, 3).map((feature, index) => (
-            <div key={index} className="bg-card border border-border rounded-xl p-4 flex items-center gap-4 shadow-sm">
-              <div className={`h-10 w-10 shrink-0 rounded-lg ${feature.bg} flex items-center justify-center`}>
-                <feature.icon className={`h-5 w-5 ${feature.color}`} />
+        {/* Mobile View - Auto-moving Carousel */}
+        <div className="md:hidden relative h-[220px]">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 bg-card border border-border rounded-xl p-8 flex flex-col items-center text-center shadow-md transition-all duration-1000 ${index === activeIndex ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+            >
+              <div className={`h-12 w-12 rounded-xl ${feature.bg} flex items-center justify-center mb-6 transition-transform`}>
+                <feature.icon className={`h-6 w-6 ${feature.color}`} />
               </div>
-              <div>
-                <h4 className="text-[10px] font-bold text-foreground uppercase tracking-wider">{feature.title}</h4>
-                <p className="text-[9px] text-muted-foreground font-medium">{feature.description}</p>
-              </div>
+
+              <h3 className="text-lg font-black text-foreground mb-2 uppercase tracking-tight">{feature.title}</h3>
+              <p className="text-muted-foreground text-xs font-semibold leading-relaxed px-4">
+                {feature.description}
+              </p>
             </div>
           ))}
+          {/* Progress Indicators */}
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {features.map((_, i) => (
+              <div key={i} className={`h-1 w-4 rounded-full transition-all duration-500 ${i === activeIndex ? 'bg-[#09757a]' : 'bg-border'}`} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

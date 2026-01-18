@@ -1,30 +1,45 @@
 "use client"
 
-import { Receipt, TrendingUp, Users } from "lucide-react"
+import { Star, Truck, Wrench, Shield } from "lucide-react"
 import React from "react"
 
 const businessDetails = [
   {
-    icon: TrendingUp,
-    label: "Annual Turnover",
-    value: "1.5 - 10 Cr",
+    icon: Star,
+    label: "TrustScore",
+    value: "4.5★ (4,000+ Workshops)",
     color: "text-[#09757a]",
   },
   {
-    icon: Users,
-    label: "Team Strength",
-    value: "25+ Specialists",
+    icon: Truck,
+    label: "Fast Delivery",
+    value: "PAN India Service",
     color: "text-blue-400",
   },
   {
-    icon: Receipt,
-    label: "GST Registered",
-    value: "32CWVPM3137R1ZP",
+    icon: Wrench,
+    label: "Tool Specialist",
+    value: "Expert Support",
+    color: "text-zinc-400",
+  },
+  {
+    icon: Shield,
+    label: "GST Verified",
+    value: "B2B Manufacturer",
     color: "text-emerald-400",
   },
 ]
 
 export function BusinessDetails() {
+  const [activeIndex, setActiveIndex] = React.useState(0)
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % businessDetails.length)
+    }, 3000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <section className="py-12 md:py-16 bg-background overflow-hidden relative border-t border-border transition-colors">
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
@@ -43,7 +58,39 @@ export function BusinessDetails() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {/* Mobile View: Auto-moving Carousel */}
+        <div className="sm:hidden relative h-[220px]">
+          {businessDetails.map((detail, index) => {
+            const IconComponent = detail.icon
+            return (
+              <div
+                key={index}
+                className={`absolute inset-0 bg-card border border-border rounded-xl p-8 flex flex-col items-center text-center shadow-md transition-all duration-700 ${index === activeIndex ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+              >
+                <div className="relative mb-6">
+                  <div className={`relative w-16 h-16 rounded-full bg-background border border-border flex items-center justify-center ${detail.color}`}>
+                    <IconComponent className="h-8 w-8" />
+                  </div>
+                </div>
+                <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.3em] mb-2 leading-none">
+                  {detail.label}
+                </p>
+                <p className="font-bold text-lg text-foreground tracking-tight uppercase">
+                  {detail.value}
+                </p>
+              </div>
+            )
+          })}
+          {/* Progress Indicators */}
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {businessDetails.map((_, i) => (
+              <div key={i} className={`h-1 w-4 rounded-full transition-all duration-500 ${i === activeIndex ? 'bg-[#09757a]' : 'bg-border'}`} />
+            ))}
+          </div>
+        </div>
+
+        {/* Desktop View: Grid */}
+        <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
           {businessDetails.map((detail, index) => {
             const IconComponent = detail.icon
             return (
@@ -69,7 +116,7 @@ export function BusinessDetails() {
           })}
         </div>
 
-        <div className="mt-12 text-center opacity-40">
+        <div className="mt-16 text-center opacity-40">
           <p className="text-[9px] text-foreground font-bold uppercase tracking-[0.6em]">
             ISO 9001:2015 REGISTERED SUPPLY CHAIN
           </p>

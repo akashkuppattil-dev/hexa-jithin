@@ -1,6 +1,5 @@
 import dynamic from "next/dynamic"
 import { HeroSection } from "@/components/home/hero-section"
-import { TrustBand } from "@/components/home/trust-band"
 
 // Lazy load heavy components for better initial page load
 const TopProductsCarousel = dynamic(() => import("@/components/home/top-products-carousel").then(mod => ({ default: mod.TopProductsCarousel })), {
@@ -41,7 +40,6 @@ export default function HomePage() {
   return (
     <div className="">
       <HeroSection />
-      <TrustBand />
       <TopProductsCarousel />
       <CategoriesGrid />
       <BrandsSection />
