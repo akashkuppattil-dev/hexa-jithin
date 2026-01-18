@@ -129,7 +129,7 @@ export function ShopContent() {
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] dark:invert-0 invert"></div>
 
-        <div className="container mx-auto px-3 sm:px-4 py-5 sm:py-6 md:py-8 relative z-10">
+        <div className="w-full px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 relative z-10">
           <div className="max-w-4xl space-y-3 sm:space-y-4 md:space-y-6">
             {/* Badges */}
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
@@ -156,7 +156,7 @@ export function ShopContent() {
         </div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 mt-5 sm:mt-6 md:mt-8 lg:mt-12">
+      <div className="w-full px-4 sm:px-6 md:px-8 mt-5 sm:mt-6 md:mt-8 lg:mt-12">
         <div className="flex flex-col lg:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-12">
           {/* Sidebar Filters */}
           <aside className="hidden lg:block w-64 shrink-0 h-fit sticky top-24">

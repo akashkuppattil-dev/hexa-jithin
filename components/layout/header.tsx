@@ -54,11 +54,11 @@ export function Header() {
         <div className="w-full px-4 md:px-12 flex items-center justify-between">
 
           {/* Logo Section */}
-          <Link href="/" className="flex flex-col items-start leading-none mr-4 md:mr-10 group active:scale-95 transition-transform">
+          <Link href="/" className="flex flex-col items-center leading-none mr-4 md:mr-10 group active:scale-95 transition-transform">
             <span className="text-lg md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
               HEXAMECH
             </span>
-            <span className="text-[7px] md:text-[8px] font-bold text-[#09757a] uppercase tracking-[0.35em] mt-0.5">
+            <span className="text-[7px] md:text-[8px] font-bold bg-black text-white px-1.5 py-0.5 rounded-sm uppercase tracking-[0.35em] mt-0.5">
               LINICH TOOLS
             </span>
           </Link>
@@ -114,7 +114,6 @@ export function Header() {
                     <Phone className="h-3 w-3 text-[#09757a]" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Call Us</span>
                     <span className="text-[10px] font-black group-hover:text-[#09757a] transition-colors tracking-tight">{CONTACT.PHONE}</span>
                   </div>
                 </div>
@@ -126,8 +125,7 @@ export function Header() {
                     <Mail className="h-3 w-3 text-[#09757a]" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-[7px] font-bold text-muted-foreground uppercase tracking-widest mb-0.5">Email Support</span>
-                    <span className="text-[10px] font-black group-hover:text-[#09757a] transition-colors tracking-tight uppercase">{CONTACT.EMAIL}</span>
+                    <span className="text-[10px] font-black group-hover:text-[#09757a] transition-colors tracking-tight lowercase">{CONTACT.EMAIL}</span>
                   </div>
                 </div>
               </a>
@@ -153,12 +151,13 @@ export function Header() {
 
             <ThemeToggle />
 
-            <Button
-              className="hidden sm:flex bg-[#09757a] hover:bg-[#0a0a0a] text-white px-4 h-8 text-[9px] font-bold uppercase tracking-widest rounded transition-all active:scale-95 shadow-lg flex-shrink-0"
-              onClick={() => window.open(CONTACT.WHATSAPP_URL, "_blank")}
-            >
-              Get Quote
-            </Button>
+            <Link href="/contact">
+              <Button
+                className="hidden sm:flex bg-[#09757a] hover:bg-[#0a0a0a] text-white px-4 h-8 text-[9px] font-bold uppercase tracking-widest rounded transition-all active:scale-95 shadow-lg flex-shrink-0"
+              >
+                Get Quote
+              </Button>
+            </Link>
           </div>
         </div>
 

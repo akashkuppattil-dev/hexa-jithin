@@ -53,17 +53,16 @@ export function TrustedCustomersSection() {
             {duplicatedCustomers.map((customer, index) => (
               <div
                 key={`${customer.name}-${index}`}
-                className="relative flex-shrink-0 w-24 h-24 md:w-36 md:h-32 flex items-center justify-center p-4 bg-background rounded-xl border border-border shadow-md overflow-hidden"
+                className="relative flex-shrink-0 w-32 h-20 md:w-48 md:h-32 flex items-center justify-center bg-white rounded-xl border border-border shadow-md overflow-hidden"
               >
                 {/* Fixed visibility by ensuring high contrast on background */}
-                <div className="absolute inset-0 bg-background" />
-                <div className="w-full h-full relative z-10">
+                <div className="w-full h-full relative z-10 p-2">
                   <Image
                     src={customer.logo || "/placeholder.svg"}
                     alt={customer.name}
                     fill
-                    className="object-contain p-1.5"
-                    sizes="(max-width: 768px) 96px, 144px"
+                    className="object-contain transition-transform hover:scale-105 duration-500"
+                    sizes="(max-width: 768px) 128px, 192px"
                   />
                 </div>
               </div>

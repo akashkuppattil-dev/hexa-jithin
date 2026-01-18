@@ -7,6 +7,7 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  
   const router = useRouter();
 
   useEffect(() => {
@@ -23,24 +24,37 @@ export default function AdminLoginPage() {
       }
     };
 
-    createAdminUser();
+    // Only try to create the admin user in development and only once per browser
+    try {
+      if (process.env.NODE_ENV === 'development' && typeof window !== 'undefined' && !localStorage.getItem('admin_created')) {
+        createAdminUser().then(() => localStorage.setItem('admin_created', '1'));
+      }
+    } catch (e) {
+      console.debug('Skipping admin creation:', e);
+    }
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    try {
+      const res = await supabase.auth.signInWithPassword({ email, password });
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+      if (res.error) {
+        console.error('Login error:', res.error);
+        setError(res.error.message || 'Invalid credentials. Please try again.');
+        return;
+      }
 
-    if (error) {
-      setError('Invalid credentials. Please try again.');
-    } else {
+      // success
       router.push('/admin');
+    } catch (err: any) {
+      console.error('Unexpected login error:', err);
+      setError(err?.message || 'An unexpected error occurred.');
     }
   };
+
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -80,7 +94,9 @@ export default function AdminLoginPage() {
           >
             Login
           </button>
+          
         </form>
+        
       </div>
     </div>
   );

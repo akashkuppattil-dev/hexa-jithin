@@ -1,51 +1,39 @@
 "use client";
 
 import supabase from '@/lib/supabaseClient';
-import { redirect, usePathname } from 'next/navigation';
-import { ReactNode } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ReactNode, useEffect } from 'react';
 
 interface AdminLayoutProps {
   children: ReactNode;
 }
 
-export default async function AdminLayout({ children }: AdminLayoutProps) {
+export default function AdminLayout({ children }: AdminLayoutProps) {
   const pathname = usePathname();
+  const router = useRouter();
 
   // Skip redirection for the login page
-  if (pathname === '/admin/login') {
-    return (
-      <div className="min-h-screen bg-gray-100">
-        <main className="p-6">{children}</main>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (pathname === '/admin/login') return;
 
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+    const checkUser = async () => {
+      try {
+        const { data: { user }, error } = await supabase.auth.getUser();
 
-  console.log('User data:', user); // Debugging log to check user data
+        console.log('User data:', user);
 
-  if (error) {
-    console.error('Error fetching user:', error);
-    redirect('/admin/login'); // Redirect to login page on error
-  }
+        if (error || !user || !user.role || user.role !== 'admin') {
+          console.error('Auth check failed or not admin:', error || user);
+          router.push('/admin/login');
+        }
+      } catch (err) {
+        console.error('Unexpected auth check error:', err);
+        router.push('/admin/login');
+      }
+    };
 
-  if (!user) {
-    console.error('No user found. Redirecting to login page.');
-    redirect('/admin/login'); // Redirect to login page if no user is found
-  }
-
-  if (!user.role) {
-    console.error('User role is missing. Redirecting to login page.');
-    redirect('/admin/login'); // Redirect to login page if role is missing
-  }
-
-  if (user.role !== 'admin') {
-    console.error(`User role is '${user.role}', not 'admin'. Redirecting to login page.`);
-    redirect('/admin/login'); // Redirect to login page if user is not an admin
-  }
+    checkUser();
+  }, [pathname, router]);
 
   return (
     <div className="min-h-screen bg-gray-100">

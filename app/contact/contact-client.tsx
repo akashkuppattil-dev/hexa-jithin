@@ -97,7 +97,7 @@ export function ContactClientPage() {
 
       {/* Hero Section */}
       <section className="py-4 sm:py-5 md:py-6 relative z-10">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
+        <div className="w-full px-4 sm:px-6 md:px-8 text-center">
           <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
             <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.2em] sm:tracking-[0.3em]">Core Advantage</span>
           </div>
@@ -112,7 +112,7 @@ export function ContactClientPage() {
 
       {/* Main Content */}
       <section className="py-5 sm:py-6 md:py-8 relative z-10">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+        <div className="w-full px-4 sm:px-6 md:px-8">
           <div className="flex flex-col lg:grid lg:grid-cols-2 gap-5 sm:gap-6 md:gap-8 items-start mb-8 sm:mb-10 md:mb-12">
 
             {/* RIGHT COLUMN: Contact Info ("Connect Directly") - TOP ON MOBILE */}
@@ -214,7 +214,7 @@ export function ContactClientPage() {
 
       {/* Google Maps Section */}
       <section className="py-4 sm:py-5 md:py-6 relative z-10">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6">
+        <div className="w-full px-4 sm:px-6 md:px-8">
           <div className="text-center mb-4 sm:mb-5 md:mb-6">
             <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-[#09757a]/20 border border-[#09757a]/30 rounded mb-2 sm:mb-3">
               <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.2em] sm:tracking-[0.3em]">Find Us</span>

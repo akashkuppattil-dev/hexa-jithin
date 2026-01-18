@@ -1,38 +1,205 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { CONTACT } from "@/lib/constants"
+import { styles } from "@/lib/utils" // Assuming this exists or I'll just use classNames
+import { MessageCircle, X, ChevronRight, ArrowLeft } from "lucide-react"
+import { categories, brands } from "@/lib/products"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
 export function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false)
+  const [showGreeting, setShowGreeting] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [step, setStep] = useState<"menu" | "category" | "brand">("menu")
+  const [selectedCategory, setSelectedCategory] = useState("")
+  const [selectedBrand, setSelectedBrand] = useState("")
+
+  useEffect(() => {
+    // Show greeting after 1 second
+    const showTimer = setTimeout(() => {
+      setShowGreeting(true)
+    }, 1000)
+
+    // Hide greeting after 3 seconds + 1 second delay = 4s total (or 3s of visibility)
+    const hideTimer = setTimeout(() => {
+      setShowGreeting(false)
+    }, 4000)
+
+    return () => {
+      clearTimeout(showTimer)
+      clearTimeout(hideTimer)
+    }
+  }, [])
+
+  const handleOpenChat = () => {
+    setIsOpen(true)
+    setShowGreeting(false)
+  }
+
+  const handleCloseChat = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    setIsOpen(false)
+    setStep("menu")
+    setSelectedCategory("")
+    setSelectedBrand("")
+  }
+
+  const startWhatsAppChat = (text: string) => {
+    window.open(`${CONTACT.WHATSAPP_URL}?text=${encodeURIComponent(text)}`, "_blank")
+    setIsOpen(false)
+  }
 
   return (
-    <div className="fixed bottom-3 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6 z-50">
-      <a
-        href={`${CONTACT.WHATSAPP_URL}?text=${encodeURIComponent("Hi Hexamech, I need a quick quote for tools")}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group flex items-center"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div
-          className={`mr-2 sm:mr-3 bg-card shadow-xl rounded border border-border px-2.5 sm:px-3 py-1 sm:py-1.5 transition-all duration-300 hidden sm:block ${isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
-            }`}
-        >
-          <p className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-wider sm:tracking-widest whitespace-nowrap">Quick Quote</p>
-          <p className="text-[7px] sm:text-[8px] font-bold text-[#09757a] uppercase tracking-wide sm:tracking-wider">Online Now</p>
-        </div>
+    <div className="fixed bottom-3 sm:bottom-4 md:bottom-6 right-3 sm:right-4 md:right-6 z-50 flex flex-col items-end gap-2">
 
-        <div className="relative active:scale-90 transition-transform">
-          <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25" />
-          <div className="relative bg-[#25D366] hover:bg-[#128C7E] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
-            <svg viewBox="0 0 24 24" className="h-4 w-4 sm:h-5 sm:w-5 fill-current">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
+      {/* Greeting Popup */}
+      <div
+        className={cn(
+          "bg-white dark:bg-zinc-900 border border-border shadow-xl rounded-lg p-3 max-w-[200px] transition-all duration-500 origin-bottom-right mb-2",
+          showGreeting ? "opacity-100 scale-100 translate-y-0" : "opacity-0 scale-95 translate-y-4 pointer-events-none absolute bottom-full right-0"
+        )}
+      >
+        <p className="text-xs font-bold text-foreground relative">
+          Hi, looking for something?
+          <span className="absolute -bottom-[18px] right-4 w-3 h-3 bg-white dark:bg-zinc-900 border-b border-r border-border transform rotate-45"></span>
+        </p>
+      </div>
+
+      {/* Main Button */}
+      {!isOpen && (
+        <button
+          onClick={handleOpenChat}
+          className="group flex items-center"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div
+            className={cn(
+              "mr-2 sm:mr-3 bg-card shadow-xl rounded border border-border px-2.5 sm:px-3 py-1 sm:py-1.5 transition-all duration-300 hidden sm:block",
+              isHovered ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4 pointer-events-none"
+            )}
+          >
+            <p className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-wider sm:tracking-widest whitespace-nowrap">Chat Assistant</p>
+            <p className="text-[7px] sm:text-[8px] font-bold text-[#25D366] uppercase tracking-wide sm:tracking-wider">Online Now</p>
+          </div>
+
+          <div className="relative active:scale-90 transition-transform">
+            <div className="absolute inset-0 bg-[#25D366] rounded-full animate-ping opacity-25" />
+            <div className="relative bg-[#25D366] hover:bg-[#128C7E] text-white p-2.5 sm:p-3 rounded-full shadow-lg transition-all duration-300 hover:scale-110">
+              <MessageCircle className="h-5 w-5 fill-current" />
+            </div>
+          </div>
+        </button>
+      )}
+
+      {/* Chat Bot Window */}
+      {isOpen && (
+        <div className="bg-background border border-border mt-2 rounded-xl shadow-2xl w-[280px] sm:w-[320px] overflow-hidden flex flex-col animate-in slide-in-from-bottom-5 duration-300">
+          {/* Header */}
+          <div className="bg-[#128C7E] p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="bg-white/20 p-1.5 rounded-full">
+                <MessageCircle className="h-4 w-4 text-white fill-current" />
+              </div>
+              <div>
+                <h3 className="text-white font-bold text-sm">Hexamech Assistant</h3>
+                <p className="text-[10px] text-white/80">Typically replies immediately</p>
+              </div>
+            </div>
+            <button onClick={handleCloseChat} className="text-white/80 hover:text-white transition-colors">
+              <X className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Body */}
+          <div className="p-4 bg-card max-h-[400px] overflow-y-auto min-h-[300px]">
+            {step === "menu" && (
+              <div className="space-y-3">
+                <div className="bg-muted p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-xs text-muted-foreground animate-in fade-in slide-in-from-left-2 mb-4">
+                  Hello! 👋 How can we help you today?
+                </div>
+
+                <div className="space-y-2">
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => setStep("category")}>
+                    Buying Products <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I have a technical support query.")}>
+                    Technical Support <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I want to track my order.")}>
+                    Track Order <ChevronRight className="h-3 w-3" />
+                  </Button>
+                  <Button variant="outline" className="w-full justify-between text-xs font-bold h-9" onClick={() => startWhatsAppChat("Hi, I have a general enquiry.")}>
+                    Talk to Sales <ChevronRight className="h-3 w-3" />
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {step === "category" && (
+              <div className="space-y-3">
+                <button onClick={() => setStep("menu")} className="text-[10px] flex items-center gap-1 text-muted-foreground hover:text-foreground mb-2">
+                  <ArrowLeft className="h-3 w-3" /> Back
+                </button>
+                <div className="bg-muted p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-xs text-muted-foreground animate-in fade-in slide-in-from-left-2 mb-4">
+                  Great! Which category are you interested in?
+                </div>
+
+                <div className="space-y-1.5 h-[250px] overflow-y-auto pr-1 custom-scrollbar">
+                  {categories.map((cat) => (
+                    <Button
+                      key={cat.id}
+                      variant="ghost"
+                      className="w-full justify-start text-[10px] font-bold h-8 border border-border/50 hover:bg-accent"
+                      onClick={() => {
+                        setSelectedCategory(cat.name)
+                        setStep("brand")
+                      }}
+                    >
+                      {cat.name}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {step === "brand" && (
+              <div className="space-y-3">
+                <button onClick={() => setStep("category")} className="text-[10px] flex items-center gap-1 text-muted-foreground hover:text-foreground mb-2">
+                  <ArrowLeft className="h-3 w-3" /> Back
+                </button>
+                <div className="bg-muted p-3 rounded-tr-xl rounded-bl-xl rounded-br-xl text-xs text-muted-foreground animate-in fade-in slide-in-from-left-2 mb-4">
+                  Any specific brand preference?
+                </div>
+
+                <div className="space-y-1.5 h-[220px] overflow-y-auto pr-1 custom-scrollbar">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-[10px] font-bold h-8 border border-border/50 hover:bg-accent hover:text-[#128C7E]"
+                    onClick={() => startWhatsAppChat(`Hi, I'm looking for ${selectedCategory}.`)}
+                  >
+                    No Preference / Any
+                  </Button>
+                  {brands.map((brand) => (
+                    <Button
+                      key={brand}
+                      variant="ghost"
+                      className="w-full justify-start text-[10px] font-bold h-8 border border-border/50 hover:bg-accent"
+                      onClick={() => {
+                        startWhatsAppChat(`Hi, I'm looking for ${selectedCategory} from ${brand}.`)
+                      }}
+                    >
+                      {brand}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      </a>
+      )}
     </div>
   )
 }

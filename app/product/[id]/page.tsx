@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { products } from "@/lib/products"
 import { ProductShareButton } from "@/components/product/product-share-button"
+import { ProductInquiryForm } from "@/components/product/product-inquiry-form"
 
 export const metadata = {
   title: "Product Details | Hexamech Linich Tools",
@@ -30,7 +31,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
   return (
     <div className="min-h-screen bg-background text-foreground pb-12 sm:pb-16 transition-colors">
       <div className="pt-3 sm:pt-4 md:pt-6 lg:pt-10">
-        <div className="container mx-auto px-3 sm:px-4 lg:px-8 max-w-[1400px]">
+        <div className="w-full px-4 sm:px-6 md:px-8">
 
           {/* Breadcrumb */}
           <div className="mb-4 sm:mb-5 md:mb-6">
@@ -148,6 +149,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 </div>
               </div>
 
+              {/* Inquiry Form */}
+              <ProductInquiryForm product={product} />
+
               {/* Trust Badges */}
               <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-3 sm:pt-4">
                 <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
@@ -166,6 +170,69 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
             </div>
           </div>
+
+          {/* Related Products Section */}
+          {(() => {
+            // Logic to get 5 related items: Priority 1: Category, Priority 2: Others (Fallback)
+            const sameCategory = products.filter((p) => p.category === product.category && p.id !== product.id)
+            const others = products.filter((p) => p.category !== product.category && p.id !== product.id)
+            const displayProducts = [...sameCategory, ...others].slice(0, 5)
+
+            if (displayProducts.length === 0) return null
+
+            return (
+              <div className="mt-12 sm:mt-16 border-t border-border pt-8 sm:pt-10">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 sm:mb-8">
+                  <h3 className="text-xl sm:text-2xl font-black text-foreground uppercase tracking-tighter">
+                    Explore <span className="text-[#09757a]">Related Equipment</span>
+                  </h3>
+                  <Link href="/shop">
+                    <Button variant="outline" className="h-8 border-[#09757a]/30 text-[#09757a] hover:bg-[#09757a] hover:text-white text-[9px] font-bold uppercase tracking-widest rounded transition-all">
+                      View More Products
+                    </Button>
+                  </Link>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                  {displayProducts.map((related) => (
+                    <Link
+                      key={related.id}
+                      href={`/product/${related.id}`}
+                      className="group bg-card border border-border rounded-lg overflow-hidden hover:border-[#09757a]/50 transition-all hover:shadow-lg flex flex-col"
+                    >
+                      <div className="relative aspect-square bg-muted">
+                        <Image
+                          src={related.image || "/placeholder.svg"}
+                          alt={related.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 640px) 50vw, 200px"
+                        />
+                      </div>
+                      <div className="p-3 flex-1 flex flex-col">
+                        <div className="mb-2">
+                          <p className="text-[8px] font-bold text-[#09757a] uppercase tracking-wider mb-1">{related.brand}</p>
+                          <h4 className="text-[10px] sm:text-[11px] font-black text-foreground uppercase leading-tight line-clamp-2 group-hover:text-[#09757a] transition-colors">
+                            {related.name}
+                          </h4>
+                        </div>
+                        <div className="mt-auto space-y-1 pt-2 border-t border-border/50">
+                          <div className="flex justify-between items-center">
+                            <span className="text-[8px] text-muted-foreground uppercase font-bold">SKU</span>
+                            <span className="text-[8px] text-foreground font-bold">{related.sku}</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-[8px] text-muted-foreground uppercase font-bold">MOQ</span>
+                            <span className="text-[8px] text-foreground font-bold">{related.minOrderQty} Unit</span>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </div>
     </div>

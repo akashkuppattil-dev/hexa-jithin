@@ -4,20 +4,47 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { useRef } from "react"
+import { useState, useEffect } from "react"
 import { categories } from "@/lib/products"
 
 export function CategoriesGrid() {
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsToShow, setItemsToShow] = useState(4)
 
-  const scroll = (direction: "left" | "right") => {
-    if (scrollRef.current) {
-      const scrollAmount = 400
-      scrollRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      })
+  useEffect(() => {
+    const handleResize = () => {
+      if (typeof window === "undefined") return
+      if (window.innerWidth < 640) setItemsToShow(1)
+      else if (window.innerWidth < 1024) setItemsToShow(2)
+      else if (window.innerWidth < 1280) setItemsToShow(3)
+      else setItemsToShow(4)
     }
+    handleResize()
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % categories.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + categories.length) % categories.length)
+  }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % categories.length)
+    }, 4000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const getVisibleCategories = () => {
+    const items = []
+    for (let i = 0; i < Math.min(itemsToShow, categories.length); i++) {
+      items.push(categories[(currentIndex + i) % categories.length])
+    }
+    return items
   }
 
   // Mapping real product images to categories for a better look
@@ -42,10 +69,10 @@ export function CategoriesGrid() {
   }
 
   return (
-    <section className="py-20 bg-background overflow-hidden relative transition-colors">
+    <section className="py-12 md:py-20 bg-background overflow-hidden relative transition-colors">
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
 
-      <div className="w-full px-4 md:px-12 relative z-10">
+      <div className="w-full px-4 md:px-12 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12">
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 bg-secondary border border-[#09757a]/20 rounded mb-4">
             <span className="text-[9px] font-bold text-[#09757a] uppercase tracking-[0.3em] leading-none">Professional Inventory</span>
@@ -58,7 +85,7 @@ export function CategoriesGrid() {
           </p>
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex flex-shrink-0 mb-1">
           <Link href="/shop">
             <Button className="h-10 px-8 bg-foreground hover:bg-[#09757a] text-background border border-transparent font-bold text-[9px] uppercase tracking-[0.2em] rounded transition-all shadow-lg">
               View All Categories
@@ -68,38 +95,34 @@ export function CategoriesGrid() {
       </div>
 
       <div className="relative group/carousel">
-        {/* Side Buttons */}
-        <div className="absolute -left-6 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity hidden xl:block">
+        {/* Navigation Buttons */}
+        <div className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 z-20">
           <Button
             variant="outline"
             size="icon"
-            onClick={() => scroll("left")}
-            className="h-12 w-12 rounded-full border-border bg-background text-foreground hover:bg-[#09757a] hover:text-white transition-all shadow-xl"
+            onClick={prevSlide}
+            className="h-10 w-10 md:h-12 md:w-12 rounded-full border-border bg-background/80 backdrop-blur-sm text-foreground hover:bg-[#09757a] hover:text-white transition-all shadow-xl"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
         </div>
-        <div className="absolute -right-6 top-1/2 -translate-y-1/2 z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity hidden xl:block">
+        <div className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 z-20">
           <Button
             variant="outline"
             size="icon"
-            onClick={() => scroll("right")}
-            className="h-12 w-12 rounded-full border-border bg-background text-foreground hover:bg-[#09757a] hover:text-white transition-all shadow-xl"
+            onClick={nextSlide}
+            className="h-10 w-10 md:h-12 md:w-12 rounded-full border-border bg-background/80 backdrop-blur-sm text-foreground hover:bg-[#09757a] hover:text-white transition-all shadow-xl"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
           </Button>
         </div>
 
-        <div
-          ref={scrollRef}
-          className="flex gap-4 overflow-x-auto pb-8 scrollbar-hide snap-x"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {categories.map((category) => (
+        <div className="px-4 md:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+          {getVisibleCategories().map((category, idx) => (
             <Link
-              key={category.id}
+              key={`${category.id}-${idx}`}
               href={`/shop?category=${category.id}`}
-              className="group relative flex-shrink-0 w-[240px] md:w-[320px] h-[340px] md:h-[420px] rounded-xl overflow-hidden snap-start shadow-xl border border-border"
+              className="group relative w-full h-[340px] md:h-[420px] rounded-xl overflow-hidden shadow-xl border border-border animate-in fade-in duration-500"
             >
               <Image
                 src={getCategoryImage(category.id)}

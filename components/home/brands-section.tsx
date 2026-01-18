@@ -114,16 +114,15 @@ export function BrandsSection() {
             {duplicatedBrands.map((brand, index) => (
               <div
                 key={`${brand.name}-${index}`}
-                className="relative flex-shrink-0 w-28 h-28 md:w-40 md:h-32 flex items-center justify-center p-4 bg-background rounded-2xl border border-border shadow-md overflow-hidden"
+                className="relative flex-shrink-0 w-32 h-20 md:w-48 md:h-32 flex items-center justify-center bg-white rounded-xl border border-border shadow-md overflow-hidden"
               >
-                <div className="absolute inset-0 bg-background" />
-                <div className="w-full h-full relative z-10">
+                <div className="w-full h-full relative z-10 p-2">
                   <Image
                     src={brand.logo || "/placeholder.svg"}
                     alt={brand.name}
                     fill
-                    className="object-contain p-1.5"
-                    sizes="(max-width: 768px) 112px, 160px"
+                    className="object-contain transition-transform hover:scale-105 duration-500"
+                    sizes="(max-width: 768px) 128px, 192px"
                   />
                 </div>
               </div>
