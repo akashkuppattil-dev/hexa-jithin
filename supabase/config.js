@@ -7,6 +7,9 @@ if (!supabaseUrl || !supabaseKey) {
   console.warn("⚠️ Supabase environment variables are missing in supabase/config.js");
 }
 
-const supabase = createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(
+  supabaseUrl || 'https://placeholder.supabase.co',
+  supabaseKey || 'placeholder'
+);
 
 export default supabase;
