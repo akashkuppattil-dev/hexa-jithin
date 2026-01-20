@@ -68,7 +68,7 @@ export function TopProductsCarousel() {
   const isDisabled = topProducts.length <= itemsToShow
 
   return (
-    <section className="py-12 md:py-16 bg-background overflow-hidden relative border-t border-border transition-colors">
+    <section className="py-10 md:py-12 bg-background overflow-hidden relative border-t border-border transition-colors">
       {/* Light Pattern Background */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#09757a]/5 blur-[100px] rounded-full opacity-50 dark:opacity-20" />
@@ -85,7 +85,7 @@ export function TopProductsCarousel() {
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
             Precision <span className="text-[#09757a]">Diagnostic Tools</span>
           </h2>
-          <p className="text-muted-foreground text-xs md:text-sm font-bold max-w-2xl mx-auto uppercase tracking-widest opacity-80">
+          <p className="text-foreground text-xs md:text-sm font-black max-w-2xl mx-auto uppercase tracking-widest leading-relaxed">
             Engineered for Accuracy. Built for the Modern Workshop.
           </p>
         </div>

@@ -35,17 +35,17 @@ function ProductCardComponent({ product }: ProductCardProps) {
   }
 
   return (
-    <Card className="group relative overflow-hidden bg-card border border-border flex flex-col h-full rounded-xl hover:shadow-xl hover:border-[#09757a]/30 transition-all duration-500 active:scale-[0.98]">
-      {/* Product Image Section */}
-      <div className="relative h-[160px] sm:h-[180px] md:h-[220px] lg:h-[250px] w-full overflow-hidden bg-muted">
-        <Link href={`/product/${product.id}`}>
+    <Card className="group relative overflow-hidden bg-white border border-border flex flex-col h-full rounded-2xl p-0 gap-0 hover:shadow-2xl hover:border-[#09757a]/40 transition-all duration-500 active:scale-[0.98]">
+      {/* Product Image Section - Pure Edge-to-Edge */}
+      <div className="relative h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px] w-full overflow-hidden bg-white rounded-t-2xl">
+        <Link href={`/product/${product.id}`} className="block h-full w-full">
           <Image
             src={product.image || "/placeholder.svg"}
             alt={product.name}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            loading="lazy"
+            className="object-cover group-hover:scale-105 transition-all duration-700 ease-in-out"
+            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 250px"
+            priority={parseInt(product.id) <= 4}
           />
         </Link>
 
@@ -59,57 +59,48 @@ function ProductCardComponent({ product }: ProductCardProps) {
               "_blank",
             )
           }}
-          className="absolute bottom-2 right-2 z-30 h-8 w-8 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100 md:translate-y-2 md:group-hover:translate-y-0"
+          className="absolute bottom-2 right-2 z-30 h-7 w-7 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
         >
-          <MessageCircle className="h-4 w-4 fill-current" />
+          <MessageCircle className="h-3.5 w-3.5 fill-current" />
         </button>
-
-        {/* SKU Badge - Compact */}
-        <div className="absolute top-2 left-2 z-20 pointer-events-none">
-          <span className="bg-background/80 backdrop-blur-md text-foreground/70 text-[7px] md:text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded border border-border">
-            {product.sku}
-          </span>
-        </div>
 
         {/* Stock Status - Tiny */}
         {product.inStock && (
           <div className="absolute top-2 right-2 z-20 pointer-events-none">
             <div className="flex items-center gap-1 bg-emerald-500/90 backdrop-blur-md px-1.5 py-0.5 rounded shadow-sm">
               <div className="h-1 w-1 rounded-full bg-white animate-pulse" />
-              <span className="text-[7px] font-black text-white uppercase tracking-tighter">In Stock</span>
+              <span className="text-[6px] font-black text-white uppercase tracking-tighter">Stock</span>
             </div>
           </div>
         )}
       </div>
 
-      <CardContent className="p-2 sm:p-3 md:p-4 flex-grow flex flex-col bg-card">
-        {/* Brand */}
-        <div className="mb-0.5">
-          <span className="text-[8px] md:text-[9px] font-black text-[#09757a] uppercase tracking-widest">
+      <CardContent className="p-2 sm:p-2.5 flex-grow flex flex-col bg-card">
+        {/* Brand & SKU */}
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <span className="text-[7px] md:text-[8px] font-black text-[#09757a] uppercase tracking-widest truncate">
             {product.brand}
+          </span>
+          <span className="text-[7px] md:text-[8px] font-black text-zinc-500 uppercase whitespace-nowrap">
+            {product.sku}
           </span>
         </div>
 
-        {/* Product Name - Compact for 2 Columns */}
-        <Link href={`/product/${product.id}`} className="group-hover:text-[#09757a] transition-colors">
-          <h3 className="font-bold text-[11px] sm:text-xs md:text-sm lg:text-base text-foreground mb-1 leading-tight line-clamp-2 uppercase tracking-tight">
+        {/* Product Name - Compact for 2-4 Columns */}
+        <Link href={`/product/${product.id}`} className="group-hover:text-[#09757a] transition-colors flex-grow">
+          <h3 className="font-extrabold text-[10px] sm:text-[11px] md:text-xs lg:text-sm text-foreground mb-1 leading-tight line-clamp-2 uppercase tracking-tight">
             {product.name}
           </h3>
         </Link>
 
-        {/* Description - Hidden on small mobile to stay compact */}
-        <p className="hidden sm:line-clamp-2 text-[10px] text-muted-foreground mb-3 font-medium leading-relaxed">
-          {product.description}
-        </p>
-
         {/* Premium Detail Link */}
-        <div className="mt-auto pt-2 flex items-center justify-between border-t border-border">
-          <Link href={`/product/${product.id}`} className="text-[8px] md:text-[9px] font-black text-muted-foreground hover:text-[#09757a] uppercase tracking-widest flex items-center gap-1 transition-all">
-            View <ArrowRight className="h-2.5 w-2.5" />
+        <div className="mt-2 flex items-center justify-between">
+          <Link href={`/product/${product.id}`} className="text-[7px] md:text-[8px] font-black text-[#111] hover:text-[#09757a] uppercase tracking-widest flex items-center gap-1 transition-all">
+            DETAILS <ArrowRight className="h-2 w-2" />
           </Link>
 
-          <span className="text-[9px] font-black text-[#09757a] uppercase tracking-widest bg-[#09757a]/5 px-2 py-0.5 rounded">
-            Enquire
+          <span className="text-[8px] font-black text-[#09757a] uppercase tracking-widest flex items-center gap-1">
+            ENQUIRE
           </span>
         </div>
       </CardContent>

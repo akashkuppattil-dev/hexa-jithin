@@ -48,11 +48,13 @@ export function BrandsSection() {
 
   if (!mounted) return null
 
-  // Duplicate list to ensure seamless loop
-  const duplicatedBrands = [...brands, ...brands, ...brands]
+  // Optimized duplication for mobile performance
+  const duplicatedBrands = typeof window !== "undefined" && window.innerWidth < 768
+    ? [...brands, ...brands]
+    : [...brands, ...brands, ...brands]
 
   return (
-    <section className="py-12 md:py-16 relative overflow-hidden bg-background border-t border-border transition-colors">
+    <section className="py-10 md:py-12 relative overflow-hidden bg-background border-t border-border transition-colors">
       {/* Background Subtle Patterns */}
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
 
@@ -69,7 +71,7 @@ export function BrandsSection() {
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-2 tracking-tighter uppercase leading-none">
             Our Brand <span className="text-[#09757a]">Partners</span>
           </h2>
-          <p className="text-sm text-muted-foreground font-bold uppercase tracking-widest opacity-80 max-w-2xl mx-auto">
+          <p className="text-sm text-foreground font-black uppercase tracking-widest max-w-2xl mx-auto">
             Curated selection of high-performance global brands.
           </p>
         </div>
@@ -95,7 +97,7 @@ export function BrandsSection() {
                       <h3 className="text-2xl sm:text-3xl font-black text-foreground tracking-tighter uppercase italic">LINICH TOOLS</h3>
                       <Badge className="bg-[#09757a] text-white border-none text-[8px] font-bold uppercase tracking-widest px-3 py-1 shadow-md shadow-[#09757a]/20">Exclusive Partner</Badge>
                     </div>
-                    <p className="text-sm sm:text-base text-muted-foreground font-medium leading-relaxed max-w-xl mb-6">
+                    <p className="text-sm sm:text-base text-foreground font-black leading-relaxed max-w-xl mb-6">
                       Standardizing industrial durability across India. Exclusive supplier of precision-engineered equipment for modern workshops.
                     </p>
                     <div className="inline-flex items-center gap-3 text-[#09757a] font-black text-[10px] uppercase tracking-[0.4em] group-hover/featured:gap-5 transition-all">
@@ -122,7 +124,8 @@ export function BrandsSection() {
                     alt={brand.name}
                     fill
                     className="object-contain transition-transform hover:scale-105 duration-500"
-                    sizes="(max-width: 768px) 128px, 192px"
+                    sizes="(max-width: 640px) 100px, 160px"
+                    loading="lazy"
                   />
                 </div>
               </div>

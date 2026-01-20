@@ -32,14 +32,22 @@ export default async function ProductPage({ params }: ProductPageProps) {
     <div className="space-y-6">
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-600">
-        <a href={`/category/${product.categories.slug}`} className="hover:underline">
-          {product.categories.name}
-        </a>
-        {' / '}
-        <a href={`/brand/${product.brands.slug}`} className="hover:underline">
-          {product.brands.name}
-        </a>
-        {' / '}
+        {Array.isArray(product.categories) && product.categories[0] && (
+          <>
+            <a href={`/category/${product.categories[0].slug}`} className="hover:underline">
+              {product.categories[0].name}
+            </a>
+            {' / '}
+          </>
+        )}
+        {Array.isArray(product.brands) && product.brands[0] && (
+          <>
+            <a href={`/brand/${product.brands[0].slug}`} className="hover:underline">
+              {product.brands[0].name}
+            </a>
+            {' / '}
+          </>
+        )}
         <span>{product.name}</span>
       </nav>
 

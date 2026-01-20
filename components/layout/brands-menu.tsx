@@ -31,9 +31,9 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                                     window.location.href = `/shop?brand=${encodeURIComponent(brand)}`
                                     onClose()
                                 }}
-                                className={`w-full text-left px-5 py-3 text-[11px] font-bold transition-all flex items-center justify-between group ${selectedBrand === brand
+                                className={`w-full text-left px-5 py-3 text-[11px] font-black transition-all flex items-center justify-between group ${selectedBrand === brand
                                     ? "bg-popover text-[#09757a] border-l-4 border-[#09757a]"
-                                    : "text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                                    : "text-foreground hover:bg-muted/80 hover:text-[#09757a]"
                                     }`}
                             >
                                 {brand}
@@ -46,11 +46,11 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                 {/* Right Column: Featured Products */}
                 <div className="flex-1 bg-popover flex flex-col overflow-hidden">
                     <div className="p-5 pb-2 flex items-center justify-between">
-                        <h3 className="text-sm font-black text-foreground uppercase tracking-tight">{selectedBrand} <span className="text-muted-foreground font-medium">Tools</span></h3>
+                        <h3 className="text-sm font-black text-foreground uppercase tracking-tight">{selectedBrand} <span className="text-zinc-500 font-bold">Tools</span></h3>
                         <Link
                             href={`/shop?brand=${encodeURIComponent(selectedBrand)}`}
                             onClick={onClose}
-                            className="text-[10px] font-bold text-[#09757a] hover:underline uppercase tracking-widest"
+                            className="text-[10px] font-black text-[#09757a] hover:underline uppercase tracking-widest"
                         >
                             View All
                         </Link>
@@ -63,21 +63,21 @@ export function BrandsMenu({ onClose }: { onClose: () => void }) {
                                     key={product.id}
                                     href={`/product/${product.id}`}
                                     onClick={onClose}
-                                    className="group flex flex-col gap-2 p-2 rounded border border-border/50 hover:border-[#09757a]/20 hover:shadow-sm transition-all bg-card"
+                                    className="group flex flex-col overflow-hidden rounded border border-border/50 hover:border-[#09757a]/20 hover:shadow-sm transition-all bg-card"
                                 >
-                                    <div className="relative aspect-square w-full bg-zinc-50 rounded overflow-hidden">
+                                    <div className="relative aspect-square w-full overflow-hidden bg-white">
                                         <Image
                                             src={product.image || "/placeholder.svg"}
                                             alt={product.name}
                                             fill
-                                            className="object-contain p-2 group-hover:scale-110 transition-transform duration-500"
+                                            className="object-cover group-hover:scale-110 transition-transform duration-500"
                                         />
                                     </div>
-                                    <div className="space-y-0.5">
-                                        <p className="text-[10px] font-bold text-foreground group-hover:text-[#09757a] transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
+                                    <div className="p-2 space-y-0.5">
+                                        <p className="text-[10px] font-black text-foreground group-hover:text-[#09757a] transition-colors line-clamp-2 leading-tight uppercase tracking-tight">
                                             {product.name}
                                         </p>
-                                        <p className="text-[8px] text-muted-foreground font-bold uppercase">{product.sku}</p>
+                                        <p className="text-[8px] text-[#09757a] font-black uppercase tracking-widest">{product.sku}</p>
                                     </div>
                                 </Link>
                             ))}

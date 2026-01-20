@@ -29,7 +29,7 @@ export function Footer() {
                 LINICH TOOLS
               </span>
             </Link>
-            <p className="text-zinc-500 text-[10px] sm:text-xs font-semibold leading-relaxed max-w-xs">
+            <p className="text-foreground text-[10px] sm:text-xs font-black leading-relaxed max-w-xs">
               Kerala&apos;s leading B2B automotive tools specialist. Delivering precision engineered diagnostic systems and industrial equipment across India.
             </p>
             <div className="flex gap-2 sm:gap-3">
@@ -60,7 +60,7 @@ export function Footer() {
                 <li key={item}>
                   <Link
                     href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-zinc-500 hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
+                    className="text-foreground hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-black uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
                   >
                     <span className="h-0.5 w-0 bg-[#09757a] transition-all group-hover:w-2 sm:group-hover:w-3" />
                     {item}
@@ -78,7 +78,7 @@ export function Footer() {
                 <li key={category.id}>
                   <Link
                     href={`/shop?category=${category.id}`}
-                    className="text-zinc-500 hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-bold uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
+                    className="text-foreground hover:text-[#09757a] transition-colors text-[10px] sm:text-[11px] font-black uppercase tracking-wider sm:tracking-widest flex items-center gap-2 group"
                   >
                     <span className="h-0.5 w-0 bg-[#09757a] transition-all group-hover:w-2 sm:group-hover:w-3" />
                     {category.name}
@@ -97,8 +97,8 @@ export function Footer() {
                   <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">Door No 17/346, Chulliparamba</p>
-                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Calicut, Kerala</p>
+                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors">Door No 17/346, Chulliparamba</p>
+                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Calicut, Kerala</p>
                 </div>
               </a>
               <a href={`tel:${CONTACT.PHONE}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
@@ -106,8 +106,8 @@ export function Footer() {
                   <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">{CONTACT.PHONE_DISPLAY}</p>
-                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Main Support Line</p>
+                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors">{CONTACT.PHONE_DISPLAY}</p>
+                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Main Support Line</p>
                 </div>
               </a>
               <a href={`mailto:${CONTACT.EMAIL}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
@@ -115,8 +115,8 @@ export function Footer() {
                   <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors truncate max-w-[120px] sm:max-w-[150px]">{CONTACT.EMAIL}</p>
-                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Official Inquiry</p>
+                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors truncate max-w-[120px] sm:max-w-[150px]">{CONTACT.EMAIL}</p>
+                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Official Inquiry</p>
                 </div>
               </a>
               <a href="https://www.indiamart.com/hexamech-linich-tools/" target="_blank" rel="noopener noreferrer" className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
@@ -124,8 +124,8 @@ export function Footer() {
                   <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
                 </div>
                 <div>
-                  <p className="text-[10px] sm:text-[11px] text-muted-foreground font-bold group-hover:text-foreground transition-colors">IndiaMart Profile</p>
-                  <p className="text-[8px] sm:text-[9px] text-muted-foreground/60 font-bold uppercase tracking-wider sm:tracking-widest mt-0.5">Verified Supplier</p>
+                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#d00000] transition-colors">IndiaMart Profile</p>
+                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Verified Supplier</p>
                 </div>
               </a>
             </div>
@@ -134,13 +134,13 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-5 sm:pt-6 md:pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
-          <p className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 uppercase tracking-[0.3em] sm:tracking-[0.4em] text-center md:text-left">
+          <p className="text-[8px] sm:text-[9px] font-black text-foreground uppercase tracking-[0.3em] sm:tracking-[0.4em] text-center md:text-left">
             © {currentYear} HEXAMECH LINICH TOOLS. ALL RIGHTS RESERVED.
           </p>
           <div className="flex gap-4 sm:gap-6 md:gap-8">
-            <Link href="/privacy" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Privacy</Link>
-            <Link href="/terms" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Terms</Link>
-            <Link href="/gst" className="text-[8px] sm:text-[9px] font-bold text-muted-foreground/60 hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">GST Compliance</Link>
+            <Link href="/privacy" className="text-[8px] sm:text-[9px] font-black text-foreground hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Privacy</Link>
+            <Link href="/terms" className="text-[8px] sm:text-[9px] font-black text-foreground hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">Terms</Link>
+            <Link href="/gst" className="text-[8px] sm:text-[9px] font-black text-foreground hover:text-[#09757a] uppercase tracking-wider sm:tracking-widest transition-colors">GST Compliance</Link>
           </div>
         </div>
       </div>

@@ -102,12 +102,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[9px] sm:text-[10px] font-black uppercase tracking-widest">
                   <span className="text-[#09757a] px-1.5 sm:px-2 py-0.5 bg-[#09757a]/10 rounded border border-[#09757a]/20">{product.brand}</span>
                   <span className="text-border hidden sm:inline">|</span>
-                  <span className="text-muted-foreground font-bold">SKU: {product.sku}</span>
+                  <span className="text-foreground font-black">SKU: {product.sku}</span>
                 </div>
                 <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground leading-tight tracking-tighter uppercase">
                   {product.name}
                 </h1>
-                <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium leading-relaxed border-l-[2px] sm:border-l-[3px] border-[#09757a] pl-3 sm:pl-4 md:pl-5 italic">
+                <p className="text-xs sm:text-sm md:text-base text-foreground font-black leading-relaxed border-l-[2px] sm:border-l-[3px] border-[#09757a] pl-3 sm:pl-4 md:pl-5 italic">
                   {product.description}
                 </p>
               </div>
@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                   ].map(([key, value], idx, arr) => (
                     value && (
                       <div key={key} className={`flex justify-between items-center px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 md:py-3 ${idx !== arr.length - 1 ? 'border-b border-border' : ''} hover:bg-muted/50 transition-colors`}>
-                        <span className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-widest">{key}</span>
+                        <span className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-widest">{key}</span>
                         <span className="text-[10px] sm:text-[11px] font-black text-foreground text-right">{value}</span>
                       </div>
                     )
@@ -140,12 +140,12 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="space-y-2.5 sm:space-y-3 pt-2 sm:pt-3 border-t border-border">
                 <div className="flex items-center justify-between mb-1.5 sm:mb-2">
                   <div className="flex flex-col">
-                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-muted-foreground/60">Procurement</span>
-                    <span className="text-muted-foreground font-bold text-[10px] sm:text-xs uppercase">Bulk Orders Available</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-foreground">Procurement</span>
+                    <span className="text-foreground font-black text-[10px] sm:text-xs uppercase">Bulk Orders Available</span>
                   </div>
                   <div className="flex flex-col items-end">
-                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-muted-foreground/60">Min Order</span>
-                    <span className="text-foreground font-bold text-[10px] sm:text-xs uppercase">{product.minOrderQty}</span>
+                    <span className="text-[8px] sm:text-[9px] uppercase font-black tracking-widest text-foreground">Min Order</span>
+                    <span className="text-foreground font-black text-[10px] sm:text-xs uppercase">{product.minOrderQty} Units</span>
                   </div>
                 </div>
 
@@ -163,14 +163,14 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
 
                 <div className="grid grid-cols-2 gap-2 sm:gap-3">
                   <a href="tel:+917510638693">
-                    <Button variant="outline" className="w-full h-9 sm:h-10 border-border bg-card hover:bg-[#09757a] text-muted-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
+                    <Button variant="outline" className="w-full h-9 sm:h-10 border-foreground bg-card hover:bg-[#09757a] text-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
                       <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1.5 sm:mr-2" />
                       <span className="hidden sm:inline">Call Sales</span>
                       <span className="sm:hidden">Call</span>
                     </Button>
                   </a>
                   <a href={`mailto:hexamechlinichtools@gmail.com?subject=Enquiry: ${product.name}`}>
-                    <Button variant="outline" className="w-full h-9 sm:h-10 border-border bg-card hover:bg-[#09757a] text-muted-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
+                    <Button variant="outline" className="w-full h-9 sm:h-10 border-foreground bg-card hover:bg-[#09757a] text-foreground hover:text-white font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] rounded-lg transition-all active:scale-95">
                       <Mail className="h-3 w-3 sm:h-3.5 sm:w-3.5 mr-1.5 sm:mr-2" />
                       <span className="hidden sm:inline">Email Enquiry</span>
                       <span className="sm:hidden">Email</span>
@@ -186,15 +186,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div className="grid grid-cols-3 gap-1.5 sm:gap-2 pt-3 sm:pt-4">
                 <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
                   <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><Info className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
-                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Genuine</span>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-foreground">Genuine</span>
                 </div>
                 <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
                   <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><Activity className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
-                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Support</span>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-foreground">Support</span>
                 </div>
                 <div className="bg-card p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl border border-border text-center shadow-md sm:shadow-lg group hover:border-[#09757a]/40 transition-colors active:scale-[0.98]">
                   <div className="text-[#09757a] flex justify-center mb-0.5 sm:mb-1"><ShoppingCart className="h-3 w-3 sm:h-3.5 sm:w-3.5" /></div>
-                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-muted-foreground">Fast Ship</span>
+                  <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-wide sm:tracking-wider text-foreground">Fast Ship</span>
                 </div>
               </div>
 

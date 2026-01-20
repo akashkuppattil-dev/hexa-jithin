@@ -7,13 +7,15 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { brands, categories, products } from "@/lib/products"
-import { Award, Filter, Grid3X3, LayoutGrid, MessageCircle, Package, SlidersHorizontal, ChevronRight, ChevronLeft, Search, Zap } from "lucide-react"
+import { Award, Filter, MessageCircle, Package, SlidersHorizontal, ChevronRight, ChevronLeft, Search, Zap } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 import { Input } from "@/components/ui/input"
+import { BrandFilterDropdown } from "@/components/shop/brand-filter-dropdown"
+import { CategoryFilterDropdown } from "@/components/shop/category-filter-dropdown"
 
 const ITEMS_PER_PAGE_MOBILE = 6
-const ITEMS_PER_PAGE_DESKTOP = 12
+const ITEMS_PER_PAGE_DESKTOP = 16
 
 type SortOption = "popularity" | "latest" | "price-low" | "price-high" | "rating"
 
@@ -24,7 +26,6 @@ export function ShopContent() {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([])
   const [availability, setAvailability] = useState<string[]>([])
   const [sortBy, setSortBy] = useState<SortOption>("popularity")
-  const [gridCols, setGridCols] = useState<3 | 4>(3)
   const [currentPage, setCurrentPage] = useState(1)
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -123,14 +124,14 @@ export function ShopContent() {
   const activeFiltersCount = selectedCategories.length + selectedBrands.length + availability.length
 
   return (
-    <div className="bg-background min-h-screen pb-16 sm:pb-20 transition-colors">
+    <div className="bg-background min-h-screen pb-10 sm:pb-12 transition-colors">
       {/* Header Section */}
       <div className="relative bg-background border-b border-border overflow-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] dark:invert-0 invert"></div>
 
-        <div className="w-full px-4 sm:px-6 md:px-8 py-5 sm:py-6 md:py-8 relative z-10">
-          <div className="max-w-4xl space-y-3 sm:space-y-4 md:space-y-6">
+        <div className="w-full px-4 sm:px-6 md:px-8 py-3 sm:py-4 relative z-10">
+          <div className="max-w-4xl space-y-2 sm:space-y-3">
             {/* Badges */}
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <div className="flex items-center gap-1 sm:gap-1.5 bg-[#09757a]/20 border border-[#09757a]/30 px-2 sm:px-3 py-0.5 sm:py-1 rounded backdrop-blur-sm">
@@ -138,8 +139,8 @@ export function ShopContent() {
                 <span className="text-[8px] sm:text-[9px] text-[#09757a] font-black uppercase tracking-wider sm:tracking-widest">GST Verified</span>
               </div>
               <div className="flex items-center gap-1 sm:gap-1.5 bg-muted border border-border px-2 sm:px-3 py-0.5 sm:py-1 rounded backdrop-blur-sm">
-                <Award className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-muted-foreground" />
-                <span className="text-[8px] sm:text-[9px] text-muted-foreground font-bold uppercase tracking-tight">IndiaMART Verified</span>
+                <Award className="h-2 w-2 sm:h-2.5 sm:w-2.5 text-foreground" />
+                <span className="text-[8px] sm:text-[9px] text-foreground font-black uppercase tracking-tight">IndiaMART Verified</span>
               </div>
             </div>
 
@@ -149,17 +150,17 @@ export function ShopContent() {
             </h1>
 
             {/* Description */}
-            <p className="text-[10px] sm:text-xs md:text-sm text-muted-foreground max-w-2xl leading-relaxed font-medium">
+            <p className="text-[10px] sm:text-xs md:text-sm text-foreground max-w-2xl leading-relaxed font-black">
               Supplying reliable, workshop‑grade tools to service centers, garages, and industrial buyers across India.
             </p>
           </div>
         </div>
       </div>
 
-      <div className="w-full px-4 sm:px-6 md:px-8 mt-5 sm:mt-6 md:mt-8 lg:mt-12">
+      <div className="w-full px-4 sm:px-6 md:px-8 mt-4 sm:mt-5">
         <div className="flex flex-col lg:flex-row gap-5 sm:gap-6 md:gap-8 lg:gap-12">
           {/* Sidebar Filters */}
-          <aside className="hidden lg:block w-64 shrink-0 h-fit sticky top-24">
+          <aside className="hidden lg:block w-64 shrink-0 h-fit sticky top-20">
             <div className="bg-card p-4 sm:p-5 rounded-xl border border-border shadow-2xl">
               <div className="mb-4 sm:mb-5">
                 <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#09757a] mb-4 sm:mb-5">Filter Catalog</h3>
@@ -180,7 +181,7 @@ export function ShopContent() {
               <div className="mt-5 pt-5 border-t border-border">
                 <div className="p-3 rounded-lg bg-[#09757a]/10 border border-[#09757a]/20 text-center">
                   <p className="text-[9px] font-black text-[#09757a] uppercase tracking-widest mb-1.5">B2B Support</p>
-                  <p className="text-[10px] text-muted-foreground font-medium leading-relaxed mb-2">Talk to an expert for bulk discounts.</p>
+                  <p className="text-[10px] text-foreground font-black leading-relaxed mb-2">Talk to an expert for bulk discounts.</p>
                   <a href="https://wa.me/917510638693" className="inline-flex items-center justify-center gap-1.5 text-[10px] font-black text-[#09757a] hover:gap-2 transition-all">
                     WHATSAPP US <ChevronRight className="h-2.5 w-2.5" />
                   </a>
@@ -191,58 +192,47 @@ export function ShopContent() {
 
           {/* Main Content */}
           <div className="flex-1 space-y-6">
+            <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3">
+              {/* Search Bar & Extra Dropdowns Container */}
+              <div className="flex flex-col md:flex-row flex-1 items-stretch md:items-center gap-2">
+                <div className="relative flex-1 group/search">
+                  <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                    <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-[#09757a] transition-colors" />
+                  </div>
+                  <Input
+                    type="text"
+                    placeholder="Search tools..."
+                    className="w-full h-11 pl-11 pr-4 bg-card border-border text-sm text-foreground rounded-lg focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-sm font-black placeholder:text-zinc-500"
+                    value={searchInputValue}
+                    onChange={(e) => handleSearch(e.target.value)}
+                  />
+                </div>
 
-            {/* Horizontal Category Slider - 'Moresder' (Modern Slider) Experience */}
-            <div className="flex overflow-x-auto pb-4 gap-2 no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
-              <Button
-                variant={selectedCategories.length === 0 ? "default" : "outline"}
-                className={`h-9 px-4 rounded-full text-[10px] font-black uppercase tracking-widest flex-shrink-0 transition-all ${selectedCategories.length === 0 ? "bg-[#09757a] text-white shadow-lg" : "border-border"}`}
-                onClick={() => setSelectedCategories([])}
-              >
-                All Tools
-              </Button>
-              {categories.map((cat) => (
-                <Button
-                  key={cat.id}
-                  variant={selectedCategories.includes(cat.id) ? "default" : "outline"}
-                  className={`h-9 px-4 rounded-full text-[10px] font-black uppercase tracking-widest flex-shrink-0 transition-all ${selectedCategories.includes(cat.id) ? "bg-[#09757a] text-white shadow-lg" : "border-border"}`}
-                  onClick={() => setSelectedCategories([cat.id])}
-                >
-                  {cat.name}
-                </Button>
-              ))}
-            </div>
+                <div className="flex items-center gap-2">
+                  <CategoryFilterDropdown
+                    selectedCategory={selectedCategories[0] || null}
+                    onSelectCategory={(cat: string | null) => setSelectedCategories(cat ? [cat] : [])}
+                  />
 
-            {/* In-Page Search Bar - Modern Glassmorphism */}
-            <div className="relative group/search">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-[#09757a] transition-colors" />
+                  <BrandFilterDropdown
+                    selectedBrand={selectedBrands[0] || null}
+                    onSelectBrand={(brand: string | null) => setSelectedBrands(brand ? [brand] : [])}
+                  />
+                </div>
               </div>
-              <Input
-                type="text"
-                placeholder="What are you looking for today? (e.g. spray gun, welder)"
-                className="w-full h-12 md:h-14 pl-11 pr-4 bg-card/50 backdrop-blur-xl border-border text-sm text-foreground placeholder:text-muted-foreground/60 rounded-2xl focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-xl"
-                value={searchInputValue}
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-              <div className="absolute right-2 top-1/2 -translate-y-1/2 hidden md:block">
-                <Badge variant="secondary" className="bg-[#09757a]/10 text-[#09757a] border-none font-black px-3 py-1">FAST SEARCH</Badge>
-              </div>
-            </div>
 
-            {/* Action Bar */}
-            <div className="bg-card p-2 sm:p-2.5 rounded-lg border border-border shadow-md sm:shadow-lg flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-3">
-              <div className="flex items-center justify-between w-full sm:w-auto gap-3 sm:gap-4">
+              <div className="flex items-center justify-between xl:justify-end gap-2 md:w-auto">
+                {/* Mobile Filter Toggle */}
                 <Sheet open={mobileFiltersOpen} onOpenChange={setMobileFiltersOpen}>
                   <SheetTrigger asChild>
-                    <Button variant="outline" className="lg:hidden h-9 sm:h-10 px-3 sm:px-5 rounded-lg border-[#09757a]/20 font-black text-[9px] sm:text-[10px] uppercase tracking-wider sm:tracking-widest gap-1.5 sm:gap-2 bg-[#09757a]/5 text-[#09757a] hover:bg-[#09757a] hover:text-white transition-all shadow-md sm:shadow-lg active:scale-95">
-                      <SlidersHorizontal className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
-                      Filter
+                    <Button variant="outline" className="lg:hidden h-11 px-3 rounded-lg border-[#09757a]/20 font-black text-[10px] uppercase tracking-widest gap-2 bg-[#09757a]/5 text-[#09757a] shadow-sm">
+                      <SlidersHorizontal className="h-4 w-4" />
+                      Filters
                     </Button>
                   </SheetTrigger>
-                  <SheetContent side="left" className="w-[260px] sm:w-[280px] p-0 border-r border-border bg-background shadow-2xl">
-                    <div className="h-full overflow-y-auto p-4 sm:p-6 custom-scrollbar">
-                      <h3 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] text-[#09757a] mb-4 sm:mb-6">Filters</h3>
+                  <SheetContent side="left" className="w-[280px] p-0 border-r border-border bg-background shadow-2xl">
+                    <div className="h-full overflow-y-auto p-6 custom-scrollbar">
+                      <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-[#09757a] mb-6">Filters</h3>
                       <ShopFilters
                         categories={categories}
                         brands={brands}
@@ -259,67 +249,35 @@ export function ShopContent() {
                   </SheetContent>
                 </Sheet>
 
-                <p className="text-[9px] sm:text-[10px] md:text-xs font-black text-muted-foreground uppercase tracking-wider sm:tracking-widest">
-                  Showing <span className="text-foreground font-black">{filteredProducts.length}</span> results
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
-                <Select value={sortBy} onValueChange={(v) => setSortBy(v as SortOption)}>
-                  <SelectTrigger className="flex-1 sm:w-32 md:w-40 h-8 sm:h-9 rounded-lg border-border font-bold text-[9px] sm:text-[10px] bg-background text-muted-foreground shadow-none ring-0">
-                    <SelectValue placeholder="Sort" />
-                  </SelectTrigger>
-                  <SelectContent className="rounded-lg border-border bg-popover">
-                    <SelectItem value="popularity" className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[9px] sm:text-[10px]">Popularity</SelectItem>
-                    <SelectItem value="latest" className="text-foreground/70 focus:bg-[#09757a] focus:text-white text-[9px] sm:text-[10px]">Latest</SelectItem>
-                  </SelectContent>
-                </Select>
-
-                <div className="hidden md:flex items-center bg-background rounded-lg p-0.5 border border-border">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`h-7 w-7 rounded-md transition-all ${gridCols === 3 ? "bg-[#09757a] text-white shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
-                    onClick={() => setGridCols(3)}
-                  >
-                    <Grid3X3 className="h-3 w-3" />
-                  </Button>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className={`h-7 w-7 rounded-md transition-all ${gridCols === 4 ? "bg-[#09757a] text-white shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
-                    onClick={() => setGridCols(4)}
-                  >
-                    <LayoutGrid className="h-3 w-3" />
-                  </Button>
-                </div>
               </div>
             </div>
 
-            {/* Active Filter Chips */}
-            {activeFiltersCount > 0 && (
-              <div className="flex flex-wrap items-center gap-1 sm:gap-1.5">
-                {selectedCategories.map((cat) => (
-                  <Badge key={cat} className="bg-[#09757a]/10 text-[#09757a] border border-[#09757a]/20 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded flex items-center gap-1 sm:gap-1.5">
-                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-tight">{categories.find((c) => c.id === cat)?.name}</span>
-                    <button onClick={() => setSelectedCategories((prev) => prev.filter((c) => c !== cat))} className="text-[9px] sm:text-[10px] font-bold px-0.5 sm:px-1 hover:bg-[#09757a]/20 rounded cursor-pointer leading-none">×</button>
-                  </Badge>
-                ))}
-                {selectedBrands.map((brand) => (
-                  <Badge key={brand} className="bg-muted text-muted-foreground border border-border px-1.5 sm:px-2 py-0.5 sm:py-1 rounded flex items-center gap-1 sm:gap-1.5">
-                    <span className="text-[7px] sm:text-[8px] font-black uppercase tracking-tight">{brand}</span>
-                    <button onClick={() => setSelectedBrands((prev) => prev.filter((b) => b !== brand))} className="text-[9px] sm:text-[10px] font-bold px-0.5 sm:px-1 hover:bg-accent rounded cursor-pointer leading-none">×</button>
-                  </Badge>
-                ))}
-                <button onClick={clearFilters} className="text-[8px] sm:text-[9px] font-black uppercase tracking-wider sm:tracking-widest text-[#09757a] hover:text-white transition-colors ml-0.5 sm:ml-1 underline underline-offset-4 decoration-[#09757a]/40">Reset</button>
-              </div>
-            )}
+            {/* Status & Chips */}
+            <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border/50 pt-3">
+              <p className="text-[10px] font-black text-foreground uppercase tracking-widest">
+                <span className="text-[#09757a]">{filteredProducts.length}</span> Equipment Found
+              </p>
+
+              {activeFiltersCount > 0 && (
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <button onClick={clearFilters} className="text-[8px] font-black uppercase text-[#09757a] hover:underline px-2 mr-1">Reset</button>
+                  {selectedCategories.map((cat) => (
+                    <Badge key={cat} className="bg-[#09757a]/10 text-[#09757a] border-none px-2 py-0.5 rounded text-[7px] font-black uppercase">
+                      {categories.find((c) => c.id === cat)?.name}
+                    </Badge>
+                  ))}
+                  {selectedBrands.map((brand) => (
+                    <Badge key={brand} className="bg-muted text-foreground border-border px-2 py-0.5 rounded text-[7px] font-black uppercase">
+                      {brand}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Product Grid */}
             {paginatedProducts.length > 0 ? (
-              <div
-                className={`grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-${gridCols} gap-2 sm:gap-3 md:gap-4`}
-              >
+              <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
                 {paginatedProducts.map((product) => (
                   <div key={product.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                     <ProductCard product={product} />
@@ -327,19 +285,19 @@ export function ShopContent() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-12 sm:py-16 md:py-20 bg-card rounded-xl border border-border">
-                <Package className="h-10 w-10 sm:h-12 sm:w-12 mx-auto text-muted-foreground mb-3 sm:mb-4" />
-                <p className="text-base sm:text-lg font-black text-foreground mb-1 uppercase">No Equipment Found</p>
-                <p className="text-[10px] sm:text-xs text-muted-foreground mb-4 sm:mb-6 max-w-xs mx-auto px-4">Try clearing your filters or changing your search terms.</p>
-                <Button onClick={clearFilters} className="rounded-lg px-6 sm:px-8 h-9 sm:h-10 font-black uppercase tracking-wider sm:tracking-widest text-[9px] sm:text-[10px] shadow-lg bg-[#09757a] hover:bg-foreground hover:text-background border border-transparent hover:border-[#09757a]">Expand Search</Button>
+              <div className="text-center py-20 bg-card rounded-xl border border-border">
+                <Package className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <p className="text-lg font-black text-foreground mb-1 uppercase tracking-tighter">No Equipment Found</p>
+                <p className="text-xs text-foreground font-black mb-6">Try clearing your filters or changing your search terms.</p>
+                <Button onClick={clearFilters} className="bg-[#09757a] text-white font-black uppercase tracking-widest text-[10px] px-8 h-10 shadow-lg">Clear All</Button>
               </div>
             )}
 
             {totalPages > 1 && (
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-8 sm:pt-10 md:pt-12 border-t border-border">
                 <div className="flex flex-col items-center sm:items-start leading-none gap-0.5 sm:gap-1">
-                  <p className="text-[8px] sm:text-[9px] font-black text-muted-foreground uppercase tracking-[0.2em] sm:tracking-[0.3em]">Catalog Navigation</p>
-                  <p className="text-[9px] sm:text-[10px] font-bold text-muted-foreground uppercase tracking-wider sm:tracking-widest">Page {currentPage} of {totalPages}</p>
+                  <p className="text-[8px] sm:text-[9px] font-black text-foreground uppercase tracking-[0.2em] sm:tracking-[0.3em]">Catalog Navigation</p>
+                  <p className="text-[9px] sm:text-[10px] font-black text-foreground uppercase tracking-wider sm:tracking-widest">Page {currentPage} of {totalPages}</p>
                 </div>
 
                 <div className="flex items-center gap-1.5 sm:gap-2">

@@ -52,7 +52,7 @@ export function TrustBand() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-8 bg-background border-y border-border relative overflow-hidden h-[240px] md:h-[260px] lg:h-[280px] transition-colors">
+    <section ref={sectionRef} className="py-8 bg-background border-y border-border relative overflow-hidden h-[200px] md:h-[220px] lg:h-[240px] transition-colors">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[100%] bg-gradient-to-r from-transparent via-[#09757a]/5 to-transparent pointer-events-none" />
 

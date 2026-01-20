@@ -6,7 +6,7 @@ import Image from "next/image"
 import React, { useState, useEffect } from "react"
 
 const stats = [
-  { label: "Annual Turnover", value: "1.5-10", suffix: "Cr", iconName: "Award" as const },
+  { label: "Authorized Brands", value: "25", suffix: "+", iconName: "Award" as const },
   { label: "Team Strength", value: "25+", suffix: "+", iconName: "Users" as const },
   { label: "Tools & SKUs", value: "1000", suffix: "+", iconName: "Package" as const },
   { label: "Workshops Served", value: "4000", suffix: "+", iconName: "ThumbsUp" as const },
@@ -41,8 +41,8 @@ export default function AboutClientPage() {
   return (
     <div className="w-full bg-background min-h-screen text-foreground transition-colors overflow-x-hidden">
 
-      {/* HERO SECTION - Enhanced with Gradient & Pattern */}
-      <section className="relative py-20 sm:py-24 md:py-32 lg:py-40 flex items-center justify-center overflow-hidden">
+      {/* HERO SECTION - More Compact */}
+      <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-br from-[#09757a]/20 via-background to-background" />
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
@@ -59,7 +59,7 @@ export default function AboutClientPage() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground mb-6 tracking-tighter uppercase leading-[0.9] px-2 max-w-5xl mx-auto drop-shadow-sm">
             Powering India&apos;s Workshops with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#09757a] to-[#0bc0c8]">Professional Tools</span>
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium max-w-2xl mx-auto leading-relaxed px-2 opacity-90">
+          <p className="text-sm sm:text-base md:text-lg text-foreground font-black max-w-2xl mx-auto leading-relaxed px-2">
             Hexamech Linich Tools is Kerala&apos;s premier B2B automotive ecosystem, delivering industrial excellence to over 4,000 workshops across the nation.
           </p>
 
@@ -69,16 +69,16 @@ export default function AboutClientPage() {
         </div>
       </section>
 
-      {/* IDENTITY SECTION - Modern Split Layout Feel */}
-      <section className="py-20 sm:py-24 md:py-32 bg-secondary/30 relative">
+      {/* IDENTITY SECTION - Tighter Split Layout */}
+      <section className="py-12 sm:py-16 md:py-20 bg-secondary/30 relative">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted border border-border rounded-full">
-                <span className="text-[10px] sm:text-xs font-black text-muted-foreground uppercase tracking-widest leading-none">The Story</span>
+                <span className="text-[10px] sm:text-xs font-black text-foreground uppercase tracking-widest leading-none">The Story</span>
               </div>
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tighter uppercase leading-none">Who We Are</h2>
-              <div className="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed font-normal">
+              <div className="space-y-4 text-sm sm:text-base text-foreground leading-relaxed font-bold">
                 <p className="border-l-2 border-[#09757a] pl-4 italic">
                   &quot;Access to professional tools shouldn&apos;t be a luxury for any Indian workshop.&quot;
                 </p>
@@ -86,23 +86,22 @@ export default function AboutClientPage() {
                   <strong className="text-foreground">Hexamech Linich Tools</strong> was founded in 2023 in Chulliparamba, Kerala — with a single mission: to revolutionize the automotive service industry by providing reliable access to genuine, professional-grade tools at wholesale prices.
                 </p>
                 <p>
-                  What started as a regional enterprise has rapidly evolved. Today, we proudly serve <span className="text-[#09757a] font-bold">4,000+ workshops</span> with a curated inventory of over <span className="text-[#09757a] font-bold">1,000+ specialized SKUs</span>.
+                  What started as a regional enterprise has rapidly evolved. Today, we proudly serve <span className="text-[#09757a] font-black">4,000+ workshops</span> with a curated inventory of over <span className="text-[#09757a] font-black">1,000+ specialized SKUs</span>.
                 </p>
               </div>
             </div>
 
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-[#09757a]/20 to-secondary relative group">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80')] bg-cover bg-center grayscale opacity-40 group-hover:grayscale-0 transition-all duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+              <div className="aspect-square rounded-2xl overflow-hidden bg-white relative group border border-border shadow-inner">
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80')] bg-cover bg-center transition-all duration-700" />
                 <div className="absolute bottom-8 left-8 right-8 p-6 bg-background/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-lg bg-[#09757a] flex items-center justify-center text-white shrink-0">
                       <Landmark className="h-6 w-6" />
                     </div>
                     <div>
-                      <h4 className="font-black uppercase text-sm tracking-tight">Kozhikode, Kerala</h4>
-                      <p className="text-[10px] text-muted-foreground font-bold uppercase tracking-widest">Our Strategic Hub</p>
+                      <h4 className="font-black uppercase text-sm tracking-tight text-foreground">Kozhikode, Kerala</h4>
+                      <p className="text-[10px] text-[#09757a] font-black uppercase tracking-widest">Our Strategic Hub</p>
                     </div>
                   </div>
                 </div>
@@ -112,13 +111,13 @@ export default function AboutClientPage() {
         </div>
       </section>
 
-      {/* WHY CHOOSE US - Premium Grid */}
-      <section className="py-24 sm:py-32 border-y border-border relative overflow-hidden">
+      {/* WHY CHOOSE US - Tighter Grid */}
+      <section className="py-16 sm:py-20 border-y border-border relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#09757a]/5 to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
           <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">The <span className="text-[#09757a]">Hexamech</span> Edge</h2>
-            <p className="text-xs sm:text-sm text-muted-foreground font-bold uppercase tracking-[0.3em] opacity-80">Defining Industry Standards</p>
+            <p className="text-xs sm:text-sm text-foreground font-black uppercase tracking-[0.3em]">Defining Industry Standards</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
@@ -132,7 +131,7 @@ export default function AboutClientPage() {
                       {IconComponent && <IconComponent className="h-7 w-7" />}
                     </div>
                     <h3 className="font-black text-foreground text-base lg:text-lg uppercase tracking-tight mb-3 group-hover:text-[#09757a] transition-colors leading-tight">{item.title}</h3>
-                    <p className="text-muted-foreground text-xs leading-relaxed font-medium">{item.description}</p>
+                    <p className="text-foreground text-xs leading-relaxed font-black">{item.description}</p>
                   </div>
                 </div>
               )
@@ -141,12 +140,12 @@ export default function AboutClientPage() {
         </div>
       </section>
 
-      {/* FOUNDERS SECTION - High-End Presentation */}
-      <section className="py-24 sm:py-32 bg-background relative">
+      {/* FOUNDERS SECTION - Tighter Presentation */}
+      <section className="py-16 sm:py-20 bg-background relative">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="text-center mb-16 sm:mb-20">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">The <span className="text-[#09757a]">Visionaries</span></h2>
-            <p className="text-xs sm:text-sm text-muted-foreground font-bold uppercase tracking-[0.3em] opacity-80">Driving Automotive Innovation</p>
+            <p className="text-xs sm:text-sm text-foreground font-black uppercase tracking-[0.3em]">Driving Automotive Innovation</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
@@ -157,14 +156,14 @@ export default function AboutClientPage() {
                   <div className="absolute inset-0 border border-[#09757a]/20 rounded-full group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-2 border border-[#09757a]/40 rounded-full group-hover:rotate-180 transition-transform duration-1000 border-dashed" />
 
-                  <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-background shadow-2xl z-10">
+                  <div className="absolute inset-4 rounded-full overflow-hidden border-4 border-background bg-white shadow-2xl z-10">
                     <Image
                       src={founder.image || "/placeholder.svg"}
                       alt={founder.name}
                       fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale group-hover:grayscale-0"
+                      className="object-cover object-top scale-110 group-hover:scale-125 transition-transform duration-1000"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#09757a]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#09757a]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </div>
                 <h3 className="text-lg md:text-xl font-black text-foreground uppercase tracking-tight mb-2 leading-tight group-hover:text-[#09757a] transition-colors duration-300">{founder.name}</h3>
@@ -176,8 +175,8 @@ export default function AboutClientPage() {
         </div>
       </section>
 
-      {/* MISSION & VISION - Distinctive Grid */}
-      <section className="py-24 sm:py-32 bg-secondary/50 border-y border-border">
+      {/* MISSION & VISION - Tighter Grid */}
+      <section className="py-16 sm:py-20 bg-secondary/50 border-y border-border">
         <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-background border border-border/60 rounded-3xl p-8 md:p-10 shadow-xl border-t-4 border-t-[#09757a] transition-all duration-300 hover:-translate-y-2 group">
@@ -187,7 +186,7 @@ export default function AboutClientPage() {
                 </div>
                 <h3 className="font-black text-foreground text-xl uppercase tracking-tighter">Our Mission</h3>
               </div>
-              <p className="text-muted-foreground text-sm lg:text-base leading-relaxed font-medium">
+              <p className="text-foreground text-sm lg:text-base leading-relaxed font-black">
                 To empower Indian workshops with genuine, high-performance tools, expert industrial guidance, and unmatched wholesale distribution. We build the backbone for automotive excellence.
               </p>
             </div>
@@ -199,7 +198,7 @@ export default function AboutClientPage() {
                 </div>
                 <h3 className="font-black text-foreground text-xl uppercase tracking-tighter">Our Vision</h3>
               </div>
-              <p className="text-muted-foreground text-sm lg:text-base leading-relaxed font-medium">
+              <p className="text-foreground text-sm lg:text-base leading-relaxed font-black">
                 To become Asia&apos;s most influential B2B automotive gear supplier — recognized for industrial precision, unshakeable integrity, and universal accessibility.
               </p>
             </div>
@@ -211,7 +210,7 @@ export default function AboutClientPage() {
                 </div>
                 <h3 className="font-black text-foreground text-xl uppercase tracking-tighter">Our Future</h3>
               </div>
-              <p className="text-muted-foreground text-sm lg:text-base leading-relaxed font-medium">
+              <p className="text-foreground text-sm lg:text-base leading-relaxed font-black">
                 Expanding our digital footprint to serve 25,000+ workshops across all 28 Indian states, while maintaining the personal touch of our Kerala roots.
               </p>
             </div>
@@ -231,8 +230,8 @@ export default function AboutClientPage() {
         </div>
       </section>
 
-      {/* LOCATION SECTION - Professional Footer Style */}
-      <section className="py-20 sm:py-32 bg-background relative overflow-hidden">
+      {/* LOCATION SECTION - Tighter Style */}
+      <section className="py-16 sm:py-20 bg-background relative overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-20 bg-gradient-to-b from-[#09757a] to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 max-w-4xl text-center">
           <div className="inline-flex items-center justify-center w-20 h-20 bg-[#09757a]/10 rounded-full mb-8 border border-[#09757a]/20 group hover:scale-110 transition-transform duration-500 shadow-xl">
@@ -243,7 +242,7 @@ export default function AboutClientPage() {
             <span className="text-[#09757a]">Command Center</span>
           </h2>
           <div className="max-w-xl mx-auto mb-10">
-            <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-medium uppercase tracking-widest leading-relaxed mb-2">Door No 17/346, Chulliparamba, Near Farook College</p>
+            <p className="text-sm sm:text-base md:text-lg text-foreground font-black uppercase tracking-widest leading-relaxed mb-2">Door No 17/346, Chulliparamba, Near Farook College</p>
             <p className="text-[#09757a] font-black text-xs sm:text-sm md:text-base uppercase tracking-[0.5em] mt-4">Calicut, Kerala – India</p>
           </div>
 

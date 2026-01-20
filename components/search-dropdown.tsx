@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
+import { useMemo } from "react"
 import { searchProducts, categories } from "@/lib/products"
 
 interface SearchDropdownProps {
@@ -10,8 +11,10 @@ interface SearchDropdownProps {
 }
 
 export function SearchDropdown({ query, onClose }: SearchDropdownProps) {
-  const results = searchProducts(query).slice(0, 5)
-  const matchingCategories = categories.filter((c) => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3)
+  const results = useMemo(() => searchProducts(query).slice(0, 5), [query])
+  const matchingCategories = useMemo(() =>
+    categories.filter((c) => c.name.toLowerCase().includes(query.toLowerCase())).slice(0, 3),
+    [query])
 
   if (results.length === 0 && matchingCategories.length === 0) {
     return (

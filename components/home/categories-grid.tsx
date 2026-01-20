@@ -33,9 +33,11 @@ export function CategoriesGrid() {
   }
 
   useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < 768) return
+
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % categories.length)
-    }, 4000)
+    }, 5000)
     return () => clearInterval(timer)
   }, [])
 
@@ -69,7 +71,7 @@ export function CategoriesGrid() {
   }
 
   return (
-    <section className="py-12 md:py-20 bg-background overflow-hidden relative transition-colors">
+    <section className="py-10 md:py-16 bg-background overflow-hidden relative transition-colors">
       <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
 
       <div className="w-full px-4 md:px-12 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8 md:mb-12">
@@ -80,7 +82,7 @@ export function CategoriesGrid() {
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">
             Explore Our <span className="text-[#09757a]">Specialized</span> Toolsets
           </h2>
-          <p className="text-muted-foreground text-sm font-semibold uppercase tracking-widest leading-relaxed">
+          <p className="text-foreground text-sm font-black uppercase tracking-widest leading-relaxed">
             Wholesale distribution of premium diagnostic and industrial toolsets.
           </p>
         </div>

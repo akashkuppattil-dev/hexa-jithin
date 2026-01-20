@@ -44,7 +44,7 @@ export function ProductVideosSection() {
   }
 
   return (
-    <section className="py-12 sm:py-16 bg-zinc-50 dark:bg-zinc-900/10 transition-colors">
+    <section className="py-8 sm:py-12 bg-zinc-50 dark:bg-zinc-900/10 transition-colors">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white mb-2 tracking-tighter">Tools in Action</h2>

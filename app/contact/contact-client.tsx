@@ -111,8 +111,8 @@ export function ContactClientPage() {
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-foreground mb-1.5 sm:mb-2 tracking-tighter uppercase leading-tight px-2">
             Get in Touch with <span className="text-[#09757a]">Hexamech</span>
           </h1>
-          <p className="text-xs sm:text-sm md:text-base text-muted-foreground font-medium max-w-2xl mx-auto italic px-2">
-            We're here to help with your automotive tools needs. Reach out for quotes, technical support, or bulk orders.
+          <p className="text-xs sm:text-sm md:text-base text-foreground font-black max-w-2xl mx-auto italic px-2">
+            We&apos;re here to help with your automotive tools needs. Reach out for quotes, technical support, or bulk orders.
           </p>
         </div>
       </section>
@@ -126,7 +126,7 @@ export function ContactClientPage() {
             <div className="space-y-4 sm:space-y-5 md:space-y-6 order-1 lg:order-2 w-full">
               <div>
                 <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 bg-muted border border-border rounded mb-2 sm:mb-3">
-                  <span className="text-[8px] sm:text-[9px] font-black text-muted-foreground uppercase tracking-wider sm:tracking-widest">Connect Directly</span>
+                  <span className="text-[8px] sm:text-[9px] font-black text-foreground uppercase tracking-wider sm:tracking-widest">Connect Directly</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-black text-foreground mb-3 sm:mb-4 uppercase tracking-tight">Direct Communication</h3>
 
@@ -141,11 +141,11 @@ export function ContactClientPage() {
                         <div className="min-w-0 flex-1">
                           <h4 className="font-black text-foreground text-[10px] sm:text-xs uppercase tracking-wide mb-0.5 sm:mb-1">{method.title}</h4>
                           {method.href ? (
-                            <a href={method.href} className="text-sm sm:text-base text-foreground hover:text-[#09757a] font-bold break-all block transition-colors">{method.value}</a>
+                            <a href={method.href} className="text-sm sm:text-base text-foreground hover:text-[#09757a] font-black break-all block transition-colors">{method.value}</a>
                           ) : (
-                            <p className="text-sm sm:text-base text-foreground/80 font-bold">{method.value}</p>
+                            <p className="text-sm sm:text-base text-foreground font-black">{method.value}</p>
                           )}
-                          <p className="text-[9px] sm:text-[10px] text-muted-foreground font-medium mt-0.5">{method.description}</p>
+                          <p className="text-[9px] sm:text-[10px] text-foreground font-black mt-0.5">{method.description}</p>
                         </div>
                       </div>
                     )
@@ -162,7 +162,7 @@ export function ContactClientPage() {
               <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black text-foreground mb-2 sm:mb-3 tracking-tighter uppercase leading-tight">
                 Request a Quote / Business Enquiry
               </h2>
-              <p className="text-[11px] sm:text-xs md:text-sm text-muted-foreground font-medium mb-4 sm:mb-5 md:mb-6 italic">
+              <p className="text-[11px] sm:text-xs md:text-sm text-foreground font-black mb-4 sm:mb-5 md:mb-6 italic">
                 Submit your requirement and our team will get back to you within <strong className="text-[#09757a]">30 minutes</strong> during business hours.
               </p>
 
@@ -192,7 +192,7 @@ export function ContactClientPage() {
                     </div>
                     <div>
                       <h3 className="font-black text-foreground text-[10px] sm:text-[11px] uppercase tracking-wider mb-0.5 sm:mb-1">{item.title}</h3>
-                      <p className="text-muted-foreground text-[9px] sm:text-[10px] leading-relaxed font-medium">{item.description}</p>
+                      <p className="text-foreground text-[9px] sm:text-[10px] leading-relaxed font-black">{item.description}</p>
                     </div>
                   </div>
                 )
@@ -209,7 +209,7 @@ export function ContactClientPage() {
                       <Icon className="h-4 w-4 sm:h-4.5 sm:w-4.5 text-[#09757a]" />
                     </div>
                     <h3 className="font-black text-foreground text-[10px] sm:text-[11px] uppercase tracking-wide mb-0.5 leading-tight">{item.title}</h3>
-                    <p className="text-muted-foreground text-[9px] sm:text-[10px] leading-relaxed font-medium">{item.description}</p>
+                    <p className="text-foreground text-[9px] sm:text-[10px] leading-relaxed font-black">{item.description}</p>
                   </div>
                 )
               })}
@@ -227,7 +227,7 @@ export function ContactClientPage() {
               <span className="text-[8px] sm:text-[9px] font-black text-[#09757a] uppercase tracking-[0.2em] sm:tracking-[0.3em]">Find Us</span>
             </div>
             <h2 className="text-lg sm:text-xl md:text-2xl font-black text-foreground mb-0.5 sm:mb-1 tracking-tighter uppercase">Visit Our Location</h2>
-            <p className="text-[10px] sm:text-xs text-muted-foreground font-medium italic px-2">
+            <p className="text-[10px] sm:text-xs text-foreground font-black italic px-2">
               {CONTACT.BUSINESS_ADDRESS}
             </p>
           </div>
@@ -258,8 +258,8 @@ export function ContactClientPage() {
                     <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Address</h3>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground leading-relaxed">{CONTACT.BUSINESS_ADDRESS}</p>
+                    <h3 className="font-black text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Address</h3>
+                    <p className="text-[10px] sm:text-xs text-foreground font-black leading-relaxed">{CONTACT.BUSINESS_ADDRESS}</p>
                   </div>
                 </div>
 
@@ -268,9 +268,9 @@ export function ContactClientPage() {
                     <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-[#09757a]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Hours</h3>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground">Monday - Saturday: 9:00 AM - 7:00 PM</p>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground">Sunday: Closed</p>
+                    <h3 className="font-black text-foreground mb-0.5 sm:mb-1 text-xs sm:text-sm uppercase tracking-tight">Business Hours</h3>
+                    <p className="text-[10px] sm:text-xs text-foreground font-black">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                    <p className="text-[10px] sm:text-xs text-foreground font-black">Sunday: Closed</p>
                   </div>
                 </div>
 

@@ -64,7 +64,7 @@ export function ShopFilters({
       <Accordion type="multiple" defaultValue={["categories", "brands", "availability"]} className="w-full">
         {/* Categories Section */}
         <AccordionItem value="categories" className="border-none">
-          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
+          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Categories
           </AccordionTrigger>
           <AccordionContent className="pb-3">
@@ -78,7 +78,7 @@ export function ShopFilters({
                   />
                   <Label
                     htmlFor={`cat-${category.id}`}
-                    className={`text-[11px] font-bold cursor-pointer transition-colors ${selectedCategories.includes(category.id) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}
+                    className={`text-[11px] font-black cursor-pointer transition-colors ${selectedCategories.includes(category.id) ? "text-[#09757a]" : "text-foreground group-hover:text-[#09757a]"}`}
                   >
                     {category.name}
                   </Label>
@@ -90,7 +90,7 @@ export function ShopFilters({
 
         {/* Brands Section */}
         <AccordionItem value="brands" className="border-none">
-          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
+          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Brands
           </AccordionTrigger>
           <AccordionContent className="pb-3 overflow-hidden">
@@ -98,7 +98,7 @@ export function ShopFilters({
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-muted-foreground group-focus-within:text-[#09757a] transition-colors" />
               <Input
                 placeholder="Search..."
-                className="h-8 pl-9 text-[11px] bg-background border-border focus:bg-accent/5 rounded-lg transition-all font-medium"
+                className="h-8 pl-9 text-[11px] bg-background border-border focus:bg-accent/5 rounded-lg transition-all font-black text-foreground placeholder:text-zinc-500"
                 value={brandSearch}
                 onChange={(e) => setBrandSearch(e.target.value)}
               />
@@ -113,7 +113,7 @@ export function ShopFilters({
                   />
                   <Label
                     htmlFor={`brand-${brand}`}
-                    className={`text-[11px] font-bold cursor-pointer transition-colors ${selectedBrands.includes(brand) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}
+                    className={`text-[11px] font-black cursor-pointer transition-colors ${selectedBrands.includes(brand) ? "text-[#09757a]" : "text-foreground group-hover:text-[#09757a]"}`}
                   >
                     {brand}
                   </Label>
@@ -128,7 +128,7 @@ export function ShopFilters({
 
         {/* Availability Section */}
         <AccordionItem value="availability" className="border-none">
-          <AccordionTrigger className="text-[9px] font-black uppercase tracking-[0.2em] text-muted-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
+          <AccordionTrigger className="text-[10px] font-black uppercase tracking-[0.2em] text-foreground hover:text-[#09757a] py-3 hover:no-underline select-none">
             Quick Filter
           </AccordionTrigger>
           <AccordionContent className="pb-3">
@@ -143,7 +143,7 @@ export function ShopFilters({
                     checked={availability.includes(option.id)}
                     className="h-3.5 w-3.5 rounded border-border data-[state=checked]:bg-[#09757a] data-[state=checked]:border-[#09757a] transition-all"
                   />
-                  <Label htmlFor={option.id} className={`text-[11px] font-bold cursor-pointer transition-colors ${availability.includes(option.id) ? "text-[#09757a]" : "text-muted-foreground group-hover:text-foreground"}`}>
+                  <Label htmlFor={option.id} className={`text-[11px] font-black cursor-pointer transition-colors ${availability.includes(option.id) ? "text-[#09757a]" : "text-foreground group-hover:text-[#09757a]"}`}>
                     {option.label}
                   </Label>
                 </div>

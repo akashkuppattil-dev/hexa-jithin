@@ -2,25 +2,49 @@
 
 import { Button } from "@/components/ui/button"
 import { CONTACT } from "@/lib/constants"
-import { Mail, Menu, Phone, X, ChevronDown, Users, Package } from "lucide-react"
+import { Mail, Menu, Phone, X, ChevronDown, Users, Package, Search } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState, useRef } from "react"
 import { BrandsMenu } from "./brands-menu"
-import { ThemeToggle } from "@/components/theme-toggle"
+import { Input } from "@/components/ui/input"
+import { SearchDropdown } from "@/components/search-dropdown"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<"products" | "brands" | "categories" | null>(null)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [debouncedQuery, setDebouncedQuery] = useState("")
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const searchRef = useRef<HTMLDivElement>(null)
 
   const pathname = usePathname()
   const headerRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(searchQuery)
+    }, 300)
+    return () => clearTimeout(timer)
+  }, [searchQuery])
+
+  useEffect(() => {
     setActiveMenu(null)
     setMobileMenuOpen(false)
+    setIsSearchFocused(false)
+    setSearchQuery("")
   }, [pathname])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchFocused(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -66,54 +90,73 @@ export function Header() {
     <>
       <header
         ref={headerRef}
-        className={`sticky top-0 w-full z-50 bg-background/80 backdrop-blur-md text-foreground py-2 md:py-2.5 shadow-sm border-b border-border transition-all duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
+        className={`sticky top-0 w-full z-50 bg-background text-foreground transition-all duration-300 shadow-sm border-b border-border ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
         onMouseLeave={handleMenuLeave}
       >
-        <div className="w-full px-4 md:px-12 flex items-center justify-between gap-4">
-
+        <div className="w-full px-3 md:px-12 flex items-center gap-3 md:gap-6 xl:gap-8 py-3 md:py-4">
           {/* Logo Section - Left Aligned */}
-          <Link href="/" className="flex flex-col items-start leading-none group active:scale-95 transition-transform">
-            <span className="text-xl md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
+          <Link href="/" className="flex flex-col items-start leading-none group active:scale-95 transition-transform shrink-0">
+            <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
               HEXAMECH
             </span>
-            <span className="text-[8px] md:text-[8px] font-bold bg-black text-white px-1.5 py-0.5 rounded-sm uppercase tracking-[0.35em] mt-0.5">
+            <span className="text-[7px] sm:text-[8px] md:text-[8px] font-bold bg-black text-white px-1 sm:px-1.5 py-0.5 rounded-sm uppercase tracking-[0.25em] sm:tracking-[0.35em] mt-0.5">
               LINICH TOOLS
             </span>
           </Link>
 
-          {/* Navigation - Hidden on Mobile */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-foreground">
-            {/* ... items ... */}
-            <Link href="/" className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Home</Link>
+          {/* Navigation - Grouped closely with Logo */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-foreground shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
+            <Link href="/" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Home</Link>
             <div className="relative group/nav" onMouseEnter={() => handleMouseEnter("products")}>
-              <Link href="/shop" className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all flex items-center gap-2">
-                Products <ChevronDown className="h-3 w-3 group-hover/nav:rotate-180 transition-transform opacity-50" />
+              <Link href="/shop" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all flex items-center gap-1.5">
+                Products <ChevronDown className="h-2.5 w-2.5 group-hover/nav:rotate-180 transition-transform opacity-50" />
               </Link>
               {activeMenu === "products" && <BrandsMenu onClose={() => setActiveMenu(null)} />}
             </div>
-            <Link href="/brands" className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Brands</Link>
-            <Link href="/about" className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">About</Link>
-            <Link href="/contact" className="text-[9px] font-bold uppercase tracking-widest hover:text-[#09757a] dark:hover:text-orange-500 transition-all">Contact</Link>
+            <Link href="/brands" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Brands</Link>
+            <Link href="/about" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">About</Link>
+            <Link href="/contact" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Contact</Link>
           </nav>
 
-          {/* Right Actions - Theme & Desktop CTAs */}
-          <div className="flex items-center gap-3">
-            <div className="hidden lg:flex items-center gap-6">
+          {/* Fully Expanded Search Box - Anchored to Right Actions */}
+          <div ref={searchRef} className="hidden lg:flex flex-1 relative group/search ml-4 xl:ml-8">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+              <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-[#09757a] transition-colors" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search 10,000+ Industrial tools, equipment, or brands..."
+              className="h-10 w-full pl-10 pr-4 text-[11px] font-black text-black placeholder:text-zinc-500 bg-muted/40 border-border rounded-xl focus-visible:ring-2 focus-visible:ring-[#09757a]/20 focus-visible:border-[#09757a] transition-all"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+            />
+            {isSearchFocused && debouncedQuery.length >= 2 && (
+              <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
+            )}
+          </div>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 md:gap-3 shrink-0 ml-auto">
+            <div className="hidden lg:flex items-center gap-4">
+              <Link href="/contact">
+                <Button className="bg-[#111] hover:bg-[#09757a] text-white px-4 h-9 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95 shadow-md">
+                  Get Quote
+                </Button>
+              </Link>
+
+              <div className="h-8 w-px bg-border mx-1" />
+
               <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-2.5 group">
                 <div className="h-8 w-8 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-[#09757a]/50 group-hover:bg-[#09757a]/5 transition-all">
                   <Phone className="h-3.5 w-3.5 text-[#09757a]" />
                 </div>
                 <span className="text-[10px] font-black tracking-tight">{CONTACT.PHONE}</span>
               </a>
+
             </div>
 
-            <Link href="/contact" className="hidden sm:block">
-              <Button className="bg-[#111] hover:bg-[#09757a] text-white px-5 h-9 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95 shadow-lg">
-                Get Quote
-              </Button>
-            </Link>
-
-            <Button variant="ghost" size="icon" className="lg:hidden h-9 w-9 hover:bg-black/5 active:scale-95" onClick={() => setMobileMenuOpen(true)}>
+            <Button variant="ghost" size="icon" className="lg:hidden h-10 w-10 hover:bg-black/5 active:scale-95 rounded-full" onClick={() => setMobileMenuOpen(true)}>
               <Menu className="h-6 w-6" />
             </Button>
           </div>
@@ -158,12 +201,34 @@ export function Header() {
               </Button>
             </div>
             {/* Links and other items */}
-            <div className="flex flex-col gap-6 flex-1">
-              <Link href="/" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Home</Link>
-              <Link href="/shop" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Shop</Link>
-              <Link href="/brands" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Brands</Link>
-              <Link href="/about" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">About</Link>
-              <Link href="/contact" className="text-2xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Contact</Link>
+            {/* Mobile Search */}
+            <div className="mb-6 relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <Input
+                type="text"
+                placeholder="Search tools..."
+                className="h-11 pl-10 bg-muted/50 border-border rounded-xl text-sm font-bold"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {debouncedQuery.length >= 2 && (
+                <div className="absolute top-full left-0 right-0 z-[110] mt-1">
+                  <SearchDropdown query={debouncedQuery} onClose={() => {
+                    setMobileMenuOpen(false)
+                    setSearchQuery("")
+                  }} />
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-5 flex-1 overflow-y-auto">
+              <Link href="/" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Home</Link>
+              <Link href="/shop" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Shop</Link>
+              <Link href="/brands" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Brands</Link>
+              <Link href="/about" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">About</Link>
+              <Link href="/contact" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Contact</Link>
             </div>
 
             {/* Mobile Menu Footer */}

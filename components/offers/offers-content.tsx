@@ -15,12 +15,12 @@ export function OffersContent() {
   const [touchEnd, setTouchEnd] = useState(0)
   const [isDragging, setIsDragging] = useState(false)
 
-  const handleTouchStart = (e) => {
+  const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.targetTouches[0].clientX)
     setIsDragging(true)
   }
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     setTouchEnd(e.targetTouches[0].clientX)
   }
 
@@ -40,7 +40,7 @@ export function OffersContent() {
     }
   }
 
-  const goToSlide = (index) => {
+  const goToSlide = (index: number) => {
     setCurrentIndex(index)
   }
 
@@ -169,9 +169,8 @@ export function OffersContent() {
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`h-3 rounded-full transition-all duration-300 ${
-                      index === currentIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/60 w-3"
-                    }`}
+                    className={`h-3 rounded-full transition-all duration-300 ${index === currentIndex ? "bg-primary w-8" : "bg-primary/30 hover:bg-primary/60 w-3"
+                      }`}
                     aria-label={`Go to slide ${index + 1}`}
                   />
                 ))}

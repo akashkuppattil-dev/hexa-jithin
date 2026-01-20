@@ -20,11 +20,13 @@ export function QuickViewModal({ product, open, onClose }: QuickViewModalProps) 
   const { addToCart, addToWishlist, isInWishlist, addToCompare, isInCompare } = useCart()
 
   const handleAddToCart = () => {
+    // Note: Prices would need to be fetched from a separate source
+    // as the Product interface doesn't include pricing
     addToCart({
       id: product.id,
       name: product.name,
       sku: product.sku,
-      price: product.price,
+      price: 0, // Price not available in Product interface
       minOrderQty: product.minOrderQty,
       image: product.image,
       quantity,
@@ -56,13 +58,10 @@ export function QuickViewModal({ product, open, onClose }: QuickViewModalProps) 
               <p className="text-sm text-muted-foreground mt-1">SKU: {product.sku}</p>
             </div>
 
-            <div className="flex items-baseline gap-3">
-              <span className="text-3xl font-bold text-primary">₹{product.price.toLocaleString()}</span>
-              {product.originalPrice && (
-                <span className="text-lg text-muted-foreground line-through">
-                  ₹{product.originalPrice.toLocaleString()}
-                </span>
-              )}
+            <div className="mb-4">
+              <p className="text-sm text-muted-foreground uppercase tracking-wider mb-1">Pricing</p>
+              <p className="text-lg font-bold text-primary">Contact for Quote</p>
+              <p className="text-xs text-muted-foreground mt-1">Wholesale pricing available</p>
             </div>
 
             <p className="text-muted-foreground">{product.description}</p>
