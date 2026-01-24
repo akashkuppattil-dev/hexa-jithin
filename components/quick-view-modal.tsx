@@ -100,7 +100,7 @@ export function QuickViewModal({ product, open, onClose }: QuickViewModalProps) 
                 onClick={(e) => {
                   e.preventDefault()
                   window.open(
-                    `https://wa.me/917510638693?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}%20${product.sku}`,
+                    `https://wa.me/919037872505?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}%20${product.sku}`,
                     "_blank",
                   )
                 }}

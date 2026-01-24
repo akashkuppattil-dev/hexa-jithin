@@ -93,29 +93,33 @@ export function Header() {
         className={`sticky top-0 w-full z-50 bg-background text-foreground transition-all duration-300 shadow-sm border-b border-border ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}
         onMouseLeave={handleMenuLeave}
       >
-        <div className="w-full px-3 md:px-12 flex items-center gap-3 md:gap-6 xl:gap-8 py-3 md:py-4">
-          {/* Logo Section - Left Aligned */}
-          <Link href="/" className="flex flex-col items-start leading-none group active:scale-95 transition-transform shrink-0">
-            <span className="text-lg sm:text-xl md:text-2xl font-black tracking-tighter uppercase font-sans text-foreground transition-colors">
-              HEXAMECH
-            </span>
-            <span className="text-[7px] sm:text-[8px] md:text-[8px] font-bold bg-black text-white px-1 sm:px-1.5 py-0.5 rounded-sm uppercase tracking-[0.25em] sm:tracking-[0.35em] mt-0.5">
-              LINICH TOOLS
-            </span>
+        <div className="w-full px-4 sm:px-6 md:px-12 flex items-center gap-2 sm:gap-4 xl:gap-6 py-2 md:py-3">
+          {/* Logo Section - Full Brand - Slim & Clean */}
+          <Link href="/" className="flex items-center group active:scale-95 transition-transform shrink-0">
+            <div className="relative w-40 xs:w-48 sm:w-56 md:w-64 h-8 sm:h-12 md:h-14">
+              <Image
+                src="/hexamech-logo.png"
+                alt="Hexamech Linich Tools"
+                fill
+                className="object-contain object-left mix-blend-multiply scale-[1.3] xs:scale-[1.55] origin-left"
+                priority
+              />
+            </div>
           </Link>
 
           {/* Navigation - Grouped closely with Logo */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-foreground shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
-            <Link href="/" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Home</Link>
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 text-foreground shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
+            <Link href="/" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Home</Link>
             <div className="relative group/nav" onMouseEnter={() => handleMouseEnter("products")}>
-              <Link href="/shop" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all flex items-center gap-1.5">
+              <Link href="/shop" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all flex items-center gap-1.5">
                 Products <ChevronDown className="h-2.5 w-2.5 group-hover/nav:rotate-180 transition-transform opacity-50" />
               </Link>
               {activeMenu === "products" && <BrandsMenu onClose={() => setActiveMenu(null)} />}
             </div>
-            <Link href="/brands" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Brands</Link>
-            <Link href="/about" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">About</Link>
-            <Link href="/contact" className="text-[9px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Contact</Link>
+            <Link href="/brands" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Brands</Link>
+            <Link href="/about" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">About</Link>
+            <Link href="/gallery" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Gallery</Link>
+            <Link href="/contact" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Contact</Link>
           </nav>
 
           {/* Fully Expanded Search Box - Anchored to Right Actions */}
@@ -138,23 +142,6 @@ export function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2 md:gap-3 shrink-0 ml-auto">
-            <div className="hidden lg:flex items-center gap-4">
-              <Link href="/contact">
-                <Button className="bg-[#111] hover:bg-[#09757a] text-white px-4 h-9 text-[10px] font-black uppercase tracking-widest rounded-lg transition-all active:scale-95 shadow-md">
-                  Get Quote
-                </Button>
-              </Link>
-
-              <div className="h-8 w-px bg-border mx-1" />
-
-              <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-2.5 group">
-                <div className="h-8 w-8 rounded-full bg-background flex items-center justify-center border border-border group-hover:border-[#09757a]/50 group-hover:bg-[#09757a]/5 transition-all">
-                  <Phone className="h-3.5 w-3.5 text-[#09757a]" />
-                </div>
-                <span className="text-[10px] font-black tracking-tight">{CONTACT.PHONE}</span>
-              </a>
-
-            </div>
 
             <Button variant="ghost" size="icon" className="lg:hidden h-10 w-10 hover:bg-black/5 active:scale-95 rounded-full" onClick={() => setMobileMenuOpen(true)}>
               <Menu className="h-6 w-6" />
@@ -182,10 +169,6 @@ export function Header() {
         <Link href="/brands" className={`flex flex-col items-center transition-all ${pathname === '/brands' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
           <Users className="h-5 w-5 mb-0.5" />
           <span className="text-[8px] font-black uppercase tracking-tighter">Brands</span>
-        </Link>
-        <Link href="/contact" className={`flex flex-col items-center transition-all ${pathname === '/contact' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
-          <Phone className="h-5 w-5 mb-0.5" />
-          <span className="text-[8px] font-black uppercase tracking-tighter">Call</span>
         </Link>
       </div>
 
@@ -228,20 +211,12 @@ export function Header() {
               <Link href="/shop" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Shop</Link>
               <Link href="/brands" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Brands</Link>
               <Link href="/about" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">About</Link>
+              <Link href="/gallery" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Gallery</Link>
               <Link href="/contact" className="text-xl font-black uppercase tracking-widest hover:text-[#09757a] transition-all border-b border-border/50 pb-2">Contact</Link>
             </div>
 
             {/* Mobile Menu Footer */}
             <div className="mt-auto space-y-4 pt-6 border-t border-border">
-              <a href={`tel:${CONTACT.PHONE}`} className="flex items-center gap-3 group">
-                <div className="h-10 w-10 rounded-full bg-[#09757a]/10 flex items-center justify-center text-[#09757a]">
-                  <Phone className="h-5 w-5" />
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-[#09757a]">Call Us</span>
-                  <span className="text-sm font-bold">{CONTACT.PHONE}</span>
-                </div>
-              </a>
               <a href={CONTACT.WHATSAPP_URL} target="_blank" className="flex items-center gap-3 group">
                 <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500">
                   <Mail className="h-5 w-5" />

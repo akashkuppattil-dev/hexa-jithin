@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import type { Product } from "@/lib/products"
+import { CONTACT } from "@/lib/constants"
 import { CheckCircle, Send, Plus, Minus } from "lucide-react"
 import { useState } from "react"
 
@@ -21,16 +22,18 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
     const increment = () => setQty(prev => prev + 1)
     const decrement = () => setQty(prev => Math.max(0, prev - 1))
 
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         setIsLoading(true)
 
         const formData = new FormData(e.currentTarget)
         const data = {
+            productName: product.name,
+            productSku: product.sku,
             name: formData.get("name") as string,
             mobile: formData.get("mobile") as string,
             email: formData.get("email") as string,
-            quantity: qty,
             message: formData.get("message") as string,
         }
 
@@ -41,17 +44,26 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
             return
         }
 
-        // Construct WhatsApp Message
-        const text = `*New Purchase Inquiry*\n\n*Product:* ${product.name}\n*SKU:* ${product.sku}\n\n*Customer Details:*\nName: ${data.name}\nMobile: ${data.mobile}\nEmail: ${data.email}\nQuantity: ${data.quantity}\n\n*Message:*\n${data.message}`
+        try {
+            const response = await fetch('/api/product-inquiry', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
 
-        const whatsappUrl = `https://wa.me/917510638693?text=${encodeURIComponent(text)}`
+            if (!response.ok) {
+                throw new Error('Failed to send inquiry')
+            }
 
-        // Simulate small delay then open WhatsApp
-        await new Promise((resolve) => setTimeout(resolve, 800))
-        window.open(whatsappUrl, "_blank")
-
-        setIsLoading(false)
-        setIsSubmitted(true)
+            setIsLoading(false)
+            setIsSubmitted(true)
+        } catch (error) {
+            console.error('Error submitting inquiry:', error)
+            alert('Failed to send inquiry. Please try again or contact us directly.')
+            setIsLoading(false)
+        }
     }
 
     if (isSubmitted) {
@@ -62,7 +74,7 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                         <CheckCircle className="h-6 w-6 text-[#09757a]" />
                     </div>
                     <h3 className="text-lg font-black text-foreground mb-1 uppercase tracking-tight">Inquiry Sent!</h3>
-                    <p className="text-xs text-foreground mb-4 font-black text-center">Redirecting you to WhatsApp to complete your order...</p>
+                    <p className="text-xs text-foreground mb-4 font-black text-center">Thank you for your interest. Our sales team will contact you shortly.</p>
                     <Button variant="outline" onClick={() => setIsSubmitted(false)} className="text-[10px] uppercase font-black tracking-widest h-8 border-foreground">
                         Send Another
                     </Button>
@@ -89,59 +101,29 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                     />
                 </div>
 
-                {/* Quantity with +/- Icons */}
                 <div className="space-y-1">
-                    <Label className="text-foreground font-black text-[9px] uppercase tracking-wider">Required Quantity</Label>
-                    <div className="flex items-center gap-3">
-                        <Button
-                            type="button"
-                            variant="outline"
-                            size="icon"
-                            onClick={decrement}
-                            className="h-8 w-8 rounded-md border-border bg-background hover:bg-muted"
-                        >
-                            <Minus className="h-3 w-3 text-foreground" />
-                        </Button>
-                        <div className="w-12 text-center text-[13px] font-black text-foreground">
-                            {qty}
-                        </div>
-                        <Button
-                            type="button"
-                            variant="outline"
-                            size="icon"
-                            onClick={increment}
-                            className="h-8 w-8 rounded-md border-border bg-background hover:bg-muted"
-                        >
-                            <Plus className="h-3 w-3 text-foreground" />
-                        </Button>
-                        <span className="text-[10px] font-black text-zinc-500 uppercase ml-2">Units</span>
-                    </div>
+                    <Label htmlFor="name" className="text-foreground font-black text-[9px] uppercase tracking-wider">Your Name *</Label>
+                    <Input
+                        id="name"
+                        name="name"
+                        placeholder="Full Name"
+                        required
+                        className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-black text-foreground placeholder:text-zinc-400"
+                    />
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                        <Label htmlFor="name" className="text-foreground font-black text-[9px] uppercase tracking-wider">Your Name *</Label>
-                        <Input
-                            id="name"
-                            name="name"
-                            placeholder="Full Name"
-                            required
-                            className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-black text-foreground placeholder:text-zinc-400"
-                        />
-                    </div>
-                    <div className="space-y-1">
-                        <Label htmlFor="mobile" className="text-foreground font-black text-[9px] uppercase tracking-wider">Mobile (10 Digits) *</Label>
-                        <Input
-                            id="mobile"
-                            name="mobile"
-                            type="tel"
-                            placeholder="9876543210"
-                            required
-                            pattern="\d{10}"
-                            title="Please enter a 10 digit mobile number"
-                            className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-black text-foreground placeholder:text-zinc-400"
-                        />
-                    </div>
+                <div className="space-y-1">
+                    <Label htmlFor="mobile" className="text-foreground font-black text-[9px] uppercase tracking-wider">Mobile (10 Digits) *</Label>
+                    <Input
+                        id="mobile"
+                        name="mobile"
+                        type="tel"
+                        placeholder="9876543210"
+                        required
+                        pattern="\d{10}"
+                        title="Please enter a 10 digit mobile number"
+                        className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-black text-foreground placeholder:text-zinc-400"
+                    />
                 </div>
 
                 <div className="space-y-1">

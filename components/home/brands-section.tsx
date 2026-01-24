@@ -83,24 +83,24 @@ export function BrandsSection() {
               <Card className="bg-card border border-border shadow-sm rounded-2xl p-6 md:p-10 transition-all hover:bg-accent/5 overflow-hidden relative">
                 <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#09757a]/5 blur-[80px] rounded-full pointer-events-none group-hover/featured:bg-[#09757a]/10 transition-all duration-500" />
 
-                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-14 relative z-10">
-                  <div className="relative w-48 h-28 md:w-64 md:h-36 flex-shrink-0 group-hover/featured:scale-105 transition-transform duration-500 p-6 bg-white rounded-xl shadow-2xl flex items-center justify-center">
+                <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-8 md:gap-14 relative z-10">
+                  <div className="relative w-40 h-24 sm:w-48 sm:h-28 md:w-64 md:h-36 flex-shrink-0 group-hover/featured:scale-105 transition-transform duration-500 p-4 sm:p-6 bg-white rounded-xl shadow-2xl flex items-center justify-center">
                     <Image
                       src="/images/brands/linich-logo.jpg"
                       alt="LINICH Primary Partner"
                       fill
-                      className="object-contain p-3"
+                      className="object-contain p-2 sm:p-3"
                     />
                   </div>
                   <div className="text-center md:text-left flex-1">
-                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 mb-3">
-                      <h3 className="text-2xl sm:text-3xl font-black text-foreground tracking-tighter uppercase italic">LINICH TOOLS</h3>
-                      <Badge className="bg-[#09757a] text-white border-none text-[8px] font-bold uppercase tracking-widest px-3 py-1 shadow-md shadow-[#09757a]/20">Exclusive Partner</Badge>
+                    <div className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-2 sm:gap-3 mb-3">
+                      <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-foreground tracking-tighter uppercase italic">LINICH TOOLS</h3>
+                      <Badge className="bg-[#09757a] text-white border-none text-[7px] sm:text-[8px] font-bold uppercase tracking-widest px-2 sm:px-3 py-1 shadow-md shadow-[#09757a]/20">Exclusive Partner</Badge>
                     </div>
-                    <p className="text-sm sm:text-base text-foreground font-black leading-relaxed max-w-xl mb-6">
+                    <p className="text-[12px] sm:text-sm md:text-base text-foreground font-black leading-relaxed max-w-xl mb-4 sm:mb-6 px-2 sm:px-0">
                       Standardizing industrial durability across India. Exclusive supplier of precision-engineered equipment for modern workshops.
                     </p>
-                    <div className="inline-flex items-center gap-3 text-[#09757a] font-black text-[10px] uppercase tracking-[0.4em] group-hover/featured:gap-5 transition-all">
+                    <div className="inline-flex items-center gap-2 sm:gap-3 text-[#09757a] font-black text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] group-hover/featured:gap-5 transition-all">
                       Discover the Professional Line <ArrowRight className="h-4 w-4" />
                     </div>
                   </div>

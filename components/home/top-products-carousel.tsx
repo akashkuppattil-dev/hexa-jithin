@@ -91,7 +91,7 @@ export function TopProductsCarousel() {
         </div>
 
         {/* Mobile View: 2x2 Grid (Static) */}
-        <div className="sm:hidden grid grid-cols-2 gap-3 mb-8">
+        <div className="sm:hidden grid grid-cols-2 gap-4 px-2 mb-8">
           {topProducts.slice(0, 4).map((product) => (
             <div key={product.id} className="h-full">
               <ProductCard product={product} />
@@ -135,11 +135,11 @@ export function TopProductsCarousel() {
           </Button>
         </div>
 
-        <div className="mt-12 text-center">
-          <Link href="/shop">
-            <Button size="lg" className="bg-foreground hover:bg-[#09757a] text-background font-bold uppercase tracking-[0.2em] text-[10px] px-8 h-10 rounded-md transition-all shadow-lg active:scale-95 group">
+        <div className="mt-8 md:mt-12 text-center px-4">
+          <Link href="/shop" className="block sm:inline-block w-full sm:w-auto">
+            <Button size="lg" className="w-full sm:w-auto bg-foreground hover:bg-[#09757a] text-background font-bold uppercase tracking-[0.2em] text-[10px] sm:text-[11px] px-8 h-12 sm:h-14 rounded-lg transition-all shadow-lg active:scale-95 group">
               Browse All Professional Tools
-              <ArrowRight className="ml-3 h-3 w-3 group-hover:translate-x-2 transition-transform" />
+              <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-2 transition-transform" />
             </Button>
           </Link>
         </div>

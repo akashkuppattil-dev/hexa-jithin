@@ -52,7 +52,7 @@ export function TrustBand() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="py-8 bg-background border-y border-border relative overflow-hidden h-[200px] md:h-[220px] lg:h-[240px] transition-colors">
+    <section ref={sectionRef} className="py-8 bg-background border-y border-border relative overflow-hidden h-fit sm:h-[220px] lg:h-[240px] transition-colors">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[100%] bg-gradient-to-r from-transparent via-[#09757a]/5 to-transparent pointer-events-none" />
 
@@ -63,10 +63,12 @@ export function TrustBand() {
         @keyframes float3 { 0%, 100% { transform: translate(0, 0) } 25% { transform: translate(20px, 15px) } 50% { transform: translate(-8px, -20px) } 75% { transform: translate(-20px, 8px) } }
         @keyframes float4 { 0%, 100% { transform: translate(0, 0) } 25% { transform: translate(-15px, -20px) } 50% { transform: translate(20px, 8px) } 75% { transform: translate(8px, -15px) } }
         
-        .animate-float-1 { animation: float1 10s ease-in-out infinite; }
-        .animate-float-2 { animation: float2 11s ease-in-out infinite reverse; }
-        .animate-float-3 { animation: float3 12s ease-in-out infinite; }
-        .animate-float-4 { animation: float4 13s ease-in-out infinite reverse; }
+        @media (min-width: 768px) {
+          .animate-float-1 { animation: float1 10s ease-in-out infinite; }
+          .animate-float-2 { animation: float2 11s ease-in-out infinite reverse; }
+          .animate-float-3 { animation: float3 12s ease-in-out infinite; }
+          .animate-float-4 { animation: float4 13s ease-in-out infinite reverse; }
+        }
         
         .pause-animation:hover { animation-play-state: paused; }
       `}</style>

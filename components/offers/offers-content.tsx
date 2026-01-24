@@ -198,7 +198,7 @@ export function OffersContent() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="https://wa.me/917510638693?text=Hi%20Hexamech%2C%20I%20want%20to%20enquire%20about%20bulk%20order%20discounts"
+              href="https://wa.me/919037872505?text=Hi%20Hexamech%2C%20I%20want%20to%20enquire%20about%20bulk%20order%20discounts"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -49,19 +49,12 @@ function ProductCardComponent({ product }: ProductCardProps) {
           />
         </Link>
 
-        {/* Floating Quick WhatsApp - 'Fast' Enquiry */}
+        {/* Floating Quick Share */}
         <button
-          onClick={(e) => {
-            e.preventDefault()
-            e.stopPropagation()
-            window.open(
-              `https://wa.me/917510638693?text=I'm%20interested%20in%20${encodeURIComponent(product.name)}%20SKU:%20${product.sku}`,
-              "_blank",
-            )
-          }}
-          className="absolute bottom-2 right-2 z-30 h-7 w-7 bg-emerald-500 text-white rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
+          onClick={handleShare}
+          className="absolute bottom-2 right-2 z-30 h-7 w-7 bg-background/80 backdrop-blur-md text-[#09757a] border border-[#09757a]/20 rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-all md:opacity-0 md:group-hover:opacity-100"
         >
-          <MessageCircle className="h-3.5 w-3.5 fill-current" />
+          <Share2 className="h-3.5 w-3.5" />
         </button>
 
         {/* Stock Status - Tiny */}
@@ -75,31 +68,47 @@ function ProductCardComponent({ product }: ProductCardProps) {
         )}
       </div>
 
-      <CardContent className="p-2 sm:p-2.5 flex-grow flex flex-col bg-card">
+      <CardContent className="p-3 sm:p-4 flex-grow flex flex-col bg-card">
         {/* Brand & SKU */}
-        <div className="flex items-center justify-between gap-2 mb-1">
-          <span className="text-[7px] md:text-[8px] font-black text-[#09757a] uppercase tracking-widest truncate">
+        <div className="flex items-center justify-between gap-2 mb-1.5">
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-black text-[#09757a] uppercase tracking-widest truncate">
             {product.brand}
           </span>
-          <span className="text-[7px] md:text-[8px] font-black text-zinc-500 uppercase whitespace-nowrap">
+          <span className="text-[8px] sm:text-[9px] md:text-[10px] font-black text-zinc-500 uppercase whitespace-nowrap">
             {product.sku}
           </span>
         </div>
 
         {/* Product Name - Compact for 2-4 Columns */}
-        <Link href={`/product/${product.id}`} className="group-hover:text-[#09757a] transition-colors flex-grow">
-          <h3 className="font-extrabold text-[10px] sm:text-[11px] md:text-xs lg:text-sm text-foreground mb-1 leading-tight line-clamp-2 uppercase tracking-tight">
+        <Link href={`/product/${product.id}`} className="group-hover:text-[#09757a] transition-colors">
+          <h3 className="font-extrabold text-[12px] sm:text-xs md:text-sm lg:text-base text-foreground mb-2 leading-tight line-clamp-2 uppercase tracking-tight">
             {product.name}
           </h3>
         </Link>
 
+        {/* Key Features */}
+        {product.features && product.features.length > 0 && (
+          <div className="flex-grow space-y-1 mb-3">
+            {product.features.slice(0, 3).map((feature, idx) => (
+              <div key={idx} className="flex items-start gap-1.5">
+                <div className="h-2.5 w-2.5 rounded-full bg-[#09757a]/20 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="h-1 w-1 rounded-full bg-[#09757a]" />
+                </div>
+                <span className="text-[10px] sm:text-[11px] text-foreground/80 leading-tight line-clamp-1 font-bold">
+                  {feature}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
+
         {/* Premium Detail Link */}
-        <div className="mt-2 flex items-center justify-between">
-          <Link href={`/product/${product.id}`} className="text-[7px] md:text-[8px] font-black text-[#111] hover:text-[#09757a] uppercase tracking-widest flex items-center gap-1 transition-all">
-            DETAILS <ArrowRight className="h-2 w-2" />
+        <div className="mt-auto flex items-center justify-between pt-2 border-t border-border/50">
+          <Link href={`/product/${product.id}`} className="text-[9px] sm:text-[10px] font-black text-[#111] hover:text-[#09757a] uppercase tracking-widest flex items-center gap-1 transition-all">
+            DETAILS <ArrowRight className="h-2.5 w-2.5" />
           </Link>
 
-          <span className="text-[8px] font-black text-[#09757a] uppercase tracking-widest flex items-center gap-1">
+          <span className="text-[9px] sm:text-[10px] font-black text-[#09757a] uppercase tracking-widest flex items-center gap-1">
             ENQUIRE
           </span>
         </div>

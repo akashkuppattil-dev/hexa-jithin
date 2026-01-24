@@ -64,7 +64,7 @@ export const products: Product[] = [
     sku: "LIN-3100",
     category: "collision-repair",
     brand: "LINICH",
-    image: "/images/products/1-linich-auto-puller.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional automatic dent pulling machine for precision body panel repair. Features dual triggering modes for controlled dent removal with minimal metal distortion.",
     specs: {
@@ -94,7 +94,7 @@ export const products: Product[] = [
     sku: "LIN-LCR70",
     category: "welding",
     brand: "LINICH",
-    image: "/images/products/2-linich-spot-welder.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty dual-purpose spot welder and dent puller with spring balancer and temperature-controlled cooling system for production environments.",
     specs: {
@@ -124,7 +124,7 @@ export const products: Product[] = [
     sku: "CAR-CTR9",
     category: "welding",
     brand: "CAR-O-LINER",
-    image: "/images/products/3-car-o-liner-ctr9.jpg",
+    image: "/placeholder.svg",
     description:
       "Lightweight inverter spot welder with ergonomic design and CANBUS communication for precision collision repair operations.",
     specs: {
@@ -154,7 +154,7 @@ export const products: Product[] = [
     sku: "CAR-CRX",
     category: "welding",
     brand: "CAR-O-LINER",
-    image: "/images/products/4-car-o-liner-crx.jpg",
+    image: "/placeholder.svg",
     description:
       "Inverter-based spot welder with ultra-lightweight and compact design for modern collision repair centers with space constraints.",
     specs: {
@@ -187,7 +187,7 @@ export const products: Product[] = [
     sku: "BP-MIG160",
     category: "welding",
     brand: "Blue Point",
-    image: "/images/products/5-blue-point-mig.jpg",
+    image: "/placeholder.svg",
     description:
       "Dual-function MIG & MMA welding machine with IGBT inverter technology for professional fabrication and repair work.",
     specs: {
@@ -217,7 +217,7 @@ export const products: Product[] = [
     sku: "AUTO-250XL",
     category: "welding",
     brand: "LINICH",
-    image: "/images/products/6-automig-250xl.jpg",
+    image: "/placeholder.svg",
     description:
       "High-performance MIG/MAG welding machine with optimized inductor for spatter-free welding in industrial workshop settings.",
     specs: {
@@ -250,7 +250,7 @@ export const products: Product[] = [
     sku: "HTL-4T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/7-hydraulic-two-post-lift.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty hydraulic two-post lift with symmetric/asymmetric arms for professional vehicle service and repair operations.",
     specs: {
@@ -280,7 +280,7 @@ export const products: Product[] = [
     sku: "FJ-5T",
     category: "lifting",
     brand: "LINICH",
-    image: "/images/products/8-floor-jack-5ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional hydraulic floor jack with quick-release mechanism and dual pump system for rapid vehicle lifting.",
     specs: {
@@ -310,7 +310,7 @@ export const products: Product[] = [
     sku: "EC-500",
     category: "lifting",
     brand: "LINICH",
-    image: "/images/products/9-engine-crane-500kg.jpg",
+    image: "/placeholder.svg",
     description:
       "Compact folding engine crane for light-duty engine lifting and positioning operations.",
     specs: {
@@ -340,7 +340,7 @@ export const products: Product[] = [
     sku: "EC-2T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/10-engine-crane-2ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty engine crane for lifting and positioning engines during complex service and overhaul operations.",
     specs: {
@@ -370,7 +370,7 @@ export const products: Product[] = [
     sku: "ES-450",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/11-engine-stand.jpg",
+    image: "/placeholder.svg",
     description:
       "Rotating engine stand for safe engine mounting and 360° rotation during rebuilding and overhaul operations.",
     specs: {
@@ -403,7 +403,7 @@ export const products: Product[] = [
     sku: "TJ-500K",
     category: "transmission",
     brand: "Generic Pro",
-    image: "/images/products/12-trans-jack-500kg.jpg",
+    image: "/placeholder.svg",
     description:
       "Hydraulic transmission jack with low-profile design for safe transmission removal and installation operations.",
     specs: {
@@ -433,7 +433,7 @@ export const products: Product[] = [
     sku: "TJ-1T",
     category: "transmission",
     brand: "LINICH",
-    image: "/images/products/13-trans-jack-1ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Hydraulic transmission jack with adjustable saddle for safe controlled transmission removal and installation.",
     specs: {
@@ -463,7 +463,7 @@ export const products: Product[] = [
     sku: "TJ-2T",
     category: "transmission",
     brand: "LINICH",
-    image: "/images/products/14-trans-jack-2ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty transmission jack with stabilizing base for demanding transmission service on larger vehicles.",
     specs: {
@@ -496,7 +496,7 @@ export const products: Product[] = [
     sku: "HP-20T",
     category: "hydraulic",
     brand: "LINICH",
-    image: "/images/products/15-hydraulic-press-20ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Precision 20-ton hydraulic press for bearing removal, component pressing, and metal working operations.",
     specs: {
@@ -526,7 +526,7 @@ export const products: Product[] = [
     sku: "HP-30T",
     category: "hydraulic",
     brand: "LINICH",
-    image: "/images/products/16-hydraulic-press-30ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty 30-ton hydraulic press engineered for demanding pressing, bending, and straightening operations.",
     specs: {
@@ -556,7 +556,7 @@ export const products: Product[] = [
     sku: "HP-50T",
     category: "hydraulic",
     brand: "Generic Pro",
-    image: "/images/products/17-hydraulic-press-50ton.jpg",
+    image: "/placeholder.svg",
     description:
       "Industrial-grade 50-ton hydraulic press for high-force pressing, bending, and straightening of metal components.",
     specs: {
@@ -589,7 +589,7 @@ export const products: Product[] = [
     sku: "SATA-1000IC",
     category: "spray-guns",
     brand: "SATA",
-    image: "/images/products/18-sata-jet-1000ic.jpg",
+    image: "/placeholder.svg",
     description:
       "Premium German-engineered HVLP spray gun for solvent and water-based automotive coatings with superior atomization.",
     specs: {
@@ -619,7 +619,7 @@ export const products: Product[] = [
     sku: "DVB-DV1",
     category: "spray-guns",
     brand: "DeVilbiss",
-    image: "/images/products/19-devilbiss-dv1.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional basecoat spray gun with exceptional atomization and control for modern automotive coatings.",
     specs: {
@@ -649,7 +649,7 @@ export const products: Product[] = [
     sku: "DVB-PROLITE",
     category: "spray-guns",
     brand: "DeVilbiss",
-    image: "/images/products/20-devilbiss-prolite.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional spray gun with forged aluminum body for maximum atomization efficiency and long service life.",
     specs: {
@@ -679,7 +679,7 @@ export const products: Product[] = [
     sku: "3M-SG",
     category: "spray-guns",
     brand: "3M",
-    image: "/images/products/21-3m-performance.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional automotive spray gun with precision fluid delivery for consistent high-quality paint application.",
     specs: {
@@ -709,7 +709,7 @@ export const products: Product[] = [
     sku: "REX-PG",
     category: "spray-guns",
     brand: "Rexter",
-    image: "/images/products/22-rexter-paint-gun.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty pressure feed paint sprayer for professional automotive finishing.",
     specs: {
       Type: "Pressure feed",
@@ -741,7 +741,7 @@ export const products: Product[] = [
     sku: "IPB-3000",
     category: "painting",
     brand: "LINICH",
-    image: "/images/products/23-infrared-booth.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional infrared curing booth with adjustable heat and automatic distance sensing for accelerated paint drying.",
     specs: {
@@ -771,7 +771,7 @@ export const products: Product[] = [
     sku: "IRCL-PRO",
     category: "painting",
     brand: "Generic Pro",
-    image: "/images/products/24-infrared-heat-gun.jpg",
+    image: "/placeholder.svg",
     description:
       "Industrial infrared curing system with adjustable temperature and automatic overload protection for paint acceleration.",
     specs: {
@@ -804,7 +804,7 @@ export const products: Product[] = [
     sku: "AC-30L",
     category: "pneumatic",
     brand: "LINICH",
-    image: "/images/products/25-air-comp-30l.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional 30L air compressor with 1200W motor for workshop pneumatic tool and spray operations.",
     specs: {
@@ -834,7 +834,7 @@ export const products: Product[] = [
     sku: "LIN-80L",
     category: "pneumatic",
     brand: "LINICH",
-    image: "/images/products/26-air-comp-80l.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty 80L industrial air compressor with dual functionality for continuous workshop and paint booth operations.",
     specs: {
@@ -864,7 +864,7 @@ export const products: Product[] = [
     sku: "AC-50L",
     category: "pneumatic",
     brand: "Total",
-    image: "/images/products/27-air-comp-50l.jpg",
+    image: "/placeholder.svg",
     description:
       "Oil-free air compressor with 50L tank for workshop pneumatic tools and spray painting equipment.",
     specs: {
@@ -894,7 +894,7 @@ export const products: Product[] = [
     sku: "VC-IND",
     category: "pneumatic",
     brand: "LINICH",
-    image: "/images/products/28-vacuum-cleaner.jpg",
+    image: "/placeholder.svg",
     description:
       "Industrial dry/wet vacuum cleaner for workshop cleaning and paint booth dust extraction.",
     specs: {
@@ -927,7 +927,7 @@ export const products: Product[] = [
     sku: "PCL-N2",
     category: "nitrogen",
     brand: "PCL",
-    image: "/images/products/29-pcl-nitrogen.jpg",
+    image: "/placeholder.svg",
     description:
       "Mobile PSA nitrogen generation system for tire inflation with preset pressure control and 4-tire simultaneous inflation.",
     specs: {
@@ -957,7 +957,7 @@ export const products: Product[] = [
     sku: "ACCURA-D60",
     category: "nitrogen",
     brand: "ACCURA",
-    image: "/images/products/30-accura-d60.jpg",
+    image: "/placeholder.svg",
     description:
       "Compact digital tire inflator with precision pressure accuracy for professional tire inflation and diagnostics.",
     specs: {
@@ -987,7 +987,7 @@ export const products: Product[] = [
     sku: "ACCURA-QUBE",
     category: "nitrogen",
     brand: "ACCURA",
-    image: "/images/products/31-accura-qube.jpg",
+    image: "/placeholder.svg",
     description:
       "Advanced touchscreen digital inflator for modern tire inflation requirements with ultra-high precision.",
     specs: {
@@ -1020,7 +1020,7 @@ export const products: Product[] = [
     sku: "BP-SET",
     category: "special-tools",
     brand: "Blue Point",
-    image: "/images/products/32-bearing-puller-set.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional 6-piece bearing puller set with sizes from 75mm to 300mm for precision bearing extraction.",
     specs: {
@@ -1049,7 +1049,7 @@ export const products: Product[] = [
     sku: "HCSC-PRO",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/33-spring-compressor.jpg",
+    image: "/placeholder.svg",
     description:
       "Hydraulic coil spring compressor for safe compression during suspension repair and replacement operations.",
     specs: {
@@ -1082,7 +1082,7 @@ export const products: Product[] = [
     sku: "FM-175",
     category: "measurement",
     brand: "Fluke",
-    image: "/images/products/34-fluke-multimeter.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional digital multimeter for electrical diagnostics with industry-standard accuracy for vehicle electrical systems.",
     specs: {
@@ -1111,7 +1111,7 @@ export const products: Product[] = [
     sku: "MM-25",
     category: "measurement",
     brand: "Mitutoyo",
-    image: "/images/products/35-mitutoyo-micrometer.jpg",
+    image: "/placeholder.svg",
     description:
       "Precision micrometer for accurate measurements up to 25mm for engine work and component inspection.",
     specs: {
@@ -1140,7 +1140,7 @@ export const products: Product[] = [
     sku: "VC-MIT",
     category: "measurement",
     brand: "Mitutoyo",
-    image: "/images/products/36-vernier-caliper.jpg",
+    image: "/placeholder.svg",
     description:
       "Precision stainless steel vernier caliper for external and internal measurements in mechanical work.",
     specs: {
@@ -1169,7 +1169,7 @@ export const products: Product[] = [
     sku: "TPG-DIG",
     category: "measurement",
     brand: "PCL",
-    image: "/images/products/37-tyre-gauge.jpg",
+    image: "/placeholder.svg",
     description:
       "Precision digital tire pressure gauge with backlit LCD display for accurate tire inflation diagnostics.",
     specs: {
@@ -1201,7 +1201,7 @@ export const products: Product[] = [
     sku: "BOSCH-GWS800",
     category: "power-tools",
     brand: "Bosch",
-    image: "/images/products/38-bosch-gws-800.jpg",
+    image: "/placeholder.svg",
     description:
       "800W professional angle grinder with 100mm disc for cutting and grinding metal in automotive work.",
     specs: {
@@ -1231,7 +1231,7 @@ export const products: Product[] = [
     sku: "BOSCH-GBS600",
     category: "power-tools",
     brand: "Bosch",
-    image: "/images/products/39-bosch-gbs-600.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional rotary drill engineered for heavy-duty drilling operations in automotive workshops.",
     specs: {
@@ -1260,7 +1260,7 @@ export const products: Product[] = [
     sku: "BOSCH-GHG180",
     category: "power-tools",
     brand: "Bosch",
-    image: "/images/products/40-bosch-heat-gun.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional heat gun with variable temperature control for paint stripping and component heating operations.",
     specs: {
@@ -1289,7 +1289,7 @@ export const products: Product[] = [
     sku: "DW-AG800",
     category: "power-tools",
     brand: "DeWALT",
-    image: "/images/products/41-dewalt-grinder.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional 100mm angle grinder with variable speed control for cutting and grinding operations.",
     specs: {
@@ -1321,7 +1321,7 @@ export const products: Product[] = [
     sku: "MIRKA-SAND",
     category: "power-tools",
     brand: "Mirka",
-    image: "/images/products/42-mirka-sander.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional orbital sander with dust-free sanding technology for automotive surface preparation and finishing.",
     specs: {
@@ -1351,7 +1351,7 @@ export const products: Product[] = [
     sku: "MENZERNA-POLISH",
     category: "power-tools",
     brand: "Menzerna",
-    image: "/images/products/43-menzerna-compounds.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional polishing compounds with multiple cutting and polishing stages for high-gloss automotive finish.",
     specs: {
@@ -1381,7 +1381,7 @@ export const products: Product[] = [
     sku: "MAX-POLISH",
     category: "power-tools",
     brand: "MaxShine",
-    image: "/images/products/44-maxshine-polisher.jpg",
+    image: "/placeholder.svg",
     description:
       "Cordless orbital polisher with variable speed and LED work light for professional vehicle finishing and detailing.",
     specs: {
@@ -1414,7 +1414,7 @@ export const products: Product[] = [
     sku: "TSC-HD",
     category: "storage",
     brand: "Generic Pro",
-    image: "/images/products/45-tool-storage-chest.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional-grade tool chest with multiple drawers and secure key locking for workshop organization.",
     specs: {
@@ -1444,7 +1444,7 @@ export const products: Product[] = [
     sku: "TB-PORT",
     category: "storage",
     brand: "Generic Pro",
-    image: "/images/products/46-tool-box.jpg",
+    image: "/placeholder.svg",
     description:
       "Portable tool box with ergonomic handle and compartments for on-site workshop organization.",
     specs: {

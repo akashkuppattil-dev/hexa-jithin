@@ -56,7 +56,7 @@ export function Footer() {
           <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
             <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Navigation</h4>
             <ul className="flex flex-col gap-2 sm:gap-3">
-              {["Home", "Shop", "Brands", "About", "Contact"].map((item) => (
+              {["Home", "Shop", "Brands", "About", "Gallery", "Contact"].map((item) => (
                 <li key={item}>
                   <Link
                     href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
@@ -89,45 +89,30 @@ export function Footer() {
           </div>
 
           {/* Contact Details */}
-          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
-            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Headquarters</h4>
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <a href={CONTACT.ADDRESS_URL} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
-                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
-                  <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
+          <div className="flex flex-col gap-3 sm:gap-4 md:gap-5 col-span-2 lg:col-span-1">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[#09757a]">Contact Us</h4>
+            <div className="flex flex-col gap-4 sm:gap-5">
+              {/* Service */}
+              <div className="flex flex-col gap-1.5">
+                <p className="text-[8px] font-black uppercase tracking-widest text-[#09757a]">Service & Repairs</p>
+                <a href={`tel:${CONTACT.SERVICE_PHONE}`} className="text-[10px] sm:text-[11px] text-foreground font-black hover:text-[#09757a] transition-colors">{CONTACT.SERVICE_PHONE}</a>
+                <a href={`mailto:${CONTACT.SERVICE_EMAIL}`} className="text-[10px] sm:text-[11px] text-foreground font-black hover:text-[#09757a] transition-colors break-all">{CONTACT.SERVICE_EMAIL}</a>
+              </div>
+
+              {/* Support */}
+              <div className="flex flex-col gap-1.5">
+                <p className="text-[8px] font-black uppercase tracking-widest text-[#09757a]">Support & Help</p>
+                <div className="flex flex-col gap-0.5">
+                  <a href={`tel:${CONTACT.SUPPORT_PHONES[0]}`} className="text-[10px] sm:text-[11px] text-foreground font-black hover:text-[#09757a] transition-colors">{CONTACT.SUPPORT_PHONES[0]}</a>
+                  <a href={`tel:${CONTACT.SUPPORT_PHONES[1]}`} className="text-[10px] sm:text-[11px] text-foreground font-black hover:text-[#09757a] transition-colors">{CONTACT.SUPPORT_PHONES[1]}</a>
                 </div>
-                <div>
-                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors">Door No 17/346, Chulliparamba</p>
-                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Calicut, Kerala</p>
-                </div>
-              </a>
-              <a href={`tel:${CONTACT.PHONE}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
-                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
-                  <Phone className="h-3 w-3 sm:h-4 sm:w-4" />
-                </div>
-                <div>
-                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors">{CONTACT.PHONE_DISPLAY}</p>
-                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Main Support Line</p>
-                </div>
-              </a>
-              <a href={`mailto:${CONTACT.EMAIL}`} className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
-                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm">
-                  <Mail className="h-3 w-3 sm:h-4 sm:w-4" />
-                </div>
-                <div>
-                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#09757a] transition-colors truncate max-w-[120px] sm:max-w-[150px]">{CONTACT.EMAIL}</p>
-                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Official Inquiry</p>
-                </div>
-              </a>
-              <a href="https://www.indiamart.com/hexamech-linich-tools/" target="_blank" rel="noopener noreferrer" className="flex gap-2 sm:gap-3 group active:scale-[0.98] transition-transform">
-                <div className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 rounded-full bg-secondary border border-border flex items-center justify-center text-[#d00000] group-hover:bg-[#d00000] group-hover:text-white transition-all shadow-sm">
-                  <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
-                </div>
-                <div>
-                  <p className="text-[10px] sm:text-[11px] text-foreground font-black group-hover:text-[#d00000] transition-colors">IndiaMart Profile</p>
-                  <p className="text-[8px] sm:text-[9px] text-zinc-500 font-black uppercase tracking-wider sm:tracking-widest mt-0.5">Verified Supplier</p>
-                </div>
-              </a>
+              </div>
+
+              {/* Address */}
+              <div className="flex flex-col gap-1.5 pt-1">
+                <p className="text-[8px] font-black uppercase tracking-widest text-[#09757a]">Headquarters</p>
+                <p className="text-[10px] sm:text-[11px] text-foreground font-black leading-tight italic">{CONTACT.BUSINESS_ADDRESS}</p>
+              </div>
             </div>
           </div>
         </div>

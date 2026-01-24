@@ -137,6 +137,17 @@
   .premium-button {
     @apply bg-primary hover:bg-foreground hover:text-background text-primary-foreground font-black rounded-md transition-all active:scale-95 px-6 h-12 flex items-center justify-center text-[11px] uppercase tracking-widest border border-transparent hover:border-primary shadow-lg;
   }
+
+  /* Custom Floating Animation */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
 }
 
 /* Custom Scrollbar */

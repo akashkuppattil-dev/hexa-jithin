@@ -25,12 +25,7 @@ const icons = {
 }
 
 export default function AboutClientPage() {
-  const trustItems = [
-    { icon: "Star", title: "4.5★ TrustScore", description: "Trusted by 4,000+ Workshops nationwide" },
-    { icon: "Truck", title: "Fast Delivery", description: "PAN India Service with real-time tracking" },
-    { icon: "Wrench", title: "Tool Specialist", description: "Certified expert support for every tool" },
-    { icon: "ShieldCheck", title: "Genuine Quality", description: "100% authentic B2B manufacturing tools" },
-  ]
+
 
   const founders = [
     { name: "Jithin Mullasseri Chulliyil", role: "Co-Founder", image: "/images/jithin-mullasseri.jpg" },
@@ -41,101 +36,84 @@ export default function AboutClientPage() {
   return (
     <div className="w-full bg-background min-h-screen text-foreground transition-colors overflow-x-hidden">
 
-      {/* HERO SECTION - More Compact */}
-      <section className="relative py-16 sm:py-20 md:py-24 lg:py-28 flex items-center justify-center overflow-hidden">
+      {/* INTEGRATED HERO & STORY SECTION */}
+      <section className="relative pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24 lg:pb-32 overflow-hidden bg-[#0a0a0a] text-white">
+        {/* Background Effects */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#09757a]/20 via-background to-background" />
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] invert dark:invert-0" />
-          <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#09757a]/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-[#09757a]/5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#09757a]/30 via-transparent to-transparent opacity-40" />
+          <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+          <div className="absolute -top-40 -right-40 w-[600px] h-[600px] bg-[#09757a]/10 rounded-full blur-[150px]" />
+          <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-background to-transparent" />
         </div>
 
-        <div className="container relative z-10 mx-auto px-4 sm:px-6 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#09757a]/10 border border-[#09757a]/20 rounded-full mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <span className="text-[10px] sm:text-xs font-bold text-[#09757a] uppercase tracking-widest leading-none flex items-center gap-1.5">
-              <Star className="h-3 w-3" /> Established 2023
-            </span>
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-foreground mb-6 tracking-tighter uppercase leading-[0.9] px-2 max-w-5xl mx-auto drop-shadow-sm">
-            Powering India&apos;s Workshops with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#09757a] to-[#0bc0c8]">Professional Tools</span>
-          </h1>
-          <p className="text-sm sm:text-base md:text-lg text-foreground font-black max-w-2xl mx-auto leading-relaxed px-2">
-            Hexamech Linich Tools is Kerala&apos;s premier B2B automotive ecosystem, delivering industrial excellence to over 4,000 workshops across the nation.
-          </p>
+        <div className="container relative z-10 mx-auto px-4 sm:px-6 md:px-8 max-w-7xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
 
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <div className="h-0.5 w-12 bg-[#09757a] rounded-full mx-auto" />
-          </div>
-        </div>
-      </section>
-
-      {/* IDENTITY SECTION - Tighter Split Layout */}
-      <section className="py-12 sm:py-16 md:py-20 bg-secondary/30 relative">
-        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-muted border border-border rounded-full">
-                <span className="text-[10px] sm:text-xs font-black text-foreground uppercase tracking-widest leading-none">The Story</span>
+            {/* LEFT COLUMN: Main Branding & Stats */}
+            <div className="lg:col-span-6 space-y-8 animate-in fade-in slide-in-from-left duration-1000">
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-[#09757a]/20 border border-[#09757a]/40 rounded-full">
+                <Star className="h-3.5 w-3.5 text-[#0bc0c8] fill-[#0bc0c8]/20" />
+                <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#0bc0c8]">Established 2023</span>
               </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground tracking-tighter uppercase leading-none">Who We Are</h2>
-              <div className="space-y-4 text-sm sm:text-base text-foreground leading-relaxed font-bold">
-                <p className="border-l-2 border-[#09757a] pl-4 italic">
-                  &quot;Access to professional tools shouldn&apos;t be a luxury for any Indian workshop.&quot;
-                </p>
-                <p>
-                  <strong className="text-foreground">Hexamech Linich Tools</strong> was founded in 2023 in Chulliparamba, Kerala — with a single mission: to revolutionize the automotive service industry by providing reliable access to genuine, professional-grade tools at wholesale prices.
-                </p>
-                <p>
-                  What started as a regional enterprise has rapidly evolved. Today, we proudly serve <span className="text-[#09757a] font-black">4,000+ workshops</span> with a curated inventory of over <span className="text-[#09757a] font-black">1,000+ specialized SKUs</span>.
-                </p>
+
+              <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-black tracking-tighter uppercase leading-[0.85] italic">
+                Powering India&apos;s <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#09757a] to-[#0bc0c8]">Workshops</span>
+              </h1>
+
+              <p className="text-sm sm:text-base md:text-lg text-zinc-400 font-bold max-w-xl leading-relaxed">
+                Hexamech Linich Tools is Kerala&apos;s premier B2B automotive ecosystem, delivering industrial excellence to over 4,000 workshops across the nation.
+              </p>
+
+              <div className="grid grid-cols-2 gap-6 pt-4 border-t border-white/10 max-w-md">
+                <div>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white italic">4,000+</h4>
+                  <p className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-[#09757a]">Workshops Served</p>
+                </div>
+                <div>
+                  <h4 className="text-2xl sm:text-3xl font-black text-white italic">1,000+</h4>
+                  <p className="text-[8px] sm:text-[9px] font-black uppercase tracking-widest text-[#09757a]">Specialized SKUs</p>
+                </div>
               </div>
             </div>
 
-            <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden bg-white relative group border border-border shadow-inner">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80')] bg-cover bg-center transition-all duration-700" />
-                <div className="absolute bottom-8 left-8 right-8 p-6 bg-background/80 backdrop-blur-md rounded-xl border border-white/10 shadow-2xl">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-lg bg-[#09757a] flex items-center justify-center text-white shrink-0">
-                      <Landmark className="h-6 w-6" />
+            {/* RIGHT COLUMN: The Story ("Who We Are") */}
+            <div className="lg:col-span-6 lg:pt-12 animate-in fade-in slide-in-from-right duration-1000 delay-200">
+              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 shadow-2xl relative group overflow-hidden">
+                {/* Decorative Elements */}
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#09757a]/20 blur-3xl rounded-full -mr-16 -mt-16 group-hover:bg-[#09757a]/40 transition-colors duration-700" />
+
+                <div className="relative z-10 space-y-6">
+                  <div className="flex items-center gap-3">
+                    <div className="h-6 w-1 bg-[#09757a]" />
+                    <h2 className="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white mb-2">Who We Are</h2>
+                  </div>
+
+                  <div className="space-y-4 text-xs sm:text-sm md:text-base text-zinc-300 leading-relaxed font-medium">
+                    <p className="border-l-2 border-[#09757a] pl-4 italic text-zinc-200 py-1">
+                      &quot;Access to professional tools shouldn&apos;t be a luxury for any Indian workshop.&quot;
+                    </p>
+                    <p>
+                      <strong className="text-white font-black">Hexamech Linich Tools</strong> was founded in 2023 in Chulliparamba, Kerala — with a single mission: to revolutionize the automotive service industry by providing reliable access to genuine, professional-grade tools at wholesale prices.
+                    </p>
+                    <p>
+                      What started as a regional enterprise has rapidly evolved into a national leader. Today, we proudly serve a vast network of workshops with a curated inventory that defines modern automotive repair standards.
+                    </p>
+                  </div>
+
+                  <div className="pt-6 border-t border-white/10 flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-[#09757a] flex items-center justify-center text-white shrink-0 shadow-lg">
+                      <Landmark className="h-5 w-5" />
                     </div>
                     <div>
-                      <h4 className="font-black uppercase text-sm tracking-tight text-foreground">Kozhikode, Kerala</h4>
-                      <p className="text-[10px] text-[#09757a] font-black uppercase tracking-widest">Our Strategic Hub</p>
+                      <h4 className="font-black uppercase text-[10px] tracking-tight text-white">Kozhikode, Kerala</h4>
+                      <p className="text-[9px] text-[#09757a] font-black uppercase tracking-widest leading-none mt-1">Global Procurement Hub</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* WHY CHOOSE US - Tighter Grid */}
-      <section className="py-16 sm:py-20 border-y border-border relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#09757a]/5 to-transparent pointer-events-none" />
-        <div className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10">
-          <div className="text-center mb-16 sm:mb-20">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">The <span className="text-[#09757a]">Hexamech</span> Edge</h2>
-            <p className="text-xs sm:text-sm text-foreground font-black uppercase tracking-[0.3em]">Defining Industry Standards</p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {trustItems.map((item, idx) => {
-              const IconComponent = icons[item.icon as keyof typeof icons]
-              return (
-                <div key={item.title} className="group relative">
-                  <div className="absolute inset-0 bg-[#09757a] opacity-0 group-hover:opacity-[0.03] transition-opacity rounded-3xl" />
-                  <div className="bg-card border border-border/50 rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-2xl hover:border-[#09757a]/30 transition-all duration-500 h-full">
-                    <div className="w-16 h-16 rounded-2xl bg-[#09757a]/5 border border-[#09757a]/10 flex items-center justify-center text-[#09757a] group-hover:bg-[#09757a] group-hover:text-white mb-6 transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3 shadow-inner">
-                      {IconComponent && <IconComponent className="h-7 w-7" />}
-                    </div>
-                    <h3 className="font-black text-foreground text-base lg:text-lg uppercase tracking-tight mb-3 group-hover:text-[#09757a] transition-colors leading-tight">{item.title}</h3>
-                    <p className="text-foreground text-xs leading-relaxed font-black">{item.description}</p>
-                  </div>
-                </div>
-              )
-            })}
           </div>
         </div>
       </section>

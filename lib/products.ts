@@ -75,7 +75,7 @@ export const products: Product[] = [
     sku: "BP-MDP",
     category: "collision-repair",
     brand: "Blue Point",
-    image: "/images/products/1-blue-point-dent-puller.jpg",
+    image: "/placeholder.svg",
     description: "Professional multifunction dent pulling solution specifically designed for straightening low-thickness car body panels. Ideal for bonnets, doors, and roof panels.",
     specs: {
       "Input Voltage": "220V / 380V",
@@ -105,7 +105,7 @@ export const products: Product[] = [
     sku: "LIN-3100",
     category: "collision-repair",
     brand: "LINICH",
-    image: "/images/products/1-linich-3100.jpg",
+    image: "/placeholder.svg",
     description: "Automatic and manual triggering dent pulling machine featuring German-made thyristor PCB for extreme precision and professional body repair.",
     specs: {
       "Input": "220–230V AC",
@@ -133,7 +133,7 @@ export const products: Product[] = [
     sku: "LIN-LCR70",
     category: "welding",
     brand: "LINICH",
-    image: "/images/products/2-linich-spot-welder.jpg",
+    image: "/placeholder.svg",
     description: "Combined spot welder and dent puller with temperature-controlled air-cooling and spring balancer for production-grade welding.",
     specs: {
       "Input Voltage": "400V AC",
@@ -161,7 +161,7 @@ export const products: Product[] = [
     sku: "BFS-10T",
     category: "collision-repair",
     brand: "Generic Pro",
-    image: "/images/products/4-body-frame-straightener.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty chassis straightening system with a powerful 10-ton hydraulic pump and swinging tower for precise frame alignment.",
     specs: {
       "Cylinder": "10-ton oil cylinder",
@@ -187,7 +187,7 @@ export const products: Product[] = [
     sku: "BPK-10T",
     category: "collision-repair",
     brand: "Generic Pro",
-    image: "/images/products/5-body-puller-kit.jpg",
+    image: "/placeholder.svg",
     description: "Complete hydraulic body pulling solution for collision repair, including pump, cylinder, and various pulling attachments.",
     specs: {
       "Pump": "Hydraulic oil pump",
@@ -211,7 +211,7 @@ export const products: Product[] = [
     sku: "BP-MIG160",
     category: "welding",
     brand: "Blue Point",
-    image: "/images/products/5-blue-point-mig-160.jpg",
+    image: "/placeholder.svg",
     description: "Compact inverter welding machine featuring IGBT technology and digital display for precise MIG and MMA welding.",
     specs: {
       "Current": "160A",
@@ -241,7 +241,7 @@ export const products: Product[] = [
     sku: "CAR-CM250",
     category: "welding",
     brand: "CAR-O-LINER",
-    image: "/images/products/7-caroliner-cm250.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty automotive welding machine with 250A capacity and optimized inductor for spatter-free, high-quality results.",
     specs: {
       "Welding Capacity": "250A",
@@ -267,7 +267,7 @@ export const products: Product[] = [
     sku: "AUTO-MW250",
     category: "welding",
     brand: "LINICH",
-    image: "/images/products/6-automig-mw-250.jpg",
+    image: "/placeholder.svg",
     description: "Three-phase MIG/MAG welder with step-regulated output and optimized inductor for spatter-free welding.",
     specs: {
       "Phase": "3 Phase",
@@ -293,7 +293,7 @@ export const products: Product[] = [
     sku: "BP-PC45",
     category: "welding",
     brand: "Blue Point",
-    image: "/images/products/9-plasma-cutter.jpg",
+    image: "/placeholder.svg",
     description: "Precision plasma cutting machine with 45A capacity and smart fault-code display.",
     specs: {
       "Cutting Capacity": "Up to 25 mm",
@@ -318,7 +318,7 @@ export const products: Product[] = [
     sku: "BL-DF",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/10-brake-lathe.jpg",
+    image: "/placeholder.svg",
     description: "Professional brake servicing tool capable of both on-car and off-car rotor resurfacing.",
     specs: {
       "Operation": "On / Off car",
@@ -342,7 +342,7 @@ export const products: Product[] = [
     sku: "HCSC-PRO",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/33-spring-compressor.jpg",
+    image: "/placeholder.svg",
     description: "Vertical hydraulic operation spring compressor with heavy-duty frame and safety cage.",
     specs: {
       "Operation": "Hydraulic vertical",
@@ -365,7 +365,7 @@ export const products: Product[] = [
     sku: "TJ-05T",
     category: "transmission",
     brand: "Generic Pro",
-    image: "/images/products/12-trans-jack.jpg",
+    image: "/placeholder.svg",
     description: "Compact 0.5-ton transmission lifting tool with dual pump for quick lifting.",
     specs: {
       "Capacity": "0.5 Ton",
@@ -389,7 +389,7 @@ export const products: Product[] = [
     sku: "TJ-1T",
     category: "transmission",
     brand: "LINICH",
-    image: "/images/products/13-trans-jack-1t.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty 1-ton transmission jack with stable base and hydraulic operation.",
     specs: {
       "Capacity": "1 Ton",
@@ -413,7 +413,7 @@ export const products: Product[] = [
     sku: "CLB-15T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/14-chain-block.jpg",
+    image: "/placeholder.svg",
     description: "Manual lifting device with alloy steel load chain and forged safety hooks.",
     specs: {
       "Capacity": "1.5 Ton",
@@ -435,7 +435,7 @@ export const products: Product[] = [
     sku: "CLB-3T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/15-chain-block-3t.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty manual lifting block with overload protection and industrial-grade chain.",
     specs: {
       "Capacity": "3 Ton",
@@ -458,7 +458,7 @@ export const products: Product[] = [
     sku: "EC-2T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/10-engine-crane-2ton.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty engine crane with foldable steel frame and smooth hydraulic operation.",
     specs: {
       "Capacity": "2 Ton",
@@ -480,7 +480,7 @@ export const products: Product[] = [
     sku: "EC-3T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/17-engine-crane-3ton.jpg",
+    image: "/placeholder.svg",
     description: "High-capacity engine crane for heavy lifting with maximum stability.",
     specs: {
       "Capacity": "3 Ton"
@@ -505,7 +505,7 @@ export const products: Product[] = [
     sku: "ES-450",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/18-engine-stand.jpg",
+    image: "/placeholder.svg",
     description: "360-degree rotating engine stand for safe engine mounting and easy rebuilding access.",
     specs: {
       "Capacity": "450 kg",
@@ -528,7 +528,7 @@ export const products: Product[] = [
     sku: "H2PL-4T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/7-two-post-lift.jpg",
+    image: "/placeholder.svg",
     description: "Professional hydraulic two-post lift with 4-ton capacity and safety locking mechanism.",
     specs: {
       "Capacity": "4 Ton",
@@ -551,7 +551,7 @@ export const products: Product[] = [
     sku: "WD-900",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/20-wheel-dolly.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty wheel dolly for easy maneuvering of vehicles in tight workshop spaces.",
     specs: {
       "Capacity": "900 lbs per dolly"
@@ -572,7 +572,7 @@ export const products: Product[] = [
     sku: "FJ-5T",
     category: "lifting",
     brand: "LINICH",
-    image: "/images/products/8-floor-jack.jpg",
+    image: "/placeholder.svg",
     description: "Industrial-grade hydraulic floor jack with 5-ton capacity and quick-lift pump.",
     specs: {
       "Capacity": "5 Ton",
@@ -595,7 +595,7 @@ export const products: Product[] = [
     sku: "AS-3T",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/22-axle-stand.jpg",
+    image: "/placeholder.svg",
     description: "Ratchet-type axle stands for secure vehicle support during service.",
     specs: {
       "Capacity": "3 Ton (Pair)"
@@ -617,7 +617,7 @@ export const products: Product[] = [
     sku: "ESB-500",
     category: "lifting",
     brand: "Generic Pro",
-    image: "/images/products/23-engine-support.jpg",
+    image: "/placeholder.svg",
     description: "Adjustable engine support beam for holding engines in place during transmission removal.",
     specs: {
       "Capacity": "500 kg",
@@ -640,7 +640,7 @@ export const products: Product[] = [
     sku: "CC-PRO",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/24-car-creeper.jpg",
+    image: "/placeholder.svg",
     description: "Ergonomic low-profile car creeper for comfortable under-car work.",
     specs: {
       "Length": "40 inch",
@@ -663,7 +663,7 @@ export const products: Product[] = [
     sku: "OD-80",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/25-oil-drainer.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic oil drainer with 80L capacity and telescopic tray.",
     specs: {
       "Capacity": "80 Liters",
@@ -687,7 +687,7 @@ export const products: Product[] = [
     sku: "LIN-80L",
     category: "pneumatic",
     brand: "LINICH",
-    image: "/images/products/26-linich-compressor-tank.jpg",
+    image: "/placeholder.svg",
     description:
       "Heavy-duty 80L industrial air compressor with dual functionality for continuous workshop and paint booth operations.",
     specs: {
@@ -717,7 +717,7 @@ export const products: Product[] = [
     sku: "AC-50L",
     category: "pneumatic",
     brand: "Total",
-    image: "/images/products/27-linich-compressor-80l.jpg",
+    image: "/placeholder.svg",
     description:
       "Oil-free air compressor with 50L tank for workshop pneumatic tools and spray painting equipment.",
     specs: {
@@ -747,7 +747,7 @@ export const products: Product[] = [
     sku: "OD-PRO",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/26-oil-dispenser.jpg",
+    image: "/placeholder.svg",
     description: "Multi-purpose oil dispenser with flexible spout and volume markings.",
     specs: {
       "Capacity": "Varied options"
@@ -769,7 +769,7 @@ export const products: Product[] = [
     sku: "BOB-PNEU",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/27-brake-bleeder.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic brake fluid bleeder for efficient one-person operation.",
     specs: {
       "Type": "Pneumatic",
@@ -792,7 +792,7 @@ export const products: Product[] = [
     sku: "PGP-50",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/28-grease-pump.jpg",
+    image: "/placeholder.svg",
     description: "High-pressure pneumatic grease pump for industrial lubrication tasks.",
     specs: {
       "Ratio": "50:1",
@@ -815,7 +815,7 @@ export const products: Product[] = [
     sku: "MGP-PRO",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/29-grease-pump.jpg",
+    image: "/placeholder.svg",
     description: "Hand-operated grease pump for precision lubrication.",
     specs: {
       "Operation": "Manual lever"
@@ -837,7 +837,7 @@ export const products: Product[] = [
     sku: "GOP-MAN",
     category: "special-tools",
     brand: "Generic Pro",
-    image: "/images/products/30-gear-oil-pump.jpg",
+    image: "/placeholder.svg",
     description: "Manual pump specifically designed for efficient gear oil transfer.",
     specs: {
       "Type": "Manual transfer"
@@ -859,7 +859,7 @@ export const products: Product[] = [
     sku: "FICM-PRO",
     category: "measurement",
     brand: "Generic Pro",
-    image: "/images/products/31-fuel-injector-cleaner.jpg",
+    image: "/placeholder.svg",
     description: "Professional fuel injector cleaning and testing machine with integrated spark plug tester.",
     specs: {
       "Functions": "Clean & Test",
@@ -882,7 +882,7 @@ export const products: Product[] = [
     sku: "BFT-DIG",
     category: "measurement",
     brand: "Generic Pro",
-    image: "/images/products/32-brake-fluid-tester.jpg",
+    image: "/placeholder.svg",
     description: "Digital tester for determining the moisture content of brake fluid.",
     specs: {
       "Display": "LED indicators"
@@ -904,7 +904,7 @@ export const products: Product[] = [
     sku: "SPT-DUAL",
     category: "measurement",
     brand: "Generic Pro",
-    image: "/images/products/33-spark-plug-tester.jpg",
+    image: "/placeholder.svg",
     description: "Dual-hole spark plug tester for comparing spark performance.",
     specs: {
       "Holes": "Dual",
@@ -931,7 +931,7 @@ export const products: Product[] = [
     sku: "BP-TW12",
     category: "measurement",
     brand: "Blue Point",
-    image: "/images/products/34-torque-wrench-12.jpg",
+    image: "/placeholder.svg",
     description: "High-precision digital torque wrench with angle measurement and vibrating handle alert.",
     specs: {
       "Drive Size": "1/2 inch",
@@ -955,7 +955,7 @@ export const products: Product[] = [
     sku: "BP-TW38",
     category: "measurement",
     brand: "Blue Point",
-    image: "/images/products/35-torque-wrench-38.jpg",
+    image: "/placeholder.svg",
     description: "Compact digital torque wrench with tech-angle functionality for precision tightening.",
     specs: {
       "Drive Size": "3/8 inch"
@@ -977,7 +977,7 @@ export const products: Product[] = [
     sku: "BP-TW14",
     category: "measurement",
     brand: "Blue Point",
-    image: "/images/products/36-torque-wrench-14.jpg",
+    image: "/placeholder.svg",
     description: "Small-drive digital torque wrench for delicate components requiring exact torque and angle.",
     specs: {
       "Drive Size": "1/4 inch"
@@ -999,7 +999,7 @@ export const products: Product[] = [
     sku: "HTS-142M",
     category: "hand-tools",
     brand: "Generic Pro",
-    image: "/images/products/37-hand-tool-set.jpg",
+    image: "/placeholder.svg",
     description: "Comprehensive 142-piece metric hand tool set in a durable carry case.",
     specs: {
       "Count": "142 Pieces",
@@ -1022,7 +1022,7 @@ export const products: Product[] = [
     sku: "BP-TH10",
     category: "hand-tools",
     brand: "Blue Point",
-    image: "/images/products/38-t-handle.jpg",
+    image: "/placeholder.svg",
     description: "Long-reach 10mm T-handle wrench for fast spinning and high leverage.",
     specs: {
       "Size": "10 mm",
@@ -1045,7 +1045,7 @@ export const products: Product[] = [
     sku: "BP-GTS100",
     category: "hand-tools",
     brand: "Blue Point",
-    image: "/images/products/39-tool-set-100.jpg",
+    image: "/placeholder.svg",
     description: "Versatile 100-piece tool set covering common workshop tasks.",
     specs: {
       "Count": "100 Pieces"
@@ -1067,7 +1067,7 @@ export const products: Product[] = [
     sku: "BP-DSS-MS",
     category: "hand-tools",
     brand: "Blue Point",
-    image: "/images/products/40-deep-socket.jpg",
+    image: "/placeholder.svg",
     description: "Full set of metric and SAE deep sockets for recessed fasteners.",
     specs: {
       "Profiles": "Metric & SAE",
@@ -1090,7 +1090,7 @@ export const products: Product[] = [
     sku: "BP-GSS150",
     category: "hand-tools",
     brand: "Blue Point",
-    image: "/images/products/41-service-set-150.jpg",
+    image: "/placeholder.svg",
     description: "Extensive 150-piece tool set for multi-purpose automotive service.",
     specs: {
       "Count": "150 Pieces"
@@ -1116,7 +1116,7 @@ export const products: Product[] = [
     sku: "MIRKA-SAND",
     category: "power-tools",
     brand: "Mirka",
-    image: "/images/products/42-mirka-sander.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional orbital sander with dust-free sanding technology for automotive surface preparation and finishing.",
     specs: {
@@ -1146,7 +1146,7 @@ export const products: Product[] = [
     sku: "MENZERNA-POLISH",
     category: "power-tools",
     brand: "Menzerna",
-    image: "/images/products/43-menzerna-polish.jpg",
+    image: "/placeholder.svg",
     description:
       "Professional polishing compounds with multiple cutting and polishing stages for high-gloss automotive finish.",
     specs: {
@@ -1175,7 +1175,7 @@ export const products: Product[] = [
     sku: "BP-AIW34",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/43-air-impact-34.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty 3/4 inch air impact wrench for truck and industrial applications.",
     specs: {
       "Drive Size": "3/4 inch",
@@ -1198,7 +1198,7 @@ export const products: Product[] = [
     sku: "BP-AIW1",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/44-air-impact-1.jpg",
+    image: "/placeholder.svg",
     description: "Ultra-heavy-duty 1 inch air impact wrench for the most demanding bolting tasks.",
     specs: {
       "Drive Size": "1 inch",
@@ -1221,7 +1221,7 @@ export const products: Product[] = [
     sku: "BP-CIW12",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/45-cordless-impact.jpg",
+    image: "/placeholder.svg",
     description: "High-torque 1/2 inch cordless impact wrench with brushless motor and 18V battery.",
     specs: {
       "Drive Size": "1/2 inch",
@@ -1244,7 +1244,7 @@ export const products: Product[] = [
     sku: "BP-CIW14",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/46-cordless-impact-14.jpg",
+    image: "/placeholder.svg",
     description: "Compact and powerful 14.4 V cordless impact wrench for tight spaces.",
     specs: {
       "Voltage": "14.4V"
@@ -1266,7 +1266,7 @@ export const products: Product[] = [
     sku: "BP-CTS14",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/47-cordless-set.jpg",
+    image: "/placeholder.svg",
     description: "Multi-tool cordless set including impact wrench, drill, and light.",
     specs: {
       "Voltage": "14.4V"
@@ -1288,7 +1288,7 @@ export const products: Product[] = [
     sku: "BP-CD14",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/48-cordless-drill.jpg",
+    image: "/placeholder.svg",
     description: "Versatile 14.4 V cordless drill with variable speed and clutch settings.",
     specs: {
       "Voltage": "14.4V",
@@ -1311,7 +1311,7 @@ export const products: Product[] = [
     sku: "BP-AG45",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/49-angle-grinder.jpg",
+    image: "/placeholder.svg",
     description: "Compact 4.5 inch angle grinder for cutting and grinding applications.",
     specs: {
       "Disc Size": "4.5 inch"
@@ -1333,7 +1333,7 @@ export const products: Product[] = [
     sku: "BP-BS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/50-belt-sander.jpg",
+    image: "/placeholder.svg",
     description: "Professional pneumatic belt sander for surface leveling and finishing.",
     specs: {
       "Type": "Pneumatic"
@@ -1355,7 +1355,7 @@ export const products: Product[] = [
     sku: "BP-OS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/51-orbital-sander.jpg",
+    image: "/placeholder.svg",
     description: "Random orbital pneumatic sander for swirl-free finishing.",
     specs: {
       "Type": "Pneumatic",
@@ -1378,7 +1378,7 @@ export const products: Product[] = [
     sku: "BP-HG",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/52-heat-gun.jpg",
+    image: "/placeholder.svg",
     description: "Dual-temperature heat gun for drying, thawing, and shrinking.",
     specs: {
       "Settings": "Dual temperature"
@@ -1400,7 +1400,7 @@ export const products: Product[] = [
     sku: "BP-JS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/53-jigsaw.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic jigsaw for precision curved cuts in metal and plastic.",
     specs: {
       "Type": "Pneumatic"
@@ -1422,7 +1422,7 @@ export const products: Product[] = [
     sku: "BP-RS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/54-recip-saw.jpg",
+    image: "/placeholder.svg",
     description: "Heavy-duty pneumatic reciprocating saw for demolition and rough cutting.",
     specs: {
       "Type": "Pneumatic"
@@ -1444,7 +1444,7 @@ export const products: Product[] = [
     sku: "BP-CS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/55-circular-saw.jpg",
+    image: "/placeholder.svg",
     description: "Compact pneumatic circular saw for straight cuts in thin materials.",
     specs: {
       "Type": "Pneumatic"
@@ -1466,7 +1466,7 @@ export const products: Product[] = [
     sku: "BP-AD38",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/56-air-drill.jpg",
+    image: "/placeholder.svg",
     description: "Versatile 3/8 inch pneumatic drill with variable speed trigger.",
     specs: {
       "Chuck Size": "3/8 inch",
@@ -1489,7 +1489,7 @@ export const products: Product[] = [
     sku: "BP-AD12",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/57-air-drill-12.jpg",
+    image: "/placeholder.svg",
     description: "High-torque 1/2 inch air drill for larger bit sizes and heavy drilling.",
     specs: {
       "Chuck Size": "1/2 inch",
@@ -1512,7 +1512,7 @@ export const products: Product[] = [
     sku: "BP-RSAD38",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/58-straight-drill.jpg",
+    image: "/placeholder.svg",
     description: "Straight-body reversible air drill for vertical or overhead drilling.",
     specs: {
       "Form Factor": "Straight",
@@ -1535,7 +1535,7 @@ export const products: Product[] = [
     sku: "BP-ADG-S",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/59-die-grinder-straight.jpg",
+    image: "/placeholder.svg",
     description: "High-speed straight air die grinder for precision grinding and deburring.",
     specs: {
       "RPM": "25,000",
@@ -1558,7 +1558,7 @@ export const products: Product[] = [
     sku: "BP-ADG-A",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/60-die-grinder-angle.jpg",
+    image: "/placeholder.svg",
     description: "90-degree angle air die grinder for accessing tight areas.",
     specs: {
       "Angle": "90 degree",
@@ -1581,7 +1581,7 @@ export const products: Product[] = [
     sku: "BP-AN",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/61-air-nibbler.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic nibbler for cutting sheet metal without distorting edges.",
     specs: {
       "Type": "Pneumatic"
@@ -1603,7 +1603,7 @@ export const products: Product[] = [
     sku: "BP-AS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/62-air-shear.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic shears for fast and clean straight cuts in sheet metal.",
     specs: {
       "Type": "Pneumatic"
@@ -1625,7 +1625,7 @@ export const products: Product[] = [
     sku: "BP-APFT",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/63-punch-flange.jpg",
+    image: "/placeholder.svg",
     description: "Dual-purpose pneumatic tool for punching holes and creating flanges for welding.",
     specs: {
       "Dual Function": "Punch & Flange"
@@ -1647,7 +1647,7 @@ export const products: Product[] = [
     sku: "BP-AMS",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/64-metal-saw.jpg",
+    image: "/placeholder.svg",
     description: "Compact pneumatic saw for intricate cuts in metal and fiberglass.",
     specs: {
       "Type": "Pneumatic",
@@ -1670,7 +1670,7 @@ export const products: Product[] = [
     sku: "BP-ASCR",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/65-air-scraper.jpg",
+    image: "/placeholder.svg",
     description: "Pneumatic scraper for removing gaskets, glue, and residue efficiently.",
     specs: {
       "Type": "Pneumatic"
@@ -1692,7 +1692,7 @@ export const products: Product[] = [
     sku: "BP-AF",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/66-air-file.jpg",
+    image: "/placeholder.svg",
     description: "High-speed reciprocating air file for smoothing and shaping metal.",
     specs: {
       "Type": "Pneumatic"
@@ -1714,7 +1714,7 @@ export const products: Product[] = [
     sku: "BP-AVBG",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/67-air-vacuum.jpg",
+    image: "/placeholder.svg",
     description: "Dual-purpose pneumatic tool that acts as both a vacuum and a blow gun.",
     specs: {
       "Function": "Vacuum & Blow"
@@ -1736,7 +1736,7 @@ export const products: Product[] = [
     sku: "BP-ABG-S",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/68-blow-gun-standard.jpg",
+    image: "/placeholder.svg",
     description: "Essential workshop air blow gun for cleaning parts and blowing off dust.",
     specs: {
       "Type": "Standard trigger"
@@ -1758,7 +1758,7 @@ export const products: Product[] = [
     sku: "BP-ABG-L",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/69-blow-gun-long.jpg",
+    image: "/placeholder.svg",
     description: "Air blow gun with an extended nozzle for reaching into deep or narrow areas.",
     specs: {
       "Nozzle Length": "Long"
@@ -1780,7 +1780,7 @@ export const products: Product[] = [
     sku: "BP-ABG-HF",
     category: "power-tools",
     brand: "Blue Point",
-    image: "/images/products/70-blow-gun-high-flow.jpg",
+    image: "/placeholder.svg",
     description: "High-volume air blow gun for heavy-duty cleaning and drying tasks.",
     specs: {
       "Flow Type": "High flow"
@@ -1802,7 +1802,7 @@ export const products: Product[] = [
     sku: "BP-IG",
     category: "measurement",
     brand: "Blue Point",
-    image: "/images/products/71-inflator-gauge.jpg",
+    image: "/placeholder.svg",
     description: "Professional tire inflator with integrated pressure gauge and flexible hose.",
     specs: {
       "Display": "Analog",

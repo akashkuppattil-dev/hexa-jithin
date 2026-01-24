@@ -1,12 +1,16 @@
 // WhatsApp and Contact Information
 export const CONTACT = {
-  WHATSAPP_NUMBER: "917510638693",
-  WHATSAPP_URL: "https://wa.me/917510638693",
-  PHONE: "+91 75106 38693",
-  PHONE_DISPLAY: "+91 75106 38693",
+  WHATSAPP_NUMBER: "919037872505",
+  WHATSAPP_URL: "https://wa.me/919037872505",
+  OFFICIAL_EMAIL: "hexamechlinichtools@gmail.com",
+  OFFICIAL_PHONE: "+91 75106 38693",
   EMAIL: "hexamechlinichtools@gmail.com",
+  PHONE: "+91 75106 38693",
+  SERVICE_EMAIL: "service.hexamech@gmail.com",
+  SERVICE_PHONE: "9847447677",
+  SUPPORT_PHONES: ["9037872505", "9037872506"],
   BUSINESS_ADDRESS: "Ground Floor, Door No 17/346, Chulliparamba, Near Farook College, Calicut, Kerala – India",
-  ADDRESS_URL: "https://maps.app.goo.gl/9R6vXv2m3Z1G6Z6K8", // Example maps link
+  ADDRESS_URL: "https://maps.app.goo.gl/9R6vXv2m3Z1G6Z6K8",
   INSTAGRAM: "https://instagram.com/hexamech_linich_tools",
   FACEBOOK: "https://facebook.com/hexamechtools",
   YOUTUBE: "https://youtube.com/@hexamech",

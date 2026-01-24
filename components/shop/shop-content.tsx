@@ -4,15 +4,13 @@ import { ProductCard } from "@/components/product-card"
 import { ShopFilters } from "@/components/shop/shop-filters"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { brands, categories, products } from "@/lib/products"
 import { Award, Filter, MessageCircle, Package, SlidersHorizontal, ChevronRight, ChevronLeft, Search, Zap } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useMemo, useState } from "react"
+import { useRef, useEffect, useMemo, useState } from "react"
 import { Input } from "@/components/ui/input"
-import { BrandFilterDropdown } from "@/components/shop/brand-filter-dropdown"
-import { CategoryFilterDropdown } from "@/components/shop/category-filter-dropdown"
+import { SearchableFilterDropdown } from "@/components/shop/searchable-filter-dropdown"
 
 const ITEMS_PER_PAGE_MOBILE = 6
 const ITEMS_PER_PAGE_DESKTOP = 16
@@ -20,10 +18,12 @@ const ITEMS_PER_PAGE_DESKTOP = 16
 type SortOption = "popularity" | "latest" | "price-low" | "price-high" | "rating"
 
 export function ShopContent() {
+  const productsRef = useRef<HTMLDivElement>(null)
   const searchParams = useSearchParams()
   const router = useRouter()
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [selectedBrands, setSelectedBrands] = useState<string[]>([])
+  const [selectedProduct, setSelectedProduct] = useState<string | null>(null)
   const [availability, setAvailability] = useState<string[]>([])
   const [sortBy, setSortBy] = useState<SortOption>("popularity")
   const [currentPage, setCurrentPage] = useState(1)
@@ -33,6 +33,7 @@ export function ShopContent() {
 
   const handleSearch = (term: string) => {
     setSearchInputValue(term)
+    setCurrentPage(1) // Reset to page 1 on search
     const params = new URLSearchParams(searchParams.toString())
     if (term) {
       params.set("search", term)
@@ -66,6 +67,11 @@ export function ShopContent() {
     if (brand) setSelectedBrands([brand])
   }, [searchParams])
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [selectedCategories, selectedBrands, selectedProduct, availability, searchInputValue])
+
   const filteredProducts = useMemo(() => {
     let filtered = [...products]
 
@@ -76,6 +82,7 @@ export function ShopContent() {
           p.name.toLowerCase().includes(searchQuery) ||
           p.description.toLowerCase().includes(searchQuery) ||
           p.brand.toLowerCase().includes(searchQuery) ||
+          p.sku.toLowerCase().includes(searchQuery) ||
           categories.find(c => c.id === p.category)?.name.toLowerCase().includes(searchQuery),
       )
     }
@@ -86,6 +93,10 @@ export function ShopContent() {
 
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((p) => selectedBrands.includes(p.brand))
+    }
+
+    if (selectedProduct) {
+      filtered = filtered.filter((p) => p.id === selectedProduct)
     }
 
     if (availability.length > 0) {
@@ -107,8 +118,14 @@ export function ShopContent() {
         break
     }
 
-    return filtered
-  }, [selectedCategories, selectedBrands, availability, sortBy, searchParams])
+    // Deduplicate logic to ensure no visual gaps
+    const seen = new Set()
+    return filtered.filter(p => {
+      const duplicate = seen.has(p.id)
+      seen.add(p.id)
+      return !duplicate
+    })
+  }, [selectedCategories, selectedBrands, selectedProduct, availability, sortBy, searchParams])
 
   const itemsPerPage = isMobile ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE_DESKTOP
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage)
@@ -117,11 +134,14 @@ export function ShopContent() {
   const clearFilters = () => {
     setSelectedCategories([])
     setSelectedBrands([])
+    setSelectedProduct(null)
     setAvailability([])
     setCurrentPage(1)
+    setSearchInputValue("")
+    router.replace('/shop', { scroll: false })
   }
 
-  const activeFiltersCount = selectedCategories.length + selectedBrands.length + availability.length
+  const activeFiltersCount = selectedCategories.length + selectedBrands.length + availability.length + (selectedProduct ? 1 : 0)
 
   return (
     <div className="bg-background min-h-screen pb-10 sm:pb-12 transition-colors">
@@ -182,7 +202,7 @@ export function ShopContent() {
                 <div className="p-3 rounded-lg bg-[#09757a]/10 border border-[#09757a]/20 text-center">
                   <p className="text-[9px] font-black text-[#09757a] uppercase tracking-widest mb-1.5">B2B Support</p>
                   <p className="text-[10px] text-foreground font-black leading-relaxed mb-2">Talk to an expert for bulk discounts.</p>
-                  <a href="https://wa.me/917510638693" className="inline-flex items-center justify-center gap-1.5 text-[10px] font-black text-[#09757a] hover:gap-2 transition-all">
+                  <a href="https://wa.me/919037872505" className="inline-flex items-center justify-center gap-1.5 text-[10px] font-black text-[#09757a] hover:gap-2 transition-all">
                     WHATSAPP US <ChevronRight className="h-2.5 w-2.5" />
                   </a>
                 </div>
@@ -208,16 +228,35 @@ export function ShopContent() {
                   />
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <CategoryFilterDropdown
-                    selectedCategory={selectedCategories[0] || null}
-                    onSelectCategory={(cat: string | null) => setSelectedCategories(cat ? [cat] : [])}
-                  />
+                <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar sm:pb-0 sm:overflow-visible">
+                  <div className="flex items-center gap-2 min-w-max sm:min-w-0">
+                    <SearchableFilterDropdown
+                      label="Category"
+                      items={categories}
+                      selectedId={selectedCategories[0] || null}
+                      onSelect={(id) => setSelectedCategories(id ? [id] : [])}
+                      placeholder="Search category..."
+                      width="w-[130px] sm:w-[160px]"
+                    />
 
-                  <BrandFilterDropdown
-                    selectedBrand={selectedBrands[0] || null}
-                    onSelectBrand={(brand: string | null) => setSelectedBrands(brand ? [brand] : [])}
-                  />
+                    <SearchableFilterDropdown
+                      label="Brand"
+                      items={brands.map(b => ({ id: b, name: b }))}
+                      selectedId={selectedBrands[0] || null}
+                      onSelect={(id) => setSelectedBrands(id ? [id] : [])}
+                      placeholder="Search brand..."
+                      width="w-[130px] sm:w-[160px]"
+                    />
+
+                    <SearchableFilterDropdown
+                      label="Product"
+                      items={products.map(p => ({ id: p.id, name: p.name }))}
+                      selectedId={selectedProduct}
+                      onSelect={(id) => setSelectedProduct(id)}
+                      placeholder="Search product..."
+                      width="w-[160px] sm:w-[200px]"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -275,23 +314,32 @@ export function ShopContent() {
               )}
             </div>
 
+            {/* Product Grid Header - Result Count */}
+            <div className="flex justify-between items-center mb-4 px-1">
+              <p className="text-[10px] sm:text-[11px] font-bold text-muted-foreground uppercase tracking-wide">
+                Showing <span className="text-foreground font-black">{(currentPage - 1) * itemsPerPage + 1}</span> - <span className="text-foreground font-black">{Math.min(currentPage * itemsPerPage, filteredProducts.length)}</span> of <span className="text-foreground font-black">{filteredProducts.length}</span> results
+              </p>
+            </div>
+
             {/* Product Grid */}
-            {paginatedProducts.length > 0 ? (
-              <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
-                {paginatedProducts.map((product) => (
-                  <div key={product.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                    <ProductCard product={product} />
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-20 bg-card rounded-xl border border-border">
-                <Package className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <p className="text-lg font-black text-foreground mb-1 uppercase tracking-tighter">No Equipment Found</p>
-                <p className="text-xs text-foreground font-black mb-6">Try clearing your filters or changing your search terms.</p>
-                <Button onClick={clearFilters} className="bg-[#09757a] text-white font-black uppercase tracking-widest text-[10px] px-8 h-10 shadow-lg">Clear All</Button>
-              </div>
-            )}
+            <div ref={productsRef} className="scroll-mt-32 md:scroll-mt-40">
+              {paginatedProducts.length > 0 ? (
+                <div className="grid grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-3 md:gap-4">
+                  {paginatedProducts.map((product) => (
+                    <div key={product.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                      <ProductCard product={product} />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-20 bg-card rounded-xl border border-border">
+                  <Package className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                  <p className="text-lg font-black text-foreground mb-1 uppercase tracking-tighter">No Equipment Found</p>
+                  <p className="text-xs text-foreground font-black mb-6">Try clearing your filters or changing your search terms.</p>
+                  <Button onClick={clearFilters} className="bg-[#09757a] text-white font-black uppercase tracking-widest text-[10px] px-8 h-10 shadow-lg">Clear All</Button>
+                </div>
+              )}
+            </div>
 
             {totalPages > 1 && (
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 pt-8 sm:pt-10 md:pt-12 border-t border-border">
@@ -304,30 +352,38 @@ export function ShopContent() {
                   <Button
                     variant="outline"
                     onClick={() => {
-                      setCurrentPage((p) => Math.max(1, p - 1))
-                      window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
+                      if (currentPage > 1) {
+                        setCurrentPage(prev => prev - 1)
+                        // Scroll to products list slightly delayed to ensure render
+                        setTimeout(() => {
+                          productsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }, 50)
+                      }
                     }}
-                    disabled={currentPage === 1}
+                    disabled={currentPage <= 1}
                     className="h-9 sm:h-10 w-9 sm:w-10 md:w-auto md:px-4 lg:px-5 rounded-lg border-border bg-card text-muted-foreground hover:text-foreground hover:border-[#09757a]/50 transition-all disabled:opacity-30 flex items-center justify-center p-0"
                   >
                     <ChevronLeft className="h-4 w-4 sm:mr-0 md:mr-1.5" />
-                    <span className="hidden md:inline text-[8px] sm:text-[9px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]">Prev</span>
+                    <span className="hidden md:inline text-[8px] sm:text-[9px] font-black uppercase tracking-[0.15em] sm:tracking-[0.2em]">Back</span>
                   </Button>
 
                   <div className="hidden md:flex gap-1 sm:gap-1.5">
-                    {[...Array(totalPages)].map((_, i) => (
-                      <Button
-                        key={i}
-                        variant={currentPage === i + 1 ? "default" : "ghost"}
-                        className={`h-9 sm:h-10 w-9 sm:w-10 rounded-lg font-black text-[9px] sm:text-[10px] transition-all duration-300 ${currentPage === i + 1 ? "bg-[#09757a] text-white shadow-xl shadow-[#09757a]/20 scale-105" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
-                        onClick={() => {
-                          setCurrentPage(i + 1)
-                          window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
-                        }}
-                      >
-                        {i + 1}
-                      </Button>
-                    ))}
+                    {[...Array(totalPages)].map((_, i) => {
+                      const pageNum = i + 1
+                      return (
+                        <Button
+                          key={pageNum}
+                          variant={currentPage === pageNum ? "default" : "ghost"}
+                          className={`h-9 sm:h-10 w-9 sm:w-10 rounded-lg font-black text-[9px] sm:text-[10px] transition-all duration-300 ${currentPage === pageNum ? "bg-[#09757a] text-white shadow-xl shadow-[#09757a]/20 scale-105" : "text-muted-foreground hover:text-foreground hover:bg-accent"}`}
+                          onClick={() => {
+                            setCurrentPage(pageNum)
+                            productsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                          }}
+                        >
+                          {pageNum}
+                        </Button>
+                      )
+                    })}
                   </div>
 
                   {/* Current Page Indicator for Mobile */}
@@ -338,10 +394,14 @@ export function ShopContent() {
                   <Button
                     variant="default"
                     onClick={() => {
-                      setCurrentPage((p) => Math.min(totalPages, p + 1))
-                      window.scrollTo({ top: isMobile ? 200 : 400, behavior: 'smooth' })
+                      if (currentPage < totalPages) {
+                        setCurrentPage(prev => prev + 1)
+                        setTimeout(() => {
+                          productsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                        }, 50)
+                      }
                     }}
-                    disabled={currentPage === totalPages}
+                    disabled={currentPage >= totalPages}
                     className="h-9 sm:h-10 w-9 sm:w-10 md:w-auto md:px-4 lg:px-6 rounded-lg bg-[#09757a] hover:bg-foreground hover:text-background text-white font-black uppercase tracking-[0.15em] sm:tracking-[0.2em] shadow-lg transition-all active:scale-95 disabled:opacity-30 flex items-center justify-center border border-transparent hover:border-[#09757a] p-0"
                   >
                     <span className="hidden md:inline text-[8px] sm:text-[9px] mr-0 md:mr-1.5">Next</span>
