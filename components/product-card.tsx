@@ -43,8 +43,8 @@ function ProductCardComponent({ product }: ProductCardProps) {
             src={product.image || "/placeholder.svg"}
             alt={product.name}
             fill
-            className="object-cover group-hover:scale-105 transition-all duration-700 ease-in-out"
-            sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 250px"
+            className="object-contain p-4 group-hover:scale-105 transition-all duration-700 ease-in-out"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 500px"
             priority={parseInt(product.id) <= 4}
           />
         </Link>
@@ -71,10 +71,10 @@ function ProductCardComponent({ product }: ProductCardProps) {
       <CardContent className="p-3 sm:p-4 flex-grow flex flex-col bg-card">
         {/* Brand & SKU */}
         <div className="flex items-center justify-between gap-2 mb-1.5">
-          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-black text-[#09757a] uppercase tracking-widest truncate">
+          <span className="text-[10px] sm:text-[11px] md:text-[12px] font-bold text-[#09757a] uppercase tracking-wide truncate">
             {product.brand}
           </span>
-          <span className="text-[8px] sm:text-[9px] md:text-[10px] font-black text-zinc-500 uppercase whitespace-nowrap">
+          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-gray-500 uppercase whitespace-nowrap">
             {product.sku}
           </span>
         </div>
@@ -94,7 +94,7 @@ function ProductCardComponent({ product }: ProductCardProps) {
                 <div className="h-2.5 w-2.5 rounded-full bg-[#09757a]/20 flex items-center justify-center shrink-0 mt-0.5">
                   <div className="h-1 w-1 rounded-full bg-[#09757a]" />
                 </div>
-                <span className="text-[10px] sm:text-[11px] text-foreground/80 leading-tight line-clamp-1 font-bold">
+                <span className="text-[11px] sm:text-[12px] text-gray-700 leading-tight line-clamp-1 font-medium">
                   {feature}
                 </span>
               </div>
@@ -104,11 +104,11 @@ function ProductCardComponent({ product }: ProductCardProps) {
 
         {/* Premium Detail Link */}
         <div className="mt-auto flex items-center justify-between pt-2 border-t border-border/50">
-          <Link href={`/product/${product.id}`} className="text-[9px] sm:text-[10px] font-black text-[#111] hover:text-[#09757a] uppercase tracking-widest flex items-center gap-1 transition-all">
+          <Link href={`/product/${product.id}`} className="text-[10px] sm:text-[11px] font-bold text-gray-700 hover:text-[#09757a] uppercase tracking-wide flex items-center gap-1 transition-all">
             DETAILS <ArrowRight className="h-2.5 w-2.5" />
           </Link>
 
-          <span className="text-[9px] sm:text-[10px] font-black text-[#09757a] uppercase tracking-widest flex items-center gap-1">
+          <span className="text-[10px] sm:text-[11px] font-bold text-[#09757a] uppercase tracking-wide flex items-center gap-1">
             ENQUIRE
           </span>
         </div>

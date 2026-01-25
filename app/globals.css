@@ -110,6 +110,16 @@
     @media (min-width: 1024px) {
       font-size: 14px;
     }
+
+    /* Better mobile responsiveness */
+    @media (max-width: 768px) {
+      font-size: 13px;
+    }
+
+    /* Smooth scrolling for better UX */
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
 
   * {
@@ -122,6 +132,42 @@
     font-family: var(--font-barlow), sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* Better touch handling on mobile */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Ensure images are responsive by default */
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better button and input touch targets on mobile */
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  /* Prevent text overflow */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    overflow-wrap: break-word;
   }
 }
 
@@ -140,9 +186,17 @@
 
   /* Custom Floating Animation */
   @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-    100% { transform: translateY(0px); }
+    0% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
+
+    100% {
+      transform: translateY(0px);
+    }
   }
 
   .animate-float {

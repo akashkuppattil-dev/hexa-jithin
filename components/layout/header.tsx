@@ -101,25 +101,25 @@ export function Header() {
                 src="/hexamech-logo.png"
                 alt="Hexamech Linich Tools"
                 fill
-                className="object-contain object-left mix-blend-multiply scale-[1.3] xs:scale-[1.55] origin-left"
+                className="object-contain object-left mix-blend-multiply scale-[1.5] xs:scale-[1.75] origin-left"
                 priority
               />
             </div>
           </Link>
 
           {/* Navigation - Grouped closely with Logo */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 text-foreground shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
-            <Link href="/" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Home</Link>
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
+            <Link href="/" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">Home</Link>
             <div className="relative group/nav" onMouseEnter={() => handleMouseEnter("products")}>
-              <Link href="/shop" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all flex items-center gap-1.5">
-                Products <ChevronDown className="h-2.5 w-2.5 group-hover/nav:rotate-180 transition-transform opacity-50" />
+              <Link href="/shop" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all flex items-center gap-1.5 text-muted-foreground">
+                Products <ChevronDown className="h-3 w-3 group-hover/nav:rotate-180 transition-transform opacity-60" />
               </Link>
               {activeMenu === "products" && <BrandsMenu onClose={() => setActiveMenu(null)} />}
             </div>
-            <Link href="/brands" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Brands</Link>
-            <Link href="/about" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">About</Link>
-            <Link href="/gallery" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Gallery</Link>
-            <Link href="/contact" className="text-[9px] xl:text-[10px] font-black uppercase tracking-widest hover:text-[#09757a] transition-all">Contact</Link>
+            <Link href="/brands" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">Brands</Link>
+            <Link href="/about" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">About</Link>
+            <Link href="/gallery" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">Gallery</Link>
+            <Link href="/contact" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">Contact</Link>
           </nav>
 
           {/* Fully Expanded Search Box - Anchored to Right Actions */}
@@ -130,7 +130,7 @@ export function Header() {
             <Input
               type="text"
               placeholder="Search 10,000+ Industrial tools, equipment, or brands..."
-              className="h-10 w-full pl-10 pr-4 text-[11px] font-black text-black placeholder:text-zinc-500 bg-muted/40 border-border rounded-xl focus-visible:ring-2 focus-visible:ring-[#09757a]/20 focus-visible:border-[#09757a] transition-all"
+              className="h-10 w-full pl-10 pr-4 text-[12px] font-medium text-foreground placeholder:text-muted-foreground bg-muted/40 border-border rounded-xl focus-visible:ring-2 focus-visible:ring-[#09757a]/20 focus-visible:border-[#09757a] transition-all"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
@@ -140,35 +140,58 @@ export function Header() {
             )}
           </div>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-2 md:gap-3 shrink-0 ml-auto">
+          {/* Mobile Search Bar - Visible on Small Screens */}
+          <div className="flex lg:hidden flex-1 mx-2 relative group/search">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-3.5 w-3.5 text-muted-foreground" />
+            </div>
+            <Input
+              type="text"
+              placeholder="Search..."
+              className="h-9 w-full pl-9 pr-3 text-[11px] font-semibold bg-muted/40 border-border rounded-lg focus-visible:ring-1 focus-visible:ring-[#09757a]/50 transition-all"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+            />
+            {isSearchFocused && debouncedQuery.length >= 2 && (
+              <div className="absolute top-full left-0 right-0 z-[60] mt-2">
+                <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
+              </div>
+            )}
+          </div>
 
-            <Button variant="ghost" size="icon" className="lg:hidden h-10 w-10 hover:bg-black/5 active:scale-95 rounded-full" onClick={() => setMobileMenuOpen(true)}>
-              <Menu className="h-6 w-6" />
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 md:gap-3 shrink-0 ml-0">
+            <Button variant="ghost" size="icon" className="lg:hidden h-9 w-9 hover:bg-black/5 active:scale-95 rounded-full" onClick={() => setMobileMenuOpen(true)}>
+              <Menu className="h-5 w-5" />
             </Button>
           </div>
         </div>
       </header>
 
       {/* Sticky Bottom Navigation - Mobile Only */}
-      <div className={`lg:hidden fixed bottom-4 left-4 right-4 z-[100] h-14 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl flex items-center justify-around px-2 text-muted-foreground transition-all duration-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
-        <Link href="/" className={`flex flex-col items-center transition-all ${pathname === '/' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
-          <Menu className="h-5 w-5 mb-0.5" />
-          <span className="text-[8px] font-black uppercase tracking-tighter">Home</span>
+      <div className={`lg:hidden fixed bottom-4 left-4 right-4 z-[100] h-14 bg-background/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl flex items-center justify-around px-1 text-muted-foreground transition-all duration-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}>
+        <Link href="/" className={`flex flex-col items-center transition-all ${pathname === '/' ? 'text-[#09757a] scale-110' : 'text-gray-600 hover:text-gray-800'}`}>
+          <Menu className="h-4.5 w-4.5 mb-0.5" />
+          <span className="text-[8px] font-bold uppercase tracking-tight">Home</span>
         </Link>
-        <Link href="/shop" className={`flex flex-col items-center transition-all ${pathname.startsWith('/shop') ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
-          <Package className="h-5 w-5 mb-0.5" />
-          <span className="text-[8px] font-black uppercase tracking-tighter">Shop</span>
+        <Link href="/shop" className={`flex flex-col items-center transition-all ${pathname.startsWith('/shop') ? 'text-[#09757a] scale-110' : 'text-gray-600 hover:text-gray-800'}`}>
+          <Package className="h-4.5 w-4.5 mb-0.5" />
+          <span className="text-[8px] font-bold uppercase tracking-tight">Shop</span>
         </Link>
-        <Link href="/about" className={`flex flex-col items-center transition-all ${pathname === '/about' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
-          <div className="h-5 w-5 mb-0.5 rounded-full border-2 border-current flex items-center justify-center">
-            <span className="text-[10px] font-black">i</span>
+        <Link href="/gallery" className={`flex flex-col items-center transition-all ${pathname === '/gallery' ? 'text-[#09757a] scale-110' : 'text-gray-600 hover:text-gray-800'}`}>
+          <div className="h-4.5 w-4.5 mb-0.5 flex items-center justify-center">
+            <Users className="h-4.5 w-4.5" /> {/* Using Users icon as placeholder for Gallery if customized icon needed let me know, reused generic icon for now based on available imports */}
           </div>
-          <span className="text-[8px] font-black uppercase tracking-tighter">About</span>
+          <span className="text-[8px] font-bold uppercase tracking-tight">Gallery</span>
         </Link>
-        <Link href="/brands" className={`flex flex-col items-center transition-all ${pathname === '/brands' ? 'text-[#09757a] scale-110' : 'hover:text-foreground'}`}>
-          <Users className="h-5 w-5 mb-0.5" />
-          <span className="text-[8px] font-black uppercase tracking-tighter">Brands</span>
+        <Link href="/brands" className={`flex flex-col items-center transition-all ${pathname === '/brands' ? 'text-[#09757a] scale-110' : 'text-gray-600 hover:text-gray-800'}`}>
+          <Users className="h-4.5 w-4.5 mb-0.5" />
+          <span className="text-[8px] font-bold uppercase tracking-tight">Brands</span>
+        </Link>
+        <Link href="/contact" className={`flex flex-col items-center transition-all ${pathname === '/contact' ? 'text-[#09757a] scale-110' : 'text-gray-600 hover:text-gray-800'}`}>
+          <Phone className="h-4.5 w-4.5 mb-0.5" />
+          <span className="text-[8px] font-bold uppercase tracking-tight">Contact</span>
         </Link>
       </div>
 

@@ -55,9 +55,9 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     src={product.image || "/placeholder.svg"}
                     alt={product.name}
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                     priority
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 600px"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
                   />
                 </div>
 

@@ -12,7 +12,7 @@ import { useRef, useEffect, useMemo, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { SearchableFilterDropdown } from "@/components/shop/searchable-filter-dropdown"
 
-const ITEMS_PER_PAGE_MOBILE = 6
+const ITEMS_PER_PAGE_MOBILE = 8
 const ITEMS_PER_PAGE_DESKTOP = 16
 
 type SortOption = "popularity" | "latest" | "price-low" | "price-high" | "rating"
