@@ -136,7 +136,7 @@ export function Header() {
               onFocus={() => setIsSearchFocused(true)}
             />
             {isSearchFocused && debouncedQuery.length >= 2 && (
-              <div className="absolute top-full left-0 right-0 z-[60] mt-1 lg:max-w-xl">
+              <div className="absolute top-full left-0 right-0 z-[60] mt-1 lg:max-w-xl text-base">
                 <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
               </div>
             )}
@@ -150,13 +150,13 @@ export function Header() {
             <Input
               type="text"
               placeholder="Search..."
-              className="h-8 w-full pl-8 pr-3 text-[10px] font-bold bg-muted/40 border-border rounded-lg focus-visible:ring-1 focus-visible:ring-[#09757a]/50 transition-all"
+              className="h-8 w-full pl-8 pr-3 text-base font-bold bg-muted/40 border-border rounded-lg focus-visible:ring-1 focus-visible:ring-[#09757a]/50 transition-all"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
             />
             {isSearchFocused && debouncedQuery.length >= 2 && (
-              <div className="absolute top-full left-0 right-0 z-[60] mt-1">
+              <div className="absolute top-full left-0 right-0 z-[60] mt-1 text-base">
                 <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
               </div>
             )}
@@ -217,7 +217,7 @@ export function Header() {
               <Input
                 type="text"
                 placeholder="Search tools..."
-                className="h-11 pl-10 bg-muted/50 border-border rounded-xl text-sm font-bold"
+                className="h-11 pl-10 bg-muted/50 border-border rounded-xl text-base font-bold"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />

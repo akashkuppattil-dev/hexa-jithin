@@ -118,7 +118,7 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-[600px] lg:h-[90vh] flex flex-col justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
+    <section className="relative h-[70vh] sm:h-[80vh] lg:h-[90vh] min-h-[500px] flex flex-col justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
       {/* Hero Background - Video */}
       <div className="absolute inset-0 z-0">
         <video
@@ -128,7 +128,7 @@ export function HeroSection() {
           loop
           playsInline
           preload="auto"
-          className="w-full h-full object-cover opacity-60 scale-[1.02] transform-gpu"
+          className="w-full h-full object-cover opacity-60 transform-gpu"
         >
           <source src="/kling_20260127_Image_to_Video_Create_a_p_4933_0.mp4" type="video/mp4" />
           Your browser does not support the video tag.

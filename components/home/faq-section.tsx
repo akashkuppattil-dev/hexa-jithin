@@ -9,28 +9,28 @@ import {
 
 const faqs = [
     {
-        question: "Do you supply tools for wholesale?",
-        answer: "Yes, Hexamech Linich Tools specializes in B2B wholesale distribution. We supply to over 4,000 workshops, service centers, and tool retailers across India with competitive bulk pricing.",
+        question: "Is Hexamech Linich Tools a manufacturer or a wholesaler?",
+        answer: "We are India's premier wholesale distributor and verified IndiaMART supplier, specializing in professional automotive diagnostic tools and industrial equipment. We bridge the gap between global technology leaders like SATA and DeVilbiss and specialized workshops across Kerala and India.",
     },
     {
-        question: "What brands are available in your catalog?",
-        answer: "We are authorized distributors for premium brands including Linich, Bosch, Blue Point, CAR-O-LINER, SATA, 3M, Chicago Pneumatic, and many others listed on our Brands page.",
+        question: "Which premium brands do you exclusively distribute?",
+        answer: "We are authorized partners for world-class manufacturers including SATA (Germany), DeVilbiss (UK), CAR-O-LINER (Sweden), 3M, and LINICH. Our inventory covers the full spectrum from precision spray guns to heavy-duty hydraulic lifting systems.",
     },
     {
-        question: "Do you ship across India?",
-        answer: "Yes, we have a robust logistics network that ensures safe and timely delivery of equipment to any location in India, including heavy machinery like lifts and booths.",
+        question: "How fast is your delivery service across Kerala and All India?",
+        answer: "With our centralized hub in Chulliparamba, Malappuram, we ensure 24-48 hour dispatch. Our logistics network is equipped to handle both precision handheld tools and heavy industrial machinery like 4-ton lifts, ensuring safe delivery nationwide.",
     },
     {
-        question: "How can I get a GST Invoice?",
-        answer: "All our transactions are 100% compliant. We provide a valid GST Tax Invoice with every purchase, which you can use for Input Tax Credit.",
+        question: "Are your products GST compliant and IndiaMART verified?",
+        answer: "Every purchase at Hexamech is backed by a valid GST Tax Invoice for Input Tax Credit. As a GST-verified and IndiaMART-trusted wholesaler, we guarantee the authenticity of every tool and provide reliable after-sales support.",
     },
     {
-        question: "Do you offer warranty on equipment?",
-        answer: "Yes, all our power tools and garage equipment come with standard manufacturer warranties. We also provide after-sales service support for the brands we distribute.",
+        question: "Do you provide technical support and installation for heavy equipment?",
+        answer: "Yes. For complex machinery like two-post lifts, engine cranes, and paint booths, we provide professional on-site technical guidance and installation. Our service team also handles maintenance and repairs for the diagnostic equipment we supply.",
     },
     {
-        question: "How do I place a bulk order?",
-        answer: "You can simply click the 'Get Quote' button on any product or contact us directly via WhatsApp at +91 75106 38693 with your requirement list.",
+        question: "How can I obtain a specialized B2B quote for bulk requirements?",
+        answer: "Bulk inquiries are our core business. You can use the 'Inquiry' form on any product page or contact our sales desk directly via WhatsApp. We offer tiered pricing structures tailored for service centers, garage owners, and industrial retailers.",
     },
 ]
 
@@ -59,7 +59,7 @@ export function FaqSection() {
                                         <AccordionTrigger className="text-base font-black text-black hover:text-[#09757a] text-left py-4">
                                             {faq.question}
                                         </AccordionTrigger>
-                                        <AccordionContent className="text-foreground text-xs sm:text-sm font-black leading-relaxed pb-4">
+                                        <AccordionContent className="text-muted-foreground text-xs sm:text-sm font-medium leading-relaxed pb-4">
                                             {faq.answer}
                                         </AccordionContent>
                                     </AccordionItem>

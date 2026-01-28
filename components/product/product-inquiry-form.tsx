@@ -129,7 +129,7 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                         name="name"
                         placeholder="Full Name"
                         required
-                        className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-medium text-foreground placeholder:text-zinc-400"
+                        className="bg-muted/30 border-border focus:border-[#09757a] h-10 text-base rounded-md font-medium text-foreground placeholder:text-zinc-400"
                     />
                 </div>
 
@@ -145,7 +145,7 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                         required
                         pattern="\d{10}"
                         title="Please enter a 10 digit mobile number"
-                        className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-medium text-foreground placeholder:text-zinc-400"
+                        className="bg-muted/30 border-border focus:border-[#09757a] h-10 text-base rounded-md font-medium text-foreground placeholder:text-zinc-400"
                     />
                 </div>
 
@@ -159,7 +159,7 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                         type="email"
                         placeholder="your@email.com"
                         required
-                        className="bg-muted/30 border-border focus:border-[#09757a] h-8 text-[11px] rounded-md font-medium text-foreground placeholder:text-zinc-400"
+                        className="bg-muted/30 border-border focus:border-[#09757a] h-10 text-base rounded-md font-medium text-foreground placeholder:text-zinc-400"
                     />
                 </div>
 
@@ -172,7 +172,7 @@ export function ProductInquiryForm({ product }: ProductInquiryFormProps) {
                         name="message"
                         placeholder="I am interested in bulk pricing for this product..."
                         rows={2}
-                        className="bg-muted/30 border-border focus:border-[#09757a] text-[11px] rounded-md resize-none font-medium text-foreground min-h-[60px] placeholder:text-zinc-400"
+                        className="bg-muted/30 border-border focus:border-[#09757a] text-base rounded-md resize-none font-medium text-foreground min-h-[60px] placeholder:text-zinc-400"
                     />
                 </div>
 

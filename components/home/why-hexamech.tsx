@@ -79,7 +79,7 @@ export function WhyHexamech() {
   React.useEffect(() => {
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % features.length)
-    }, 4500)
+    }, 3000)
     return () => clearInterval(timer)
   }, [])
 
@@ -105,11 +105,11 @@ export function WhyHexamech() {
           {features.map((feature, index) => (
             <Card
               key={index}
-              className="bg-card border border-border rounded-2xl p-6 lg:p-8 relative overflow-hidden group hover:border-[#09757a]/30 transition-all duration-500 shadow-sm hover:shadow-2xl"
+              className="bg-card border border-border rounded-xl p-5 lg:p-6 relative overflow-hidden group hover:border-[#09757a]/20 transition-all duration-500 shadow-sm"
             >
-              <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#09757a]/5 blur-3xl group-hover:bg-[#09757a]/20 transition-all" />
+              <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#09757a]/5 blur-3xl" />
 
-              <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <div className={`h-11 w-11 shrink-0 rounded-xl ${feature.bg} flex items-center justify-center border border-zinc-100/50 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500`}>
                   <feature.icon className={`h-5 w-5 ${feature.color}`} />
                 </div>
@@ -132,25 +132,24 @@ export function WhyHexamech() {
           ))}
         </div>
 
-        {/* Mobile View - Auto-moving Carousel */}
-        <div className="md:hidden relative h-[260px]">
+        <div className="md:hidden relative h-[260px] mb-8">
           {features.map((feature, index) => (
             <div
               key={index}
-              className={`absolute inset-0 bg-card border border-border rounded-2xl p-7 flex flex-col items-start shadow-md transition-all duration-1000 ${index === activeIndex ? 'translate-x-0 opacity-100 scale-100' : 'translate-x-full opacity-0 scale-95'}`}
+              className={`absolute inset-0 bg-card border border-border rounded-xl p-6 flex flex-col items-center text-center shadow-sm transition-all duration-1000 ${index === activeIndex ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 scale-95'}`}
             >
-              <div className="flex items-center gap-4 mb-6 w-full pb-4 border-b border-border/50">
-                <div className={`h-10 w-10 rounded-xl ${feature.bg} flex items-center justify-center`}>
-                  <feature.icon className={`h-5 w-5 ${feature.color}`} />
+              <div className="flex flex-col items-center gap-3 mb-4 w-full pb-3 border-b border-border/50">
+                <div className={`h-12 w-12 rounded-xl ${feature.bg} flex items-center justify-center`}>
+                  <feature.icon className={`h-6 w-6 ${feature.color}`} />
                 </div>
-                <h3 className="text-sm font-black text-foreground uppercase tracking-tight">{feature.title}</h3>
+                <h3 className="text-base font-black text-foreground uppercase tracking-tight leading-none">{feature.title}</h3>
               </div>
 
-              <div className="space-y-3.5 w-full">
+              <div className="space-y-2.5 w-full flex flex-col items-center">
                 {feature.points.map((point, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-[#09757a] shrink-0" />
-                    <span className="text-foreground text-[11px] font-black leading-none">
+                  <div key={i} className="flex items-center gap-3 justify-center">
+                    <CheckCircle2 className="h-4 w-4 text-[#09757a] shrink-0" />
+                    <span className="text-foreground text-xs font-black leading-none">
                       {point}
                     </span>
                   </div>

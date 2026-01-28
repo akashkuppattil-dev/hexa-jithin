@@ -105,7 +105,7 @@ export function ContactForm() {
             name="name"
             placeholder="Full Name"
             required
-            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-xs rounded-lg shadow-sm font-medium"
+            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-base rounded-lg shadow-sm font-medium"
           />
         </div>
 
@@ -119,7 +119,7 @@ export function ContactForm() {
             type="email"
             placeholder="your@email.com"
             required
-            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-xs rounded-lg shadow-sm font-medium"
+            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-base rounded-lg shadow-sm font-medium"
           />
         </div>
 
@@ -135,7 +135,7 @@ export function ContactForm() {
             required
             pattern="\d{10}"
             title="Please enter a 10 digit mobile number"
-            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-xs rounded-lg shadow-sm font-medium"
+            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] h-10 text-base rounded-lg shadow-sm font-medium"
           />
         </div>
 
@@ -149,7 +149,7 @@ export function ContactForm() {
             placeholder="Describe your requirements..."
             rows={4}
             required
-            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] text-xs rounded-xl resize-none shadow-sm font-medium"
+            className="bg-muted/30 border-border text-foreground placeholder:text-zinc-500 focus:border-[#09757a] text-base rounded-xl resize-none shadow-sm font-medium"
           />
         </div>
 

@@ -59,17 +59,17 @@ export function BusinessDetails() {
         </div>
 
         {/* Mobile View: Auto-moving Carousel */}
-        <div className="sm:hidden relative h-[220px]">
+        <div className="sm:hidden relative h-[180px] mb-8">
           {businessDetails.map((detail, index) => {
             const IconComponent = detail.icon
             return (
               <div
                 key={index}
-                className={`absolute inset-0 bg-card border border-border rounded-xl p-8 flex flex-col items-center text-center shadow-md transition-all duration-700 ${index === activeIndex ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+                className={`absolute inset-0 bg-card border border-border rounded-xl p-5 flex flex-col items-center text-center shadow-sm transition-all duration-700 ${index === activeIndex ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
               >
-                <div className="relative mb-6">
-                  <div className={`relative w-16 h-16 rounded-full bg-background border border-border flex items-center justify-center ${detail.color}`}>
-                    <IconComponent className="h-8 w-8" />
+                <div className="relative mb-3">
+                  <div className={`relative w-12 h-12 rounded-full bg-background border border-border flex items-center justify-center ${detail.color}`}>
+                    <IconComponent className="h-6 w-6" />
                   </div>
                 </div>
                 <p className="text-[10px] font-bold text-muted-foreground uppercase tracking-[0.3em] mb-2 leading-none">
@@ -96,12 +96,12 @@ export function BusinessDetails() {
             return (
               <div
                 key={index}
-                className="bg-card border border-border rounded-xl p-6 md:p-8 flex flex-col items-center text-center shadow-md hover:border-[#09757a]/30 transition-all duration-500 group"
+                className="bg-card border border-border rounded-xl p-5 md:p-6 flex flex-col items-center text-center shadow-sm hover:border-[#09757a]/20 transition-all duration-500 group"
               >
-                <div className="relative mb-6">
-                  <div className="absolute inset-0 bg-[#09757a]/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
-                  <div className={`relative w-14 h-14 md:w-16 md:h-16 rounded-full bg-background border border-border flex items-center justify-center ${detail.color} group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm`}>
-                    <IconComponent className="h-7 w-7 md:h-8 md:w-8" />
+                <div className="relative mb-4">
+                  <div className="absolute inset-0 bg-[#09757a]/5 blur-lg opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+                  <div className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-background border border-border flex items-center justify-center ${detail.color} group-hover:bg-[#09757a] group-hover:text-white transition-all shadow-sm`}>
+                    <IconComponent className="h-6 w-6 md:h-7 md:w-7" />
                   </div>
                 </div>
 

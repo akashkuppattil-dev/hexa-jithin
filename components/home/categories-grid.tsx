@@ -51,19 +51,15 @@ export function CategoriesGrid() {
 
   // Mapping real product images to categories for a better look
   const categoryImages: Record<string, string> = {
-    "painting": "/paint_polishing_category_1769584565630.png",
-    "cleaning": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-    "collision-repair": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800",
-    "welding": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
-    "spray-guns": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-    "lifting": "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&q=80&w=800",
-    "transmission": "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&q=80&w=800",
-    "pneumatic": "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80&w=800",
-    "hydraulic": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-    "measurement": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=800",
-    "power-tools": "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&q=80&w=800",
-    "hand-tools": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
-    "tyre-service": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=800",
+    "painting": "/professional-spray-gun-paint-automotive.jpg",
+    "cleaning": "/air-compressor-tank-industrial.jpg",
+    "collision-repair": "/collision-repair-equipment.jpg",
+    "welding": "/mig-welder-inverter-industrial-blue.jpg",
+    "lifting": "/engine-crane-hydraulic-hoist-workshop.jpg",
+    "measurement": "/dial-gauge-indicator-precision-measuring.jpg",
+    "power-tools": "/power-tools-drill-grinder-electric.jpg",
+    "hand-tools": "/hand-tools-wrenches-pliers-professional.jpg",
+    "tyre-service": "/digital-tyre-inflator-gauge-pcl-professional.jpg",
   }
 
   const getCategoryImage = (id: string) => {

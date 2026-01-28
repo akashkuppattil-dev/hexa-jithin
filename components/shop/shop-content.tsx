@@ -301,7 +301,7 @@ export function ShopContent() {
                   <Input
                     type="text"
                     placeholder="Search tools, brands or categories..."
-                    className="w-full h-11 pl-11 pr-4 bg-muted/40 border-border text-sm text-foreground rounded-lg focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-sm font-black placeholder:text-zinc-500"
+                    className="w-full h-11 pl-11 pr-4 bg-muted/40 border-border text-base text-foreground rounded-lg focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-sm font-black placeholder:text-zinc-500"
                     value={searchInputValue}
                     onChange={(e) => handleSearchChange(e.target.value)}
                     onFocus={() => setIsSearchFocused(true)}

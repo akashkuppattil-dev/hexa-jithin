@@ -116,7 +116,7 @@ export function SearchableFilterDropdown({
                 align="start"
             >
                 <Command className="w-full">
-                    <CommandInput placeholder={placeholder} className="h-10 text-[11px] font-bold" />
+                    <CommandInput placeholder={placeholder} className="h-10 text-base font-bold" />
                     <CommandList className="custom-scrollbar max-h-[320px] overflow-y-auto">
                         <CommandEmpty className="py-4 text-[10px] font-bold text-muted-foreground text-center">No matches found.</CommandEmpty>
                         <CommandGroup>
