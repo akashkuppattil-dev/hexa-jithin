@@ -219,9 +219,9 @@ export default function AboutClientPage() {
             <span>Our Regional</span>
             <span className="text-[#09757a]">Command Center</span>
           </h2>
-          <div className="max-w-xl mx-auto mb-10">
-            <p className="text-sm sm:text-base md:text-lg text-foreground font-black uppercase tracking-widest leading-relaxed mb-2">Door No 17/346, Chulliparamba, Near Farook College</p>
-            <p className="text-[#09757a] font-black text-xs sm:text-sm md:text-base uppercase tracking-[0.5em] mt-4">Calicut, Kerala – India</p>
+          <div className="max-w-2xl mx-auto mb-10">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground font-semibold uppercase tracking-widest leading-relaxed mb-2">Ground Floor, Door No 17/346, Chulliparamba</p>
+            <p className="text-muted-foreground font-semibold text-xs sm:text-sm md:text-base uppercase tracking-widest mt-2">Near Farook College, Calicut, Kerala – India</p>
           </div>
 
           <a

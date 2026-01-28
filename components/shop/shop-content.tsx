@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useRef, useEffect, useMemo, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { SearchableFilterDropdown } from "@/components/shop/searchable-filter-dropdown"
+import { SearchDropdown } from "@/components/search-dropdown"
 
 const ITEMS_PER_PAGE_MOBILE = 8
 const ITEMS_PER_PAGE_DESKTOP = 16
@@ -30,19 +31,63 @@ export function ShopContent() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState(searchParams.get("search") || "")
+  const [isSearchFocused, setIsSearchFocused] = useState(false)
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchParams.get("search") || "")
+  const searchBarRef = useRef<HTMLDivElement>(null)
 
-  const handleSearch = (term: string) => {
+  // 2. URL SYNC (INITIAL & UPDATES): Sync state with URL params
+  useEffect(() => {
+    const search = searchParams.get("search") || ""
+    const category = searchParams.get("category")
+    const brand = searchParams.get("brand")
+    const product = searchParams.get("product")
+
+    const availabilityParam = searchParams.get("availability")
+
+    setSearchInputValue(search)
+    setDebouncedSearchQuery(search)
+
+    // Correctly parse and reset categories/brands from URL for multi-select
+    setSelectedCategories(category ? category.split(",").filter(Boolean) : [])
+    setSelectedBrands(brand ? brand.split(",").filter(Boolean) : [])
+    setAvailability(availabilityParam ? availabilityParam.split(",").filter(Boolean) : [])
+    setSelectedProduct(product || null)
+  }, [searchParams])
+
+  // 3. SEARCH DEBOUNCE: Update URL when typing stops
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchInputValue)
+
+      const params = new URLSearchParams(window.location.search)
+      if (searchInputValue) {
+        params.set("search", searchInputValue)
+      } else {
+        params.delete("search")
+      }
+      const newUrl = `${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`
+      window.history.replaceState({ ...window.history.state, as: newUrl, url: newUrl }, '', newUrl)
+    }, 400)
+    return () => clearTimeout(timer)
+  }, [searchInputValue])
+
+  const handleSearchChange = (term: string) => {
     setSearchInputValue(term)
-    setCurrentPage(1) // Reset to page 1 on search
-    const params = new URLSearchParams(searchParams.toString())
-    if (term) {
-      params.set("search", term)
-    } else {
-      params.delete("search")
-    }
-    router.replace(`?${params.toString()}`, { scroll: false })
+    setCurrentPage(1)
   }
 
+  // Handle clicks outside the search bar to close suggestions
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchBarRef.current && !searchBarRef.current.contains(event.target as Node)) {
+        setIsSearchFocused(false)
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside)
+    return () => document.removeEventListener("mousedown", handleClickOutside)
+  }, [])
+
+  // Handle mobile detection
   useEffect(() => {
     let timeoutId: NodeJS.Timeout
     const handleResize = () => {
@@ -59,23 +104,17 @@ export function ShopContent() {
     }
   }, [])
 
-  useEffect(() => {
-    const category = searchParams.get("category")
-    const brand = searchParams.get("brand")
-
-    if (category) setSelectedCategories([category])
-    if (brand) setSelectedBrands([brand])
-  }, [searchParams])
-
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1)
   }, [selectedCategories, selectedBrands, selectedProduct, availability, searchInputValue])
 
+  // 4. FILTERING LOGIC: Filter the product array dynamically
   const filteredProducts = useMemo(() => {
+    // Start with all products
     let filtered = [...products]
 
-    const searchQuery = searchParams.get("search")?.toLowerCase()
+    const searchQuery = searchInputValue.toLowerCase()
     if (searchQuery) {
       filtered = filtered.filter(
         (p) =>
@@ -87,18 +126,22 @@ export function ShopContent() {
       )
     }
 
+    // Category Filter: Match IDs exactly
     if (selectedCategories.length > 0) {
       filtered = filtered.filter((p) => selectedCategories.includes(p.category))
     }
 
+    // Brand Filter
     if (selectedBrands.length > 0) {
       filtered = filtered.filter((p) => selectedBrands.includes(p.brand))
     }
 
+    // Specific Product Match
     if (selectedProduct) {
       filtered = filtered.filter((p) => p.id === selectedProduct)
     }
 
+    // Availability Filter
     if (availability.length > 0) {
       if (availability.includes("in-stock") && !availability.includes("out-of-stock")) {
         filtered = filtered.filter((p) => p.inStock)
@@ -125,11 +168,37 @@ export function ShopContent() {
       seen.add(p.id)
       return !duplicate
     })
-  }, [selectedCategories, selectedBrands, selectedProduct, availability, sortBy, searchParams])
+  }, [selectedCategories, selectedBrands, selectedProduct, availability, sortBy, searchInputValue])
 
+  // 5. PAGINATION: Slice the filtered list
   const itemsPerPage = isMobile ? ITEMS_PER_PAGE_MOBILE : ITEMS_PER_PAGE_DESKTOP
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage)
   const paginatedProducts = filteredProducts.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+
+  // 6. ACTION HANDLERS: React immediately to user input
+  const handleCategorySelect = (ids: string[]) => {
+    setSelectedCategories(ids)
+    setSelectedProduct(null)
+    setCurrentPage(1)
+
+    // Sync to URL
+    const params = new URLSearchParams(window.location.search)
+    if (ids.length > 0) params.set("category", ids.join(","))
+    else params.delete("category")
+    router.replace(`?${params.toString()}`, { scroll: false })
+  }
+
+  const handleBrandSelect = (ids: string[]) => {
+    setSelectedBrands(ids)
+    setSelectedProduct(null)
+    setCurrentPage(1)
+
+    // Sync to URL
+    const params = new URLSearchParams(window.location.search)
+    if (ids.length > 0) params.set("brand", ids.join(","))
+    else params.delete("brand")
+    router.replace(`?${params.toString()}`, { scroll: false })
+  }
 
   const clearFilters = () => {
     setSelectedCategories([])
@@ -138,7 +207,17 @@ export function ShopContent() {
     setAvailability([])
     setCurrentPage(1)
     setSearchInputValue("")
+    setDebouncedSearchQuery("")
     router.replace('/shop', { scroll: false })
+  }
+
+  const setAvailabilityWithUrl = (newAvailability: string[]) => {
+    setAvailability(newAvailability)
+    setCurrentPage(1)
+    const params = new URLSearchParams(window.location.search)
+    if (newAvailability.length > 0) params.set("availability", newAvailability.join(","))
+    else params.delete("availability")
+    router.replace(`?${params.toString()}`, { scroll: false })
   }
 
   const activeFiltersCount = selectedCategories.length + selectedBrands.length + availability.length + (selectedProduct ? 1 : 0)
@@ -188,11 +267,11 @@ export function ShopContent() {
                   categories={categories}
                   brands={brands}
                   selectedCategories={selectedCategories}
-                  setSelectedCategories={setSelectedCategories}
+                  setSelectedCategories={handleCategorySelect}
                   selectedBrands={selectedBrands}
-                  setSelectedBrands={setSelectedBrands}
+                  setSelectedBrands={handleBrandSelect}
                   availability={availability}
-                  setAvailability={setAvailability}
+                  setAvailability={setAvailabilityWithUrl}
                   onClearFilters={clearFilters}
                   activeFiltersCount={activeFiltersCount}
                 />
@@ -215,17 +294,28 @@ export function ShopContent() {
             <div className="flex flex-col xl:flex-row items-stretch xl:items-center gap-3">
               {/* Search Bar & Extra Dropdowns Container */}
               <div className="flex flex-col md:flex-row flex-1 items-stretch md:items-center gap-2">
-                <div className="relative flex-1 group/search">
+                <div ref={searchBarRef} className="relative flex-1 group/search">
                   <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                     <Search className="h-4 w-4 text-muted-foreground group-focus-within/search:text-[#09757a] transition-colors" />
                   </div>
                   <Input
                     type="text"
-                    placeholder="Search tools..."
-                    className="w-full h-11 pl-11 pr-4 bg-card border-border text-sm text-foreground rounded-lg focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-sm font-black placeholder:text-zinc-500"
+                    placeholder="Search tools, brands or categories..."
+                    className="w-full h-11 pl-11 pr-4 bg-muted/40 border-border text-sm text-foreground rounded-lg focus:ring-4 focus:ring-[#09757a]/10 focus:border-[#09757a]/50 transition-all shadow-sm font-black placeholder:text-zinc-500"
                     value={searchInputValue}
-                    onChange={(e) => handleSearch(e.target.value)}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    onFocus={() => setIsSearchFocused(true)}
                   />
+                  {isSearchFocused && debouncedSearchQuery.length >= 2 && (
+                    <div className="absolute top-full left-0 right-0 z-[60] mt-1">
+                      <SearchDropdown
+                        query={debouncedSearchQuery}
+                        onClose={() => {
+                          setIsSearchFocused(false)
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar sm:pb-0 sm:overflow-visible">
@@ -233,26 +323,41 @@ export function ShopContent() {
                     <SearchableFilterDropdown
                       label="Category"
                       items={categories}
-                      selectedId={selectedCategories[0] || null}
-                      onSelect={(id) => setSelectedCategories(id ? [id] : [])}
+                      isMulti={true}
+                      selectedIds={selectedCategories}
+                      onMultiSelect={handleCategorySelect}
                       placeholder="Search category..."
                       width="w-[130px] sm:w-[160px]"
                     />
 
                     <SearchableFilterDropdown
                       label="Brand"
-                      items={brands.map(b => ({ id: b, name: b }))}
-                      selectedId={selectedBrands[0] || null}
-                      onSelect={(id) => setSelectedBrands(id ? [id] : [])}
+                      items={brands.map(b => ({ id: b, name: b })).filter(b => {
+                        if (selectedCategories.length === 0) return true
+                        return products.some(p => p.brand === b.id && selectedCategories.includes(p.category))
+                      })}
+                      isMulti={true}
+                      selectedIds={selectedBrands}
+                      onMultiSelect={handleBrandSelect}
                       placeholder="Search brand..."
                       width="w-[130px] sm:w-[160px]"
                     />
 
                     <SearchableFilterDropdown
                       label="Product"
-                      items={products.map(p => ({ id: p.id, name: p.name }))}
+                      items={products
+                        .filter(p => {
+                          const catMatch = selectedCategories.length === 0 || selectedCategories.includes(p.category)
+                          const brandMatch = selectedBrands.length === 0 || selectedBrands.includes(p.brand)
+                          return catMatch && brandMatch
+                        })
+                        .map(p => ({ id: p.id, name: p.name }))
+                      }
                       selectedId={selectedProduct}
-                      onSelect={(id) => setSelectedProduct(id)}
+                      onSelect={(id) => {
+                        setSelectedProduct(id)
+                        setCurrentPage(1)
+                      }}
                       placeholder="Search product..."
                       width="w-[160px] sm:w-[200px]"
                     />
@@ -276,11 +381,11 @@ export function ShopContent() {
                         categories={categories}
                         brands={brands}
                         selectedCategories={selectedCategories}
-                        setSelectedCategories={setSelectedCategories}
+                        setSelectedCategories={handleCategorySelect}
                         selectedBrands={selectedBrands}
-                        setSelectedBrands={setSelectedBrands}
+                        setSelectedBrands={handleBrandSelect}
                         availability={availability}
-                        setAvailability={setAvailability}
+                        setAvailability={setAvailabilityWithUrl}
                         onClearFilters={clearFilters}
                         activeFiltersCount={activeFiltersCount}
                       />
@@ -308,6 +413,11 @@ export function ShopContent() {
                   {selectedBrands.map((brand) => (
                     <Badge key={brand} className="bg-muted text-foreground border-border px-2 py-0.5 rounded text-[7px] font-black uppercase">
                       {brand}
+                    </Badge>
+                  ))}
+                  {availability.map((avail) => (
+                    <Badge key={avail} className="bg-[#09757a]/5 text-[#09757a] border-[#09757a]/20 px-2 py-0.5 rounded text-[7px] font-black uppercase">
+                      {avail === "in-stock" ? "Ready to Ship" : avail === "on-offer" ? "Special Deals" : avail}
                     </Badge>
                   ))}
                 </div>

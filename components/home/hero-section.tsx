@@ -18,8 +18,15 @@ export function HeroSection() {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const router = useRouter()
 
+  const videoRef = useRef<HTMLVideoElement>(null)
+
   useEffect(() => {
     setMounted(true)
+    if (videoRef.current) {
+      videoRef.current.play().catch(error => {
+        console.log("Video auto-play failed:", error)
+      })
+    }
 
     function handleClickOutside(event: MouseEvent) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
@@ -111,36 +118,25 @@ export function HeroSection() {
   }
 
   return (
-    <section className="relative min-h-[500px] h-fit lg:h-[80vh] flex flex-col justify-center overflow-hidden bg-white py-8 sm:py-12 lg:py-0">
-      {/* Hero Background - Animated Logo Wallpaper */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-white">
-        {/* Large Animated Logo Background - Desktop */}
-        <div className="hidden lg:flex absolute inset-0 items-center justify-center opacity-[0.08] animate-slow-zoom pointer-events-none transform scale-125">
-          <Image
-            src="/hexamech-logo.png"
-            alt="Hexamech Branding Wallpaper"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
+    <section className="relative min-h-[600px] lg:h-[90vh] flex flex-col justify-center overflow-hidden bg-black py-8 sm:py-12 lg:py-0">
+      {/* Hero Background - Video */}
+      <div className="absolute inset-0 z-0">
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          className="w-full h-full object-cover opacity-60 scale-[1.02] transform-gpu"
+        >
+          <source src="/kling_20260127_Image_to_Video_Create_a_p_4933_0.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
 
-        {/* Mobile Background - Static & Clean */}
-        <div className="lg:hidden absolute inset-0 flex items-center justify-center opacity-[0.05] pointer-events-none">
-          <Image
-            src="/hexamech-logo.png"
-            alt="Hexamech Branding Wallpaper"
-            fill
-            className="object-contain scale-125"
-            priority
-          />
-        </div>
-
-        {/* Subtle Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent z-0" />
-
-        {/* Minimal Decorative Touches */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#09757a]/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+        {/* Overlays for Depth & Readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-1" />
+        <div className="absolute inset-0 bg-black/20 z-1" />
       </div>
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
@@ -148,11 +144,11 @@ export function HeroSection() {
 
           {/* Tech Typography */}
           <div className={`space-y-4 sm:space-y-5 lg:space-y-6 transition-all duration-1000 delay-100 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#111] leading-[1.1] sm:leading-[1.05] tracking-tighter uppercase px-2 sm:px-0">
+            <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] sm:leading-[1.05] tracking-tighter uppercase px-2 sm:px-0 drop-shadow-2xl">
               Premium <span className="hidden sm:inline"><br /></span>
-              <span className="text-[#09757a]">Industrial</span> Solutions.
+              <span className="text-[#0bc0c8]">Industrial</span> Solutions.
             </h1>
-            <p className="max-w-xl sm:max-w-2xl lg:max-w-3xl mx-auto text-[12px] xs:text-[13px] sm:text-[14px] md:text-[15px] lg:text-base font-semibold text-muted-foreground leading-relaxed px-4">
+            <p className="max-w-xl sm:max-w-2xl lg:max-w-3xl mx-auto text-[12px] xs:text-[13px] sm:text-[14px] md:text-[15px] lg:text-base font-semibold text-zinc-300 leading-relaxed px-4 drop-shadow-md">
               Supplying India's automotive and manufacturing sectors with precision-engineered equipment from global technology leaders.
             </p>
           </div>
@@ -161,12 +157,12 @@ export function HeroSection() {
           {/* Sleek CTAs */}
           <div className={`flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-1000 delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} w-full sm:w-auto px-4`}>
             <Link href="/shop" className="group w-full sm:w-auto">
-              <Button className="bg-[#09757a] hover:bg-[#111] text-white w-full sm:w-auto px-10 lg:px-12 h-12 lg:h-14 text-[11px] lg:text-xs font-black uppercase tracking-widest rounded-lg shadow-xl active:scale-95 transition-all flex items-center justify-center gap-3">
+              <Button className="bg-[#0bc0c8] hover:bg-[#09757a] text-black hover:text-white w-full sm:w-auto px-10 lg:px-12 h-12 lg:h-14 text-[11px] lg:text-xs font-black uppercase tracking-widest rounded-lg shadow-2xl active:scale-95 transition-all flex items-center justify-center gap-3 border-none">
                 Shop Catalog <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
             </Link>
             <Link href="/brands" className="w-full sm:w-auto">
-              <Button variant="outline" className="w-full sm:w-auto px-10 lg:px-12 h-12 lg:h-14 text-[11px] lg:text-xs font-black uppercase tracking-widest rounded-lg border-border bg-slate-100 text-[#111] hover:bg-slate-200 hover:text-[#111] transition-all">
+              <Button variant="outline" className="w-full sm:w-auto px-10 lg:px-12 h-12 lg:h-14 text-[11px] lg:text-xs font-black uppercase tracking-widest rounded-lg border-white/20 bg-white/5 text-white backdrop-blur-md hover:bg-white/10 transition-all">
                 Explore Our Brands
               </Button>
             </Link>

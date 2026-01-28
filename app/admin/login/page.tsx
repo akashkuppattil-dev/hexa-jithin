@@ -7,7 +7,7 @@ export default function AdminLoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  
+
   const router = useRouter();
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function AdminLoginPage() {
     }
   };
 
-  
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -94,9 +94,9 @@ export default function AdminLoginPage() {
           >
             Login
           </button>
-          
+
         </form>
-        
+
       </div>
     </div>
   );

@@ -111,7 +111,7 @@ export function Footer() {
               {/* Address */}
               <div className="flex flex-col gap-1.5 pt-1">
                 <p className="text-[9px] font-bold uppercase tracking-wide text-[#09757a]">Headquarters</p>
-                <p className="text-[11px] sm:text-[12px] text-gray-700 font-semibold leading-tight italic">{CONTACT.BUSINESS_ADDRESS}</p>
+                <p className="text-[10px] sm:text-[11px] text-muted-foreground font-semibold leading-relaxed uppercase tracking-wide">{CONTACT.BUSINESS_ADDRESS}</p>
               </div>
             </div>
           </div>

@@ -95,20 +95,20 @@ export function Header() {
       >
         <div className="w-full px-4 sm:px-6 md:px-12 flex items-center gap-2 sm:gap-4 xl:gap-6 py-2 md:py-3">
           {/* Logo Section - Full Brand - Slim & Clean */}
-          <Link href="/" className="flex items-center group active:scale-95 transition-transform shrink-0">
-            <div className="relative w-40 xs:w-48 sm:w-56 md:w-64 h-8 sm:h-12 md:h-14">
+          <Link href="/" className="flex items-center group shrink-0">
+            <div className="relative w-36 xs:w-44 sm:w-52 md:w-60 h-10 sm:h-12 md:h-14 overflow-hidden">
               <Image
                 src="/hexamech-logo.png"
                 alt="Hexamech Linich Tools"
                 fill
-                className="object-contain object-left mix-blend-multiply scale-[1.5] xs:scale-[1.75] origin-left"
+                className="object-contain object-left scale-150 origin-left"
                 priority
               />
             </div>
           </Link>
 
           {/* Navigation - Grouped closely with Logo */}
-          <nav className="hidden lg:flex items-center gap-4 xl:gap-7 shrink-0 border-l border-border pl-5 xl:pl-7 py-0.5">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-5 shrink-0 pl-2 py-0.5">
             <Link href="/" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all text-muted-foreground">Home</Link>
             <div className="relative group/nav" onMouseEnter={() => handleMouseEnter("products")}>
               <Link href="/shop" className="text-[11px] xl:text-[12px] font-medium uppercase tracking-wide hover:text-foreground hover:text-[#09757a] transition-all flex items-center gap-1.5 text-muted-foreground">
@@ -136,25 +136,27 @@ export function Header() {
               onFocus={() => setIsSearchFocused(true)}
             />
             {isSearchFocused && debouncedQuery.length >= 2 && (
-              <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
+              <div className="absolute top-full left-0 right-0 z-[60] mt-1 lg:max-w-xl">
+                <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
+              </div>
             )}
           </div>
 
           {/* Mobile Search Bar - Visible on Small Screens */}
-          <div className="flex lg:hidden flex-1 mx-2 relative group/search">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="flex lg:hidden flex-1 mx-1 xs:mx-2 relative group/search">
+            <div className="absolute inset-y-0 left-0 pl-2.5 flex items-center pointer-events-none">
               <Search className="h-3.5 w-3.5 text-muted-foreground" />
             </div>
             <Input
               type="text"
               placeholder="Search..."
-              className="h-9 w-full pl-9 pr-3 text-[11px] font-semibold bg-muted/40 border-border rounded-lg focus-visible:ring-1 focus-visible:ring-[#09757a]/50 transition-all"
+              className="h-8 w-full pl-8 pr-3 text-[10px] font-bold bg-muted/40 border-border rounded-lg focus-visible:ring-1 focus-visible:ring-[#09757a]/50 transition-all"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onFocus={() => setIsSearchFocused(true)}
             />
             {isSearchFocused && debouncedQuery.length >= 2 && (
-              <div className="absolute top-full left-0 right-0 z-[60] mt-2">
+              <div className="absolute top-full left-0 right-0 z-[60] mt-1">
                 <SearchDropdown query={debouncedQuery} onClose={() => setIsSearchFocused(false)} />
               </div>
             )}

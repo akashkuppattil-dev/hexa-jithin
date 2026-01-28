@@ -25,7 +25,7 @@ export function SearchDropdown({ query, onClose }: SearchDropdownProps) {
   }
 
   return (
-    <div className="absolute top-full left-0 right-0 mt-1.5 bg-popover border border-border rounded-lg shadow-2xl overflow-hidden z-50 transition-all">
+    <div className="absolute top-full left-0 right-0 mt-1.5 bg-popover border border-border rounded-xl shadow-2xl overflow-hidden z-50 transition-all max-h-[350px] overflow-y-auto custom-scrollbar">
       {matchingCategories.length > 0 && (
         <div className="p-2.5 border-b border-border">
           <p className="text-[9px] font-black text-muted-foreground mb-2 uppercase tracking-[0.2em]">Categories</p>
